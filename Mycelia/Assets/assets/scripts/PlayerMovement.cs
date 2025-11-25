@@ -36,9 +36,9 @@ public class PlayerMovement : MonoBehaviour
     private float DashDuration = 0.10f;
     private float DashCooldown = 0.1f;
     
-    [Header("Flying")] 
-    [SerializeField] private float flyingDuration = 0.5f;
-    [SerializeField] private float flyingCooldown = 0.5f;
+    [Header("Flying")]
+    [SerializeField] private float flyingPower = 15f;
+    [SerializeField] private float flyingCooldown = 5f;
     private bool isFlying = false;
     
     void Start()
@@ -78,6 +78,15 @@ public class PlayerMovement : MonoBehaviour
             //animator.SetBool("isMoving", false);
         }
     }
+
+    void FixedUpdate()
+    {
+        if (isFlying && flyingCooldown > 0)
+        {
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, flyingPower);
+            flyingCooldown -= Time.deltaTime;
+        }
+    }
     public void Move(InputAction.CallbackContext context)
     {
         if (canMove)
@@ -94,17 +103,21 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (context.started)
                 {
-                    
+                    isFlying = true;
                 }
                 else if (context.performed)
                 {
+                    Debug.Log("Performed");
                     rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
                     //animator.SetBool("hasJumped", true);
 
                 }
                 else if (context.canceled)
                 {
-                    rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * 0.5f);
+                    if (rb.linearVelocity.y > 0)
+                    {
+                        rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * 0.3f);
+                    }
                     //animator.SetBool("hasJumped", true);
                 }
             }
