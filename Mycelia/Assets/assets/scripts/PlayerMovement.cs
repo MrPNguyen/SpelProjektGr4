@@ -9,9 +9,10 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
+    private bool isFacingRight = true;
 
     [Header("Movement")]
-    public float moveSpeed = 5f;
+    [SerializeField] private float moveSpeed = 5f;
     private float horizontalMovement;
     private float horizontalInput;
 
@@ -19,68 +20,64 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce = 10f;
     
     [Header("GroundCheck")]
-    public Transform groundCheck;
-    public Vector2 groundCheckSize = new Vector2(0.5f, 0.05f);
-    public LayerMask whatIsGround;
+    [SerializeField] private Transform groundCheck;
+    [SerializeField] private Vector2 groundCheckSize = new Vector2(0.5f, 0.05f);
+    [SerializeField] private LayerMask whatIsGround;
     
     private SpriteRenderer spriteRenderer;
-    //private Animator animator;
+    private Animator animator;
 
     public bool canMove = true;
 
     [Header("Dash")]
-    public float DashPower = 5f;
-    private bool isDashing = false;
+    [SerializeField] private float DashPower = 20f;
+    private bool isDashing;
+    private bool canDash = true;
     private float DashDuration = 0.10f;
-    private float DashTimer;
+    private float DashCooldown = 0.1f;
+    
+    [Header("Flying")] 
+    [SerializeField] private float flyingDuration = 0.5f;
+    [SerializeField] private float flyingCooldown = 0.5f;
+    private bool isFlying = false;
+    
     void Start()
     {
          rb = GetComponent<Rigidbody2D>();
          spriteRenderer = GetComponent<SpriteRenderer>();
-         //animator = GetComponent<Animator>();
+         animator = GetComponent<Animator>();
     }
 
     void Update()
     {
+        if (isDashing)
+        {
+            return;
+        }
+        else
+        {
+            rb.linearVelocity = new Vector2(horizontalMovement * moveSpeed, rb.linearVelocity.y);
+        }
+     
         if (rb.linearVelocity.x < 0)
         {
             spriteRenderer.flipX = true;
+            isFacingRight = false;
             //animator.SetBool("isMoving", true);
         }
         else if (rb.linearVelocity.x > 0)
         {
             spriteRenderer.flipX = false;
+            isFacingRight = true;
             //animator.SetBool("isMoving", true);
-
         }
         else
         {
             spriteRenderer.flipX = false;
+            isFacingRight = true;
             //animator.SetBool("isMoving", false);
         }
-        
-        if (isDashing)
-        {
-            DashTimer -= Time.deltaTime;
-            if (DashTimer <= 0f)
-            {
-                isDashing = false;
-            }
-        }
     }
-
-    private void FixedUpdate()
-    {
-        if (!isDashing)
-        {
-            rb.linearVelocity = new Vector2(horizontalMovement * moveSpeed, rb.linearVelocity.y);
-        }
-        else
-        {
-            rb.linearVelocity = new Vector2(horizontalMovement * DashPower, 0f);
-        }
-    }
-
     public void Move(InputAction.CallbackContext context)
     {
         if (canMove)
@@ -95,7 +92,11 @@ public class PlayerMovement : MonoBehaviour
         {
             if (isGrounded())
             {
-                if (context.performed)
+                if (context.started)
+                {
+                    
+                }
+                else if (context.performed)
                 {
                     rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
                     //animator.SetBool("hasJumped", true);
@@ -118,13 +119,48 @@ public class PlayerMovement : MonoBehaviour
     {
         if (canMove)
         {
-            if (context.performed)
+            if (context.performed && canDash)
             {
-                isDashing = true;
-                Debug.Log(isDashing);
-                DashTimer = DashDuration;
+                Debug.Log("Q");
+                StartCoroutine(DashCoroutine());
             }
         }
+    }
+
+    private IEnumerator DashCoroutine()
+    {
+        Debug.Log("DashCoroutine");
+        canDash = false;
+        isDashing = true;
+        
+        float dashDirection = isFacingRight ? 1 : -1;
+
+        if (dashDirection == -1)
+        {
+            animator.SetBool("isDashingLeft", true);
+        }
+        else if (dashDirection == 1)
+        {
+            animator.SetBool("isDashingRight", true);
+        }
+        
+        rb.linearVelocity = new Vector2(dashDirection * DashPower, rb.linearVelocity.y);
+        
+        yield return new WaitForSeconds(DashDuration);
+        
+        rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+        
+        isDashing = false;
+        if (dashDirection == -1)
+        {
+            animator.SetBool("isDashingLeft", false);
+        }
+        else if (dashDirection == 1)
+        {
+            animator.SetBool("isDashingRight", false);
+        }        
+        yield return new WaitForSeconds(DashCooldown);
+        canDash = true;
     }
 
     private bool isGrounded()
