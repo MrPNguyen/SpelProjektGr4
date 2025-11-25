@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,7 +12,8 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Movement")]
     public float moveSpeed = 5f;
-    float horizontalMovement;
+    private float horizontalMovement;
+    private float horizontalInput;
 
     [Header("Jump")]
     public float jumpForce = 10f;
@@ -26,7 +28,11 @@ public class PlayerMovement : MonoBehaviour
 
     public bool canMove = true;
 
+    [Header("Dash")]
     public float DashPower = 5f;
+    private bool isDashing = false;
+    private float DashDuration = 0.10f;
+    private float DashTimer;
     void Start()
     {
          rb = GetComponent<Rigidbody2D>();
@@ -36,7 +42,6 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        rb.linearVelocity = new Vector2(horizontalMovement * moveSpeed, rb.linearVelocity.y);
         if (rb.linearVelocity.x < 0)
         {
             spriteRenderer.flipX = true;
@@ -53,13 +58,33 @@ public class PlayerMovement : MonoBehaviour
             spriteRenderer.flipX = false;
             //animator.SetBool("isMoving", false);
         }
+        
+        if (isDashing)
+        {
+            DashTimer -= Time.deltaTime;
+            if (DashTimer <= 0f)
+            {
+                isDashing = false;
+            }
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (!isDashing)
+        {
+            rb.linearVelocity = new Vector2(horizontalMovement * moveSpeed, rb.linearVelocity.y);
+        }
+        else
+        {
+            rb.linearVelocity = new Vector2(horizontalMovement * DashPower, 0f);
+        }
     }
 
     public void Move(InputAction.CallbackContext context)
     {
         if (canMove)
         {
-           
             horizontalMovement = context.ReadValue<Vector2>().x;
         }
     }
@@ -93,13 +118,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (canMove)
         {
-            if (spriteRenderer.flipX == false)
+            if (context.performed)
             {
-                horizontalMovement = context.ReadValue<Vector2>().x;
-            }
-            else
-            {
-                horizontalMovement = context.ReadValue<Vector2>().x - DashPower;
+                isDashing = true;
+                Debug.Log(isDashing);
+                DashTimer = DashDuration;
             }
         }
     }
