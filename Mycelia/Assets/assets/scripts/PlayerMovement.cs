@@ -103,21 +103,26 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (context.started)
                 {
+                    Debug.Log("Started");
                     isFlying = true;
+                    //Add Interaction: Hold i InputSystem för flying
                 }
-                else if (context.performed)
+                
+                if (context.performed)
                 {
                     Debug.Log("Performed");
                     rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
                     //animator.SetBool("hasJumped", true);
 
                 }
-                else if (context.canceled)
+                
+                if (context.canceled)
                 {
                     if (rb.linearVelocity.y > 0)
                     {
                         rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * 0.3f);
                     }
+                    isFlying = false;
                     //animator.SetBool("hasJumped", true);
                 }
             }
