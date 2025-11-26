@@ -114,11 +114,9 @@ public class PlayerMovement : MonoBehaviour
         // Prevent jumping in the air
         if (!isGrounded() && context.performed)
         {
-            Debug.Log("BLOCKED midair jump");
             return;
         }
 
-        Debug.Log("JUMP called | grounded=" + isGrounded() + " | performed=" + context.performed + " | canceled=" + context.canceled);
         // Normal jump
         if (context.performed)
         {
@@ -139,8 +137,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void Fly(InputAction.CallbackContext context)
     {
-        if (!isGrounded()) return;
-
         if (context.started)
         {
            GroundedBeforeFlying = isGrounded();
@@ -150,9 +146,8 @@ public class PlayerMovement : MonoBehaviour
         {
             if(!GroundedBeforeFlying) return;
             
-            Debug.Log("Flying");
             isFlying = true;
-            flyingDuration = 3f;
+            flyingDuration = 1f;
         }
 
         if (context.canceled)
@@ -167,7 +162,6 @@ public class PlayerMovement : MonoBehaviour
         {
             if (context.performed && canDash)
             {
-                Debug.Log("Q");
                 StartCoroutine(DashCoroutine());
             }
         }
@@ -175,7 +169,6 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator DashCoroutine()
     {
-        Debug.Log("DashCoroutine");
         canDash = false;
         isDashing = true;
         
