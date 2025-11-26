@@ -133,6 +133,11 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void Fly(InputAction.CallbackContext context)
+    {
+        
+    }
+
     public void Dash(InputAction.CallbackContext context)
     {
         if (canMove)
