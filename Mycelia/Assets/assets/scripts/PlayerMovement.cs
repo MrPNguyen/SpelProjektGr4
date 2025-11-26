@@ -39,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Flying")]
     [SerializeField] private float flyingPower = 15f;
     [SerializeField] private float flyingCooldown = 5f;
+    private float flyingDuration;
     private bool isFlying = false;
     
     void Start()
@@ -81,10 +82,18 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (isFlying && flyingCooldown > 0)
+        if (isFlying)
         {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, flyingPower);
-            flyingCooldown -= Time.deltaTime;
+            flyingDuration -= Time.deltaTime;
+
+            if (flyingDuration <= 0)
+            {
+                isFlying = false;
+            }
+            else
+            {
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, flyingPower);
+            }
         }
     }
     public void Move(InputAction.CallbackContext context)
@@ -97,45 +106,55 @@ public class PlayerMovement : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext context)
     {
-        if (canMove)
+        if (!canMove) return;
+        if (isGrounded())
         {
-            if (isGrounded())
+            if (isFlying)
             {
-                if (context.started)
-                {
-                    Debug.Log("Started");
-                    isFlying = true;
-                    //Add Interaction: Hold i InputSystem för flying
-                }
+                return;
+            }
                 
-                if (context.performed)
-                {
-                    Debug.Log("Performed");
-                    rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
-                    //animator.SetBool("hasJumped", true);
+            if (context.performed)
+            {
+                Debug.Log("Jumping");
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+                //animator.SetBool("hasJumped", true);
 
-                }
+            }
                 
-                if (context.canceled)
-                {
-                    if (rb.linearVelocity.y > 0)
-                    {
-                        rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * 0.3f);
-                    }
-                    isFlying = false;
-                    //animator.SetBool("hasJumped", true);
-                }
-            }
-            else
+            if (context.canceled)
             {
-                //animator.SetBool("hasJumped", false);
+                if (rb.linearVelocity.y > 0)
+                {
+                    rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * 0.3f);
+                }
+                isFlying = false;
+                //animator.SetBool("hasJumped", true);
             }
+        }
+        else
+        {
+            //animator.SetBool("hasJumped", false);
         }
     }
 
     public void Fly(InputAction.CallbackContext context)
     {
-        
+        if(!canMove) return;
+        if (isGrounded())
+        {
+            if (context.started)
+            {
+                Debug.Log("Flying");
+                isFlying = true;
+                flyingDuration = 3f;
+            }
+
+            if (context.canceled)
+            {
+                isFlying = false;
+            }
+        }
     }
 
     public void Dash(InputAction.CallbackContext context)

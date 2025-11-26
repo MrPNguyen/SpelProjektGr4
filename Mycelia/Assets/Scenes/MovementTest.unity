@@ -288,16 +288,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  jumpForce: 10
+  jumpForce: 5
   groundCheck: {fileID: 999061402}
   groundCheckSize: {x: 0.37, y: 0.05}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 8
   canMove: 1
-  DashPower: 5
+  DashPower: 20
   flyingPower: 2
-  flyingCooldown: 0.5
+  flyingCooldown: 2
 --- !u!114 &208205123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -439,6 +439,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 9caa3d8a-6b2f-4e8e-8bad-6ede561bd9be
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 208205122}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: Fly
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 1d25e756-06e4-4ea7-8705-e0900fe0d7f7
+    m_ActionName: 'Player/Flying[/Keyboard/space]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: 
