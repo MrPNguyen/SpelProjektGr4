@@ -8,6 +8,7 @@ using UnityEngine.InputSystem;
 //Code Source: Game Code Library: "2D Platformer Unity"
 public class PlayerMovement : MonoBehaviour
 {
+    //Press down key to fall down quicker
     private Rigidbody2D rb;
     public bool isFacingRight = true;
     public bool isKnockedBack = false;
@@ -166,6 +167,11 @@ public class PlayerMovement : MonoBehaviour
                 StartCoroutine(DashCoroutine());
             }
         }
+    }
+    
+    public void HardDrop(InputAction.CallbackContext context)
+    {
+        //TODO: Increase the force in which the player falls when context is performed or started
     }
 
     private IEnumerator DashCoroutine()
