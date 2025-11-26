@@ -10,14 +10,18 @@ public class CageOpen : MonoBehaviour
 {
     public UnityEvent onTriggerEnter;
 
-    private bool IsOpen;
+    private bool IsOpen = false;
     private Animator doorAnimator;
+    private int count = 0;
+    
+    
    
     private string tagToActivate = "Player";
     void Start()
     {
         //doorAnimator = GetComponent<Animator>();
         //doorAnimator.SetBool.("Open", false)
+        
        
         Debug.Log(GetComponent<Collider>().CompareTag(TagHandle.GetExistingTag("Player")));
         Debug.Log($"TagHandle{TagHandle.GetExistingTag("Player") }");
@@ -35,8 +39,11 @@ public class CageOpen : MonoBehaviour
         if (IsOpen && other.CompareTag(tagToActivate))
         {
             //doorAnimator.SetBool("isOpen", true);
-                        Debug.Log("isOpen");
+            Debug.Log("isOpen");
+            
         }
+
+        
     }
 
     public void OpenDoor()
