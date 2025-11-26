@@ -41,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float flyingCooldown = 5f;
     private float flyingDuration;
     private bool isFlying = false;
+    private bool GroundedBeforeFlying;
     
     void Start()
     {
@@ -107,53 +108,56 @@ public class PlayerMovement : MonoBehaviour
     public void Jump(InputAction.CallbackContext context)
     {
         if (!canMove) return;
-        if (isGrounded())
-        {
-            if (isFlying)
-            {
-                return;
-            }
-                
-            if (context.performed)
-            {
-                Debug.Log("Jumping");
-                rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
-                //animator.SetBool("hasJumped", true);
+        
+        if (isFlying) return;
 
-            }
-                
-            if (context.canceled)
+        // Prevent jumping in the air
+        if (!isGrounded() && context.performed)
+        {
+            Debug.Log("BLOCKED midair jump");
+            return;
+        }
+
+        Debug.Log("JUMP called | grounded=" + isGrounded() + " | performed=" + context.performed + " | canceled=" + context.canceled);
+        // Normal jump
+        if (context.performed)
+        {
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+            //animator.SetBool("hasJumped", true);
+        }
+
+        // Optional variable jump height
+        if (context.canceled)
+        {
+            if (rb.linearVelocity.y > 0)
             {
-                if (rb.linearVelocity.y > 0)
-                {
-                    rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * 0.3f);
-                }
-                isFlying = false;
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * 0.3f);
                 //animator.SetBool("hasJumped", true);
             }
-        }
-        else
-        {
-            //animator.SetBool("hasJumped", false);
         }
     }
 
     public void Fly(InputAction.CallbackContext context)
     {
-        if(!canMove) return;
-        if (isGrounded())
-        {
-            if (context.started)
-            {
-                Debug.Log("Flying");
-                isFlying = true;
-                flyingDuration = 3f;
-            }
+        if (!isGrounded()) return;
 
-            if (context.canceled)
-            {
-                isFlying = false;
-            }
+        if (context.started)
+        {
+           GroundedBeforeFlying = isGrounded();
+        }
+
+        if (context.performed)
+        {
+            if(!GroundedBeforeFlying) return;
+            
+            Debug.Log("Flying");
+            isFlying = true;
+            flyingDuration = 3f;
+        }
+
+        if (context.canceled)
+        {
+            isFlying = false;
         }
     }
 

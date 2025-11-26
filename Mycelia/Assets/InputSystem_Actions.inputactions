@@ -507,7 +507,7 @@
                     "name": "",
                     "id": "1624dd49-09a5-4636-b964-ec757ec5cae7",
                     "path": "<Keyboard>/space",
-                    "interactions": "Hold",
+                    "interactions": "Hold(duration=0.25)",
                     "processors": "",
                     "groups": "",
                     "action": "Flying",
