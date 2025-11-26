@@ -2,31 +2,46 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using UnityEngine.Events;
+
 
 public class CageOpen : MonoBehaviour
+
 {
-    public bool IsOpen;
+    public UnityEvent onTriggerEnter;
+
+    private bool IsOpen;
     private Animator doorAnimator;
-    private Collider2D other;
+   
+    private string tagToActivate = "Player";
     void Start()
     {
         //doorAnimator = GetComponent<Animator>();
         //doorAnimator.SetBool.("Open", false)
-        other = GetComponent<Collider2D>();
+       
+        Debug.Log(GetComponent<Collider>().CompareTag(TagHandle.GetExistingTag("Player")));
+        Debug.Log($"TagHandle{TagHandle.GetExistingTag("Player") }");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (IsOpen && other.gameObject.tag == "Player")
+        
+    }
+
+     void OnTriggerEnter2D(Collider2D other)
+    {
+       onTriggerEnter.Invoke();
+        if (IsOpen && other.CompareTag(tagToActivate))
         {
             //doorAnimator.SetBool("isOpen", true);
-            Console.WriteLine("isOpen");
+                        Debug.Log("isOpen");
         }
     }
 
     public void OpenDoor()
     {
+        Debug.Log("isOpen=true");
         IsOpen = true;
     }
 
