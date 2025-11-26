@@ -21,10 +21,6 @@ public class CageOpen : MonoBehaviour
     {
         //doorAnimator = GetComponent<Animator>();
         //doorAnimator.SetBool.("Open", false)
-        
-       
-        Debug.Log(GetComponent<Collider>().CompareTag(TagHandle.GetExistingTag("Player")));
-        Debug.Log($"TagHandle{TagHandle.GetExistingTag("Player") }");
     }
 
     // Update is called once per frame
