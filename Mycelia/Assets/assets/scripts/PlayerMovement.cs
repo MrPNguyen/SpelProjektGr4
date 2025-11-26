@@ -9,7 +9,8 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
-    private bool isFacingRight = true;
+    public bool isFacingRight = true;
+    public bool isKnockedBack = false;
 
     [Header("Movement")]
     [SerializeField] private float moveSpeed = 5f;
@@ -22,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("GroundCheck")]
     [SerializeField] private Transform groundCheck;
     [SerializeField] private Vector2 groundCheckSize = new Vector2(0.5f, 0.05f);
-    [SerializeField] private LayerMask whatIsGround;
+    [SerializeField] private List<LayerMask> whatIsGround;
     
     private SpriteRenderer spriteRenderer;
     private Animator animator;
@@ -38,7 +39,6 @@ public class PlayerMovement : MonoBehaviour
     
     [Header("Flying")]
     [SerializeField] private float flyingPower = 15f;
-    [SerializeField] private float flyingCooldown = 5f;
     private float flyingDuration;
     private bool isFlying = false;
     private bool GroundedBeforeFlying;
@@ -56,11 +56,12 @@ public class PlayerMovement : MonoBehaviour
         {
             return;
         }
-        else
+
+        if (!isKnockedBack)
         {
             rb.linearVelocity = new Vector2(horizontalMovement * moveSpeed, rb.linearVelocity.y);
         }
-     
+        
         if (rb.linearVelocity.x < 0)
         {
             spriteRenderer.flipX = true;
@@ -204,9 +205,12 @@ public class PlayerMovement : MonoBehaviour
 
     private bool isGrounded()
     {
-        if (Physics2D.OverlapBox(groundCheck.position, groundCheckSize, 0, whatIsGround))
+        foreach (var mask in whatIsGround)
         {
-            return true;
+            if (Physics2D.OverlapBox(groundCheck.position, groundCheckSize, 0, mask))
+            {
+                return true;
+            }
         }
         return false;
     }

@@ -1,27 +1,32 @@
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 public class PlayerManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-     private int maxHealth = 3; 
-     public int currentHealth;
-     public Vector3 originalPosition;
+    private Rigidbody2D rb;
+    private PlayerMovement playerMovement;
+    public Vector3 originalPosition;
     
+    [Header("Health")]
+    private int maxHealth = 3; 
+    public int currentHealth;
     [SerializeField] private Image Heart1;
     [SerializeField] private Image Heart2;
     [SerializeField] private Image Heart3;
     
+    [Header("Death")]
     [SerializeField] private Animator animator;
     [SerializeField] private TMP_Text GameOverPrologText;
-
     [SerializeField] private List<string> DeathText;
+    [SerializeField] private float HitRecoil = 20;
     void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
+        playerMovement = GetComponent<PlayerMovement>();
         originalPosition = transform.position;
         currentHealth = maxHealth;
-        DeathText = new List<string>();
         if (DeathText.Count > 0)
         {
             GameOverPrologText.text = DeathText[Random.Range(0, DeathText.Count)];
@@ -38,7 +43,7 @@ public class PlayerManager : MonoBehaviour
         if (currentHealth <= 0)
         { 
             Destroy(this.gameObject);
-           animator.SetTrigger("isDead");
+            animator.SetTrigger("isDead");
         }
 
         if (currentHealth == 2)
@@ -65,5 +70,26 @@ public class PlayerManager : MonoBehaviour
     public void TakeDamage()
     {
         currentHealth--;
+    }
+    
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            TakeDamage();
+            
+            float HitRecoilX = 10f * (playerMovement.isFacingRight ? -1 : 1);
+            float HitRecoilY = HitRecoil;
+            rb.linearVelocity = new Vector2(HitRecoilX, HitRecoilY);
+
+            StartCoroutine(KnockbackCoroutine(0.2f));
+        }
+    }
+    
+    private IEnumerator KnockbackCoroutine(float duration)
+    {
+        playerMovement.isKnockedBack = true;
+        yield return new WaitForSeconds(duration);
+        playerMovement.isKnockedBack = false;
     }
 }

@@ -1,18 +1,40 @@
+using System;
 using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private Rigidbody2D rb;
+
+    [SerializeField] private GameObject pointA;
+    [SerializeField] private GameObject pointB;
     
-    void Start()
+    [SerializeField] private float enemyMoveSpeed = 25f;
+
+    private float EnemyDirection;
+
+    private void Start()
     {
-        
+        EnemyDirection = 1f;
+        rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
-        
+        rb.linearVelocity = new Vector2(EnemyDirection * enemyMoveSpeed, rb.linearVelocity.y);
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("PointA"))
+        {
+            EnemyDirection = 1;
+        }
+        
+        else if (other.gameObject.CompareTag("PointB"))
+        {
+            EnemyDirection = -1;
+        }
+    }
+    
+   
 }
