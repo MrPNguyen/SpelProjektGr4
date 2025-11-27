@@ -11,7 +11,7 @@ using UnityEngine.UI;
 public class PlayerMovement : MonoBehaviour
 {
     //Press down key to fall down quicker
-    private Rigidbody2D rb;
+    public Rigidbody2D rb;
     public bool isFacingRight = true;
     public bool isKnockedBack = false;
 
@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
     
     [Header("Jump")]
     [SerializeField] private float jumpForce = 10f;
-    [SerializeField] private float HardDropPower = 4;
+    [SerializeField] public float HardDropPower = 4;
     
     [Header("GroundCheck")]
     [SerializeField] private Transform groundCheck;

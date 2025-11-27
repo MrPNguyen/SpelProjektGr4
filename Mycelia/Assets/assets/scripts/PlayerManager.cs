@@ -22,6 +22,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private List<string> DeathText;
     [SerializeField] private float HitRecoil = 20;
     private Material player;
+    [SerializeField] private GameObject enemy;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -78,14 +79,20 @@ public class PlayerManager : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            TakeDamage();
-            player.color = Color.red;
-            
-            float HitRecoilX = 10f * (playerMovement.isFacingRight ? -1 : 1);
-            float HitRecoilY = HitRecoil;
-            rb.linearVelocity = new Vector2(HitRecoilX, HitRecoilY);
+            if (playerMovement.rb.gravityScale >= playerMovement.HardDropPower)
+            {
+                Destroy(enemy);
+            }
+            else
+            {
+                TakeDamage();
+                player.color = Color.red;
+                float HitRecoilX = 10f * (playerMovement.isFacingRight ? -1 : 1);
+                float HitRecoilY = HitRecoil;
+                rb.linearVelocity = new Vector2(HitRecoilX, HitRecoilY);
 
-            StartCoroutine(KnockbackCoroutine(0.2f));
+                StartCoroutine(KnockbackCoroutine(0.2f));
+            }
         }
     }
     
