@@ -317,7 +317,15 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator RechargeStamina()
     {
-        yield return new WaitForSeconds(1f);
+        if (CurrentStamina == 0)
+        {
+            Debug.Log("Hi");
+            yield return new WaitForSeconds(4f);
+        }
+        else
+        {
+            yield return new WaitForSeconds(1f);
+        }
         while (CurrentStamina < MaxStamina)
         {
             CurrentStamina += ChargeRate /10f;
