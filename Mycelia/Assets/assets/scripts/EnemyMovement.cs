@@ -11,7 +11,7 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private float enemyMoveSpeed = 25f;
 
     private float EnemyDirection;
-
+    
     private void Start()
     {
         EnemyDirection = 1f;
@@ -35,6 +35,8 @@ public class EnemyMovement : MonoBehaviour
             EnemyDirection = -1;
         }
     }
+
+
     
    
 }
