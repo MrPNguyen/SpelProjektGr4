@@ -15,9 +15,9 @@ public class CameraFollow : MonoBehaviour
         {
             Vector3 newPos = new Vector3(target.position.x, target.position.y, CameraDepth);
 
-            if (newPos.x < -0.1f)
+            if (newPos.x < -4f)
             {
-                newPos.x = -0.1f;
+                newPos.x = -4f;
             }
             transform.position = Vector3.Slerp(transform.position, newPos, CameraSpeed * CameraSpeed*Time.deltaTime);
         }

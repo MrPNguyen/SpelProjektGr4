@@ -259,6 +259,7 @@ public class PlayerMovement : MonoBehaviour
             if (context.performed && canDash)
             {
                 StaminaLoss(DashCost);
+                StartCoroutine(DashCoroutine());
             }
         }
     }
