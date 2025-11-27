@@ -46,7 +46,7 @@ public class FallingGround : MonoBehaviour
     IEnumerator Wait(float WaitTime)
     {
         yield return new WaitUntil(() => transform.position.y <= posA.y-posB);
-
+        
         Debug.Log("We're in");
         rb.gravityScale = -2;
         
