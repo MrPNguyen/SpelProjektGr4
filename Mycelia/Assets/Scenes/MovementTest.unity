@@ -650,6 +650,8 @@ MonoBehaviour:
   isFacingRight: 1
   isKnockedBack: 0
   moveSpeed: 5
+  runSpeed: 10
+  isRunning: 0
   jumpForce: 5
   groundCheck: {fileID: 999061402}
   groundCheckSize: {x: 0.28, y: 0.02}
@@ -661,6 +663,15 @@ MonoBehaviour:
   canMove: 1
   DashPower: 20
   flyingPower: 2
+  StaminaBar: {fileID: 392111218}
+  CurrentStamina: 0
+  MaxStamina: 100
+  JumpCost: 10
+  RunCost: 10
+  DashCost: 0
+  FlyingCost: 0
+  HardDropCost: 0
+  ChargeRate: 5
 --- !u!114 &208205123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -743,7 +754,19 @@ MonoBehaviour:
     m_ActionId: b7230bb6-fc9b-4f52-8b25-f5e19cb2c2ba
     m_ActionName: 'Player/Next[/Keyboard/2]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 208205122}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: Run
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 641cd816-40e6-41b4-8c3d-04687c349290
     m_ActionName: 'Player/Sprint[/Keyboard/leftShift]'
   - m_PersistentCalls:
@@ -2837,6 +2860,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 371698670}
   m_CullTransparentMesh: 1
+--- !u!114 &392111218 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3708027519212647744, guid: 54beca3aa97dcb94dbcf044de1a8fba6, type: 3}
+  m_PrefabInstance: {fileID: 3782515092083688243}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &434244105
 GameObject:
   m_ObjectHideFlags: 0
@@ -5032,29 +5066,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2125534636525627947, guid: 54beca3aa97dcb94dbcf044de1a8fba6, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
+    - target: {fileID: 3708027519212647744, guid: 54beca3aa97dcb94dbcf044de1a8fba6, type: 3}
+      propertyPath: m_Type
+      value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 2125534636525627947, guid: 54beca3aa97dcb94dbcf044de1a8fba6, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2125534636525627947, guid: 54beca3aa97dcb94dbcf044de1a8fba6, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2125534636525627947, guid: 54beca3aa97dcb94dbcf044de1a8fba6, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2125534636525627947, guid: 54beca3aa97dcb94dbcf044de1a8fba6, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -557.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2125534636525627947, guid: 54beca3aa97dcb94dbcf044de1a8fba6, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -250.8
+    - target: {fileID: 3708027519212647744, guid: 54beca3aa97dcb94dbcf044de1a8fba6, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 2097009058, guid: 35ef6ac212d30f34f98d30daca483265, type: 3}
+    - target: {fileID: 3708027519212647744, guid: 54beca3aa97dcb94dbcf044de1a8fba6, type: 3}
+      propertyPath: m_FillMethod
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3954543947799105649, guid: 54beca3aa97dcb94dbcf044de1a8fba6, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -5075,6 +5097,22 @@ PrefabInstance:
     - target: {fileID: 5339368715669799473, guid: 54beca3aa97dcb94dbcf044de1a8fba6, type: 3}
       propertyPath: m_Name
       value: Heart
+      objectReference: {fileID: 0}
+    - target: {fileID: 6194488570204256678, guid: 54beca3aa97dcb94dbcf044de1a8fba6, type: 3}
+      propertyPath: m_Type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6194488570204256678, guid: 54beca3aa97dcb94dbcf044de1a8fba6, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -2808014073550543062, guid: 35ef6ac212d30f34f98d30daca483265, type: 3}
+    - target: {fileID: 6194488570204256678, guid: 54beca3aa97dcb94dbcf044de1a8fba6, type: 3}
+      propertyPath: m_Maskable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6194488570204256678, guid: 54beca3aa97dcb94dbcf044de1a8fba6, type: 3}
+      propertyPath: m_FillMethod
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

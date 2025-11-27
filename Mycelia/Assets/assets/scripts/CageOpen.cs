@@ -12,7 +12,6 @@ public class CageOpen : MonoBehaviour
 
     private bool IsOpen = false;
     private Animator doorAnimator;
-    private int count = 0;
     
     
    
