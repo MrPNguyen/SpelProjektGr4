@@ -226,6 +226,7 @@ MonoBehaviour:
   - The Faye succumbs to peril in their Journey
   HitRecoil: 6
   enemy: {fileID: 0}
+  extraLife: {fileID: 5097334356680221191, guid: ce3831b2fa01c6a468bb5d0a884f1a01, type: 3}
 --- !u!114 &8841612456383048459
 MonoBehaviour:
   m_ObjectHideFlags: 0

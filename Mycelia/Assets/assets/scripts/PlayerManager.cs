@@ -23,6 +23,9 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private float HitRecoil = 20;
     private Material player;
     [SerializeField] private GameObject enemy;
+    
+    [Header("Extra Life")]
+    [SerializeField] private GameObject extraLife;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -63,6 +66,11 @@ public class PlayerManager : MonoBehaviour
             Heart3.enabled = false;
         }
 
+        if (currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+
         if (currentHealth == maxHealth)
         {
             Heart1.enabled = true;
@@ -82,6 +90,8 @@ public class PlayerManager : MonoBehaviour
             if (playerMovement.rb.gravityScale >= playerMovement.HardDropPower && !playerMovement.isGrounded())
             {
                 Destroy(enemy);
+                Instantiate(extraLife, other.transform.position, other.transform.rotation);
+                
             }
             else
             {
@@ -93,6 +103,12 @@ public class PlayerManager : MonoBehaviour
 
                 StartCoroutine(KnockbackCoroutine(0.2f));
             }
+        }
+
+        if (other.tag == "ExtraLife")
+        {
+            currentHealth++;
+            Destroy(other.gameObject);
         }
     }
     
