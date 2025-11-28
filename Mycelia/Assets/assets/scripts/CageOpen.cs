@@ -35,7 +35,7 @@ public class CageOpen : MonoBehaviour
         {
             //doorAnimator.SetBool("isOpen", true);
             Debug.Log("isOpen");
-            
+            GetComponent<BoxCollider2D>().enabled = false;
         }
 
         
@@ -45,6 +45,7 @@ public class CageOpen : MonoBehaviour
     {
         Debug.Log("isOpen=true");
         IsOpen = true;
+        GetComponent<BoxCollider2D>().enabled = true;
     }
 
 }
