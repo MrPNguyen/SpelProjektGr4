@@ -27,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Jump")]
     [SerializeField] private float jumpForce = 10f;
     [SerializeField] public float HardDropPower = 4;
+    private bool isHardDropping = false;
     
     [Header("GroundCheck")]
     [SerializeField] private Transform groundCheck;
@@ -152,6 +153,21 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (isGrounded())
+        {
+            rb.gravityScale = 10;
+        }
+        else
+        {
+            if (isHardDropping)
+            {
+                rb.gravityScale = HardDropPower;
+            }
+            else
+            {
+                rb.gravityScale = 1;
+            }
+        }
         if (isFlying)
         {
             flyingDuration -= Time.deltaTime;
@@ -209,6 +225,7 @@ public class PlayerMovement : MonoBehaviour
         // Normal jump
         if (context.performed)
         {
+            rb.gravityScale = 1;
             StaminaLoss(JumpCost);
             
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
@@ -270,13 +287,13 @@ public class PlayerMovement : MonoBehaviour
 
         if (context.performed)
         {
-            rb.gravityScale = HardDropPower;
+            isHardDropping = true;
             StaminaLoss(HardDropCost);
         }
 
         if (context.canceled)
         {
-            rb.gravityScale = 1;
+            isHardDropping = false;
             StartRecharge();
         }
     }
@@ -340,7 +357,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private bool isGrounded()
+    public bool isGrounded()
     {
         foreach (var mask in whatIsGround)
         {
