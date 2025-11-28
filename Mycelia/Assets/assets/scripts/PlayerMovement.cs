@@ -11,7 +11,7 @@ using UnityEngine.UI;
 public class PlayerMovement : MonoBehaviour
 {
     //Press down key to fall down quicker
-    public Rigidbody2D rb;
+    [HideInInspector] public Rigidbody2D rb;
     public bool isFacingRight = true;
     public bool isKnockedBack = false;
 

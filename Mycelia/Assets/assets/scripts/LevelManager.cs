@@ -13,6 +13,6 @@ public class LevelManager : MonoBehaviour
 
     public void EndGame()
     {
-        Environment.Exit(0); //Alternativt Application.Quit();
+       Application.Quit();
     }
 }

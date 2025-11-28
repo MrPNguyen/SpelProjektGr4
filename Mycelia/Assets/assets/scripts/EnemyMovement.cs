@@ -4,6 +4,7 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
+    private SpriteRenderer sr;
 
     [SerializeField] private GameObject pointA;
     [SerializeField] private GameObject pointB;
@@ -16,6 +17,7 @@ public class EnemyMovement : MonoBehaviour
     {
         EnemyDirection = 1f;
         rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
     }
 
     private void Update()
@@ -28,11 +30,13 @@ public class EnemyMovement : MonoBehaviour
         if (other.gameObject.CompareTag("PointA"))
         {
             EnemyDirection = 1;
+            sr.flipX = true;
         }
         
         else if (other.gameObject.CompareTag("PointB"))
         {
             EnemyDirection = -1;
+            sr.flipX = false;
         }
     }
 
