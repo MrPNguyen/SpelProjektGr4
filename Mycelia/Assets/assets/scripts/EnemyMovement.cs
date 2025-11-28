@@ -17,6 +17,7 @@ public class EnemyMovement : MonoBehaviour
     {
         EnemyDirection = 1f;
         rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
     }
 
     private void Update()
@@ -29,13 +30,13 @@ public class EnemyMovement : MonoBehaviour
         if (other.gameObject.CompareTag("PointA"))
         {
             EnemyDirection = 1;
-            sr.flipX = false;
+            sr.flipX = true;
         }
         
         else if (other.gameObject.CompareTag("PointB"))
         {
             EnemyDirection = -1;
-            sr.flipX = true;
+            sr.flipX = false;
         }
     }
 
