@@ -1,25 +1,17 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    [SerializeField] private float CameraSpeed = 2f;
-    [SerializeField] private float CameraDepth = -5f;
-    [SerializeField] private PlayerManager Player;
+    private Vector3 offset = new Vector3(0f, 0f, -3.5f);
+    private float smoothTime = 0.25f;
+    private Vector3 velocity = Vector3.zero;
+    
+    [SerializeField] private Transform target;
 
-
-    public Transform target;
-    // Update is called once per frame
     void Update()
     {
-        if (Player.currentHealth > 0)
-        {
-            Vector3 newPos = new Vector3(target.position.x, target.position.y, CameraDepth);
-
-            if (newPos.x < -4f)
-            {
-                newPos.x = -4f;
-            }
-            transform.position = Vector3.Slerp(transform.position, newPos, CameraSpeed * CameraSpeed*Time.deltaTime);
-        }
+        Vector3 targetPosition = target.position + offset;
+        transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
     }
 }
