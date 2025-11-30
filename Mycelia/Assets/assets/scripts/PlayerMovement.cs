@@ -45,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
     private bool canDash = true;
     private float DashDuration = 0.10f;
     private float DashCooldown = 0.1f;
+    private TrailRenderer tr;
     
     [Header("Flying")]
     [SerializeField] private float flyingPower = 15f;
@@ -69,6 +70,7 @@ public class PlayerMovement : MonoBehaviour
          rb = GetComponent<Rigidbody2D>();
          spriteRenderer = GetComponent<SpriteRenderer>();
          animator = GetComponent<Animator>();
+         tr = GetComponent<TrailRenderer>();
          CurrentStamina = MaxStamina;
     }
 
@@ -303,6 +305,7 @@ public class PlayerMovement : MonoBehaviour
         canDash = false;
         isDashing = true;
         
+        tr.emitting = true;
         float dashDirection = isFacingRight ? 1 : -1;
 
         if (dashDirection == -1)
@@ -321,6 +324,8 @@ public class PlayerMovement : MonoBehaviour
         rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
         
         isDashing = false;
+        tr.emitting = false;
+        
         if (dashDirection == -1)
         {
             animator.SetBool("isDashingLeft", false);
