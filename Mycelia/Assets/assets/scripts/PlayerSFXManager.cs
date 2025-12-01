@@ -4,8 +4,6 @@ using UnityEngine.Audio;
 public class PlayerSFXManager : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    
-    
     [Header("SFX")]
     [SerializeField] private AudioClip jumpClip;
     [SerializeField] private AudioClip hardLandClip;
@@ -18,15 +16,14 @@ public class PlayerSFXManager : MonoBehaviour
     private Animator animator;
     void Start()
     {
-        playerMove = new PlayerMovement();
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>(); 
+        playerMove = FindFirstObjectByType<PlayerMovement>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
         if (playerMove.hasHardDropped && playerMove.isGrounded())
         {
             playerMove.hasHardDropped = false;

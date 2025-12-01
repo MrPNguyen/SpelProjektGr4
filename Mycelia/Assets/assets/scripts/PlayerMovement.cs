@@ -12,13 +12,18 @@ using UnityEngine.UI;
 //Code Source: Game Code Library: "2D Platformer Unity"
 public class PlayerMovement : MonoBehaviour
 {
+    private static readonly int IsWalking = Animator.StringToHash("isWalking");
+    private static readonly int HasJumping = Animator.StringToHash("hasJumping");
+    private static readonly int IsDashingLeft = Animator.StringToHash("isDashingLeft");
+    private static readonly int IsDashingRight = Animator.StringToHash("isDashingRight");
+
     //Press down key to fall down quicker
     [HideInInspector] public Rigidbody2D rb;
     private CapsuleCollider2D bc;
     private Vector2 originalColliderOffset;
     
-    public bool isFacingRight = true;
-    public bool isKnockedBack = false;
+    [HideInInspector] public bool isFacingRight = true;
+    [HideInInspector] public bool isKnockedBack = false;
 
     [Header("Movement")]
     [SerializeField] private float moveSpeed = 5f;
@@ -27,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Running")]
     [SerializeField] private float runSpeed = 10f;
-    [SerializeField] public bool isRunning;
+    public bool isRunning { get; private set; }
     
     [Header("Jump")]
     [SerializeField] private float jumpForce = 10f;
@@ -39,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("GroundCheck")]
     [SerializeField] private Transform groundCheck;
     [SerializeField] private Vector2 groundCheckSize = new Vector2(0.5f, 0.05f);
-    [SerializeField] private List<LayerMask> whatIsGround;
+    [SerializeField] private LayerMask whatIsGround;
     
     private SpriteRenderer spriteRenderer;
     private Animator animator;
@@ -83,17 +88,20 @@ public class PlayerMovement : MonoBehaviour
          originalColliderOffset = bc.offset;
          
          
+         
     }
 
     void Update()
     {
-        animator.SetBool("hasJumping", isJumping); //fungerar detta?
+        //animator.SetBool(HasJumping, isJumping); //fungerar detta?
 
         if (rb.linearVelocity.y <= 0)
         {
             isJumping = false;
         }
-        animator.SetBool("isWalking", false);
+        
+        animator.SetBool(IsWalking, false);
+        
         if (isDashing)
         {
             return;
@@ -115,17 +123,15 @@ public class PlayerMovement : MonoBehaviour
         {
             if (horizontalMovement < 0)
             {
-                spriteRenderer.flipX = true;
+                transform.eulerAngles = new Vector3(0, 0, 0);
                 isFacingRight = false;
-                bc.offset = new Vector2(-Mathf.Abs(originalColliderOffset.x), originalColliderOffset.y);
-                animator.SetBool("isWalking", true);
+                animator.SetBool(IsWalking, true);
             }
             else if (rb.linearVelocity.x > 0)
             {
-                spriteRenderer.flipX = false;
+                transform.eulerAngles = new Vector3(0, 180, 0);
                 isFacingRight = true;
-                bc.offset = new Vector2(Mathf.Abs(originalColliderOffset.x), originalColliderOffset.y);
-                animator.SetBool("isWalking", true);
+                animator.SetBool(IsWalking, true);
             }
         }
 
@@ -248,8 +254,9 @@ public class PlayerMovement : MonoBehaviour
         // Optional variable jump height
         if (context.canceled)
         {
+            Debug.Log("Can't Jump");
             if (rb.linearVelocity.y > 0)
-            {
+            {    
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * 0.3f);
                 StartRecharge();
                 isJumping = true; 
@@ -276,7 +283,6 @@ public class PlayerMovement : MonoBehaviour
         if (context.canceled)
         {
             isFlying = false;
-            
         }
     }
 
@@ -306,12 +312,14 @@ public class PlayerMovement : MonoBehaviour
         if (context.performed)
         {
             isHardDropping = true;
+            hasHardDropped = false;
             StaminaLoss(HardDropCost);
         }
 
         if (context.canceled)
         {
             isHardDropping = false;
+            hasHardDropped = true;
             StartRecharge();
         }
     }
@@ -330,15 +338,15 @@ public class PlayerMovement : MonoBehaviour
         
         float dashDirection = isFacingRight ? 1 : -1;
 
-        bc.offset = new Vector2(dashDirection * Mathf.Abs(originalColliderOffset.x), originalColliderOffset.y);
+        //bc.offset = new Vector2(dashDirection * Mathf.Abs(originalColliderOffset.x), originalColliderOffset.y);
 
         if (dashDirection == -1)
         {
-            animator.SetBool("isDashingLeft", true);
+            animator.SetBool(IsDashingLeft, true);
         }
         else if (dashDirection == 1)
         {
-            animator.SetBool("isDashingRight", true);
+            animator.SetBool(IsDashingRight, true);
         }
         
         rb.linearVelocity = new Vector2(dashDirection * DashPower, 0f);
@@ -349,18 +357,18 @@ public class PlayerMovement : MonoBehaviour
         rb.linearVelocity = new Vector2(0f, 0f);
         rb.gravityScale = originalGravity;
 
-        bc.offset = new Vector2(dashDirection * Mathf.Abs(originalColliderOffset.x), originalColliderOffset.y);
+        //bc.offset = new Vector2(dashDirection * Mathf.Abs(originalColliderOffset.x), originalColliderOffset.y);
         
         isDashing = false;
         tr.emitting = false;
         
         if (dashDirection == -1)
         {
-            animator.SetBool("isDashingLeft", false);
+            animator.SetBool(IsDashingLeft, false);
         }
         else if (dashDirection == 1)
         {
-            animator.SetBool("isDashingRight", false);
+            animator.SetBool(IsDashingRight, false);
         }        
         
         Debug.Log($"After Dash: {rb.linearVelocity}");
@@ -394,12 +402,9 @@ public class PlayerMovement : MonoBehaviour
 
     public bool isGrounded()
     {
-        foreach (var mask in whatIsGround)
+        if (Physics2D.OverlapBox(groundCheck.position, groundCheckSize, 0, whatIsGround))
         {
-            if (Physics2D.OverlapBox(groundCheck.position, groundCheckSize, 0, mask))
-            {
-                return true;
-            }
+            return true;
         }
         return false;
     }
