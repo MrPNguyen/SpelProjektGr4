@@ -104,14 +104,14 @@ public class PlayerMovement : MonoBehaviour
             {
                 spriteRenderer.flipX = true;
                 isFacingRight = false;
-                bc.offset = new Vector2(-0.16f, 0);
+                bc.offset = new Vector2(-Mathf.Abs(originalColliderOffset.x), originalColliderOffset.y);
                 //animator.SetBool("isMoving", true);
             }
             else if (rb.linearVelocity.x > 0)
             {
                 spriteRenderer.flipX = false;
                 isFacingRight = true;
-                bc.offset = originalColliderOffset;
+                bc.offset = new Vector2(Mathf.Abs(originalColliderOffset.x), originalColliderOffset.y);
                 //animator.SetBool("isMoving", true);
             }
         }
@@ -153,7 +153,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isGrounded())
         {
-            rb.gravityScale = 10;
+            rb.gravityScale = 4;
         }
         else
         {
@@ -306,12 +306,14 @@ public class PlayerMovement : MonoBehaviour
         canDash = false;
         isDashing = true;
         
-        tr.emitting = true;
+        float originalGravity = rb.gravityScale;
+        rb.gravityScale = 0;
         
+        tr.emitting = true;
         
         float dashDirection = isFacingRight ? 1 : -1;
 
-        bc.offset = new Vector2(originalColliderOffset.x + (0.2f * dashDirection), originalColliderOffset.y);
+        bc.offset = new Vector2(dashDirection * Mathf.Abs(originalColliderOffset.x), originalColliderOffset.y);
 
         if (dashDirection == -1)
         {
@@ -327,8 +329,9 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(DashDuration);
         
         rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+        rb.gravityScale = originalGravity;
 
-        bc.offset = originalColliderOffset;
+        bc.offset = new Vector2(dashDirection * Mathf.Abs(originalColliderOffset.x), originalColliderOffset.y);
         
         isDashing = false;
         tr.emitting = false;

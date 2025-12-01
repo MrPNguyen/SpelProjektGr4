@@ -23,6 +23,8 @@ public class CameraFollow : MonoBehaviour
         if (playerManager.currentHealth > 0)
         {
             Vector3 targetPosition = target.position + offset;
+            
+            targetPosition.x = Mathf.Clamp(targetPosition.x, -7.3f, 126.47f);
             transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
         }
     }
