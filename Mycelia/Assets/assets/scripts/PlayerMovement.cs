@@ -97,27 +97,23 @@ public class PlayerMovement : MonoBehaviour
                 rb.linearVelocity = new Vector2(horizontalMovement * moveSpeed, rb.linearVelocity.y);
             }
         }
-        
-        if (rb.linearVelocity.x < 0)
+
+        if (!isDashing)
         {
-            spriteRenderer.flipX = true;
-            isFacingRight = false;
-            bc.offset = new Vector2(-0.16f, 0);
-            //animator.SetBool("isMoving", true);
-        }
-        else if (rb.linearVelocity.x > 0)
-        {
-            spriteRenderer.flipX = false;
-            isFacingRight = true;
-            bc.offset = originalColliderOffset;
-            //animator.SetBool("isMoving", true);
-        }
-        else
-        {
-            spriteRenderer.flipX = false;
-            isFacingRight = true;
-            bc.offset = originalColliderOffset;
-            //animator.SetBool("isMoving", false);
+            if (horizontalMovement < 0)
+            {
+                spriteRenderer.flipX = true;
+                isFacingRight = false;
+                bc.offset = new Vector2(-0.16f, 0);
+                //animator.SetBool("isMoving", true);
+            }
+            else if (rb.linearVelocity.x > 0)
+            {
+                spriteRenderer.flipX = false;
+                isFacingRight = true;
+                bc.offset = originalColliderOffset;
+                //animator.SetBool("isMoving", true);
+            }
         }
 
         if (isRunning  && CurrentStamina != 0)
