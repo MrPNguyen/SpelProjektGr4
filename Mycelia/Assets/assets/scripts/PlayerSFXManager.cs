@@ -10,6 +10,7 @@ public class PlayerSFXManager : MonoBehaviour
     [SerializeField] private AudioClip jumpClip;
     [SerializeField] private AudioClip hardLandClip;
     [SerializeField] private AudioClip dashClip;
+    [SerializeField] private AudioClip hurtClip;
     private AudioSource audioSource;
     
     
@@ -42,6 +43,12 @@ public class PlayerSFXManager : MonoBehaviour
             PlaySFX(dashClip);
         }
 
+        if (playerMove.isKnockedBack)
+        {
+            PlaySFX(hurtClip);
+        }
+        
+
         if (!audioSource.isPlaying)
         {
             audioSource.Stop();
@@ -49,6 +56,8 @@ public class PlayerSFXManager : MonoBehaviour
     }
     private void PlaySFX(AudioClip clip)
     {
+        if (clip == null) return;
+        
         if (audioSource.clip != clip || !audioSource.isPlaying)
         {
             audioSource.Stop();

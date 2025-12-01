@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 4043659103143534288}
   - component: {fileID: 498701441302121748}
   - component: {fileID: 5547712943069637368}
+  - component: {fileID: -441173067643279493}
   - component: {fileID: 6379467792457079880}
   m_Layer: 0
   m_Name: Player
@@ -143,6 +144,8 @@ MonoBehaviour:
   isRunning: 0
   jumpForce: 5
   HardDropPower: 4
+  isHardDropping: 0
+  hasHardDropped: 0
   groundCheck: {fileID: 2317278850270132637}
   groundCheckSize: {x: 0.1, y: 0.02}
   whatIsGround:
@@ -152,6 +155,7 @@ MonoBehaviour:
     m_Bits: 64
   canMove: 1
   DashPower: 20
+  isDashing: 0
   flyingPower: 2
   StaminaBar: {fileID: 0}
   CurrentStamina: 0
@@ -548,6 +552,21 @@ CapsuleCollider2D:
   m_Offset: {x: 0.19919015, y: 0}
   m_Size: {x: 0.39849475, y: 1.046875}
   m_Direction: 0
+--- !u!114 &-441173067643279493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4731169498743363079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad3a10993011f58489593a0d1ffa35b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpClip: {fileID: 0}
+  hardLandClip: {fileID: 0}
+  dashClip: {fileID: 0}
 --- !u!82 &6379467792457079880
 AudioSource:
   m_ObjectHideFlags: 0

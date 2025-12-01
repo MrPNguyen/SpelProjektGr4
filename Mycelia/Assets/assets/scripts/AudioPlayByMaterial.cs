@@ -39,6 +39,7 @@ public class AudioPlayByMaterial : MonoBehaviour
     public void PlayAudioClip(int index)
     {
         Debug.Log("Play Audio");
+        audioSource.Stop();
         audioSource.clip = audioSoundType[index].audioClip[Random.Range(0, audioSoundType[index].audioClip.Length)];
         audioSource.Play();
     }
