@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
@@ -25,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Running")]
     [SerializeField] private float runSpeed = 10f;
-    [SerializeField] private bool isRunning;
+    [SerializeField] public bool isRunning;
     
     [Header("Jump")]
     [SerializeField] private float jumpForce = 10f;
@@ -65,6 +66,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float FlyingCost;
     [SerializeField] private float HardDropCost;
     [SerializeField] private float ChargeRate;
+    
+    
+    
 
     private Coroutine recharge;
     
@@ -229,6 +233,7 @@ public class PlayerMovement : MonoBehaviour
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
 
             //animator.SetBool("hasJumped", true);
+          
         }
 
         // Optional variable jump height
