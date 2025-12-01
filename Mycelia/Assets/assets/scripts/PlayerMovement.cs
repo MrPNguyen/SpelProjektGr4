@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
+using UnityEngine.Rendering.UI;
 using UnityEngine.UI;
 
 
@@ -32,8 +32,8 @@ public class PlayerMovement : MonoBehaviour
     [Header("Jump")]
     [SerializeField] private float jumpForce = 10f;
     [SerializeField] public float HardDropPower = 4;
-    public bool isHardDropping = false;
-    public bool hasHardDropped = false;
+    private bool isHardDropping = false;
+    private bool hasHardDropped = false;
     
     [Header("GroundCheck")]
     [SerializeField] private Transform groundCheck;
@@ -47,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Dash")]
     [SerializeField] private float DashPower = 20f;
-    public bool isDashing;
+    private bool isDashing;
     private bool canDash = true;
     private float DashDuration = 0.10f;
     private float DashCooldown = 0.1f;
@@ -70,17 +70,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float ChargeRate;
     
     
-   
-    
-    
     
 
     private Coroutine recharge;
     
     void Start()
     {
-        
-        rb = GetComponent<Rigidbody2D>();
+         rb = GetComponent<Rigidbody2D>();
          spriteRenderer = GetComponent<SpriteRenderer>();
          animator = GetComponent<Animator>();
          tr = GetComponent<TrailRenderer>();
@@ -91,6 +87,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        animator.SetBool("isWalking", false);
         if (isDashing)
         {
             return;
@@ -115,14 +112,14 @@ public class PlayerMovement : MonoBehaviour
                 spriteRenderer.flipX = true;
                 isFacingRight = false;
                 bc.offset = new Vector2(-Mathf.Abs(originalColliderOffset.x), originalColliderOffset.y);
-                //animator.SetBool("isMoving", true);
+                animator.SetBool("isWalking", true);
             }
             else if (rb.linearVelocity.x > 0)
             {
                 spriteRenderer.flipX = false;
                 isFacingRight = true;
                 bc.offset = new Vector2(Mathf.Abs(originalColliderOffset.x), originalColliderOffset.y);
-                //animator.SetBool("isMoving", true);
+                animator.SetBool("isWalking", true);
             }
         }
 
@@ -157,8 +154,6 @@ public class PlayerMovement : MonoBehaviour
         {
             isFlying = false;
         }
-
-        
     }
 
     void FixedUpdate()
@@ -244,7 +239,6 @@ public class PlayerMovement : MonoBehaviour
           
         }
 
-        
         // Optional variable jump height
         if (context.canceled)
         {
@@ -253,7 +247,6 @@ public class PlayerMovement : MonoBehaviour
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * 0.3f);
                 StartRecharge();
                 //animator.SetBool("hasJumped", true);
-                
             }
         }
     }
@@ -286,9 +279,8 @@ public class PlayerMovement : MonoBehaviour
         {
             if (CurrentStamina == 0) return;
             
-            if (context.performed && canDash) 
+            if (context.performed && canDash)
             {
-                
                 StaminaLoss(DashCost);
                 StartCoroutine(DashCoroutine());
             }
@@ -307,14 +299,11 @@ public class PlayerMovement : MonoBehaviour
         if (context.performed)
         {
             isHardDropping = true;
-           
             StaminaLoss(HardDropCost);
         }
 
-       
-
         if (context.canceled)
-        {  
+        {
             isHardDropping = false;
             StartRecharge();
         }
@@ -322,6 +311,8 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator DashCoroutine()
     {
+        Debug.Log($"Start of Coroutine: {rb.linearVelocity}");
+
         canDash = false;
         isDashing = true;
         
@@ -343,11 +334,12 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("isDashingRight", true);
         }
         
-        rb.linearVelocity = new Vector2(dashDirection * DashPower, rb.linearVelocity.y);
+        rb.linearVelocity = new Vector2(dashDirection * DashPower, 0f);
         
+        Debug.Log($"During Dash: {rb.linearVelocity}");
         yield return new WaitForSeconds(DashDuration);
         
-        rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+        rb.linearVelocity = new Vector2(0f, 0f);
         rb.gravityScale = originalGravity;
 
         bc.offset = new Vector2(dashDirection * Mathf.Abs(originalColliderOffset.x), originalColliderOffset.y);
@@ -363,6 +355,9 @@ public class PlayerMovement : MonoBehaviour
         {
             animator.SetBool("isDashingRight", false);
         }        
+        
+        Debug.Log($"After Dash: {rb.linearVelocity}");
+
         yield return new WaitForSeconds(DashCooldown);
         canDash = true;
     }
@@ -426,6 +421,4 @@ public class PlayerMovement : MonoBehaviour
         }
         StaminaBar.fillAmount = CurrentStamina / MaxStamina;
     }
-
-    
 }
