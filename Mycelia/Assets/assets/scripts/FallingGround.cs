@@ -25,14 +25,12 @@ public class FallingGround : MonoBehaviour
     void Update()
     {
 
-        float i = 0;
         if (falling)
         {
             Debug.Log(rb.gravityScale);
             if (rb.gravityScale == 0)
             { 
                 rb.gravityScale = 1;
-            
             }
             StartCoroutine(Wait(WaitTime));
         }

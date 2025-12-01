@@ -11,12 +11,11 @@ public class CameraFollow : MonoBehaviour
     
     [SerializeField] private Transform target;
     
-    private PlayerManager playerManager;
+    [SerializeField] private PlayerManager playerManager;
 
     private void Start()
     {
         offset = new Vector3(0f, 0f, CameraDepth);
-        playerManager = new PlayerManager();
     }
 
     void Update()

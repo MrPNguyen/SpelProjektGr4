@@ -1624,7 +1624,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2052722778094988803, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.87
+      value: -3.885
       objectReference: {fileID: 0}
     - target: {fileID: 2052722778094988803, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1669,6 +1669,14 @@ PrefabInstance:
     - target: {fileID: 4731169498743363079, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5547712943069637368, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
+      propertyPath: m_Size.x
+      value: 0.36758536
+      objectReference: {fileID: 0}
+    - target: {fileID: 5547712943069637368, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.18368545
       objectReference: {fileID: 0}
     - target: {fileID: 5641837105196010520, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
       propertyPath: enemy
@@ -1939,6 +1947,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CameraDepth: -3
   target: {fileID: 2110261387}
+  playerManager: {fileID: 2110261391}
 --- !u!114 &675197818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14967,6 +14976,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2052722778094988803, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
   m_PrefabInstance: {fileID: 652939470}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2110261391 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5641837105196010520, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
+  m_PrefabInstance: {fileID: 652939470}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5186ef4918a94a4f91031b43a0b6425, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &2113457943 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7541790992093834774, guid: de88ecf85e5e89540b994562db4132f1, type: 3}
@@ -21403,7 +21423,7 @@ TilemapCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: edf5614bea3c9064ea5b7395fe9f993a, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

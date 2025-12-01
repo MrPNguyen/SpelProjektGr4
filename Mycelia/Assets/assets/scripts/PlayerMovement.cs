@@ -12,6 +12,9 @@ public class PlayerMovement : MonoBehaviour
 {
     //Press down key to fall down quicker
     [HideInInspector] public Rigidbody2D rb;
+    private CapsuleCollider2D bc;
+    private Vector2 originalColliderOffset;
+    
     public bool isFacingRight = true;
     public bool isKnockedBack = false;
 
@@ -71,7 +74,9 @@ public class PlayerMovement : MonoBehaviour
          spriteRenderer = GetComponent<SpriteRenderer>();
          animator = GetComponent<Animator>();
          tr = GetComponent<TrailRenderer>();
+         bc = GetComponent<CapsuleCollider2D>();
          CurrentStamina = MaxStamina;
+         originalColliderOffset = bc.offset;
     }
 
     void Update()
@@ -97,18 +102,21 @@ public class PlayerMovement : MonoBehaviour
         {
             spriteRenderer.flipX = true;
             isFacingRight = false;
+            bc.offset = new Vector2(-0.16f, 0);
             //animator.SetBool("isMoving", true);
         }
         else if (rb.linearVelocity.x > 0)
         {
             spriteRenderer.flipX = false;
             isFacingRight = true;
+            bc.offset = originalColliderOffset;
             //animator.SetBool("isMoving", true);
         }
         else
         {
             spriteRenderer.flipX = false;
             isFacingRight = true;
+            bc.offset = originalColliderOffset;
             //animator.SetBool("isMoving", false);
         }
 
@@ -121,11 +129,7 @@ public class PlayerMovement : MonoBehaviour
             }
             StaminaBar.fillAmount = CurrentStamina / MaxStamina;
 
-            if (recharge != null)
-            {
-                StopCoroutine(recharge);
-            }
-            recharge = StartCoroutine(RechargeStamina());
+            StartRecharge();
         }
         else
         {
@@ -141,11 +145,7 @@ public class PlayerMovement : MonoBehaviour
             }
             StaminaBar.fillAmount = CurrentStamina / MaxStamina;
 
-            if (recharge != null)
-            {
-                StopCoroutine(recharge);
-            }
-            recharge = StartCoroutine(RechargeStamina());
+            StartRecharge();
         }
         else
         {
@@ -280,6 +280,11 @@ public class PlayerMovement : MonoBehaviour
                 StaminaLoss(DashCost);
                 StartCoroutine(DashCoroutine());
             }
+
+            if (context.canceled)
+            {
+                StartRecharge();
+            }
         }
     }
     
@@ -306,7 +311,11 @@ public class PlayerMovement : MonoBehaviour
         isDashing = true;
         
         tr.emitting = true;
+        
+        
         float dashDirection = isFacingRight ? 1 : -1;
+
+        bc.offset = new Vector2(originalColliderOffset.x + (0.2f * dashDirection), originalColliderOffset.y);
 
         if (dashDirection == -1)
         {
@@ -322,6 +331,8 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(DashDuration);
         
         rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+
+        bc.offset = originalColliderOffset;
         
         isDashing = false;
         tr.emitting = false;
@@ -342,7 +353,6 @@ public class PlayerMovement : MonoBehaviour
     {
         if (CurrentStamina == 0)
         {
-            Debug.Log("Hi");
             yield return new WaitForSeconds(4f);
         }
         else
