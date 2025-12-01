@@ -1663,9 +1663,21 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2192809267211881265, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
+      propertyPath: DashClip
+      value: 
+      objectReference: {fileID: 8300000, guid: a1b96333214124a478a8455d594c653a, type: 3}
+    - target: {fileID: 2192809267211881265, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
+      propertyPath: jumpClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 4d9895889c683524389551981bc7d8e5, type: 3}
+    - target: {fileID: 2192809267211881265, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
       propertyPath: StaminaBar
       value: 
       objectReference: {fileID: 392111218}
+    - target: {fileID: 2192809267211881265, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
+      propertyPath: HardLandClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 9fc6f0d33427dd64eb0c2dfbc588c954, type: 3}
     - target: {fileID: 4731169498743363079, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
       propertyPath: m_Name
       value: Player
@@ -3023,7 +3035,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &935987747
 Transform:
   m_ObjectHideFlags: 0
@@ -3461,6 +3473,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1083150884}
   - component: {fileID: 1083150885}
+  - component: {fileID: 1083150886}
   m_Layer: 0
   m_Name: Bottom
   m_TagString: Untagged
@@ -3517,7 +3530,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 60.351463, y: -9.394452}
+  m_Offset: {x: 54.22259, y: -9.394452}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -3527,8 +3540,22 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 142.5153, y: 0.90364647}
+  m_Size: {x: 154.77304, y: 0.90364647}
   m_EdgeRadius: 0
+--- !u!114 &1083150886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1083150883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df5929ba6d3d4a44d89212d0e6c72231, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 2110261391}
+  playerMovement: {fileID: 2110261397}
 --- !u!1001 &1099052301
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15034,6 +15061,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5186ef4918a94a4f91031b43a0b6425, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2110261397 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2192809267211881265, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
+  m_PrefabInstance: {fileID: 652939470}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da414caf339e503429250af31aa9a12e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &2113457943 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7541790992093834774, guid: de88ecf85e5e89540b994562db4132f1, type: 3}
@@ -15136,6 +15174,7 @@ GameObject:
   - component: {fileID: 2141263735}
   - component: {fileID: 2141263734}
   - component: {fileID: 2141263736}
+  - component: {fileID: 2141263737}
   m_Layer: 3
   m_Name: Ground
   m_TagString: Untagged
@@ -21497,6 +21536,58 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
+  m_UseDelaunayMesh: 0
+--- !u!60 &2141263737
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2141263732}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 10.86018, y: -2.0122867}
+      - {x: -11.12114, y: -1.9802434}
+      - {x: -6.864788, y: -13.01495}
+      - {x: -6.682129, y: -7.315239}
+      - {x: 10.839743, y: -6.9671116}
   m_UseDelaunayMesh: 0
 --- !u!1001 &3782515092083688243
 PrefabInstance:

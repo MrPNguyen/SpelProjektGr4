@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3639926017361532250}
   - component: {fileID: 5300279097057612332}
   - component: {fileID: 1786408864159771811}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: Falling Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}

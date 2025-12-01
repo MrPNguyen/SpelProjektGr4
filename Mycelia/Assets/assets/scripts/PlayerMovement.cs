@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 
@@ -31,7 +32,8 @@ public class PlayerMovement : MonoBehaviour
     [Header("Jump")]
     [SerializeField] private float jumpForce = 10f;
     [SerializeField] public float HardDropPower = 4;
-    private bool isHardDropping = false;
+    public bool isHardDropping = false;
+    public bool hasHardDropped = false;
     
     [Header("GroundCheck")]
     [SerializeField] private Transform groundCheck;
@@ -45,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Dash")]
     [SerializeField] private float DashPower = 20f;
-    private bool isDashing;
+    public bool isDashing;
     private bool canDash = true;
     private float DashDuration = 0.10f;
     private float DashCooldown = 0.1f;
@@ -68,13 +70,17 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float ChargeRate;
     
     
+   
+    
+    
     
 
     private Coroutine recharge;
     
     void Start()
     {
-         rb = GetComponent<Rigidbody2D>();
+        
+        rb = GetComponent<Rigidbody2D>();
          spriteRenderer = GetComponent<SpriteRenderer>();
          animator = GetComponent<Animator>();
          tr = GetComponent<TrailRenderer>();
@@ -151,6 +157,8 @@ public class PlayerMovement : MonoBehaviour
         {
             isFlying = false;
         }
+
+        
     }
 
     void FixedUpdate()
@@ -236,6 +244,7 @@ public class PlayerMovement : MonoBehaviour
           
         }
 
+        
         // Optional variable jump height
         if (context.canceled)
         {
@@ -244,6 +253,7 @@ public class PlayerMovement : MonoBehaviour
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * 0.3f);
                 StartRecharge();
                 //animator.SetBool("hasJumped", true);
+                
             }
         }
     }
@@ -276,8 +286,9 @@ public class PlayerMovement : MonoBehaviour
         {
             if (CurrentStamina == 0) return;
             
-            if (context.performed && canDash)
+            if (context.performed && canDash) 
             {
+                
                 StaminaLoss(DashCost);
                 StartCoroutine(DashCoroutine());
             }
@@ -296,11 +307,14 @@ public class PlayerMovement : MonoBehaviour
         if (context.performed)
         {
             isHardDropping = true;
+           
             StaminaLoss(HardDropCost);
         }
 
+       
+
         if (context.canceled)
-        {
+        {  
             isHardDropping = false;
             StartRecharge();
         }
@@ -412,4 +426,6 @@ public class PlayerMovement : MonoBehaviour
         }
         StaminaBar.fillAmount = CurrentStamina / MaxStamina;
     }
+
+    
 }

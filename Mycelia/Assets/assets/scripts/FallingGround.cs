@@ -18,7 +18,7 @@ public class FallingGround : MonoBehaviour
     {
         posA = transform.position;
         rb = GetComponent<Rigidbody2D>();
-        rb.simulated = false;
+        rb.bodyType = RigidbodyType2D.Static;
 
     }
 
@@ -42,7 +42,7 @@ public class FallingGround : MonoBehaviour
     IEnumerator Wait(float WaitTime)
     {
         yield return new WaitForSeconds(WaitTime);
-        rb.simulated = true;
+        rb.bodyType = RigidbodyType2D.Dynamic;
         if (rb.gravityScale == 0)
         { 
             rb.gravityScale = 1;
@@ -56,7 +56,7 @@ public class FallingGround : MonoBehaviour
         Debug.Log("We're out");
             rb.gravityScale = 0;
             rb.linearVelocityY = 0;
-            rb.simulated = false;
+            rb.bodyType = RigidbodyType2D.Static;
             falling = false;
     }
 }

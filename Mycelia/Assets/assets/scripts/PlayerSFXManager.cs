@@ -4,9 +4,13 @@ using UnityEngine.Audio;
 public class PlayerSFXManager : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    [SerializeField] private AudioSource audioSource;
-    [SerializeField] private AudioClip jumpClip;
     
+    
+    [Header("SFX")]
+    [SerializeField] private AudioClip jumpClip;
+    [SerializeField] private AudioClip hardLandClip;
+    [SerializeField] private AudioClip dashClip;
+    private AudioSource audioSource;
     
     
     private PlayerMovement playerMove;
@@ -15,15 +19,42 @@ public class PlayerSFXManager : MonoBehaviour
     {
         playerMove = new PlayerMovement();
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>(); 
     }
 
     // Update is called once per frame
     void Update()
     {
+        
+        if (playerMove.hasHardDropped && playerMove.isGrounded())
         {
-            audioSource.clip = jumpClip;
+            playerMove.hasHardDropped = false;
+            PlaySFX(hardLandClip);
+        }
+
+        if (playerMove.isHardDropping)
+        {
+            PlaySFX(dashClip);
+        }
+
+        if (playerMove.isDashing)
+        {
+            PlaySFX(dashClip);
+        }
+
+        if (!audioSource.isPlaying)
+        {
+            audioSource.Stop();
         }
     }
-    
+    private void PlaySFX(AudioClip clip)
+    {
+        if (audioSource.clip != clip || !audioSource.isPlaying)
+        {
+            audioSource.Stop();
+            audioSource.clip = clip;
+            audioSource.Play();
+        }
+    }
     
 }
