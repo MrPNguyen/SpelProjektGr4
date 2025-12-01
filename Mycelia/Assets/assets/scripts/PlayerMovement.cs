@@ -69,6 +69,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float FlyingCost;
     [SerializeField] private float HardDropCost;
     [SerializeField] private float ChargeRate;
+
+    private Vector2 velocity;
+    private float multiplier;
     
     private Coroutine recharge;
     
@@ -192,6 +195,7 @@ public class PlayerMovement : MonoBehaviour
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, flyingPower);
             }
         }
+        ApplyGravity();
     }
     public void Move(InputAction.CallbackContext context)
     {
@@ -427,5 +431,14 @@ public class PlayerMovement : MonoBehaviour
             CurrentStamina = 0;
         }
         StaminaBar.fillAmount = CurrentStamina / MaxStamina;
+    }
+
+    private void ApplyGravity()
+    {
+        if (isGrounded())
+        {
+            velocity.y = -1;
+        }
+        
     }
 }
