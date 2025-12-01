@@ -47,8 +47,12 @@ public class PlayerSFXManager : MonoBehaviour
         {
             PlaySFX(hurtClip);
         }
-        
 
+        if (playerMove.isJumping)
+        {
+            PlaySFX(jumpClip);
+        }
+        
         if (!audioSource.isPlaying)
         {
             audioSource.Stop();
