@@ -28,7 +28,6 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement")]
     [SerializeField] private float moveSpeed = 5f;
     private float horizontalMovement;
-    private float horizontalInput;
 
     [Header("Running")]
     [SerializeField] private float runSpeed = 10f;
@@ -86,13 +85,11 @@ public class PlayerMovement : MonoBehaviour
          bc = GetComponent<CapsuleCollider2D>();
          CurrentStamina = MaxStamina;
          originalColliderOffset = bc.offset;
-         
-         
-         
     }
 
     void Update()
     {
+        Debug.Log(horizontalMovement);
         //animator.SetBool(HasJumping, isJumping); //fungerar detta?
 
         if (rb.linearVelocity.y <= 0)
@@ -121,19 +118,19 @@ public class PlayerMovement : MonoBehaviour
 
         if (!isDashing)
         {
-            if (horizontalMovement < 0)
+            if (horizontalMovement > 0.01f)
             {
-                transform.eulerAngles = new Vector3(0, 0, 0);
-                isFacingRight = false;
-                animator.SetBool(IsWalking, true);
-            }
-            else if (rb.linearVelocity.x > 0)
-            {
-                transform.eulerAngles = new Vector3(0, 180, 0);
                 isFacingRight = true;
                 animator.SetBool(IsWalking, true);
             }
+            else if (rb.linearVelocity.x < -0.01f)
+            {
+                isFacingRight = false;
+                animator.SetBool(IsWalking, true);
+            }
         }
+        
+        ApplyFlip();
 
         if (isRunning  && CurrentStamina != 0)
         {
@@ -226,7 +223,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext context)
     {
-         
         if (!canMove) return;
         
         if (isFlying) return;
@@ -243,6 +239,7 @@ public class PlayerMovement : MonoBehaviour
         // Normal jump
         if (context.performed)
         {
+            Debug.Log("Can Jump");
             rb.gravityScale = 1;
             StaminaLoss(JumpCost);
             
@@ -255,12 +252,7 @@ public class PlayerMovement : MonoBehaviour
         if (context.canceled)
         {
             Debug.Log("Can't Jump");
-            if (rb.linearVelocity.y > 0)
-            {    
-                rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * 0.3f);
-                StartRecharge();
-                isJumping = true; 
-            }
+            StartRecharge();
         }
        
     }
@@ -326,8 +318,6 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator DashCoroutine()
     {
-        Debug.Log($"Start of Coroutine: {rb.linearVelocity}");
-
         canDash = false;
         isDashing = true;
         
@@ -335,45 +325,34 @@ public class PlayerMovement : MonoBehaviour
         rb.gravityScale = 0;
         
         tr.emitting = true;
+        animator.SetBool(IsWalking, false);
         
         float dashDirection = isFacingRight ? 1 : -1;
 
-        //bc.offset = new Vector2(dashDirection * Mathf.Abs(originalColliderOffset.x), originalColliderOffset.y);
-
         if (dashDirection == -1)
         {
-            animator.SetBool(IsDashingLeft, true);
+            transform.localRotation = Quaternion.Euler(0, 0, 60);
         }
         else if (dashDirection == 1)
         {
-            animator.SetBool(IsDashingRight, true);
+            transform.localRotation = Quaternion.Euler(0, 0, -60);
         }
         
         rb.linearVelocity = new Vector2(dashDirection * DashPower, 0f);
         
-        Debug.Log($"During Dash: {rb.linearVelocity}");
         yield return new WaitForSeconds(DashDuration);
         
         rb.linearVelocity = new Vector2(0f, 0f);
         rb.gravityScale = originalGravity;
 
-        //bc.offset = new Vector2(dashDirection * Mathf.Abs(originalColliderOffset.x), originalColliderOffset.y);
-        
         isDashing = false;
         tr.emitting = false;
         
-        if (dashDirection == -1)
-        {
-            animator.SetBool(IsDashingLeft, false);
-        }
-        else if (dashDirection == 1)
-        {
-            animator.SetBool(IsDashingRight, false);
-        }        
-        
-        Debug.Log($"After Dash: {rb.linearVelocity}");
-
         yield return new WaitForSeconds(DashCooldown);
+        
+        transform.localRotation = Quaternion.Euler(0, 0, 0);
+        ApplyFlip();
+        
         canDash = true;
     }
 
@@ -432,5 +411,14 @@ public class PlayerMovement : MonoBehaviour
             CurrentStamina = 0;
         }
         StaminaBar.fillAmount = CurrentStamina / MaxStamina;
+    }
+
+    private void ApplyFlip()
+    {
+        transform.localScale = new Vector3(
+            isFacingRight ? 0.8f : -0.8f, 
+            0.8f, 
+            1.6f
+            );
     }
 }

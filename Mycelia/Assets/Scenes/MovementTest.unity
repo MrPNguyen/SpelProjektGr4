@@ -1679,6 +1679,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 9fc6f0d33427dd64eb0c2dfbc588c954, type: 3}
     - target: {fileID: 2192809267211881265, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
+      propertyPath: whatIsGround.m_Bits
+      value: 72
+      objectReference: {fileID: 0}
+    - target: {fileID: 2192809267211881265, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
       propertyPath: whatIsGround.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -21552,7 +21556,7 @@ PolygonCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2141263732}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
