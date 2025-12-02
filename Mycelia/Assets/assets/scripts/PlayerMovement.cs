@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.HID;
 using UnityEngine.Rendering.UI;
 using UnityEngine.UI;
 using Vector2 = UnityEngine.Vector2;
@@ -204,6 +205,7 @@ public class PlayerMovement : MonoBehaviour
         }
         ApplyGravity();
         wallCheck();
+        Debug.Log($"is grounded: {isGrounded()}");
         rb.linearVelocity = velocity;
     }
     public void Move(InputAction.CallbackContext context)
@@ -380,7 +382,7 @@ public class PlayerMovement : MonoBehaviour
             //animator.SetBool("isDashingRight", false);
         }        
         
-        Debug.Log($"After Dash: {velocity}");
+       
 
         yield return new WaitForSeconds(DashCooldown);
         canDash = true;
@@ -454,14 +456,20 @@ public class PlayerMovement : MonoBehaviour
         if (isGrounded() && !isJumping)
         {
             velocity.y = 0;
+            
             foreach (var mask in whatIsGround)
             {
                 Vector2 pos = new Vector2(transform.position.x + Vector2.up.x, transform.position.y + Vector2.up.y);
                 RaycastHit2D hit = Physics2D.Raycast(pos, Vector2.down, 5f, mask);
                 if (hit.collider != null)
                 {
-                    Vector2.Angle(transform.position, hit.point);
-                    Debug.Log("Angle of slope: " + Vector2.Angle(transform.position, hit.normal));
+                    Vector2 direction = new Vector2(transform.position.x - hit.point.x, transform.position.y - hit.point.y );
+                    
+                    Debug.Log($"Why? {direction}  hit.normal: {Vector2.Angle(direction, hit.normal)}");
+                    if (Vector2.Angle(direction, hit.normal) > 40)
+                    {
+                        velocity += new Vector2(0.68f, -0.74f);
+                    }
                 }
             }
         }
@@ -474,6 +482,10 @@ public class PlayerMovement : MonoBehaviour
         
     }
 
+   
+        
+    
+
     private void wallCheck()
     {
         foreach (var mask in whatIsGround)
@@ -481,18 +493,19 @@ public class PlayerMovement : MonoBehaviour
             if (Physics2D.Raycast(transform.position, Vector2.right, 0.2f, mask))
             {
                 Debug.Log("No More Right");
-                velocity.x = 0;
+                velocity.x = -1;
             }
             else moveRight = false;
             
             if (Physics2D.Raycast(transform.position, Vector2.left, 0.2f, mask))
             {
-                velocity.x =0;
+                Debug.Log("No More Left");
+                velocity.x =-1;
             }
             else moveLeft = false;
             if (Physics2D.Raycast(transform.position, Vector2.up, 0.2f, mask))
             {
-                velocity.y = 0;
+                velocity.y = -1;
             }
             
         }

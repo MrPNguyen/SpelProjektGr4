@@ -46,6 +46,7 @@ public class FallingGround : MonoBehaviour
         if (rb.gravityScale == 0)
         { 
             rb.gravityScale = 1;
+            
         }
         yield return new WaitUntil(() => transform.position.y <= posA.y-posB);
         
