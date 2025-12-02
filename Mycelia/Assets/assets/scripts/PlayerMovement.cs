@@ -48,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Animator animator;
 
-    public bool canMove = true;
+    public bool canMove;
 
     [Header("Dash")]
     [SerializeField] private float DashPower = 20f;
@@ -78,20 +78,31 @@ public class PlayerMovement : MonoBehaviour
     
     void Start()
     {
-         rb = GetComponent<Rigidbody2D>();
-         spriteRenderer = GetComponent<SpriteRenderer>();
-         animator = GetComponent<Animator>();
-         tr = GetComponent<TrailRenderer>();
-         bc = GetComponent<CapsuleCollider2D>();
-         CurrentStamina = MaxStamina;
-         originalColliderOffset = bc.offset;
+        canMove = true;
+        rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
+        tr = GetComponent<TrailRenderer>();
+        bc = GetComponent<CapsuleCollider2D>();
+        CurrentStamina = MaxStamina;
+        originalColliderOffset = bc.offset;
     }
 
     void Update()
     {
-        Debug.Log(horizontalMovement);
+        Debug.Log($"{gameObject.name} canMove: {canMove}");
+        //ifall man inte kan röra sig sätt allt till falskt
+        if (!canMove)
+        {
+            horizontalMovement = 0;
+            isRunning = false;
+            isFlying = false;
+            isHardDropping = false;
+            animator.SetBool(IsWalking, false);
+            return;
+        }
+        
         //animator.SetBool(HasJumping, isJumping); //fungerar detta?
-
         if (rb.linearVelocity.y <= 0)
         {
             isJumping = false;
@@ -104,7 +115,8 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        if (!isKnockedBack && CurrentStamina != 0)
+        //För vanlig rörelse ifall man inte blir knuffad eller inte har tillräckligt med stamina
+        if (!isKnockedBack && CurrentStamina != 0 && canMove)
         {
             if (isRunning)
             {
@@ -116,7 +128,8 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if (!isDashing)
+        //Kollar vilket håll du kollar åt.
+        if (!isDashing && canMove)
         {
             if (horizontalMovement > 0.01f)
             {
@@ -132,6 +145,7 @@ public class PlayerMovement : MonoBehaviour
         
         ApplyFlip();
 
+        //Tar bort stamina gradually när du springer
         if (isRunning  && CurrentStamina != 0)
         {
             CurrentStamina -= RunCost * Time.deltaTime;
@@ -148,6 +162,7 @@ public class PlayerMovement : MonoBehaviour
             isRunning = false;
         }
         
+        //Samma som spring ovan gäller här
         if (isFlying && CurrentStamina != 0)
         {
             CurrentStamina -= FlyingCost * Time.deltaTime;
@@ -167,6 +182,14 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        /* Kollar om man inte kan röra sig då är hastigheten noll samt om man är på marken då är gravity = 4
+         annars så är det andra värden beroende på vad man gör */
+        if (!canMove)
+        {
+            rb.linearVelocity = Vector2.zero;
+            return;
+        }
+        
         if (isGrounded())
         {
             rb.gravityScale = 4;
@@ -182,6 +205,8 @@ public class PlayerMovement : MonoBehaviour
                 rb.gravityScale = 1;
             }
         }
+        
+        //Här hanteras flyget och man lägger till flyingPower till hastighetens y axel under tiden då flyingDuration inte är 0
         if (isFlying)
         {
             flyingDuration -= Time.deltaTime;
@@ -196,31 +221,31 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
+    
+    //Läser av ett x-value som kan vara -1 eller 1 som sedan läggs till linearVelocity som hanteras i Update().
     public void Move(InputAction.CallbackContext context)
     {
-        if (canMove)
-        {
-            horizontalMovement = context.ReadValue<Vector2>().x;
-        }
+        if (!canMove) return;
+        horizontalMovement = context.ReadValue<Vector2>().x;
     }
     
+    //Självaste springet hanteras i Update() men denna säger till Update att gå från walking till Running
     public void Run(InputAction.CallbackContext context)
     {
-        if (canMove)
+        if (!canMove) return;
+        if (context.performed)
         {
-            if (context.performed)
-            {
-                isRunning = true;
-            }
+            isRunning = true;
+        }
 
-            if (context.canceled)
-            {
-                isRunning = false;
-            }
+        if (context.canceled)
+        {
+            isRunning = false;
         }
     }
 
-
+    /*Kollar först om spelaren kan gå, inte flyger och har nog med stamina samt om den är på marken.
+     Sedan ändras gravity så att hoppet kan gå upp samt tar stamina och lägger till hoppstyrkan till linearvelocity*/
     public void Jump(InputAction.CallbackContext context)
     {
         if (!canMove) return;
@@ -239,7 +264,6 @@ public class PlayerMovement : MonoBehaviour
         // Normal jump
         if (context.performed)
         {
-            Debug.Log("Can Jump");
             rb.gravityScale = 1;
             StaminaLoss(JumpCost);
             
@@ -251,14 +275,17 @@ public class PlayerMovement : MonoBehaviour
         // Optional variable jump height
         if (context.canceled)
         {
-            Debug.Log("Can't Jump");
             StartRecharge();
         }
        
     }
 
+    /*Kollar först om man är på marken innan man kan flyga och sedan ändrar bools för att påbörja flyget.
+     Detta hanteras också i FixedUpdate*/
     public void Fly(InputAction.CallbackContext context)
     {
+        if (!canMove) return;
+   
         if (context.started)
         {
            GroundedBeforeFlying = isGrounded();
@@ -278,27 +305,30 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    //Aktiverar Coroutinen
     public void Dash(InputAction.CallbackContext context)
     {
-        if (canMove)
-        {
-            if (CurrentStamina == 0) return;
+        if (!canMove) return;
+        
+        if (CurrentStamina == 0) return;
             
-            if (context.performed && canDash)
-            {
-                StaminaLoss(DashCost);
-                StartCoroutine(DashCoroutine());
-            }
+        if (context.performed && canDash)
+        {
+            StaminaLoss(DashCost);
+            StartCoroutine(DashCoroutine());
+        }
 
-            if (context.canceled)
-            {
-                StartRecharge();
-            }
+        if (context.canceled)
+        {
+            StartRecharge();
         }
     }
     
+    //Självaste harddroppet hanteras i FixedUpdate, denna uppdaterar bara bools för att aktivera hardroppen.
     public void HardDrop(InputAction.CallbackContext context)
     {
+        if (!canMove) return;
+
         if (CurrentStamina == 0) return;
 
         if (context.performed)
@@ -316,8 +346,12 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    /*Coroutine för Dash där man stänger av gravity under dashens gång och roterar spelaren några grader genom Quaternion.Euler
+     Man lägger bara till dashPower till linerVelocity samt direction för det håll spelaren kollar åt*/
     private IEnumerator DashCoroutine()
     {
+        if (!canMove) yield break;
+        
         canDash = false;
         isDashing = true;
         
@@ -356,8 +390,11 @@ public class PlayerMovement : MonoBehaviour
         canDash = true;
     }
 
+    //Coroutine för att fylla på stamina igen med en liten delay i början.
     private IEnumerator RechargeStamina()
     {
+        if (!canMove) yield break;
+        
         if (CurrentStamina == 0)
         {
             yield return new WaitForSeconds(4f);
@@ -379,6 +416,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    //Kollar om boxen på OnDrawGizmoSelected() överlappar med valna lager (som väljs i inspektorn)
     public bool isGrounded()
     {
         if (Physics2D.OverlapBox(groundCheck.position, groundCheckSize, 0, whatIsGround))
@@ -387,12 +425,15 @@ public class PlayerMovement : MonoBehaviour
         }
         return false;
     }
+    
+    //Målar en liten låda vid spelarens fötter för att se om spelaren nuddar marken eller ej
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.white;
         Gizmos.DrawWireCube(groundCheck.position, groundCheckSize);
     }
 
+    //Stannar coRoutinen för att fylla på stamina igen
     private void StartRecharge()
     {
         if (recharge != null)
@@ -402,6 +443,7 @@ public class PlayerMovement : MonoBehaviour
         recharge = StartCoroutine(RechargeStamina());
     }
 
+    //funktion för att ta bort stamina beroende på vad man gör (anorlunda action har anorlunda stamina bekostnad)
     private void StaminaLoss(float cost)
     {
         CurrentStamina -= cost;
@@ -413,6 +455,7 @@ public class PlayerMovement : MonoBehaviour
         StaminaBar.fillAmount = CurrentStamina / MaxStamina;
     }
 
+    //hanterar att flippa spelaren beroende på vilket håll dem går
     private void ApplyFlip()
     {
         transform.localScale = new Vector3(
