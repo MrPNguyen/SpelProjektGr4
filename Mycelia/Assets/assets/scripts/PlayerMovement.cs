@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector] public Rigidbody2D rb;
     private CapsuleCollider2D bc;
     private Vector2 originalColliderOffset;
+    public bool hasPlayed;
     
     [HideInInspector] public bool isFacingRight = true;
     [HideInInspector] public bool isKnockedBack = false;
@@ -79,6 +80,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         canMove = true;
+        hasPlayed = true;
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
@@ -269,12 +271,14 @@ public class PlayerMovement : MonoBehaviour
             
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
             isJumping = true;
-          
+            hasPlayed = false;
+
         }
 
         // Optional variable jump height
         if (context.canceled)
         {
+            isJumping = false;
             StartRecharge();
         }
        
@@ -296,6 +300,7 @@ public class PlayerMovement : MonoBehaviour
             if(!GroundedBeforeFlying) return;
             
             isFlying = true;
+            hasPlayed = false;
             flyingDuration = 1f;
         }
 
@@ -335,6 +340,7 @@ public class PlayerMovement : MonoBehaviour
         {
             isHardDropping = true;
             hasHardDropped = false;
+            hasPlayed = false;
             StaminaLoss(HardDropCost);
         }
 
@@ -354,6 +360,7 @@ public class PlayerMovement : MonoBehaviour
         
         canDash = false;
         isDashing = true;
+        hasPlayed = false;
         
         float originalGravity = rb.gravityScale;
         rb.gravityScale = 0;

@@ -123,6 +123,7 @@ public class PlayerManager : MonoBehaviour
     private IEnumerator KnockbackCoroutine(float duration)
     {
         playerMovement.isKnockedBack = true;
+        playerMovement.hasPlayed = false;
         yield return new WaitForSeconds(duration);
         playerMovement.isKnockedBack = false;
     }

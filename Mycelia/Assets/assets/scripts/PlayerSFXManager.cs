@@ -14,6 +14,7 @@ public class PlayerSFXManager : MonoBehaviour
     
     private PlayerMovement playerMove;
     private Animator animator;
+    
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -24,47 +25,53 @@ public class PlayerSFXManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (playerMove.hasHardDropped && playerMove.isGrounded())
+        if (playerMove.hasHardDropped && playerMove.isGrounded() && !playerMove.hasPlayed)
         {
             playerMove.hasHardDropped = false;
             PlaySFX(hardLandClip);
+            playerMove.hasPlayed = true;
         }
 
-        if (playerMove.isHardDropping)
+        if (playerMove.isHardDropping  && !playerMove.hasPlayed)
         {
             PlaySFX(dashClip);
+            playerMove.hasPlayed = true;
         }
 
-        if (playerMove.isDashing)
+        if (playerMove.isDashing && !playerMove.hasPlayed)
         {
             PlaySFX(dashClip);
+            playerMove.hasPlayed = true;
         }
 
-        if (playerMove.isKnockedBack)
+        if (playerMove.isKnockedBack && !playerMove.hasPlayed)
         {
             PlaySFX(hurtClip);
+            playerMove.hasPlayed = true;
         }
 
-        if (playerMove.isJumping)
+        if (playerMove.isJumping && !playerMove.hasPlayed)
         {
             PlaySFX(jumpClip);
+            playerMove.hasPlayed = true;
         }
         
-        if (!audioSource.isPlaying)
+        if (!audioSource.isPlaying && !playerMove.hasPlayed)
         {
             audioSource.Stop();
+            playerMove.hasPlayed = true;
         }
     }
     private void PlaySFX(AudioClip clip)
     {
         if (clip == null) return;
+         audioSource.Stop();
         
         if (audioSource.clip != clip || !audioSource.isPlaying)
         {
-            audioSource.Stop();
             audioSource.clip = clip;
-            audioSource.Play();
         }
+        audioSource.Play();
     }
     
 }
