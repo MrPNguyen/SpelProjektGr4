@@ -1,12 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering.UI;
 using UnityEngine.UI;
+using Vector2 = UnityEngine.Vector2;
 
 
 //Code Source: Game Code Library: "2D Platformer Unity"
@@ -14,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
 {
     //Press down key to fall down quicker
     [HideInInspector] public Rigidbody2D rb;
-    private CapsuleCollider2D bc;
+    private CapsuleCollider2D cc;
     private Vector2 originalColliderOffset;
     
     public bool isFacingRight = true;
@@ -72,6 +74,9 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector2 velocity;
     private float multiplier;
+    private bool moveLeft = true;
+    private bool moveRight = true;
+    
     
     private Coroutine recharge;
     
@@ -81,22 +86,23 @@ public class PlayerMovement : MonoBehaviour
          spriteRenderer = GetComponent<SpriteRenderer>();
          animator = GetComponent<Animator>();
          tr = GetComponent<TrailRenderer>();
-         bc = GetComponent<CapsuleCollider2D>();
+         cc = GetComponent<CapsuleCollider2D>();
          CurrentStamina = MaxStamina;
-         originalColliderOffset = bc.offset;
+         originalColliderOffset = cc.offset;
          
          
     }
 
     void Update()
     {
-        animator.SetBool("hasJumping", isJumping); //fungerar detta?
+       
+        //animator.SetBool("hasJumping", isJumping); //fungerar detta?
 
-        if (rb.linearVelocity.y <= 0)
+        if (!isGrounded())
         {
             isJumping = false;
         }
-        animator.SetBool("isWalking", false);
+        //animator.SetBool("isWalking", false);
         if (isDashing)
         {
             return;
@@ -106,11 +112,12 @@ public class PlayerMovement : MonoBehaviour
         {
             if (isRunning)
             {
-                rb.linearVelocity = new Vector2(horizontalMovement * runSpeed, rb.linearVelocity.y);
+                velocity = new Vector2(horizontalMovement * runSpeed, velocity.y);
             }
+            
             else
             {
-                rb.linearVelocity = new Vector2(horizontalMovement * moveSpeed, rb.linearVelocity.y);
+                velocity = new Vector2(horizontalMovement * moveSpeed, velocity.y);
             }
         }
 
@@ -120,15 +127,15 @@ public class PlayerMovement : MonoBehaviour
             {
                 spriteRenderer.flipX = true;
                 isFacingRight = false;
-                bc.offset = new Vector2(-Mathf.Abs(originalColliderOffset.x), originalColliderOffset.y);
-                animator.SetBool("isWalking", true);
+                cc.offset = new Vector2(-Mathf.Abs(originalColliderOffset.x), originalColliderOffset.y);
+                //animator.SetBool("isWalking", true);
             }
-            else if (rb.linearVelocity.x > 0)
+            else if (velocity.x > 0)
             {
                 spriteRenderer.flipX = false;
                 isFacingRight = true;
-                bc.offset = new Vector2(Mathf.Abs(originalColliderOffset.x), originalColliderOffset.y);
-                animator.SetBool("isWalking", true);
+                cc.offset = new Vector2(Mathf.Abs(originalColliderOffset.x), originalColliderOffset.y);
+               //animator.SetBool("isWalking", true);
             }
         }
 
@@ -169,17 +176,17 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isGrounded())
         {
-            rb.gravityScale = 4;
+            multiplier = 4;
         }
         else
         {
             if (isHardDropping)
             {
-                rb.gravityScale = HardDropPower;
+                multiplier = HardDropPower;
             }
             else
             {
-                rb.gravityScale = 1;
+                multiplier = 1;
             }
         }
         if (isFlying)
@@ -192,13 +199,18 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
-                rb.linearVelocity = new Vector2(rb.linearVelocity.x, flyingPower);
+                velocity = new Vector2(velocity.x, flyingPower);
             }
         }
         ApplyGravity();
+        wallCheck();
+        rb.linearVelocity = velocity;
     }
     public void Move(InputAction.CallbackContext context)
     {
+        if (context.ReadValue<Vector2>().x > 1 && !moveRight) horizontalMovement = 0;
+        if (context.ReadValue<Vector2>().x < -1 && !moveLeft) horizontalMovement = 0;
+        
         if (canMove)
         {
             horizontalMovement = context.ReadValue<Vector2>().x;
@@ -230,7 +242,6 @@ public class PlayerMovement : MonoBehaviour
         if (isFlying) return;
 
         if (CurrentStamina == 0) return;
-        
 
         // Prevent jumping in the air
         if (!isGrounded() && context.performed)
@@ -241,10 +252,10 @@ public class PlayerMovement : MonoBehaviour
         // Normal jump
         if (context.performed)
         {
-            rb.gravityScale = 1;
+            multiplier = 1;
             StaminaLoss(JumpCost);
             
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+            velocity = new Vector2(velocity.x, jumpForce);
             isJumping = true;
           
         }
@@ -252,12 +263,14 @@ public class PlayerMovement : MonoBehaviour
         // Optional variable jump height
         if (context.canceled)
         {
-            if (rb.linearVelocity.y > 0)
+            if (velocity.y > 0)
             {
-                rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * 0.3f);
+                velocity = new Vector2(velocity.x, velocity.y * 0.3f);
                 StartRecharge();
-                isJumping = true; 
+                isJumping = true;
             }
+
+            
         }
        
     }
@@ -322,38 +335,38 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator DashCoroutine()
     {
-        Debug.Log($"Start of Coroutine: {rb.linearVelocity}");
+        //Debug.Log($"Start of Coroutine: {velocity}");
 
         canDash = false;
         isDashing = true;
         
-        float originalGravity = rb.gravityScale;
-        rb.gravityScale = 0;
+        float originalGravity = multiplier;
+        multiplier = 0;
         
         tr.emitting = true;
         
         float dashDirection = isFacingRight ? 1 : -1;
 
-        bc.offset = new Vector2(dashDirection * Mathf.Abs(originalColliderOffset.x), originalColliderOffset.y);
+        cc.offset = new Vector2(dashDirection * Mathf.Abs(originalColliderOffset.x), originalColliderOffset.y);
 
         if (dashDirection == -1)
         {
-            animator.SetBool("isDashingLeft", true);
+            //animator.SetBool("isDashingLeft", true);
         }
         else if (dashDirection == 1)
         {
-            animator.SetBool("isDashingRight", true);
+            //animator.SetBool("isDashingRight", true);
         }
         
-        rb.linearVelocity = new Vector2(dashDirection * DashPower, 0f);
+        velocity = new Vector2(dashDirection * DashPower, 0f);
         
-        Debug.Log($"During Dash: {rb.linearVelocity}");
+        //Debug.Log($"During Dash: {velocity}");
         yield return new WaitForSeconds(DashDuration);
         
-        rb.linearVelocity = new Vector2(0f, 0f);
-        rb.gravityScale = originalGravity;
+        velocity = new Vector2(0f, 0f);
+        multiplier = originalGravity;
 
-        bc.offset = new Vector2(dashDirection * Mathf.Abs(originalColliderOffset.x), originalColliderOffset.y);
+        cc.offset = new Vector2(dashDirection * Mathf.Abs(originalColliderOffset.x), originalColliderOffset.y);
         
         isDashing = false;
         tr.emitting = false;
@@ -364,10 +377,10 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (dashDirection == 1)
         {
-            animator.SetBool("isDashingRight", false);
+            //animator.SetBool("isDashingRight", false);
         }        
         
-        Debug.Log($"After Dash: {rb.linearVelocity}");
+        Debug.Log($"After Dash: {velocity}");
 
         yield return new WaitForSeconds(DashCooldown);
         canDash = true;
@@ -407,6 +420,9 @@ public class PlayerMovement : MonoBehaviour
         }
         return false;
     }
+
+    
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.white;
@@ -435,10 +451,50 @@ public class PlayerMovement : MonoBehaviour
 
     private void ApplyGravity()
     {
-        if (isGrounded())
+        if (isGrounded() && !isJumping)
         {
-            velocity.y = -1;
+            velocity.y = 0;
+            foreach (var mask in whatIsGround)
+            {
+                Vector2 pos = new Vector2(transform.position.x + Vector2.up.x, transform.position.y + Vector2.up.y);
+                RaycastHit2D hit = Physics2D.Raycast(pos, Vector2.down, 5f, mask);
+                if (hit.collider != null)
+                {
+                    Vector2.Angle(transform.position, hit.point);
+                    Debug.Log("Angle of slope: " + Vector2.Angle(transform.position, hit.normal));
+                }
+            }
+        }
+
+        else
+        {
+            velocity.y += Physics2D.gravity.y * multiplier * Time.deltaTime;
         }
         
+        
+    }
+
+    private void wallCheck()
+    {
+        foreach (var mask in whatIsGround)
+        {
+            if (Physics2D.Raycast(transform.position, Vector2.right, 0.2f, mask))
+            {
+                Debug.Log("No More Right");
+                velocity.x = 0;
+            }
+            else moveRight = false;
+            
+            if (Physics2D.Raycast(transform.position, Vector2.left, 0.2f, mask))
+            {
+                velocity.x =0;
+            }
+            else moveLeft = false;
+            if (Physics2D.Raycast(transform.position, Vector2.up, 0.2f, mask))
+            {
+                velocity.y = 0;
+            }
+            
+        }
     }
 }

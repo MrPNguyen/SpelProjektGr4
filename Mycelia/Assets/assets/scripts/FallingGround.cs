@@ -49,11 +49,11 @@ public class FallingGround : MonoBehaviour
         }
         yield return new WaitUntil(() => transform.position.y <= posA.y-posB);
         
-        Debug.Log("We're in");
+      
         rb.gravityScale = -2;
         
         yield return new WaitUntil(() => transform.position.y >= posA.y);
-        Debug.Log("We're out");
+     
             rb.gravityScale = 0;
             rb.linearVelocityY = 0;
             rb.bodyType = RigidbodyType2D.Static;
