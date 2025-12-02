@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Numerics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -15,22 +14,27 @@ using Vector2 = UnityEngine.Vector2;
 //Code Source: Game Code Library: "2D Platformer Unity"
 public class PlayerMovement : MonoBehaviour
 {
+    private static readonly int IsWalking = Animator.StringToHash("isWalking");
+    private static readonly int HasJumping = Animator.StringToHash("hasJumping");
+    private static readonly int IsDashingLeft = Animator.StringToHash("isDashingLeft");
+    private static readonly int IsDashingRight = Animator.StringToHash("isDashingRight");
+    
     //Press down key to fall down quicker
     [HideInInspector] public Rigidbody2D rb;
     private CapsuleCollider2D cc;
     private Vector2 originalColliderOffset;
+    public bool hasPlayed;
     
-    public bool isFacingRight = true;
-    public bool isKnockedBack = false;
+    [HideInInspector] public bool isFacingRight = true;
+    [HideInInspector] public bool isKnockedBack = false;
 
     [Header("Movement")]
     [SerializeField] private float moveSpeed = 5f;
     private float horizontalMovement;
-    private float horizontalInput;
 
     [Header("Running")]
     [SerializeField] private float runSpeed = 10f;
-    [SerializeField] public bool isRunning;
+    public bool isRunning { get; private set; }
     
     [Header("Jump")]
     [SerializeField] private float jumpForce = 10f;
@@ -42,12 +46,12 @@ public class PlayerMovement : MonoBehaviour
     [Header("GroundCheck")]
     [SerializeField] private Transform groundCheck;
     [SerializeField] private Vector2 groundCheckSize = new Vector2(0.5f, 0.05f);
-    [SerializeField] private List<LayerMask> whatIsGround;
+    [SerializeField] private LayerMask whatIsGround;
     
     private SpriteRenderer spriteRenderer;
     private Animator animator;
 
-    public bool canMove = true;
+    public bool canMove;
 
     [Header("Dash")]
     [SerializeField] private float DashPower = 20f;
@@ -72,14 +76,17 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float FlyingCost;
     [SerializeField] private float HardDropCost;
     [SerializeField] private float ChargeRate;
-
+    
+    private Coroutine recharge;
+    
     private Vector2 velocity;
     private float multiplier;
     private bool moveLeft = true;
     private bool moveRight = true;
     
+    [Header("WallCheck")]
+    [SerializeField] private Transform LeftWallCheck;
     
-    private Coroutine recharge;
     
     void Start()
     {
@@ -90,26 +97,35 @@ public class PlayerMovement : MonoBehaviour
          cc = GetComponent<CapsuleCollider2D>();
          CurrentStamina = MaxStamina;
          originalColliderOffset = cc.offset;
-         
-         
     }
 
     void Update()
     {
-       
         //animator.SetBool("hasJumping", isJumping); //fungerar detta?
 
-        if (!isGrounded())
+        if (!canMove)
+        {
+            horizontalMovement = 0;
+            isRunning = false;
+            isFlying = false;
+            isHardDropping = false;
+            animator.SetBool(IsWalking, false);
+            return;
+        }
+        
+        if (rb.linearVelocity.y <= 0)
         {
             isJumping = false;
         }
+        
         //animator.SetBool("isWalking", false);
+        
         if (isDashing)
         {
             return;
         }
 
-        if (!isKnockedBack && CurrentStamina != 0)
+        if (!isKnockedBack && CurrentStamina != 0 && canMove)
         {
             if (isRunning)
             {
@@ -122,23 +138,21 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if (!isDashing)
+        if (!isDashing && canMove)
         {
             if (horizontalMovement < 0)
             {
-                spriteRenderer.flipX = true;
                 isFacingRight = false;
-                cc.offset = new Vector2(-Mathf.Abs(originalColliderOffset.x), originalColliderOffset.y);
                 //animator.SetBool("isWalking", true);
             }
             else if (velocity.x > 0)
             {
-                spriteRenderer.flipX = false;
                 isFacingRight = true;
-                cc.offset = new Vector2(Mathf.Abs(originalColliderOffset.x), originalColliderOffset.y);
                //animator.SetBool("isWalking", true);
             }
         }
+
+        ApplyFlip();
 
         if (isRunning  && CurrentStamina != 0)
         {
@@ -175,6 +189,12 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (!canMove)
+        {
+            rb.linearVelocity = Vector2.zero;
+            return;
+        }
+        
         if (isGrounded())
         {
             multiplier = 4;
@@ -203,35 +223,29 @@ public class PlayerMovement : MonoBehaviour
                 velocity = new Vector2(velocity.x, flyingPower);
             }
         }
+        
         ApplyGravity();
-        wallCheck();
+        IsWalled();
         Debug.Log($"is grounded: {isGrounded()}");
         rb.linearVelocity = velocity;
     }
     public void Move(InputAction.CallbackContext context)
     {
-        if (context.ReadValue<Vector2>().x > 1 && !moveRight) horizontalMovement = 0;
-        if (context.ReadValue<Vector2>().x < -1 && !moveLeft) horizontalMovement = 0;
-        
-        if (canMove)
-        {
-            horizontalMovement = context.ReadValue<Vector2>().x;
-        }
+        if (!canMove) return;
+        horizontalMovement = context.ReadValue<Vector2>().x;
     }
     
     public void Run(InputAction.CallbackContext context)
     {
-        if (canMove)
+        if (!canMove) return;
+        if (context.performed)
         {
-            if (context.performed)
-            {
-                isRunning = true;
-            }
+            isRunning = true;
+        }
 
-            if (context.canceled)
-            {
-                isRunning = false;
-            }
+        if (context.canceled)
+        {
+            isRunning = false;
         }
     }
 
@@ -267,9 +281,8 @@ public class PlayerMovement : MonoBehaviour
         {
             if (velocity.y > 0)
             {
-                velocity = new Vector2(velocity.x, velocity.y * 0.3f);
+                isJumping = false;
                 StartRecharge();
-                isJumping = true;
             }
 
             
@@ -279,6 +292,8 @@ public class PlayerMovement : MonoBehaviour
 
     public void Fly(InputAction.CallbackContext context)
     {
+        if (!canMove) return;
+        
         if (context.started)
         {
            GroundedBeforeFlying = isGrounded();
@@ -301,25 +316,24 @@ public class PlayerMovement : MonoBehaviour
 
     public void Dash(InputAction.CallbackContext context)
     {
-        if (canMove)
-        {
-            if (CurrentStamina == 0) return;
+        if (!canMove) return;
+        if (CurrentStamina == 0) return;
             
-            if (context.performed && canDash)
-            {
-                StaminaLoss(DashCost);
-                StartCoroutine(DashCoroutine());
-            }
+        if (context.performed && canDash)
+        {
+            StaminaLoss(DashCost);
+            StartCoroutine(DashCoroutine());
+        }
 
-            if (context.canceled)
-            {
-                StartRecharge();
-            }
+        if (context.canceled)
+        {
+            StartRecharge();
         }
     }
     
     public void HardDrop(InputAction.CallbackContext context)
     {
+        if(!canMove) return;
         if (CurrentStamina == 0) return;
 
         if (context.performed)
@@ -349,15 +363,13 @@ public class PlayerMovement : MonoBehaviour
         
         float dashDirection = isFacingRight ? 1 : -1;
 
-        cc.offset = new Vector2(dashDirection * Mathf.Abs(originalColliderOffset.x), originalColliderOffset.y);
-
         if (dashDirection == -1)
         {
-            //animator.SetBool("isDashingLeft", true);
+            transform.localRotation = Quaternion.Euler(0, 0, 60);
         }
         else if (dashDirection == 1)
         {
-            //animator.SetBool("isDashingRight", true);
+            transform.localRotation = Quaternion.Euler(0, 0, -60);
         }
         
         velocity = new Vector2(dashDirection * DashPower, 0f);
@@ -368,28 +380,21 @@ public class PlayerMovement : MonoBehaviour
         velocity = new Vector2(0f, 0f);
         multiplier = originalGravity;
 
-        cc.offset = new Vector2(dashDirection * Mathf.Abs(originalColliderOffset.x), originalColliderOffset.y);
+        
         
         isDashing = false;
         tr.emitting = false;
         
-        if (dashDirection == -1)
-        {
-            animator.SetBool("isDashingLeft", false);
-        }
-        else if (dashDirection == 1)
-        {
-            //animator.SetBool("isDashingRight", false);
-        }        
-        
-       
-
         yield return new WaitForSeconds(DashCooldown);
+        transform.localRotation = Quaternion.Euler(0, 0, 0);
+        ApplyFlip();
+        
         canDash = true;
     }
 
     private IEnumerator RechargeStamina()
     {
+        if (!canMove) yield break;
         if (CurrentStamina == 0)
         {
             yield return new WaitForSeconds(4f);
@@ -413,17 +418,12 @@ public class PlayerMovement : MonoBehaviour
 
     public bool isGrounded()
     {
-        foreach (var mask in whatIsGround)
+        if (Physics2D.OverlapBox(groundCheck.position, groundCheckSize, 0, whatIsGround))
         {
-            if (Physics2D.OverlapBox(groundCheck.position, groundCheckSize, 0, mask))
-            {
-                return true;
-            }
+            return true;
         }
         return false;
     }
-
-    
 
     private void OnDrawGizmosSelected()
     {
@@ -450,6 +450,14 @@ public class PlayerMovement : MonoBehaviour
         }
         StaminaBar.fillAmount = CurrentStamina / MaxStamina;
     }
+    private void ApplyFlip()
+    {
+        transform.localScale = new Vector3(
+            isFacingRight ? 0.8f : -0.8f, 
+            0.8f, 
+            1.6f
+        );
+    }
 
     private void ApplyGravity()
     {
@@ -457,57 +465,69 @@ public class PlayerMovement : MonoBehaviour
         {
             velocity.y = 0;
             
-            foreach (var mask in whatIsGround)
-            {
-                Vector2 pos = new Vector2(transform.position.x + Vector2.up.x, transform.position.y + Vector2.up.y);
-                RaycastHit2D hit = Physics2D.Raycast(pos, Vector2.down, 5f, mask);
+                Vector2 pos = new Vector2(transform.position.x, transform.position.y + Vector2.up.y);
+                RaycastHit2D hit = Physics2D.Raycast(pos, Vector2.down, 5f, whatIsGround);
                 if (hit.collider != null)
                 {
                     Vector2 direction = new Vector2(transform.position.x - hit.point.x, transform.position.y - hit.point.y );
-                    
-                    Debug.Log($"Why? {direction}  hit.normal: {Vector2.Angle(direction, hit.normal)}");
+                    Vector2 piri = new Vector2(MathF.Sin(Vector2.Angle(direction, hit.normal)),MathF.Cos(Vector2.Angle(direction, hit.normal)) );
+                    RaycastHit2D land = Physics2D.Raycast(pos, piri, 5f, whatIsGround);
+                    //Debug.Log($"Why? {direction}  hit.normal: {Vector2.Angle(direction, hit.normal)}");
                     if (Vector2.Angle(direction, hit.normal) > 40)
                     {
                         velocity += new Vector2(0.68f, -0.74f);
                     }
                 }
-            }
         }
 
         else
         {
             velocity.y += Physics2D.gravity.y * multiplier * Time.deltaTime;
         }
-        
-        
     }
 
    
         
     
 
-    private void wallCheck()
+    private bool IsWalled()
     {
-        foreach (var mask in whatIsGround)
+        float LeftorRight = -2;
+        
+        Vector2 Size = new Vector2(1f, 5f);
+        
+        if (isFacingRight)
         {
-            if (Physics2D.Raycast(transform.position, Vector2.right, 0.2f, mask))
-            {
-                Debug.Log("No More Right");
-                velocity.x = -1;
-            }
-            else moveRight = false;
-            
-            if (Physics2D.Raycast(transform.position, Vector2.left, 0.2f, mask))
-            {
-                Debug.Log("No More Left");
-                velocity.x =-1;
-            }
-            else moveLeft = false;
-            if (Physics2D.Raycast(transform.position, Vector2.up, 0.2f, mask))
-            {
-                velocity.y = -1;
-            }
-            
+            LeftorRight = 2;
         }
+        else
+        {
+            LeftorRight = -2;
+        }
+        Vector2 dir = new Vector2(transform.position.x + LeftorRight, transform.position.y);
+        if (Physics2D.OverlapBox(dir, Size, 0, whatIsGround))
+        {
+            return true;
+        }  
+        
+        if (Physics2D.Raycast(transform.position, Vector2.right, 0.2f, whatIsGround))
+        {
+            Debug.Log("No More Right");
+            velocity.x = -1;
+        }
+        else moveRight = false;
+            
+        if (Physics2D.Raycast(transform.position, Vector2.left, 0.2f, whatIsGround))
+        {
+            Debug.Log("No More Left");
+            velocity.x =-1;
+        }
+        else moveLeft = false;
+        if (Physics2D.Raycast(transform.position, Vector2.up, 0.2f, whatIsGround))
+        {
+            Debug.Log("No More Up");
+            velocity.y = -1;
+        }
+        return false;
     }
 }
