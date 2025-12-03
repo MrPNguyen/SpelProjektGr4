@@ -1645,12 +1645,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 4d9895889c683524389551981bc7d8e5, type: 3}
     - target: {fileID: -441173067643279493, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
+      propertyPath: playerMove
+      value: 
+      objectReference: {fileID: 2110261406}
+    - target: {fileID: -441173067643279493, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
       propertyPath: hardLandClip
       value: 
       objectReference: {fileID: 8300000, guid: a1b96333214124a478a8455d594c653a, type: 3}
     - target: {fileID: 2052722778094988803, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 16.99
+      value: -6.83
       objectReference: {fileID: 0}
     - target: {fileID: 2052722778094988803, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3650,7 +3654,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2110261391}
-  playerMovement: {fileID: 0}
+  playerMovement: {fileID: 2110261406}
 --- !u!1001 &1099052301
 PrefabInstance:
   m_ObjectHideFlags: 0

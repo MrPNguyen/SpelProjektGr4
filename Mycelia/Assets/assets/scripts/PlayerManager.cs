@@ -87,7 +87,7 @@ public class PlayerManager : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            if (playerMovement.rb.gravityScale >= playerMovement.HardDropPower && !playerMovement.isGrounded())
+            if (playerMovement.multiplier >= playerMovement.HardDropPower && !playerMovement.isGrounded())
             {
                 Destroy(enemy);
                 Instantiate(extraLife, other.transform.position, other.transform.rotation);

@@ -78,7 +78,7 @@ public class PlayerMovement : MonoBehaviour
     private Coroutine recharge;
     
     [NonSerialized] public Vector2 velocity;
-    private float multiplier;
+    [NonSerialized] public float multiplier;
     private bool moveLeft = true;
     private bool moveRight = true;
     private Vector3 SafePosition = Vector3.zero;
@@ -101,6 +101,11 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        /*Problemet när spelaren har harddroppat och stamina blir noll är att boolen isHarddropping blir inte false igen och då har man fortfarande
+         gravity från harddropping kvar. Den borde ju sättas tillbaka till false när jag släpper tangenten 
+         men tack vare något med kollisionen blir den inte de*/
+        
+        
         //animator.SetBool("hasJumping", isJumping); //fungerar detta?
 
         if (!canMove)
@@ -117,6 +122,12 @@ public class PlayerMovement : MonoBehaviour
         {
             isJumping = false;
         }
+        
+        /*if (CurrentStamina <= 0 && isHardDropping)   // FIX ADDED
+        {
+            isHardDropping = false;
+            hasHardDropped = false;
+        }*/
         
         //animator.SetBool("isWalking", false);
         
@@ -154,7 +165,7 @@ public class PlayerMovement : MonoBehaviour
 
         ApplyFlip();
 
-        if (isRunning  && CurrentStamina != 0)
+        if (isRunning  && CurrentStamina > 0)
         {
             CurrentStamina -= RunCost * Time.deltaTime;
             if (CurrentStamina < 0)
@@ -170,7 +181,7 @@ public class PlayerMovement : MonoBehaviour
             isRunning = false;
         }
         
-        if (isFlying && CurrentStamina != 0)
+        if (isFlying && CurrentStamina > 0)
         {
             CurrentStamina -= FlyingCost * Time.deltaTime;
             if (CurrentStamina < 0)
@@ -184,15 +195,6 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             isFlying = false;
-        }
-    }
-
-    void FixedUpdate()
-    {
-        if (!canMove)
-        {
-            rb.linearVelocity = Vector2.zero;
-            return;
         }
         
         if (isGrounded())
@@ -210,6 +212,17 @@ public class PlayerMovement : MonoBehaviour
                 multiplier = 1;
             }
         }
+    }
+
+    void FixedUpdate()
+    {
+        if (!canMove)
+        {
+            velocity = Vector2.zero;
+            return;
+        }
+        
+       
         if (isFlying)
         {
             flyingDuration -= Time.deltaTime;
@@ -223,7 +236,7 @@ public class PlayerMovement : MonoBehaviour
                 velocity = new Vector2(velocity.x, flyingPower);
             }
         }
-        
+        //Debug.Log($"HardDrop: {hasHardDropped}");
         ApplyGravity();
         IsWalled();
        
@@ -252,7 +265,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext context)
     {
-         
         if (!canMove) return;
         
         if (isFlying) return;
@@ -285,15 +297,17 @@ public class PlayerMovement : MonoBehaviour
                 StartRecharge();
             }
         }
-     }
+    }
 
     public void Fly(InputAction.CallbackContext context)
     {
         if (!canMove) return;
         
+        if (CurrentStamina == 0) return;
+        
         if (context.started)
         {
-           GroundedBeforeFlying = isGrounded();
+            GroundedBeforeFlying = isGrounded();
         }
 
         if (context.performed)
@@ -359,8 +373,6 @@ public class PlayerMovement : MonoBehaviour
         tr.emitting = true;
         
         float dashDirection = isFacingRight ? 1 : -1;
-        
-        Debug.Log($"Start of Coroutine: {dashDirection}");
 
         if (dashDirection == -1)
         {
@@ -371,11 +383,9 @@ public class PlayerMovement : MonoBehaviour
             transform.localRotation = Quaternion.Euler(0, 0, -60);
         }
         
-        Debug.Log($"Middle of Coroutine Rotation: {transform.localRotation}");
         
         velocity = new Vector2(dashDirection * DashPower, 0f);
         
-        //Debug.Log($"During Dash: {velocity}");
         yield return new WaitForSeconds(DashDuration);
         
         velocity = new Vector2(0f, 0f);
@@ -429,18 +439,18 @@ public class PlayerMovement : MonoBehaviour
     private void OnDrawGizmosSelected()
     
     {
-            if (isFacingRight)
-            {
-                LeftorRight = 0.3f;
-            }
-            else
-            {
-                LeftorRight = -0.3f;
-            }
-            Gizmos.color = Color.white;
-            Gizmos.DrawWireCube(groundCheck.position, groundCheckSize);
-            Gizmos.color = Color.white;
-            Gizmos.DrawWireCube( new Vector2(transform.position.x + LeftorRight, transform.position.y),  new Vector2(0.05f, 0.6f));
+        if (isFacingRight)
+        {
+            LeftorRight = 0.3f;
+        }
+        else
+        {
+            LeftorRight = -0.3f;
+        }
+        Gizmos.color = Color.white;
+        Gizmos.DrawWireCube(groundCheck.position, groundCheckSize);
+        Gizmos.color = Color.white;
+        Gizmos.DrawWireCube( new Vector2(transform.position.x + LeftorRight, transform.position.y),  new Vector2(0.05f, 0.6f));
     }
     
 
@@ -474,13 +484,19 @@ public class PlayerMovement : MonoBehaviour
 
     private void ApplyGravity()
     {
+        Vector3 pos = transform.position;
         if (!isGrounded())
         {
             SafeHardDropPosition = transform.position;
         }
         if (isGrounded() && hasHardDropped)
         {
-            transform.position = SafeHardDropPosition;
+           Debug.Log($"SafePosition = {SafeHardDropPosition}");
+           velocity.y = 0;
+           pos.y = SafeHardDropPosition.y;
+           transform.position = pos;
+            isHardDropping = false;
+            hasHardDropped = false;
         }
         else if (isGrounded() && !isJumping && !isKnockedBack)
         {
@@ -516,7 +532,6 @@ public class PlayerMovement : MonoBehaviour
        
         if (Physics2D.OverlapBox(dir, Size, 0, whatIsGround))
         { Collider2D colliders = Physics2D.OverlapBox(dir, Size, 0, whatIsGround);
-            Debug.Log($"colliders: {colliders.gameObject.name}");
             if (LeftorRight == 0.3f)
             {
                 moveRight = false;

@@ -14,11 +14,10 @@ public class PlayerSFXManager : MonoBehaviour
     private AudioSource audioSource;
     
     
-    private PlayerMovement playerMove;
+    [SerializeField] private PlayerMovement playerMove;
     private Animator animator;
     void Start()
     {
-        playerMove = new PlayerMovement();
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>(); 
     }
@@ -29,7 +28,7 @@ public class PlayerSFXManager : MonoBehaviour
         
         if (playerMove.hasHardDropped && playerMove.isGrounded())
         {
-            playerMove.hasHardDropped = false;
+           
             PlaySFX(hardLandClip);
         }
 
