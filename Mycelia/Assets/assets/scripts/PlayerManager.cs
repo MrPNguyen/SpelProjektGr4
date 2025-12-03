@@ -96,10 +96,9 @@ public class PlayerManager : MonoBehaviour
             else
             {
                 TakeDamage();
-                player.color = Color.red;
                 float HitRecoilX = 10f * (playerMovement.isFacingRight ? -1 : 1);
                 float HitRecoilY = HitRecoil;
-                rb.linearVelocity = new Vector2(HitRecoilX, HitRecoilY);
+                playerMovement.velocity = new Vector2(HitRecoilX, HitRecoilY);
 
                 StartCoroutine(KnockbackCoroutine(0.2f));
             }
@@ -123,7 +122,9 @@ public class PlayerManager : MonoBehaviour
     private IEnumerator KnockbackCoroutine(float duration)
     {
         playerMovement.isKnockedBack = true;
+        player.color = Color.red;
         yield return new WaitForSeconds(duration);
         playerMovement.isKnockedBack = false;
+        player.color = Color.white;
     }
 }

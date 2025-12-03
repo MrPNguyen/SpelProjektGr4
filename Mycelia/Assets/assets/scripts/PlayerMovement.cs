@@ -16,8 +16,6 @@ public class PlayerMovement : MonoBehaviour
 {
     private static readonly int IsWalking = Animator.StringToHash("isWalking");
     private static readonly int HasJumping = Animator.StringToHash("hasJumping");
-    private static readonly int IsDashingLeft = Animator.StringToHash("isDashingLeft");
-    private static readonly int IsDashingRight = Animator.StringToHash("isDashingRight");
     
     //Press down key to fall down quicker
     [HideInInspector] public Rigidbody2D rb;
@@ -79,10 +77,11 @@ public class PlayerMovement : MonoBehaviour
     
     private Coroutine recharge;
     
-    private Vector2 velocity;
+    [NonSerialized] public Vector2 velocity;
     private float multiplier;
     private bool moveLeft = true;
     private bool moveRight = true;
+    private Vector3 SafePosition = Vector3.zero;
     
     [Header("WallCheck")]
     [SerializeField] private Transform LeftWallCheck;
@@ -113,7 +112,7 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
         
-        if (rb.linearVelocity.y <= 0)
+        if (velocity.y <= 0)
         {
             isJumping = false;
         }
@@ -284,11 +283,8 @@ public class PlayerMovement : MonoBehaviour
                 isJumping = false;
                 StartRecharge();
             }
-
-            
         }
-       
-    }
+     }
 
     public void Fly(InputAction.CallbackContext context)
     {
@@ -351,7 +347,6 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator DashCoroutine()
     {
-        //Debug.Log($"Start of Coroutine: {velocity}");
 
         canDash = false;
         isDashing = true;
@@ -362,6 +357,8 @@ public class PlayerMovement : MonoBehaviour
         tr.emitting = true;
         
         float dashDirection = isFacingRight ? 1 : -1;
+        
+        Debug.Log($"Start of Coroutine: {dashDirection}");
 
         if (dashDirection == -1)
         {
@@ -372,6 +369,8 @@ public class PlayerMovement : MonoBehaviour
             transform.localRotation = Quaternion.Euler(0, 0, -60);
         }
         
+        Debug.Log($"Middle of Coroutine Rotation: {transform.localRotation}");
+        
         velocity = new Vector2(dashDirection * DashPower, 0f);
         
         //Debug.Log($"During Dash: {velocity}");
@@ -380,8 +379,6 @@ public class PlayerMovement : MonoBehaviour
         velocity = new Vector2(0f, 0f);
         multiplier = originalGravity;
 
-        
-        
         isDashing = false;
         tr.emitting = false;
         
@@ -418,10 +415,23 @@ public class PlayerMovement : MonoBehaviour
 
     public bool isGrounded()
     {
-        if (Physics2D.OverlapBox(groundCheck.position, groundCheckSize, 0, whatIsGround))
+        if (hasHardDropped)
         {
-            return true;
+            groundCheck.position = new Vector3(groundCheck.position.x, groundCheck.position.y - 2f, groundCheck.position.z);
+            if (Physics2D.OverlapBox(groundCheck.position, groundCheckSize, 0, whatIsGround))
+            {
+                return true;
+            }
         }
+        else
+        {
+            groundCheck.position = new Vector3(groundCheck.position.x, groundCheck.position.y, groundCheck.position.z);
+            if (Physics2D.OverlapBox(groundCheck.position, groundCheckSize, 0, whatIsGround))
+            {
+                return true;
+            }
+        }
+        
         return false;
     }
 
@@ -436,10 +446,10 @@ public class PlayerMovement : MonoBehaviour
             {
                 LeftorRight = -0.3f;
             }
-        Gizmos.color = Color.white;
-        Gizmos.DrawWireCube(groundCheck.position, groundCheckSize);
-        Gizmos.color = Color.white;
-        Gizmos.DrawWireCube( new Vector2(transform.position.x + LeftorRight, transform.position.y),  new Vector2(0.05f, 0.6f));
+            Gizmos.color = Color.white;
+            Gizmos.DrawWireCube(groundCheck.position, groundCheckSize);
+            Gizmos.color = Color.white;
+            Gizmos.DrawWireCube( new Vector2(transform.position.x + LeftorRight, transform.position.y),  new Vector2(0.05f, 0.6f));
     }
     
 
@@ -473,7 +483,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void ApplyGravity()
     {
-        if (isGrounded() && !isJumping)
+        if (isGrounded() && !isJumping && !isKnockedBack)
         {
             velocity.y = 0;
             
@@ -491,7 +501,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void IsWalled()
     {
-        
+        Vector3 position = transform.position;
         Vector2 Size = new Vector2(0.05f, 0.6f);
         
         if (isFacingRight)
@@ -503,22 +513,25 @@ public class PlayerMovement : MonoBehaviour
             LeftorRight = -0.3f;
         }
         Vector2 dir = new Vector2(transform.position.x + LeftorRight, transform.position.y);
+       
         if (Physics2D.OverlapBox(dir, Size, 0, whatIsGround))
-        {
+        { Collider2D colliders = Physics2D.OverlapBox(dir, Size, 0, whatIsGround);
+            Debug.Log($"colliders: {colliders.gameObject.name}");
             if (LeftorRight == 0.3f)
             {
                 moveRight = false;
-                velocity.x = -1;
-                Debug.Log("no more right");
             }
             else
             {
-                Debug.Log("LeftorRight");
                 moveLeft = false;
-                velocity.x = 1;
             }
-        }  
-       
-       
+            position.x = SafePosition.x;
+            transform.position = position;
+        }
+        else
+        {
+            SafePosition = transform.position;
+        }
     }
+    
 }
