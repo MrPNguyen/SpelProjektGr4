@@ -20,8 +20,7 @@ public class PlayerMovement : MonoBehaviour
     //Press down key to fall down quicker
     [HideInInspector] public Rigidbody2D rb;
     private CapsuleCollider2D cc;
-    private Vector2 originalColliderOffset;
-    public bool hasPlayed;
+    [HideInInspector] public bool hasPlayed;
     
     [HideInInspector] public bool isFacingRight = true;
     [HideInInspector] public bool isKnockedBack = false;
@@ -32,49 +31,49 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Running")]
     [SerializeField] private float runSpeed = 10f;
-    public bool isRunning { get; private set; }
+
+    private bool isRunning { get; set; }
     
     [Header("Jump")]
     [SerializeField] private float jumpForce = 10f;
     [SerializeField] public float HardDropPower = 4;
-    public bool isHardDropping = false;
-    public bool hasHardDropped = false;
-    public bool isJumping = false;
+    [HideInInspector]public bool isHardDropping;
+    [HideInInspector]public bool hasHardDropped;
+    [HideInInspector]public bool isJumping;
     
     [Header("GroundCheck")]
     [SerializeField] private Transform groundCheck;
     [SerializeField] private Transform CeilingCheck;
     [SerializeField] private Vector2 groundCheckSize = new Vector2(0.5f, 0.05f);
+    [SerializeField] private Vector2 ceilingCheckSize = new Vector2(0.2f,0.002f);
     [SerializeField] private LayerMask whatIsGround;
+    
     
     
     private SpriteRenderer spriteRenderer;
     private Animator animator;
 
-    public bool canMove;
+    [HideInInspector] public bool canMove;
 
     [Header("Dash")]
     [SerializeField] private float DashPower = 20f;
-    public bool isDashing;
+    [HideInInspector] public bool isDashing;
     private bool canDash = true;
     private float DashDuration = 0.10f;
-    private float DashCooldown = 0.1f;
     private TrailRenderer tr;
     
     [Header("Flying")]
     [SerializeField] private float flyingPower = 15f;
     private float flyingDuration;
-    private bool isFlying = false;
+    private bool isFlying;
     private bool GroundedBeforeFlying;
 
     [Header("Stamina")] 
     [SerializeField] public Image StaminaBar;
     [SerializeField] public float CurrentStamina, MaxStamina;
-    [SerializeField] private float JumpCost;
     [SerializeField] private float RunCost;
     [SerializeField] private float DashCost;
     [SerializeField] private float FlyingCost;
-    [SerializeField] private float HardDropCost;
     [SerializeField] private float ChargeRate;
     
     private Coroutine recharge;
@@ -84,10 +83,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 SafePosition = Vector3.zero;
     private Vector3 SafeHardDropPosition = Vector3.zero;
     private Vector3 SafeCeilingPosition = Vector3.zero;
-    [Header("WallCheck")]
-    [SerializeField] private Transform LeftWallCheck;
-    
-    
+
     void Start()
     {
          rb = GetComponent<Rigidbody2D>();
@@ -96,16 +92,22 @@ public class PlayerMovement : MonoBehaviour
          tr = GetComponent<TrailRenderer>();
          cc = GetComponent<CapsuleCollider2D>();
          CurrentStamina = MaxStamina;
-         originalColliderOffset = cc.offset;
+         isFlying = false;
+         isHardDropping = false;
+         hasHardDropped = false;
+         isJumping = false;
     }
 
     void Update()
     {
-        /*Problemet när spelaren har harddroppat och stamina blir noll är att boolen isHarddropping blir inte false igen och då har man fortfarande
-         gravity från harddropping kvar. Den borde ju sättas tillbaka till false när jag släpper tangenten 
-         men tack vare något med kollisionen blir den inte de*/
-        
-        
+        if (isDashing)
+        {
+            ceilingCheckSize = new Vector2(0.002f,0.2f);
+        }
+        else
+        {
+            ceilingCheckSize = new Vector2(0.2f,0.002f);
+        }
         //animator.SetBool("hasJumping", isJumping); //fungerar detta?
 
         if (!canMove)
@@ -121,32 +123,6 @@ public class PlayerMovement : MonoBehaviour
         if (velocity.y <= 0)
         {
             isJumping = false;
-        }
-        
-        /*if (CurrentStamina <= 0 && isHardDropping)   // FIX ADDED
-        {
-            isHardDropping = false;
-            hasHardDropped = false;
-        }*/
-        
-        //animator.SetBool("isWalking", false);
-        
-        if (isDashing)
-        {
-            return;
-        }
-
-        if (!isKnockedBack && CurrentStamina != 0 && canMove)
-        {
-            if (isRunning)
-            {
-                velocity = new Vector2(horizontalMovement * runSpeed, velocity.y);
-            }
-            
-            else
-            {
-                velocity = new Vector2(horizontalMovement * moveSpeed, velocity.y);
-            }
         }
 
         if (!isDashing && canMove)
@@ -165,37 +141,11 @@ public class PlayerMovement : MonoBehaviour
 
         ApplyFlip();
 
-        if (isRunning  && CurrentStamina > 0)
-        {
-            CurrentStamina -= RunCost * Time.deltaTime;
-            if (CurrentStamina < 0)
-            {
-                CurrentStamina = 0;
-            }
-            StaminaBar.fillAmount = CurrentStamina / MaxStamina;
-
-            StartRecharge();
-        }
-        else
-        {
-            isRunning = false;
-        }
+        GradualStaminaUse(RunCost, isRunning);
         
-        if (isFlying && CurrentStamina > 0)
-        {
-            CurrentStamina -= FlyingCost * Time.deltaTime;
-            if (CurrentStamina < 0)
-            {
-                CurrentStamina = 0;
-            }
-            StaminaBar.fillAmount = CurrentStamina / MaxStamina;
-
-            StartRecharge();
-        }
-        else
-        {
-            isFlying = false;
-        }
+        GradualStaminaUse(FlyingCost, isFlying);
+        
+        GradualStaminaUse(DashCost, isDashing);
         
         if (isGrounded())
         {
@@ -222,22 +172,57 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
         
+        if (!isKnockedBack && CurrentStamina != 0 && canMove)
+        {
+            if (isRunning)
+            {
+                velocity = new Vector2(horizontalMovement * runSpeed, velocity.y);
+            }
+            
+            else
+            {
+                velocity = new Vector2(horizontalMovement * moveSpeed, velocity.y);
+            }
+        }
        
         if (isFlying)
         {
-            flyingDuration -= Time.deltaTime;
+            flyingDuration -= Time.fixedDeltaTime;
 
             if (flyingDuration <= 0)
             {
                 isFlying = false;
+                Debug.Log("Flying is false");
             }
             else
             {
+                Debug.Log("Flying is true");
                 velocity = new Vector2(velocity.x, flyingPower);
             }
         }
-        //Debug.Log($"HardDrop: {hasHardDropped}");
+        
+        if (isDashing)
+        {
+            DashDuration -= Time.deltaTime;
+
+            if (DashDuration <= 0)
+            {
+                isDashing = false;
+            }
+            else
+            {
+                if (isFacingRight)
+                {
+                    velocity = new Vector2(DashPower, velocity.y);
+                }
+                else
+                {
+                    velocity = new Vector2(-DashPower, velocity.y);
+                }
+            }
+        }
         ApplyGravity();
+        
         IsWalled();
        
         rb.linearVelocity = velocity;
@@ -281,20 +266,17 @@ public class PlayerMovement : MonoBehaviour
         if (context.performed)
         {
             multiplier = 1;
-            StaminaLoss(JumpCost);
             
             velocity = new Vector2(velocity.x, jumpForce);
             isJumping = true;
           
         }
-
-        // Optional variable jump height
+        
         if (context.canceled)
         {
             if (velocity.y > 0)
             {
                 isJumping = false;
-                StartRecharge();
             }
         }
     }
@@ -313,7 +295,7 @@ public class PlayerMovement : MonoBehaviour
         if (context.performed)
         {
             if(!GroundedBeforeFlying) return;
-            
+
             isFlying = true;
             flyingDuration = 1f;
         }
@@ -332,13 +314,28 @@ public class PlayerMovement : MonoBehaviour
             
         if (context.performed && canDash)
         {
-            StaminaLoss(DashCost);
-            StartCoroutine(DashCoroutine());
+            CeilingCheck.localRotation = Quaternion.Euler(0, 180, -60);
+            float dashDirection = isFacingRight ? 1 : -1;
+
+            if (dashDirection == -1)
+            {
+                transform.localRotation = Quaternion.Euler(0, 0, 60);
+            }
+            else if (dashDirection == 1)
+            {
+                transform.localRotation = Quaternion.Euler(0, 0, -60);
+            }
+            isDashing = true;
+            tr.emitting = true;
         }
 
         if (context.canceled)
         {
-            StartRecharge();
+            isDashing = false;
+            tr.emitting = false;
+
+            DashDuration = 1f;
+            transform.localRotation = Quaternion.Euler(0, 0, 0);
         }
     }
     
@@ -351,56 +348,13 @@ public class PlayerMovement : MonoBehaviour
         {
             hasHardDropped = true;
             isHardDropping = true;
-            StaminaLoss(HardDropCost);
         }
 
         if (context.canceled)
         {
             isHardDropping = false;
-            StartRecharge();
         }
     }
-
-    private IEnumerator DashCoroutine()
-    {
-
-        canDash = false;
-        isDashing = true;
-        
-        float originalGravity = multiplier;
-        multiplier = 0;
-        
-        tr.emitting = true;
-        
-        float dashDirection = isFacingRight ? 1 : -1;
-
-        if (dashDirection == -1)
-        {
-            transform.localRotation = Quaternion.Euler(0, 0, 60);
-        }
-        else if (dashDirection == 1)
-        {
-            transform.localRotation = Quaternion.Euler(0, 0, -60);
-        }
-        
-        
-        velocity = new Vector2(dashDirection * DashPower, 0f);
-        
-        yield return new WaitForSeconds(DashDuration);
-        
-        velocity = new Vector2(0f, 0f);
-        multiplier = originalGravity;
-
-        isDashing = false;
-        tr.emitting = false;
-        
-        yield return new WaitForSeconds(DashCooldown);
-        transform.localRotation = Quaternion.Euler(0, 0, 0);
-        ApplyFlip();
-        
-        canDash = true;
-    }
-
     private IEnumerator RechargeStamina()
     {
         if (!canMove) yield break;
@@ -425,6 +379,20 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private void GradualStaminaUse(float cost, bool isAction)
+    {
+        if (isAction  && CurrentStamina > 0)
+        {
+            CurrentStamina -= cost * Time.deltaTime;
+            if (CurrentStamina < 0)
+            {
+                CurrentStamina = 0;
+            }
+            StaminaBar.fillAmount = CurrentStamina / MaxStamina;
+
+            StartRecharge();
+        }
+    }
     public bool isGrounded()
     {
 
@@ -452,7 +420,7 @@ public class PlayerMovement : MonoBehaviour
         Gizmos.color = Color.white;
         Gizmos.DrawWireCube( new Vector2(transform.position.x + LeftorRight, transform.position.y),  new Vector2(0.05f, 0.6f));
         Gizmos.color = Color.white;
-        Gizmos.DrawWireCube( CeilingCheck.position,  new Vector2(0.2f, 0.002f ));
+        Gizmos.DrawWireCube( CeilingCheck.position, ceilingCheckSize);
     }
     
 
@@ -464,17 +432,7 @@ public class PlayerMovement : MonoBehaviour
         }
         recharge = StartCoroutine(RechargeStamina());
     }
-
-    private void StaminaLoss(float cost)
-    {
-        CurrentStamina -= cost;
-
-        if (CurrentStamina < 0)
-        {
-            CurrentStamina = 0;
-        }
-        StaminaBar.fillAmount = CurrentStamina / MaxStamina;
-    }
+    
     private void ApplyFlip()
     {
         transform.localScale = new Vector3(
@@ -486,49 +444,25 @@ public class PlayerMovement : MonoBehaviour
 
     private void ApplyGravity()
     {   
-        Vector3 pos = transform.position;
-        if (!isGrounded())
+        if (!isFlying)
         {
-            SafeHardDropPosition = transform.position;
+            velocity.y += Physics2D.gravity.y * multiplier * Time.fixedDeltaTime;
         }
-        if (isGrounded() && hasHardDropped)
-        {
-            
-           velocity.y = 0;
-           pos.y = SafeHardDropPosition.y;
-           transform.position = pos;
-            isHardDropping = false;
-            hasHardDropped = false;
-        }
-        else if (isGrounded() && !isJumping && !isKnockedBack)
-        {
-            if (velocity.y < -5)
-            {
-                pos.y = SafeHardDropPosition.y;
-                transform.position = pos;
-            }
 
+        // Stop downward velocity if grounded
+        if (isGrounded() && velocity.y < 0)
+        {
             velocity.y = 0;
-
-        }
-
-
-        else
-        {
-            velocity.y += Physics2D.gravity.y * multiplier * Time.deltaTime;
         }
     }
 
     float LeftorRight = -2;
-        
-    
 
     private void IsWalled()
     {
         Vector3 position = transform.position;
         Vector3 CeilingPosition = transform.position;
         Vector2 WallCheckSize = new Vector2(0.05f, 0.6f);
-        Vector2 CeilingCheckSize = new Vector2(0.2f,0.002f);
         
         if (isFacingRight)
         {
@@ -550,17 +484,24 @@ public class PlayerMovement : MonoBehaviour
             SafePosition = transform.position;
         }
        
-        if (Physics2D.OverlapBox(CeilingCheck.position, CeilingCheckSize, 0, whatIsGround))
+        if (Physics2D.OverlapBox(CeilingCheck.position, ceilingCheckSize, 0, whatIsGround))
         {
-            Collider2D collider = Physics2D.OverlapBox(CeilingCheck.position, CeilingCheckSize, 0, whatIsGround);
-           
-            CeilingPosition.y = SafeCeilingPosition.y;
-            transform.position = CeilingPosition;
+            if (isDashing)
+            {
+                velocity.x = 0;
+                
+                CeilingPosition.x = SafeCeilingPosition.x;
+                transform.position = CeilingPosition;
+            }
+            else
+            {
+                CeilingPosition.y = SafeCeilingPosition.y;
+                transform.position = CeilingPosition;
+            }
         }
         else
         {
             SafeCeilingPosition = transform.position;
-            
         }
     }
     
