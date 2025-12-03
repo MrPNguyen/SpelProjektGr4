@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -491,7 +492,7 @@ public class PlayerMovement : MonoBehaviour
         
     
 
-    private void IsWalled()
+    private bool IsWalled()
     {
         float LeftorRight = -2;
         
@@ -508,16 +509,27 @@ public class PlayerMovement : MonoBehaviour
         Vector2 dir = new Vector2(transform.position.x + LeftorRight, transform.position.y);
         if (Physics2D.OverlapBox(dir, Size, 0, whatIsGround))
         {
-            if (LeftorRight == 2)
-            {
-                moveRight = false;
-            }
-            else
-            {
-                moveLeft = true;
-            }
-            
+            return true;
         }  
         
+        if (Physics2D.Raycast(transform.position, Vector2.right, 0.2f, whatIsGround))
+        {
+            Debug.Log("No More Right");
+            velocity.x = -1;
+        }
+        else moveRight = false;
+            
+        if (Physics2D.Raycast(transform.position, Vector2.left, 0.2f, whatIsGround))
+        {
+            Debug.Log("No More Left");
+            velocity.x =-1;
+        }
+        else moveLeft = false;
+        if (Physics2D.Raycast(transform.position, Vector2.up, 0.2f, whatIsGround))
+        {
+            Debug.Log("No More Up");
+            velocity.y = -1;
+        }
+        return false;
     }
 }
