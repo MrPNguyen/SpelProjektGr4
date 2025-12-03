@@ -5,23 +5,26 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.HID;
 using UnityEngine.Rendering.UI;
 using UnityEngine.UI;
+using Vector2 = UnityEngine.Vector2;
 
 
 //Code Source: Game Code Library: "2D Platformer Unity"
 public class PlayerMovement : MonoBehaviour
 {
     private static readonly int IsWalking = Animator.StringToHash("isWalking");
-    private static readonly int HasJumping = Animator.StringToHash("hasJumping");
-    private static readonly int IsDashingLeft = Animator.StringToHash("isDashingLeft");
-    private static readonly int IsDashingRight = Animator.StringToHash("isDashingRight");
+    private static readonly int IsJumping = Animator.StringToHash("isJumping");
+    private static readonly int IsFlying = Animator.StringToHash("isFlying");
+    private static readonly int IsHarddropping = Animator.StringToHash("isHarddropping");
+    private static readonly int HasFallen = Animator.StringToHash("hasFallen");
 
+    
     //Press down key to fall down quicker
     [HideInInspector] public Rigidbody2D rb;
-    private CapsuleCollider2D bc;
-    private Vector2 originalColliderOffset;
-    public bool hasPlayed;
+    private CapsuleCollider2D cc;
+    [HideInInspector] public bool hasPlayed;
     
     [HideInInspector] public bool isFacingRight = true;
     [HideInInspector] public bool isKnockedBack = false;
@@ -32,68 +35,83 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Running")]
     [SerializeField] private float runSpeed = 10f;
-    public bool isRunning { get; private set; }
+
+    private bool isRunning { get; set; }
     
     [Header("Jump")]
     [SerializeField] private float jumpForce = 10f;
     [SerializeField] public float HardDropPower = 4;
-    public bool isHardDropping = false;
-    public bool hasHardDropped = false;
-    public bool isJumping = false;
+    [HideInInspector]public bool isHardDropping;
+    [HideInInspector]public bool hasHardDropped;
+    [HideInInspector]public bool isJumping;
     
     [Header("GroundCheck")]
     [SerializeField] private Transform groundCheck;
+    [SerializeField] private Transform CeilingCheck;
     [SerializeField] private Vector2 groundCheckSize = new Vector2(0.5f, 0.05f);
+    [SerializeField] private Vector2 ceilingCheckSize = new Vector2(0.2f,0.002f);
     [SerializeField] private LayerMask whatIsGround;
+    
+    
     
     private SpriteRenderer spriteRenderer;
     private Animator animator;
 
-    public bool canMove;
+    [HideInInspector] public bool canMove;
 
     [Header("Dash")]
     [SerializeField] private float DashPower = 20f;
-    public bool isDashing;
+    [HideInInspector] public bool isDashing;
     private bool canDash = true;
     private float DashDuration = 0.10f;
-    private float DashCooldown = 0.1f;
     private TrailRenderer tr;
     
     [Header("Flying")]
     [SerializeField] private float flyingPower = 15f;
     private float flyingDuration;
-    private bool isFlying = false;
+    private bool isFlying;
     private bool GroundedBeforeFlying;
 
     [Header("Stamina")] 
     [SerializeField] public Image StaminaBar;
     [SerializeField] public float CurrentStamina, MaxStamina;
-    [SerializeField] private float JumpCost;
     [SerializeField] private float RunCost;
     [SerializeField] private float DashCost;
     [SerializeField] private float FlyingCost;
-    [SerializeField] private float HardDropCost;
     [SerializeField] private float ChargeRate;
     
     private Coroutine recharge;
     
+    [NonSerialized] public Vector2 velocity;
+    [NonSerialized] public float multiplier;
+    private Vector3 SafePosition = Vector3.zero;
+    private Vector3 SafeHardDropPosition = Vector3.zero;
+    private Vector3 SafeCeilingPosition = Vector3.zero;
+
     void Start()
     {
-        canMove = true;
-        hasPlayed = true;
-        rb = GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        animator = GetComponent<Animator>();
-        tr = GetComponent<TrailRenderer>();
-        bc = GetComponent<CapsuleCollider2D>();
-        CurrentStamina = MaxStamina;
-        originalColliderOffset = bc.offset;
+         rb = GetComponent<Rigidbody2D>();
+         spriteRenderer = GetComponent<SpriteRenderer>();
+         animator = GetComponent<Animator>();
+         tr = GetComponent<TrailRenderer>();
+         cc = GetComponent<CapsuleCollider2D>();
+         CurrentStamina = MaxStamina;
+         isFlying = false;
+         isHardDropping = false;
+         hasHardDropped = false;
+         isJumping = false;
     }
 
     void Update()
     {
-        Debug.Log($"{gameObject.name} canMove: {canMove}");
-        //ifall man inte kan röra sig sätt allt till falskt
+        if (isDashing)
+        {
+            ceilingCheckSize = new Vector2(0.002f,0.2f);
+        }
+        else
+        {
+            ceilingCheckSize = new Vector2(0.2f,0.002f);
+        }
         if (!canMove)
         {
             horizontalMovement = 0;
@@ -104,134 +122,124 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
         
-        //animator.SetBool(HasJumping, isJumping); //fungerar detta?
-        if (rb.linearVelocity.y <= 0)
+        if (velocity.y <= 0)
         {
             isJumping = false;
         }
-        
-        animator.SetBool(IsWalking, false);
-        
-        if (isDashing)
-        {
-            return;
-        }
 
-        //För vanlig rörelse ifall man inte blir knuffad eller inte har tillräckligt med stamina
-        if (!isKnockedBack && CurrentStamina != 0 && canMove)
-        {
-            if (isRunning)
-            {
-                rb.linearVelocity = new Vector2(horizontalMovement * runSpeed, rb.linearVelocity.y);
-            }
-            else
-            {
-                rb.linearVelocity = new Vector2(horizontalMovement * moveSpeed, rb.linearVelocity.y);
-            }
-        }
-
-        //Kollar vilket håll du kollar åt.
         if (!isDashing && canMove)
         {
-            if (horizontalMovement > 0.01f)
-            {
-                isFacingRight = true;
-                animator.SetBool(IsWalking, true);
-            }
-            else if (rb.linearVelocity.x < -0.01f)
+            if (horizontalMovement < 0)
             {
                 isFacingRight = false;
                 animator.SetBool(IsWalking, true);
             }
+            else if (horizontalMovement > 0)
+            {
+                isFacingRight = true;
+                animator.SetBool(IsWalking, true);
+            }
+            else
+            {
+                animator.SetBool(IsWalking, false);
+            }
         }
-        
+
         ApplyFlip();
 
-        //Tar bort stamina gradually när du springer
-        if (isRunning  && CurrentStamina != 0)
-        {
-            CurrentStamina -= RunCost * Time.deltaTime;
-            if (CurrentStamina < 0)
-            {
-                CurrentStamina = 0;
-            }
-            StaminaBar.fillAmount = CurrentStamina / MaxStamina;
-
-            StartRecharge();
-        }
-        else
-        {
-            isRunning = false;
-        }
+        GradualStaminaUse(RunCost, isRunning);
         
-        //Samma som spring ovan gäller här
-        if (isFlying && CurrentStamina != 0)
-        {
-            CurrentStamina -= FlyingCost * Time.deltaTime;
-            if (CurrentStamina < 0)
-            {
-                CurrentStamina = 0;
-            }
-            StaminaBar.fillAmount = CurrentStamina / MaxStamina;
-
-            StartRecharge();
-        }
-        else
-        {
-            isFlying = false;
-        }
-    }
-
-    void FixedUpdate()
-    {
-        /* Kollar om man inte kan röra sig då är hastigheten noll samt om man är på marken då är gravity = 4
-         annars så är det andra värden beroende på vad man gör */
-        if (!canMove)
-        {
-            rb.linearVelocity = Vector2.zero;
-            return;
-        }
+        GradualStaminaUse(FlyingCost, isFlying);
+        
+        GradualStaminaUse(DashCost, isDashing);
         
         if (isGrounded())
         {
-            rb.gravityScale = 4;
+            multiplier = 4;
         }
         else
         {
             if (isHardDropping)
             {
-                rb.gravityScale = HardDropPower;
+                multiplier = HardDropPower;
             }
             else
             {
-                rb.gravityScale = 1;
+                multiplier = 1;
             }
         }
+    }
+
+    void FixedUpdate()
+    {
+        if (!canMove)
+        {
+            velocity = Vector2.zero;
+            return;
+        }
         
-        //Här hanteras flyget och man lägger till flyingPower till hastighetens y axel under tiden då flyingDuration inte är 0
+        if (!isKnockedBack && CurrentStamina != 0 && canMove)
+        {
+            if (isRunning)
+            {
+                velocity = new Vector2(horizontalMovement * runSpeed, velocity.y);
+            }
+            
+            else
+            {
+                velocity = new Vector2(horizontalMovement * moveSpeed, velocity.y);
+            }
+        }
+       
         if (isFlying)
         {
-            flyingDuration -= Time.deltaTime;
+            flyingDuration -= Time.fixedDeltaTime;
 
             if (flyingDuration <= 0)
             {
                 isFlying = false;
+                animator.SetBool(IsFlying, false);
+                animator.SetBool(HasFallen, true);
             }
             else
             {
-                rb.linearVelocity = new Vector2(rb.linearVelocity.x, flyingPower);
+                animator.SetBool(IsFlying, true);
+                velocity = new Vector2(velocity.x, flyingPower);
             }
         }
+        
+        if (isDashing)
+        {
+            DashDuration -= Time.deltaTime;
+
+            if (DashDuration <= 0)
+            {
+                isDashing = false;
+            }
+            else
+            {
+                if (isFacingRight)
+                {
+                    velocity = new Vector2(DashPower, velocity.y);
+                }
+                else
+                {
+                    velocity = new Vector2(-DashPower, velocity.y);
+                }
+            }
+        }
+        ApplyGravity();
+        
+        IsWalled();
+       
+        rb.linearVelocity = velocity;
     }
-    
-    //Läser av ett x-value som kan vara -1 eller 1 som sedan läggs till linearVelocity som hanteras i Update().
     public void Move(InputAction.CallbackContext context)
     {
         if (!canMove) return;
         horizontalMovement = context.ReadValue<Vector2>().x;
     }
     
-    //Självaste springet hanteras i Update() men denna säger till Update att gå från walking till Running
     public void Run(InputAction.CallbackContext context)
     {
         if (!canMove) return;
@@ -246,8 +254,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    /*Kollar först om spelaren kan gå, inte flyger och har nog med stamina samt om den är på marken.
-     Sedan ändras gravity så att hoppet kan gå upp samt tar stamina och lägger till hoppstyrkan till linearvelocity*/
+
     public void Jump(InputAction.CallbackContext context)
     {
         if (!canMove) return;
@@ -255,7 +262,6 @@ public class PlayerMovement : MonoBehaviour
         if (isFlying) return;
 
         if (CurrentStamina == 0) return;
-        
 
         // Prevent jumping in the air
         if (!isGrounded() && context.performed)
@@ -266,41 +272,40 @@ public class PlayerMovement : MonoBehaviour
         // Normal jump
         if (context.performed)
         {
-            rb.gravityScale = 1;
-            StaminaLoss(JumpCost);
+            multiplier = 1;
             
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+            velocity = new Vector2(velocity.x, jumpForce);
             isJumping = true;
-            hasPlayed = false;
-
+            animator.SetBool(IsJumping, true);
         }
-
-        // Optional variable jump height
+        
         if (context.canceled)
         {
-            isJumping = false;
-            StartRecharge();
+            if (velocity.y > 0)
+            {
+                isJumping = false;
+                animator.SetBool(IsJumping, false);
+                animator.SetBool(HasFallen, true);
+            }
         }
-       
     }
 
-    /*Kollar först om man är på marken innan man kan flyga och sedan ändrar bools för att påbörja flyget.
-     Detta hanteras också i FixedUpdate*/
     public void Fly(InputAction.CallbackContext context)
     {
         if (!canMove) return;
-   
+        
+        if (CurrentStamina == 0) return;
+        
         if (context.started)
         {
-           GroundedBeforeFlying = isGrounded();
+            GroundedBeforeFlying = isGrounded();
         }
 
         if (context.performed)
         {
             if(!GroundedBeforeFlying) return;
-            
+
             isFlying = true;
-            hasPlayed = false;
             flyingDuration = 1f;
         }
 
@@ -310,98 +315,59 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    //Aktiverar Coroutinen
     public void Dash(InputAction.CallbackContext context)
     {
         if (!canMove) return;
-        
         if (CurrentStamina == 0) return;
             
         if (context.performed && canDash)
         {
-            StaminaLoss(DashCost);
-            StartCoroutine(DashCoroutine());
+            CeilingCheck.localRotation = Quaternion.Euler(0, 180, -60);
+            float dashDirection = isFacingRight ? 1 : -1;
+
+            if (dashDirection == -1)
+            {
+                transform.localRotation = Quaternion.Euler(0, 0, 60);
+            }
+            else if (dashDirection == 1)
+            {
+                transform.localRotation = Quaternion.Euler(0, 0, -60);
+            }
+            isDashing = true;
+            tr.emitting = true;
         }
 
         if (context.canceled)
         {
-            StartRecharge();
+            isDashing = false;
+            tr.emitting = false;
+
+            DashDuration = 1f;
+            transform.localRotation = Quaternion.Euler(0, 0, 0);
         }
     }
     
-    //Självaste harddroppet hanteras i FixedUpdate, denna uppdaterar bara bools för att aktivera hardroppen.
     public void HardDrop(InputAction.CallbackContext context)
     {
-        if (!canMove) return;
-
+        if(!canMove) return;
         if (CurrentStamina == 0) return;
 
         if (context.performed)
         {
+            animator.SetBool(IsHarddropping, true);
+            hasHardDropped = true;
             isHardDropping = true;
-            hasHardDropped = false;
-            hasPlayed = false;
-            StaminaLoss(HardDropCost);
         }
 
         if (context.canceled)
         {
+            animator.SetBool(IsHarddropping, false);
             isHardDropping = false;
-            hasHardDropped = true;
-            StartRecharge();
         }
     }
-
-    /*Coroutine för Dash där man stänger av gravity under dashens gång och roterar spelaren några grader genom Quaternion.Euler
-     Man lägger bara till dashPower till linerVelocity samt direction för det håll spelaren kollar åt*/
-    private IEnumerator DashCoroutine()
-    {
-        if (!canMove) yield break;
-        
-        canDash = false;
-        isDashing = true;
-        hasPlayed = false;
-        
-        float originalGravity = rb.gravityScale;
-        rb.gravityScale = 0;
-        
-        tr.emitting = true;
-        animator.SetBool(IsWalking, false);
-        
-        float dashDirection = isFacingRight ? 1 : -1;
-
-        if (dashDirection == -1)
-        {
-            transform.localRotation = Quaternion.Euler(0, 0, 60);
-        }
-        else if (dashDirection == 1)
-        {
-            transform.localRotation = Quaternion.Euler(0, 0, -60);
-        }
-        
-        rb.linearVelocity = new Vector2(dashDirection * DashPower, 0f);
-        
-        yield return new WaitForSeconds(DashDuration);
-        
-        rb.linearVelocity = new Vector2(0f, 0f);
-        rb.gravityScale = originalGravity;
-
-        isDashing = false;
-        tr.emitting = false;
-        
-        yield return new WaitForSeconds(DashCooldown);
-        
-        transform.localRotation = Quaternion.Euler(0, 0, 0);
-        ApplyFlip();
-        
-        canDash = true;
-    }
-
-    //Coroutine för att fylla på stamina igen med en liten delay i början.
     private IEnumerator RechargeStamina()
     {
         if (!canMove) yield break;
-        
         if (CurrentStamina == 0)
         {
             yield return new WaitForSeconds(4f);
@@ -423,24 +389,51 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    //Kollar om boxen på OnDrawGizmoSelected() överlappar med valna lager (som väljs i inspektorn)
+    private void GradualStaminaUse(float cost, bool isAction)
+    {
+        if (isAction  && CurrentStamina > 0)
+        {
+            CurrentStamina -= cost * Time.deltaTime;
+            if (CurrentStamina < 0)
+            {
+                CurrentStamina = 0;
+            }
+            StaminaBar.fillAmount = CurrentStamina / MaxStamina;
+
+            StartRecharge();
+        }
+    }
     public bool isGrounded()
     {
+
         if (Physics2D.OverlapBox(groundCheck.position, groundCheckSize, 0, whatIsGround))
         {
             return true;
         }
+
         return false;
     }
-    
-    //Målar en liten låda vid spelarens fötter för att se om spelaren nuddar marken eller ej
+
     private void OnDrawGizmosSelected()
+    
     {
+        if (isFacingRight)
+        {
+            LeftorRight = 0.3f;
+        }
+        else
+        {
+            LeftorRight = -0.3f;
+        }
         Gizmos.color = Color.white;
         Gizmos.DrawWireCube(groundCheck.position, groundCheckSize);
+        Gizmos.color = Color.white;
+        Gizmos.DrawWireCube( new Vector2(transform.position.x + LeftorRight, transform.position.y),  new Vector2(0.05f, 0.6f));
+        Gizmos.color = Color.white;
+        Gizmos.DrawWireCube( CeilingCheck.position, ceilingCheckSize);
     }
+    
 
-    //Stannar coRoutinen för att fylla på stamina igen
     private void StartRecharge()
     {
         if (recharge != null)
@@ -449,26 +442,77 @@ public class PlayerMovement : MonoBehaviour
         }
         recharge = StartCoroutine(RechargeStamina());
     }
-
-    //funktion för att ta bort stamina beroende på vad man gör (anorlunda action har anorlunda stamina bekostnad)
-    private void StaminaLoss(float cost)
-    {
-        CurrentStamina -= cost;
-
-        if (CurrentStamina < 0)
-        {
-            CurrentStamina = 0;
-        }
-        StaminaBar.fillAmount = CurrentStamina / MaxStamina;
-    }
-
-    //hanterar att flippa spelaren beroende på vilket håll dem går
+    
     private void ApplyFlip()
     {
         transform.localScale = new Vector3(
             isFacingRight ? 0.8f : -0.8f, 
             0.8f, 
             1.6f
-            );
+        );
     }
+
+    private void ApplyGravity()
+    {   
+        if (!isFlying)
+        {
+            velocity.y += Physics2D.gravity.y * multiplier * Time.fixedDeltaTime;
+        }
+
+        // Stop downward velocity if grounded
+        if (isGrounded() && velocity.y < 0)
+        {
+            velocity.y = 0;
+        }
+    }
+
+    float LeftorRight = -2;
+
+    private void IsWalled()
+    {
+        Vector3 position = transform.position;
+        Vector3 CeilingPosition = transform.position;
+        Vector2 WallCheckSize = new Vector2(0.05f, 0.6f);
+        
+        if (isFacingRight)
+        {
+            LeftorRight = 0.3f;
+        }
+        else
+        {
+            LeftorRight = -0.3f;
+        }
+        Vector2 dir = new Vector2(transform.position.x + LeftorRight, transform.position.y);
+       
+        if (Physics2D.OverlapBox(dir, WallCheckSize, 0, whatIsGround))
+        {
+            position.x = SafePosition.x;
+            transform.position = position;
+        }
+        else
+        {
+            SafePosition = transform.position;
+        }
+       
+        if (Physics2D.OverlapBox(CeilingCheck.position, ceilingCheckSize, 0, whatIsGround))
+        {
+            if (isDashing)
+            {
+                velocity.x = 0;
+                
+                CeilingPosition.x = SafeCeilingPosition.x;
+                transform.position = CeilingPosition;
+            }
+            else
+            {
+                CeilingPosition.y = SafeCeilingPosition.y;
+                transform.position = CeilingPosition;
+            }
+        }
+        else
+        {
+            SafeCeilingPosition = transform.position;
+        }
+    }
+    
 }

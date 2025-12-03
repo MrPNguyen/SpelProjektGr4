@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4382024001188376652
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4417028373609749199}
+  m_Layer: 0
+  m_Name: CeilingCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4417028373609749199
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4382024001188376652}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.23, y: 0.441, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2052722778094988803}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4731169498743363079
 GameObject:
   m_ObjectHideFlags: 0
@@ -40,6 +71,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2317278850270132637}
+  - {fileID: 4417028373609749199}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2950695614359696368
@@ -137,22 +169,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
+  hasPlayed: 0
   isFacingRight: 1
   isKnockedBack: 0
   moveSpeed: 5
   runSpeed: 10
-  isRunning: 0
   jumpForce: 5
   HardDropPower: 4
   isHardDropping: 0
   hasHardDropped: 0
+  isJumping: 0
   groundCheck: {fileID: 2317278850270132637}
+  CeilingCheck: {fileID: 4417028373609749199}
   groundCheckSize: {x: 0.1, y: 0.02}
+  ceilingCheckSize: {x: 0.2, y: 0.002}
   whatIsGround:
-  - serializedVersion: 2
-    m_Bits: 8
-  - serializedVersion: 2
-    m_Bits: 64
+    serializedVersion: 2
+    m_Bits: 72
   canMove: 1
   DashPower: 20
   isDashing: 0
@@ -160,11 +193,9 @@ MonoBehaviour:
   StaminaBar: {fileID: 0}
   CurrentStamina: 0
   MaxStamina: 100
-  JumpCost: 10
   RunCost: 10
   DashCost: 25
   FlyingCost: 12
-  HardDropCost: 20
   ChargeRate: 15
 --- !u!114 &5641837105196010520
 MonoBehaviour:
@@ -567,6 +598,7 @@ MonoBehaviour:
   jumpClip: {fileID: 0}
   hardLandClip: {fileID: 0}
   dashClip: {fileID: 0}
+  hurtClip: {fileID: 0}
 --- !u!82 &6379467792457079880
 AudioSource:
   m_ObjectHideFlags: 0
