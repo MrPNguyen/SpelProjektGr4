@@ -82,6 +82,7 @@ public class PlayerMovement : MonoBehaviour
     private bool moveLeft = true;
     private bool moveRight = true;
     private Vector3 SafePosition = Vector3.zero;
+    private Vector3 SafeHardDropPosition = Vector3.zero;
     
     [Header("WallCheck")]
     [SerializeField] private Transform LeftWallCheck;
@@ -334,6 +335,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (context.performed)
         {
+            hasHardDropped = true;
             isHardDropping = true;
             StaminaLoss(HardDropCost);
         }
@@ -415,23 +417,12 @@ public class PlayerMovement : MonoBehaviour
 
     public bool isGrounded()
     {
-        if (hasHardDropped)
+
+        if (Physics2D.OverlapBox(groundCheck.position, groundCheckSize, 0, whatIsGround))
         {
-            groundCheck.position = new Vector3(groundCheck.position.x, groundCheck.position.y - 2f, groundCheck.position.z);
-            if (Physics2D.OverlapBox(groundCheck.position, groundCheckSize, 0, whatIsGround))
-            {
-                return true;
-            }
+            return true;
         }
-        else
-        {
-            groundCheck.position = new Vector3(groundCheck.position.x, groundCheck.position.y, groundCheck.position.z);
-            if (Physics2D.OverlapBox(groundCheck.position, groundCheckSize, 0, whatIsGround))
-            {
-                return true;
-            }
-        }
-        
+
         return false;
     }
 
@@ -483,11 +474,20 @@ public class PlayerMovement : MonoBehaviour
 
     private void ApplyGravity()
     {
-        if (isGrounded() && !isJumping && !isKnockedBack)
+        if (!isGrounded())
+        {
+            SafeHardDropPosition = transform.position;
+        }
+        if (isGrounded() && hasHardDropped)
+        {
+            transform.position = SafeHardDropPosition;
+        }
+        else if (isGrounded() && !isJumping && !isKnockedBack)
         {
             velocity.y = 0;
             
         }
+        
 
         else
         {
