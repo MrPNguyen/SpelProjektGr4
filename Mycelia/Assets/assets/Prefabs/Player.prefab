@@ -40,6 +40,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2317278850270132637}
+  - {fileID: 1198468564808119234}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2950695614359696368
@@ -105,14 +106,14 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4731169498743363079}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 2
+  m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: edf5614bea3c9064ea5b7395fe9f993a, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
@@ -137,22 +138,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
+  hasPlayed: 0
   isFacingRight: 1
   isKnockedBack: 0
   moveSpeed: 5
   runSpeed: 10
-  isRunning: 0
   jumpForce: 5
   HardDropPower: 4
   isHardDropping: 0
   hasHardDropped: 0
+  isJumping: 0
   groundCheck: {fileID: 2317278850270132637}
+  CeilingCheck: {fileID: 1198468564808119234}
   groundCheckSize: {x: 0.1, y: 0.02}
   whatIsGround:
-  - serializedVersion: 2
-    m_Bits: 8
-  - serializedVersion: 2
-    m_Bits: 64
+    serializedVersion: 2
+    m_Bits: 72
   canMove: 1
   DashPower: 20
   isDashing: 0
@@ -166,6 +167,7 @@ MonoBehaviour:
   FlyingCost: 12
   HardDropCost: 20
   ChargeRate: 15
+  LeftWallCheck: {fileID: 0}
 --- !u!114 &5641837105196010520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,7 +196,7 @@ MonoBehaviour:
   - Even the Agarics play better than this
   - The Faye succumbs to peril in their Journey
   HitRecoil: 6
-  enemy: {fileID: 4744551041113083933, guid: 98bb661bdca982644a8ecfd7e4b94231, type: 3}
+  enemy: {fileID: 0}
   extraLife: {fileID: 5097334356680221191, guid: ce3831b2fa01c6a468bb5d0a884f1a01, type: 3}
 --- !u!114 &8841612456383048459
 MonoBehaviour:
@@ -279,7 +281,7 @@ MonoBehaviour:
     m_ActionName: 'Player/Next[/Keyboard/2]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2192809267211881265}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
         m_MethodName: Run
         m_Mode: 0
@@ -549,8 +551,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.19919015, y: 0}
-  m_Size: {x: 0.39849475, y: 1.046875}
+  m_Offset: {x: 0.21, y: 0}
+  m_Size: {x: 0.36758536, y: 1.046875}
   m_Direction: 0
 --- !u!114 &-441173067643279493
 MonoBehaviour:
@@ -564,9 +566,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad3a10993011f58489593a0d1ffa35b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpClip: {fileID: 0}
-  hardLandClip: {fileID: 0}
-  dashClip: {fileID: 0}
+  jumpClip: {fileID: 8300000, guid: 4d9895889c683524389551981bc7d8e5, type: 3}
+  hardLandClip: {fileID: 8300000, guid: a1b96333214124a478a8455d594c653a, type: 3}
+  dashClip: {fileID: 8300000, guid: a1b96333214124a478a8455d594c653a, type: 3}
+  hurtClip: {fileID: 8300000, guid: 9fc6f0d33427dd64eb0c2dfbc588c954, type: 3}
+  playerMove: {fileID: 2192809267211881265}
 --- !u!82 &6379467792457079880
 AudioSource:
   m_ObjectHideFlags: 0
@@ -690,6 +694,37 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.217, y: -0.505, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2052722778094988803}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8083616821270798925
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1198468564808119234}
+  m_Layer: 0
+  m_Name: CeilingCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1198468564808119234
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8083616821270798925}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.217, y: 0.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

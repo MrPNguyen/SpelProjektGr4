@@ -43,8 +43,10 @@ public class PlayerMovement : MonoBehaviour
     
     [Header("GroundCheck")]
     [SerializeField] private Transform groundCheck;
+    [SerializeField] private Transform CeilingCheck;
     [SerializeField] private Vector2 groundCheckSize = new Vector2(0.5f, 0.05f);
     [SerializeField] private LayerMask whatIsGround;
+    
     
     private SpriteRenderer spriteRenderer;
     private Animator animator;
@@ -79,11 +81,9 @@ public class PlayerMovement : MonoBehaviour
     
     [NonSerialized] public Vector2 velocity;
     [NonSerialized] public float multiplier;
-    private bool moveLeft = true;
-    private bool moveRight = true;
     private Vector3 SafePosition = Vector3.zero;
     private Vector3 SafeHardDropPosition = Vector3.zero;
-    
+    private Vector3 SafeCeilingPosition = Vector3.zero;
     [Header("WallCheck")]
     [SerializeField] private Transform LeftWallCheck;
     
@@ -451,6 +451,8 @@ public class PlayerMovement : MonoBehaviour
         Gizmos.DrawWireCube(groundCheck.position, groundCheckSize);
         Gizmos.color = Color.white;
         Gizmos.DrawWireCube( new Vector2(transform.position.x + LeftorRight, transform.position.y),  new Vector2(0.05f, 0.6f));
+        Gizmos.color = Color.white;
+        Gizmos.DrawWireCube( CeilingCheck.position,  new Vector2(0.2f, 0.002f ));
     }
     
 
@@ -483,7 +485,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void ApplyGravity()
-    {
+    {   
         Vector3 pos = transform.position;
         if (!isGrounded())
         {
@@ -491,7 +493,7 @@ public class PlayerMovement : MonoBehaviour
         }
         if (isGrounded() && hasHardDropped)
         {
-           Debug.Log($"SafePosition = {SafeHardDropPosition}");
+            
            velocity.y = 0;
            pos.y = SafeHardDropPosition.y;
            transform.position = pos;
@@ -500,10 +502,16 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (isGrounded() && !isJumping && !isKnockedBack)
         {
+            if (velocity.y < -5)
+            {
+                pos.y = SafeHardDropPosition.y;
+                transform.position = pos;
+            }
+
             velocity.y = 0;
-            
+
         }
-        
+
 
         else
         {
@@ -518,7 +526,9 @@ public class PlayerMovement : MonoBehaviour
     private void IsWalled()
     {
         Vector3 position = transform.position;
-        Vector2 Size = new Vector2(0.05f, 0.6f);
+        Vector3 CeilingPosition = transform.position;
+        Vector2 WallCheckSize = new Vector2(0.05f, 0.6f);
+        Vector2 CeilingCheckSize = new Vector2(0.2f,0.002f);
         
         if (isFacingRight)
         {
@@ -530,22 +540,27 @@ public class PlayerMovement : MonoBehaviour
         }
         Vector2 dir = new Vector2(transform.position.x + LeftorRight, transform.position.y);
        
-        if (Physics2D.OverlapBox(dir, Size, 0, whatIsGround))
-        { Collider2D colliders = Physics2D.OverlapBox(dir, Size, 0, whatIsGround);
-            if (LeftorRight == 0.3f)
-            {
-                moveRight = false;
-            }
-            else
-            {
-                moveLeft = false;
-            }
+        if (Physics2D.OverlapBox(dir, WallCheckSize, 0, whatIsGround))
+        {
             position.x = SafePosition.x;
             transform.position = position;
         }
         else
         {
             SafePosition = transform.position;
+        }
+       
+        if (Physics2D.OverlapBox(CeilingCheck.position, CeilingCheckSize, 0, whatIsGround))
+        {
+            Collider2D collider = Physics2D.OverlapBox(CeilingCheck.position, CeilingCheckSize, 0, whatIsGround);
+           
+            CeilingPosition.y = SafeCeilingPosition.y;
+            transform.position = CeilingPosition;
+        }
+        else
+        {
+            SafeCeilingPosition = transform.position;
+            
         }
     }
     
