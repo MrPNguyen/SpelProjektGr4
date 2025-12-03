@@ -145,7 +145,7 @@ public class PlayerMovement : MonoBehaviour
                 isFacingRight = false;
                 //animator.SetBool("isWalking", true);
             }
-            else if (velocity.x > 0)
+            else if (horizontalMovement > 0)
             {
                 isFacingRight = true;
                //animator.SetBool("isWalking", true);
@@ -439,7 +439,7 @@ public class PlayerMovement : MonoBehaviour
         Gizmos.color = Color.white;
         Gizmos.DrawWireCube(groundCheck.position, groundCheckSize);
         Gizmos.color = Color.white;
-        Gizmos.DrawWireCube( new Vector2(transform.position.x + LeftorRight, transform.position.y),  new Vector2(0.05f, 0.7f));
+        Gizmos.DrawWireCube( new Vector2(transform.position.x + LeftorRight, transform.position.y),  new Vector2(0.05f, 0.6f));
     }
     
 
@@ -492,7 +492,7 @@ public class PlayerMovement : MonoBehaviour
     private void IsWalled()
     {
         
-        Vector2 Size = new Vector2(0.05f, 0.7f);
+        Vector2 Size = new Vector2(0.05f, 0.6f);
         
         if (isFacingRight)
         {
@@ -505,7 +505,7 @@ public class PlayerMovement : MonoBehaviour
         Vector2 dir = new Vector2(transform.position.x + LeftorRight, transform.position.y);
         if (Physics2D.OverlapBox(dir, Size, 0, whatIsGround))
         {
-            if (LeftorRight == 0.3)
+            if (LeftorRight == 0.3f)
             {
                 moveRight = false;
                 velocity.x = -1;
@@ -513,7 +513,7 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
-                Debug.Log("no more left");
+                Debug.Log("LeftorRight");
                 moveLeft = false;
                 velocity.x = 1;
             }
