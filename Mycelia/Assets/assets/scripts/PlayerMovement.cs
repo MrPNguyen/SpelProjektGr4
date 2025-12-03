@@ -16,8 +16,6 @@ public class PlayerMovement : MonoBehaviour
 {
     private static readonly int IsWalking = Animator.StringToHash("isWalking");
     private static readonly int HasJumping = Animator.StringToHash("hasJumping");
-    private static readonly int IsDashingLeft = Animator.StringToHash("isDashingLeft");
-    private static readonly int IsDashingRight = Animator.StringToHash("isDashingRight");
     
     //Press down key to fall down quicker
     [HideInInspector] public Rigidbody2D rb;
@@ -79,10 +77,12 @@ public class PlayerMovement : MonoBehaviour
     
     private Coroutine recharge;
     
-    private Vector2 velocity;
-    private float multiplier;
+    [NonSerialized] public Vector2 velocity;
+    [NonSerialized] public float multiplier;
     private bool moveLeft = true;
     private bool moveRight = true;
+    private Vector3 SafePosition = Vector3.zero;
+    private Vector3 SafeHardDropPosition = Vector3.zero;
     
     [Header("WallCheck")]
     [SerializeField] private Transform LeftWallCheck;
@@ -101,6 +101,11 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        /*Problemet när spelaren har harddroppat och stamina blir noll är att boolen isHarddropping blir inte false igen och då har man fortfarande
+         gravity från harddropping kvar. Den borde ju sättas tillbaka till false när jag släpper tangenten 
+         men tack vare något med kollisionen blir den inte de*/
+        
+        
         //animator.SetBool("hasJumping", isJumping); //fungerar detta?
 
         if (!canMove)
@@ -113,10 +118,16 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
         
-        if (rb.linearVelocity.y <= 0)
+        if (velocity.y <= 0)
         {
             isJumping = false;
         }
+        
+        /*if (CurrentStamina <= 0 && isHardDropping)   // FIX ADDED
+        {
+            isHardDropping = false;
+            hasHardDropped = false;
+        }*/
         
         //animator.SetBool("isWalking", false);
         
@@ -145,7 +156,7 @@ public class PlayerMovement : MonoBehaviour
                 isFacingRight = false;
                 //animator.SetBool("isWalking", true);
             }
-            else if (velocity.x > 0)
+            else if (horizontalMovement > 0)
             {
                 isFacingRight = true;
                //animator.SetBool("isWalking", true);
@@ -154,7 +165,7 @@ public class PlayerMovement : MonoBehaviour
 
         ApplyFlip();
 
-        if (isRunning  && CurrentStamina != 0)
+        if (isRunning  && CurrentStamina > 0)
         {
             CurrentStamina -= RunCost * Time.deltaTime;
             if (CurrentStamina < 0)
@@ -170,7 +181,7 @@ public class PlayerMovement : MonoBehaviour
             isRunning = false;
         }
         
-        if (isFlying && CurrentStamina != 0)
+        if (isFlying && CurrentStamina > 0)
         {
             CurrentStamina -= FlyingCost * Time.deltaTime;
             if (CurrentStamina < 0)
@@ -184,15 +195,6 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             isFlying = false;
-        }
-    }
-
-    void FixedUpdate()
-    {
-        if (!canMove)
-        {
-            rb.linearVelocity = Vector2.zero;
-            return;
         }
         
         if (isGrounded())
@@ -210,6 +212,17 @@ public class PlayerMovement : MonoBehaviour
                 multiplier = 1;
             }
         }
+    }
+
+    void FixedUpdate()
+    {
+        if (!canMove)
+        {
+            velocity = Vector2.zero;
+            return;
+        }
+        
+       
         if (isFlying)
         {
             flyingDuration -= Time.deltaTime;
@@ -223,10 +236,10 @@ public class PlayerMovement : MonoBehaviour
                 velocity = new Vector2(velocity.x, flyingPower);
             }
         }
-        
+        //Debug.Log($"HardDrop: {hasHardDropped}");
         ApplyGravity();
         IsWalled();
-        Debug.Log($"is grounded: {isGrounded()}");
+       
         rb.linearVelocity = velocity;
     }
     public void Move(InputAction.CallbackContext context)
@@ -252,7 +265,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext context)
     {
-         
         if (!canMove) return;
         
         if (isFlying) return;
@@ -284,19 +296,18 @@ public class PlayerMovement : MonoBehaviour
                 isJumping = false;
                 StartRecharge();
             }
-
-            
         }
-       
     }
 
     public void Fly(InputAction.CallbackContext context)
     {
         if (!canMove) return;
         
+        if (CurrentStamina == 0) return;
+        
         if (context.started)
         {
-           GroundedBeforeFlying = isGrounded();
+            GroundedBeforeFlying = isGrounded();
         }
 
         if (context.performed)
@@ -338,6 +349,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (context.performed)
         {
+            hasHardDropped = true;
             isHardDropping = true;
             StaminaLoss(HardDropCost);
         }
@@ -351,7 +363,6 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator DashCoroutine()
     {
-        //Debug.Log($"Start of Coroutine: {velocity}");
 
         canDash = false;
         isDashing = true;
@@ -372,16 +383,14 @@ public class PlayerMovement : MonoBehaviour
             transform.localRotation = Quaternion.Euler(0, 0, -60);
         }
         
+        
         velocity = new Vector2(dashDirection * DashPower, 0f);
         
-        //Debug.Log($"During Dash: {velocity}");
         yield return new WaitForSeconds(DashDuration);
         
         velocity = new Vector2(0f, 0f);
         multiplier = originalGravity;
 
-        
-        
         isDashing = false;
         tr.emitting = false;
         
@@ -418,18 +427,32 @@ public class PlayerMovement : MonoBehaviour
 
     public bool isGrounded()
     {
+
         if (Physics2D.OverlapBox(groundCheck.position, groundCheckSize, 0, whatIsGround))
         {
             return true;
         }
+
         return false;
     }
 
     private void OnDrawGizmosSelected()
+    
     {
+        if (isFacingRight)
+        {
+            LeftorRight = 0.3f;
+        }
+        else
+        {
+            LeftorRight = -0.3f;
+        }
         Gizmos.color = Color.white;
         Gizmos.DrawWireCube(groundCheck.position, groundCheckSize);
+        Gizmos.color = Color.white;
+        Gizmos.DrawWireCube( new Vector2(transform.position.x + LeftorRight, transform.position.y),  new Vector2(0.05f, 0.6f));
     }
+    
 
     private void StartRecharge()
     {
@@ -461,24 +484,26 @@ public class PlayerMovement : MonoBehaviour
 
     private void ApplyGravity()
     {
-        if (isGrounded() && !isJumping)
+        Vector3 pos = transform.position;
+        if (!isGrounded())
+        {
+            SafeHardDropPosition = transform.position;
+        }
+        if (isGrounded() && hasHardDropped)
+        {
+           Debug.Log($"SafePosition = {SafeHardDropPosition}");
+           velocity.y = 0;
+           pos.y = SafeHardDropPosition.y;
+           transform.position = pos;
+            isHardDropping = false;
+            hasHardDropped = false;
+        }
+        else if (isGrounded() && !isJumping && !isKnockedBack)
         {
             velocity.y = 0;
             
-                Vector2 pos = new Vector2(transform.position.x, transform.position.y + Vector2.up.y);
-                RaycastHit2D hit = Physics2D.Raycast(pos, Vector2.down, 5f, whatIsGround);
-                if (hit.collider != null)
-                {
-                    Vector2 direction = new Vector2(transform.position.x - hit.point.x, transform.position.y - hit.point.y );
-                    Vector2 piri = new Vector2(MathF.Sin(Vector2.Angle(direction, hit.normal)),MathF.Cos(Vector2.Angle(direction, hit.normal)) );
-                    RaycastHit2D land = Physics2D.Raycast(pos, piri, 5f, whatIsGround);
-                    //Debug.Log($"Why? {direction}  hit.normal: {Vector2.Angle(direction, hit.normal)}");
-                    if (Vector2.Angle(direction, hit.normal) > 40)
-                    {
-                        velocity += new Vector2(0.68f, -0.74f);
-                    }
-                }
         }
+        
 
         else
         {
@@ -486,48 +511,42 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-   
+    float LeftorRight = -2;
         
     
 
-    private bool IsWalled()
+    private void IsWalled()
     {
-        float LeftorRight = -2;
-        
-        Vector2 Size = new Vector2(1f, 5f);
+        Vector3 position = transform.position;
+        Vector2 Size = new Vector2(0.05f, 0.6f);
         
         if (isFacingRight)
         {
-            LeftorRight = 2;
+            LeftorRight = 0.3f;
         }
         else
         {
-            LeftorRight = -2;
+            LeftorRight = -0.3f;
         }
         Vector2 dir = new Vector2(transform.position.x + LeftorRight, transform.position.y);
+       
         if (Physics2D.OverlapBox(dir, Size, 0, whatIsGround))
-        {
-            return true;
-        }  
-        
-        if (Physics2D.Raycast(transform.position, Vector2.right, 0.2f, whatIsGround))
-        {
-            Debug.Log("No More Right");
-            velocity.x = -1;
+        { Collider2D colliders = Physics2D.OverlapBox(dir, Size, 0, whatIsGround);
+            if (LeftorRight == 0.3f)
+            {
+                moveRight = false;
+            }
+            else
+            {
+                moveLeft = false;
+            }
+            position.x = SafePosition.x;
+            transform.position = position;
         }
-        else moveRight = false;
-            
-        if (Physics2D.Raycast(transform.position, Vector2.left, 0.2f, whatIsGround))
+        else
         {
-            Debug.Log("No More Left");
-            velocity.x =-1;
+            SafePosition = transform.position;
         }
-        else moveLeft = false;
-        if (Physics2D.Raycast(transform.position, Vector2.up, 0.2f, whatIsGround))
-        {
-            Debug.Log("No More Up");
-            velocity.y = -1;
-        }
-        return false;
     }
+    
 }
