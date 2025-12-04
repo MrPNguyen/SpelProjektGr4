@@ -87,16 +87,16 @@ public class PlayerManager : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            if (playerMovement.rb.gravityScale >= playerMovement.HardDropPower && !playerMovement.isGrounded())
+            if (playerMovement.multiplier >= playerMovement.HardDropPower && !playerMovement.isGrounded())
             {
-                Destroy(enemy);
+                other.gameObject.SetActive(false);
                 Instantiate(extraLife, other.transform.position, other.transform.rotation);
                 
             }
             else
             {
                 TakeDamage();
-                player.color = Color.red;
+                
                 float HitRecoilX = 10f * (playerMovement.isFacingRight ? -1 : 1);
                 float HitRecoilY = HitRecoil;
                 rb.linearVelocity = new Vector2(HitRecoilX, HitRecoilY);
@@ -112,19 +112,13 @@ public class PlayerManager : MonoBehaviour
         }
     }
     
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Enemy"))
-        {
-            player.color = Color.white;
-        }
-    }
-    
     private IEnumerator KnockbackCoroutine(float duration)
     {
+        player.color = Color.red;
         playerMovement.isKnockedBack = true;
         playerMovement.hasPlayed = false;
         yield return new WaitForSeconds(duration);
         playerMovement.isKnockedBack = false;
+        player.color = Color.white;
     }
 }

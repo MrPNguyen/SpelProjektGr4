@@ -8,6 +8,7 @@ public class FallingGround : MonoBehaviour
     private Rigidbody2D rb;
     [SerializeField] private float posB;
     [SerializeField] private float WaitTime;
+    [SerializeField] private float multiplier =1;
     private Vector3 posA;
     private bool falling;
 
@@ -41,11 +42,12 @@ public class FallingGround : MonoBehaviour
 
     IEnumerator Wait(float WaitTime)
     {
+        
         yield return new WaitForSeconds(WaitTime);
         rb.bodyType = RigidbodyType2D.Dynamic;
         if (rb.gravityScale == 0)
         { 
-            rb.gravityScale = 1;
+            rb.gravityScale = multiplier;
         }
         yield return new WaitUntil(() => transform.position.y <= posA.y-posB);
         
