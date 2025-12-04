@@ -1698,6 +1698,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 4d9895889c683524389551981bc7d8e5, type: 3}
     - target: {fileID: 2192809267211881265, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
+      propertyPath: DashPower
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 2192809267211881265, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
       propertyPath: StaminaBar
       value: 
       objectReference: {fileID: 392111218}
