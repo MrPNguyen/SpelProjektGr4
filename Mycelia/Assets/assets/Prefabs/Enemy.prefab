@@ -331,7 +331,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 2390297201368069923}
-  SecondsToWait: 2
+  SecondsToWait: 4
 --- !u!1 &6890301886894069178
 GameObject:
   m_ObjectHideFlags: 0

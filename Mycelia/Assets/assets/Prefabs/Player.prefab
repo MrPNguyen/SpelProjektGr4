@@ -189,13 +189,14 @@ MonoBehaviour:
   canMove: 1
   DashPower: 20
   isDashing: 0
+  isHoldingDash: 0
   flyingPower: 2
   StaminaBar: {fileID: 0}
   CurrentStamina: 0
   MaxStamina: 100
   RunCost: 10
   DashCost: 25
-  FlyingCost: 12
+  FlyingCost: 20
   ChargeRate: 15
 --- !u!114 &5641837105196010520
 MonoBehaviour:
