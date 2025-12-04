@@ -30,13 +30,13 @@ public class CageOpen : MonoBehaviour
 
      void OnTriggerEnter2D(Collider2D other)
     {
-       
+      
         if (IsOpen && other.CompareTag(tagToActivate))
-        {
-            onTriggerEnter.Invoke();
+        {  onTriggerEnter.Invoke();
             //doorAnimator.SetBool("isOpen", true);
             Debug.Log("isOpen");
             GetComponent<BoxCollider2D>().isTrigger = false;
+            
         }
 
         

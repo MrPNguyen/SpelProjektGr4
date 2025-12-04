@@ -3813,6 +3813,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 112292114260961133}
+  - component: {fileID: 2198340483552040533}
+  - component: {fileID: 4065036677747477564}
   m_Layer: 5
   m_Name: ScoreText
   m_TagString: Untagged
@@ -3842,6 +3844,49 @@ RectTransform:
   m_AnchoredPosition: {x: 1829, y: 183}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2198340483552040533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5808279403201723521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bd5d810659e82a49a10663d04643cf5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  counterText: {fileID: 3377135796897980616}
+  onComparedAndTrue:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &4065036677747477564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5808279403201723521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78aed2a88f38c124e886e3de962b48e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  customEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2198340483552040533}
+        m_TargetAssemblyTypeName: UICounter, Assembly-CSharp
+        m_MethodName: SetCounter
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5842508778150992169
 GameObject:
   m_ObjectHideFlags: 0
