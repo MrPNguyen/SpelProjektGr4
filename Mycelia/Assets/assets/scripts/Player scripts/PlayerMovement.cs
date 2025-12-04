@@ -497,6 +497,7 @@ public class PlayerMovement : MonoBehaviour
             velocity.y = 0;
 
         }
+       
 
         else
         {
