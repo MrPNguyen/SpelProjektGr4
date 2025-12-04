@@ -89,7 +89,7 @@ public class PlayerManager : MonoBehaviour
         {
             if (playerMovement.multiplier >= playerMovement.HardDropPower && !playerMovement.isGrounded())
             {
-                Destroy(other.gameObject);
+                Destroy(enemy);
                 Instantiate(extraLife, other.transform.position, other.transform.rotation);
                 
             }
@@ -108,6 +108,14 @@ public class PlayerManager : MonoBehaviour
         {
             currentHealth++;
             Destroy(other.gameObject);
+        }
+    }
+    
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            player.color = Color.white;
         }
     }
     
