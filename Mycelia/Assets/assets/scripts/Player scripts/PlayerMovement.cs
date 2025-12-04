@@ -99,10 +99,6 @@ public class PlayerMovement : MonoBehaviour
          tr = GetComponent<TrailRenderer>();
          cc = GetComponent<CapsuleCollider2D>();
          CurrentStamina = MaxStamina;
-         isFlying = false;
-         isHardDropping = false;
-         hasHardDropped = false;
-         isJumping = false;
     }
 
     void Update()
@@ -111,6 +107,7 @@ public class PlayerMovement : MonoBehaviour
         if (isDashing)
         {
             ceilingCheckSize = new Vector2(0.002f,0.2f);
+            hasPlayed = false;
         }
         else
         {
@@ -159,6 +156,7 @@ public class PlayerMovement : MonoBehaviour
             if (isHardDropping)
             {
                 multiplier = HardDropPower;
+                hasPlayed = false;
             }
             else
             {
@@ -285,6 +283,7 @@ public class PlayerMovement : MonoBehaviour
             multiplier = 1;
             velocity = new Vector2(velocity.x, jumpForce);
             isJumping = true;
+            hasPlayed = false;
             CreateDust();
         }
         
@@ -371,6 +370,7 @@ public class PlayerMovement : MonoBehaviour
         {
             hasHardDropped = true;
             isHardDropping = true;
+            hasPlayed = false;
         }
 
         if (context.canceled)
@@ -481,6 +481,12 @@ public class PlayerMovement : MonoBehaviour
         if (isGrounded() && velocity.y < 0)
         {
             velocity.y = 0;
+        }
+
+        if (isGrounded() && hasHardDropped)
+        {
+            hasHardDropped = false;
+            hasPlayed = false;
         }
     }
 

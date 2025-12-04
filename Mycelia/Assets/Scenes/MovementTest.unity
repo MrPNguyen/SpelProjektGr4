@@ -1633,22 +1633,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -441173067643279493, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
-      propertyPath: dashClip
-      value: 
-      objectReference: {fileID: 8300000, guid: a1b96333214124a478a8455d594c653a, type: 3}
-    - target: {fileID: -441173067643279493, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
-      propertyPath: hurtClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 9fc6f0d33427dd64eb0c2dfbc588c954, type: 3}
-    - target: {fileID: -441173067643279493, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
-      propertyPath: jumpClip
-      value: 
-      objectReference: {fileID: 8300000, guid: b43766041b0053f459ec7484d5da888d, type: 3}
-    - target: {fileID: -441173067643279493, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
-      propertyPath: hardLandClip
-      value: 
-      objectReference: {fileID: 8300000, guid: a1b96333214124a478a8455d594c653a, type: 3}
     - target: {fileID: 2052722778094988803, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.885
@@ -1690,48 +1674,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2192809267211881265, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
-      propertyPath: DashClip
-      value: 
-      objectReference: {fileID: 8300000, guid: a1b96333214124a478a8455d594c653a, type: 3}
-    - target: {fileID: 2192809267211881265, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
-      propertyPath: jumpClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 4d9895889c683524389551981bc7d8e5, type: 3}
-    - target: {fileID: 2192809267211881265, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
-      propertyPath: DashPower
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 2192809267211881265, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
       propertyPath: StaminaBar
       value: 
       objectReference: {fileID: 392111218}
-    - target: {fileID: 2192809267211881265, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
-      propertyPath: HardLandClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 9fc6f0d33427dd64eb0c2dfbc588c954, type: 3}
-    - target: {fileID: 2192809267211881265, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
-      propertyPath: whatIsGround.m_Bits
-      value: 72
-      objectReference: {fileID: 0}
-    - target: {fileID: 2192809267211881265, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
-      propertyPath: whatIsGround.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2192809267211881265, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
-      propertyPath: whatIsGround.Array.data[0].m_Bits
-      value: 72
-      objectReference: {fileID: 0}
     - target: {fileID: 4731169498743363079, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 5547712943069637368, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
-      propertyPath: m_Size.x
-      value: 0.36758536
-      objectReference: {fileID: 0}
-    - target: {fileID: 5547712943069637368, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
-      propertyPath: m_Offset.x
-      value: 0.21
       objectReference: {fileID: 0}
     - target: {fileID: 5641837105196010520, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
       propertyPath: enemy
@@ -1757,10 +1705,6 @@ PrefabInstance:
       propertyPath: GameOverPrologText
       value: 
       objectReference: {fileID: 1586154525}
-    - target: {fileID: 6379467792457079880, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
-      propertyPath: m_Resource
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

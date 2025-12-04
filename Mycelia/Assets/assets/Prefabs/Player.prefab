@@ -5080,7 +5080,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 72
   canMove: 1
-  DashPower: 20
+  DashPower: 13
   isDashing: 0
   isHoldingDash: 0
   flyingPower: 2
@@ -5119,7 +5119,7 @@ MonoBehaviour:
   - Even the Agarics play better than this
   - The Faye succumbs to peril in their Journey
   HitRecoil: 6
-  enemy: {fileID: 4744551041113083933, guid: 98bb661bdca982644a8ecfd7e4b94231, type: 3}
+  enemy: {fileID: 0}
   extraLife: {fileID: 5097334356680221191, guid: ce3831b2fa01c6a468bb5d0a884f1a01, type: 3}
 --- !u!114 &8841612456383048459
 MonoBehaviour:
@@ -5474,8 +5474,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.19919015, y: 0}
-  m_Size: {x: 0.39849475, y: 1.046875}
+  m_Offset: {x: 0.21, y: 0}
+  m_Size: {x: 0.36758536, y: 1.046875}
   m_Direction: 0
 --- !u!114 &-441173067643279493
 MonoBehaviour:
@@ -5489,10 +5489,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad3a10993011f58489593a0d1ffa35b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpClip: {fileID: 0}
-  hardLandClip: {fileID: 0}
-  dashClip: {fileID: 0}
-  hurtClip: {fileID: 0}
+  jumpClip: {fileID: 8300000, guid: b43766041b0053f459ec7484d5da888d, type: 3}
+  hardLandClip: {fileID: 8300000, guid: a1b96333214124a478a8455d594c653a, type: 3}
+  dashClip: {fileID: 8300000, guid: a1b96333214124a478a8455d594c653a, type: 3}
+  hurtClip: {fileID: 8300000, guid: 9fc6f0d33427dd64eb0c2dfbc588c954, type: 3}
 --- !u!82 &6379467792457079880
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5504,7 +5504,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: a1b96333214124a478a8455d594c653a, type: 3}
+  m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
