@@ -99,7 +99,7 @@ public class PlayerManager : MonoBehaviour
                 
                 float HitRecoilX = 10f * (playerMovement.isFacingRight ? -1 : 1);
                 float HitRecoilY = HitRecoil;
-                rb.linearVelocity = new Vector2(HitRecoilX, HitRecoilY);
+                playerMovement.velocity = new Vector2(HitRecoilX, HitRecoilY);
 
                 StartCoroutine(KnockbackCoroutine(0.2f));
             }
