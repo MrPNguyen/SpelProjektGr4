@@ -64,9 +64,8 @@ public class PlayerSFXManager : MonoBehaviour
     }
     private void PlaySFX(AudioClip clip)
     {
-        if (clip == null) return;
-         
         
+         
         if (audioSource.clip != clip || !audioSource.isPlaying)
         {
             audioSource.Stop();
