@@ -5061,7 +5061,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
-  ps: {fileID: 0}
+  ps: {fileID: 4514214975969688312}
   hasPlayed: 0
   isFacingRight: 1
   isKnockedBack: 0
