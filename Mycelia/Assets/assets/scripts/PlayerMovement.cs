@@ -104,6 +104,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(animator.GetBool(HasFallen));
+        UpdateAnimations();
         if (isDashing)
         {
             ceilingCheckSize = new Vector2(0.002f,0.2f);
@@ -118,7 +120,6 @@ public class PlayerMovement : MonoBehaviour
             isRunning = false;
             isFlying = false;
             isHardDropping = false;
-            animator.SetBool(IsWalking, false);
             return;
         }
         
@@ -132,16 +133,10 @@ public class PlayerMovement : MonoBehaviour
             if (horizontalMovement < 0)
             {
                 isFacingRight = false;
-                animator.SetBool(IsWalking, true);
             }
             else if (horizontalMovement > 0)
             {
                 isFacingRight = true;
-                animator.SetBool(IsWalking, true);
-            }
-            else
-            {
-                animator.SetBool(IsWalking, false);
             }
         }
 
@@ -179,6 +174,8 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
         
+        rb.linearVelocity = velocity;
+        
         if (!isKnockedBack && CurrentStamina != 0 && canMove)
         {
             if (isRunning)
@@ -191,6 +188,7 @@ public class PlayerMovement : MonoBehaviour
                 velocity = new Vector2(horizontalMovement * moveSpeed, velocity.y);
             }
         }
+        
        
         if (isFlying)
         {
@@ -199,13 +197,10 @@ public class PlayerMovement : MonoBehaviour
             if (flyingDuration <= 0)
             {
                 isFlying = false;
-                animator.SetBool(IsFlying, false);
-                animator.SetBool(HasFallen, true);
             }
             else
             {
-                animator.SetBool(IsFlying, true);
-                velocity = new Vector2(velocity.x, flyingPower);
+                velocity.y = flyingPower;
             }
         }
         
@@ -221,19 +216,22 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (isFacingRight)
                 {
-                    velocity = new Vector2(DashPower, velocity.y);
+                    velocity.x = DashPower;
                 }
                 else
                 {
-                    velocity = new Vector2(-DashPower, velocity.y);
+                    velocity.x = -DashPower;
                 }
             }
         }
+        
         ApplyGravity();
         
-        IsWalled();
-       
         rb.linearVelocity = velocity;
+
+        
+        IsWalled();
+        
     }
     public void Move(InputAction.CallbackContext context)
     {
@@ -277,7 +275,6 @@ public class PlayerMovement : MonoBehaviour
             
             velocity = new Vector2(velocity.x, jumpForce);
             isJumping = true;
-            animator.SetBool(IsJumping, true);
         }
         
         if (context.canceled)
@@ -285,8 +282,6 @@ public class PlayerMovement : MonoBehaviour
             if (velocity.y > 0)
             {
                 isJumping = false;
-                animator.SetBool(IsJumping, false);
-                animator.SetBool(HasFallen, true);
             }
         }
     }
@@ -355,14 +350,12 @@ public class PlayerMovement : MonoBehaviour
 
         if (context.performed)
         {
-            animator.SetBool(IsHarddropping, true);
             hasHardDropped = true;
             isHardDropping = true;
         }
 
         if (context.canceled)
         {
-            animator.SetBool(IsHarddropping, false);
             isHardDropping = false;
         }
     }
@@ -515,5 +508,44 @@ public class PlayerMovement : MonoBehaviour
             SafeCeilingPosition = transform.position;
         }
     }
-    
+
+    private void UpdateAnimations()
+    {
+        bool grounded = isGrounded();
+        
+
+        if (isFlying)
+        {
+            animator.SetBool(IsFlying, true);
+            animator.SetBool(IsJumping, false);
+            animator.SetBool(IsHarddropping, false);
+            return;
+        }
+        animator.SetBool(IsFlying, false);
+        
+        if (isHardDropping)
+        {
+            animator.SetBool(IsFlying, false);
+            animator.SetBool(IsJumping, false);
+            animator.SetBool(IsHarddropping, true);
+            return;
+        }
+        animator.SetBool(IsHarddropping, false);
+        
+        if (!grounded && velocity.y > 0)
+        {
+            animator.SetBool(IsFlying, false);
+            animator.SetBool(IsJumping, true);
+            animator.SetBool(IsHarddropping, false);
+            return;
+        }
+        animator.SetBool(IsJumping, false);
+
+        if (!grounded && velocity.y < 0)
+        {
+            animator.SetBool(HasFallen, true);
+        }
+
+        animator.SetBool(IsWalking, grounded && horizontalMovement != 0 && !isDashing);
+    }
 }
