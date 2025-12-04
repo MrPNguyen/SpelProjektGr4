@@ -99,6 +99,10 @@ public class PlayerMovement : MonoBehaviour
          tr = GetComponent<TrailRenderer>();
          cc = GetComponent<CapsuleCollider2D>();
          CurrentStamina = MaxStamina;
+         isFlying = false;
+         isHardDropping = false;
+         hasHardDropped = false;
+         isJumping = false;
     }
 
     void Update()
@@ -107,7 +111,6 @@ public class PlayerMovement : MonoBehaviour
         if (isDashing)
         {
             ceilingCheckSize = new Vector2(0.002f,0.2f);
-            hasPlayed = false;
         }
         else
         {
@@ -156,7 +159,6 @@ public class PlayerMovement : MonoBehaviour
             if (isHardDropping)
             {
                 multiplier = HardDropPower;
-                hasPlayed = false;
             }
             else
             {
@@ -283,7 +285,6 @@ public class PlayerMovement : MonoBehaviour
             multiplier = 1;
             velocity = new Vector2(velocity.x, jumpForce);
             isJumping = true;
-            hasPlayed = false;
             CreateDust();
         }
         
@@ -370,7 +371,6 @@ public class PlayerMovement : MonoBehaviour
         {
             hasHardDropped = true;
             isHardDropping = true;
-            hasPlayed = false;
         }
 
         if (context.canceled)
@@ -472,22 +472,37 @@ public class PlayerMovement : MonoBehaviour
 
     private void ApplyGravity()
     {   
-        if (!isFlying)
+        Vector3 pos = transform.position;
+        if (!isGrounded())
         {
-            velocity.y += Physics2D.gravity.y * multiplier * Time.fixedDeltaTime;
+            SafeHardDropPosition = transform.position;
         }
-
-        // Stop downward velocity if grounded
-        if (isGrounded() && velocity.y < 0)
-        {
-            velocity.y = 0;
-        }
-
         if (isGrounded() && hasHardDropped)
         {
+            
+            velocity.y = 0;
+            pos.y = SafeHardDropPosition.y;
+            transform.position = pos;
+            isHardDropping = false;
             hasHardDropped = false;
-            hasPlayed = false;
         }
+        else if (isGrounded() && !isJumping && !isKnockedBack)
+        {
+            if (velocity.y < -5)
+            {
+                pos.y = SafeHardDropPosition.y;
+                transform.position = pos;
+            }
+
+            velocity.y = 0;
+
+        }
+
+        else
+        {
+            velocity.y += Physics2D.gravity.y * multiplier * Time.deltaTime;
+        }
+
     }
 
     float LeftorRight = -2;
