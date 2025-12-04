@@ -7,35 +7,46 @@ public class MovingGround : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
    private Rigidbody2D rb;
    private Vector2 velocity;
-   private float distance;
+   private Vector3 Originalpos;
+   [SerializeField] private float distance = 1;
    [SerializeField] private PlayerMovement player;
+   private BoxCollider2D bc;
    
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        
+        Originalpos = transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Move();
+        if (velocity == Vector2.zero || transform.position.x <= Originalpos.x - distance)
+        { 
+            velocity.x = 1;
+        }
+       
+        rb.linearVelocity = velocity;
+      
+        if (transform.position.x >= Originalpos.x + distance)
+        {
+            velocity.x = -1;
+        }
+       
+        rb.linearVelocity = velocity;
+        
+        
     }
 
-    private void onTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
+        
+        if (collision.CompareTag("Player"))
         {
-            player.
+            player.velocity.x = velocity.x;
+            
         }
     }
-
-    private IEnumerator Move()
-    {
-        velocity.x = 1;
-        rb.linearVelocity = velocity;
-        yield return new WaitUntil(() => transform.position.x >= transform.position.x + distance);
-        velocity.x = -1;
-        rb.linearVelocity = velocity;
-        yield return new WaitUntil(() => transform.position.x <= transform.position.x - distance);
-    }
+    
 }

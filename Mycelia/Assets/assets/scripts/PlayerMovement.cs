@@ -172,6 +172,7 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+       rb.linearVelocity = rb.linearVelocity;
         if (!canMove)
         {
             velocity = Vector2.zero;
