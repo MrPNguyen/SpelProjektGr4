@@ -36,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Running")]
     [SerializeField] private float runSpeed = 10f;
 
-    private bool isRunning { get; set; }
+    public bool isRunning { get; set; }
     
     [Header("Jump")]
     [SerializeField] private float jumpForce = 10f;
@@ -306,7 +306,7 @@ public class PlayerMovement : MonoBehaviour
             if(!GroundedBeforeFlying) return;
 
             isFlying = true;
-            flyingDuration = 1f;
+            flyingDuration = 0.8f;
         }
 
         if (context.canceled)
@@ -472,7 +472,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector3 position = transform.position;
         Vector3 CeilingPosition = transform.position;
-        Vector2 WallCheckSize = new Vector2(0.05f, 0.6f);
+        Vector2 WallCheckSize = new Vector2(0.05f, 0.55f);
         
         if (isFacingRight)
         {

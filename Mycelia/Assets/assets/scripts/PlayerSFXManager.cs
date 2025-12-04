@@ -27,7 +27,7 @@ public class PlayerSFXManager : MonoBehaviour
     {
         if (playerMove.hasHardDropped && playerMove.isGrounded() && !playerMove.hasPlayed)
         {
-            playerMove.hasHardDropped = false;
+           
             PlaySFX(hardLandClip);
             playerMove.hasPlayed = true;
         }
@@ -65,10 +65,11 @@ public class PlayerSFXManager : MonoBehaviour
     private void PlaySFX(AudioClip clip)
     {
         if (clip == null) return;
-         audioSource.Stop();
+         
         
         if (audioSource.clip != clip || !audioSource.isPlaying)
         {
+            audioSource.Stop();
             audioSource.clip = clip;
         }
         audioSource.Play();
