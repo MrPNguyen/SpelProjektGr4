@@ -4929,6 +4929,10 @@ PrefabInstance:
       propertyPath: posB
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 8045348543226892264, guid: a821f483f35bbe5428f86a7409d93201, type: 3}
+      propertyPath: WaitTime
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 8845148177394801856, guid: a821f483f35bbe5428f86a7409d93201, type: 3}
       propertyPath: m_Name
       value: Falling Ground (3)
@@ -5201,6 +5205,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8045348543226892264, guid: a821f483f35bbe5428f86a7409d93201, type: 3}
+      propertyPath: WaitTime
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 8845148177394801856, guid: a821f483f35bbe5428f86a7409d93201, type: 3}
       propertyPath: m_Name
       value: Falling Ground (6)
@@ -5272,6 +5280,10 @@ PrefabInstance:
     - target: {fileID: 8045348543226892264, guid: a821f483f35bbe5428f86a7409d93201, type: 3}
       propertyPath: posB
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8045348543226892264, guid: a821f483f35bbe5428f86a7409d93201, type: 3}
+      propertyPath: WaitTime
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8845148177394801856, guid: a821f483f35bbe5428f86a7409d93201, type: 3}
       propertyPath: m_Name
@@ -5885,6 +5897,14 @@ PrefabInstance:
     - target: {fileID: 8045348543226892264, guid: a821f483f35bbe5428f86a7409d93201, type: 3}
       propertyPath: posB
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8045348543226892264, guid: a821f483f35bbe5428f86a7409d93201, type: 3}
+      propertyPath: WaitTime
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8045348543226892264, guid: a821f483f35bbe5428f86a7409d93201, type: 3}
+      propertyPath: multiplier
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8845148177394801856, guid: a821f483f35bbe5428f86a7409d93201, type: 3}
       propertyPath: m_Name
@@ -10414,6 +10434,10 @@ PrefabInstance:
       propertyPath: posB
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 8045348543226892264, guid: a821f483f35bbe5428f86a7409d93201, type: 3}
+      propertyPath: WaitTime
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 8845148177394801856, guid: a821f483f35bbe5428f86a7409d93201, type: 3}
       propertyPath: m_Name
       value: Falling Ground (1)
@@ -10485,6 +10509,10 @@ PrefabInstance:
     - target: {fileID: 8045348543226892264, guid: a821f483f35bbe5428f86a7409d93201, type: 3}
       propertyPath: posB
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8045348543226892264, guid: a821f483f35bbe5428f86a7409d93201, type: 3}
+      propertyPath: WaitTime
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8845148177394801856, guid: a821f483f35bbe5428f86a7409d93201, type: 3}
       propertyPath: m_Name
@@ -10879,7 +10907,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8045348543226892264, guid: a821f483f35bbe5428f86a7409d93201, type: 3}
       propertyPath: WaitTime
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8045348543226892264, guid: a821f483f35bbe5428f86a7409d93201, type: 3}
       propertyPath: multiplier
