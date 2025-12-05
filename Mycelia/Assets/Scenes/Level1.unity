@@ -3823,6 +3823,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da414caf339e503429250af31aa9a12e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &572162603 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2052722778094988803, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
+  m_PrefabInstance: {fileID: 572162591}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &662287550
 GameObject:
   m_ObjectHideFlags: 0
@@ -9415,6 +9420,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3484538912545547295, guid: 63e25720414156b47bfa5e4354b5527b, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 572162603}
+    - target: {fileID: 3484538912545547295, guid: 63e25720414156b47bfa5e4354b5527b, type: 3}
+      propertyPath: offset.z
+      value: -3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3484538912545547295, guid: 63e25720414156b47bfa5e4354b5527b, type: 3}
+      propertyPath: playerManager
+      value: 
+      objectReference: {fileID: 572162601}
     - target: {fileID: 4899896026327206447, guid: 63e25720414156b47bfa5e4354b5527b, type: 3}
       propertyPath: m_Name
       value: Main Camera

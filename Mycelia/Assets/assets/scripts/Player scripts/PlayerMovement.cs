@@ -1,17 +1,9 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Audio;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.HID;
-using UnityEngine.Rendering.UI;
 using UnityEngine.UI;
-using Vector2 = UnityEngine.Vector2;
 
-
-//Code Source: Game Code Library: "2D Platformer Unity"
 public class PlayerMovement : MonoBehaviour
 {
     private static readonly int IsWalking = Animator.StringToHash("isWalking");
