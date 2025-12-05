@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
     //Press down key to fall down quicker
     [HideInInspector] public Rigidbody2D rb;
     public ParticleSystem ps;
-    private BoxCollider2D bc;
+    private CapsuleCollider2D cc;
     [HideInInspector] public bool hasPlayed;
     
     [HideInInspector] public bool isFacingRight = true;
@@ -62,6 +62,7 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector] public bool isDashing;
     [HideInInspector] public bool isHoldingDash;
     private bool canDash = true;
+    private bool Dashed;
     private float DashDuration = 0.10f;
     private TrailRenderer tr;
     
@@ -88,6 +89,11 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 SafeCeilingPosition = Vector3.zero;
     private Vector3 SafeWallPosition = Vector3.zero;
 
+    [SerializeField] private Vector3 originalOffset;
+    [SerializeField] Vector3 dashOffset;
+    [SerializeField] private Vector3 headOriginalOffset;
+    [SerializeField] Vector3 headDashOffset;
+    
     [SerializeField] private float CoyoteTime;
     bool CoroutineStart;
    
@@ -98,27 +104,52 @@ public class PlayerMovement : MonoBehaviour
          spriteRenderer = GetComponent<SpriteRenderer>();
          animator = GetComponent<Animator>();
          tr = GetComponent<TrailRenderer>();
-         bc = GetComponent<BoxCollider2D>();
+         cc = GetComponent<CapsuleCollider2D>();
          CurrentStamina = MaxStamina;
         originalWallCheckSize = wallCheckSize;
+        
     }
 
     void Update()
     {
         UpdateAnimations();
-        Debug.Log($"Wall Check Position Before: {WallCheck.position}");
-        if (isDashing)
+        Vector3 temporaryOffset = isDashing ? dashOffset : originalOffset;
+        Vector3 headTemporaryOffset = isDashing ? headDashOffset : headOriginalOffset;
+        
+        if (isFacingRight)
         {
-            hasPlayed = false;
-            wallCheckSize.y = originalWallCheckSize.y - 0.3f;
-            //WallCheck.position = new Vector3(WallCheck.position.x, WallCheck.position.y + 0.3f, WallCheck.position.z);
-            Debug.Log($"Wall Check Position After: {WallCheck.position}");
+            temporaryOffset.x = temporaryOffset.x;
+            headTemporaryOffset.x = headTemporaryOffset.x;
         }
         else
         {
-            wallCheckSize.y = originalWallCheckSize.y;
-            WallCheck.position = WallCheck.position;
+            temporaryOffset.x = -temporaryOffset.x;
+            headTemporaryOffset.x = -headTemporaryOffset.x;
         }
+
+        Vector3 newWallPos;
+        if (isDashing)
+        {
+            hasPlayed = false;
+            
+            WallCheck.position = transform.position + temporaryOffset;
+            CeilingCheck.position = transform.position + headTemporaryOffset;
+            
+         
+          
+            Dashed = true;
+            
+        }
+        else if(Dashed)
+        {
+            WallCheck.position = transform.position + temporaryOffset;
+            CeilingCheck.position = transform.position + headTemporaryOffset;
+            
+            wallCheckSize.y = originalWallCheckSize.y;
+           
+            Dashed = false;
+        }
+       
         if (!canMove)
         {
             horizontalMovement = 0;
@@ -506,7 +537,7 @@ public class PlayerMovement : MonoBehaviour
             }
 
             velocity.y = 0;
-            Debug.Log("No more Down!");
+            
 
         }
        
@@ -527,7 +558,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 Wallpos = transform.position;
         if (Physics2D.OverlapBox(WallCheck.position, wallCheckSize, 0, whatIsGround))
         {
-            Debug.Log("No more Up!");
+           
             velocity.x = 0;
                 
             Wallpos.x = SafeWallPosition.x;
@@ -541,11 +572,7 @@ public class PlayerMovement : MonoBehaviour
        
         if (Physics2D.OverlapBox(CeilingCheck.position, ceilingCheckSize, 0, whatIsGround))
         {
-            Debug.Log("No more Up!");
-            if (isDashing)
-            {
-                velocity.y = 0;
-            }
+            
             CeilingPosition.y = SafeCeilingPosition.y;
             transform.position = CeilingPosition;
         }
@@ -555,9 +582,9 @@ public class PlayerMovement : MonoBehaviour
         }
         
         Vector3 position = transform.position;
-        if (bc.IsTouchingLayers(whatIsGround))
+        if (cc.IsTouchingLayers(whatIsGround))
         {
-            Debug.Log("No More Xmove");
+           
             position.x = SafePosition.x;
             transform.position = position;
         }

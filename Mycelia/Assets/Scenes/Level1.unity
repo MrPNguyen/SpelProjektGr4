@@ -3696,6 +3696,14 @@ PrefabInstance:
       value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 2192809267211881265, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
+      propertyPath: runSpeed
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 2192809267211881265, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
+      propertyPath: DashPower
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2192809267211881265, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
       propertyPath: WallCheck
       value: 
       objectReference: {fileID: 1335831120}
@@ -3704,9 +3712,29 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2192809267211881265, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
+      propertyPath: CoyoteTime
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 2192809267211881265, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
       propertyPath: StaminaBar
       value: 
       objectReference: {fileID: 2055961410}
+    - target: {fileID: 2192809267211881265, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
+      propertyPath: newOffset.x
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2192809267211881265, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
+      propertyPath: newOffset.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2192809267211881265, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
+      propertyPath: dashOffset.x
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2192809267211881265, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
+      propertyPath: dashOffset.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2192809267211881265, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
       propertyPath: wallCheckSize.x
       value: 0.05
@@ -3716,12 +3744,32 @@ PrefabInstance:
       value: 0.55
       objectReference: {fileID: 0}
     - target: {fileID: 2192809267211881265, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
+      propertyPath: headDashOffset.x
+      value: 0.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 2192809267211881265, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
+      propertyPath: headDashOffset.y
+      value: 0.404
+      objectReference: {fileID: 0}
+    - target: {fileID: 2192809267211881265, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
+      propertyPath: originalOffset.x
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2192809267211881265, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
       propertyPath: groundCheckSize.x
       value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 2192809267211881265, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
       propertyPath: ceilingCheckSize.y
       value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 2192809267211881265, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
+      propertyPath: headOriginalOffset.x
+      value: 0.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 2192809267211881265, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
+      propertyPath: headOriginalOffset.y
+      value: 0.504
       objectReference: {fileID: 0}
     - target: {fileID: 4417028373609749199, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3879,8 +3927,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2052722778094988803, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
   m_PrefabInstance: {fileID: 572162591}
   m_PrefabAsset: {fileID: 0}
---- !u!61 &572162611
-BoxCollider2D:
+--- !u!70 &572162611
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -3913,18 +3961,9 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.2173398, y: -0.00024612248}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.796875, y: 1.046875}
-    newSize: {x: 1, y: 2}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 0.3621954, y: 0.69231796}
-  m_EdgeRadius: 0
+  m_Offset: {x: 0.20817287, y: -0.0063532777}
+  m_Size: {x: 0.3805293, y: 0.46107236}
+  m_Direction: 0
 --- !u!1 &662287550
 GameObject:
   m_ObjectHideFlags: 0
