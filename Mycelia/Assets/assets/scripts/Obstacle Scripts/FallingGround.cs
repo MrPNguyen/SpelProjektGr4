@@ -59,6 +59,7 @@ public class FallingGround : MonoBehaviour
             rb.gravityScale = 0;
             rb.linearVelocityY = 0;
             rb.bodyType = RigidbodyType2D.Static;
+            transform.position = posA;
             falling = false;
     }
 }
