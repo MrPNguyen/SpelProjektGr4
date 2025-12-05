@@ -5069,6 +5069,7 @@ MonoBehaviour:
   isFacingRight: 1
   isKnockedBack: 0
   moveSpeed: 5
+  horizontalMovement: 0
   runSpeed: 10
   jumpForce: 6
   HardDropPower: 4
@@ -5464,10 +5465,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad3a10993011f58489593a0d1ffa35b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpClip: {fileID: 8300000, guid: b43766041b0053f459ec7484d5da888d, type: 3}
-  hardLandClip: {fileID: 8300000, guid: a1b96333214124a478a8455d594c653a, type: 3}
-  dashClip: {fileID: 8300000, guid: a1b96333214124a478a8455d594c653a, type: 3}
-  hurtClip: {fileID: 8300000, guid: 9fc6f0d33427dd64eb0c2dfbc588c954, type: 3}
+  jumpClip: {fileID: 8300000, guid: 4d5c279f280fccc42bbc8d3531bcea72, type: 3}
+  hardLandClip: {fileID: 8300000, guid: 573db2be2a810634eb3851a22ad7fe67, type: 3}
+  dashClip: {fileID: 8300000, guid: 4d5c279f280fccc42bbc8d3531bcea72, type: 3}
+  hurtClip: {fileID: 8300000, guid: a027008ed55f32f48a11f33510efb34f, type: 3}
+  walkingClips:
+  - {fileID: 8300000, guid: 136edf60935c7594cba1e3304085537a, type: 3}
+  - {fileID: 8300000, guid: 19a043d06aa446145b8cb5caf43e96ac, type: 3}
+  - {fileID: 8300000, guid: 1859ef276b4e5354d893d3cd2d1cdab8, type: 3}
+  - {fileID: 8300000, guid: 335b5c279b3d3244085d54a45c5e3066, type: 3}
+  - {fileID: 8300000, guid: e6bfe9f6b3d099746aaa3be46e0d4703, type: 3}
+  - {fileID: 8300000, guid: 06c75d5157126bb40a1f6e1e8db35c26, type: 3}
+  - {fileID: 8300000, guid: 1627987bd386d5c45badd0d844f39680, type: 3}
+  - {fileID: 8300000, guid: 65ae9df25ca13df47bd01e14fa5fcef5, type: 3}
+  - {fileID: 8300000, guid: c3a6ee664025bd14e8ec2cdc00aada8e, type: 3}
+  - {fileID: 8300000, guid: 17fcab356e2b5954cb70713d4cfa8427, type: 3}
+  - {fileID: 8300000, guid: 6103aeffed2c86140965683945e86587, type: 3}
+  - {fileID: 8300000, guid: f2f95ef5a700945449cd0152e5dc6940, type: 3}
+  - {fileID: 8300000, guid: bd5c4d8e6bbabe543b0091bc02a01334, type: 3}
+  - {fileID: 8300000, guid: 1702ecf2d3f3da740911a31a0ba238e3, type: 3}
+  walkingInterval: 0.35
+  runningMultiplier: 0.6
 --- !u!82 &6379467792457079880
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5598,6 +5616,9 @@ MonoBehaviour:
   hardLandClip: {fileID: 0}
   dashClip: {fileID: 0}
   hurtClip: {fileID: 0}
+  walkingClips: []
+  walkingInterval: 0.35
+  runningMultiplier: 0.6
 --- !u!70 &366716697853204253
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

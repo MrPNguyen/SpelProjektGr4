@@ -25,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Movement")]
     [SerializeField] private float moveSpeed = 5f;
-    private float horizontalMovement;
+    public float horizontalMovement;
 
     [Header("Running")]
     [SerializeField] private float runSpeed = 10f;
