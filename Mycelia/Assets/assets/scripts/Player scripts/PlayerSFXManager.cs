@@ -12,6 +12,7 @@ public class PlayerSFXManager : MonoBehaviour
     [SerializeField] private AudioClip dashClip;
     [SerializeField] private AudioClip hurtClip;
     private AudioSource audioSource;
+    [SerializeField] private AudioSource OneShotSource;
     
     [Header("Walking")]
     [SerializeField] private List<AudioClip> walkingClips;
@@ -51,8 +52,8 @@ public class PlayerSFXManager : MonoBehaviour
 
         if (playerMove.isJumping && !playerMove.hasPlayed)
         {
-            PlaySFX(jumpClip);
-            PlaySFX(GruntClip);
+            OneShotSource.PlayOneShot(jumpClip);
+            OneShotSource.PlayOneShot(GruntClip);
             playerMove.hasPlayed = true;
         }
         
@@ -60,7 +61,7 @@ public class PlayerSFXManager : MonoBehaviour
         {
             if (footstepRoutine == null)
             {
-                footstepRoutine = StartCoroutine(FootsteopCoroutine());
+                footstepRoutine = StartCoroutine(FootstepCoroutine());
             }
         }
         else
@@ -88,7 +89,7 @@ public class PlayerSFXManager : MonoBehaviour
         audioSource.Play();
     }
 
-    private IEnumerator FootsteopCoroutine()
+    private IEnumerator FootstepCoroutine()
     {
         while (true)
         {
@@ -105,7 +106,7 @@ public class PlayerSFXManager : MonoBehaviour
                     PlayOneShot(walkingClips[Random.Range(0, walkingClips.Count)]);
                 }
             }
-            yield return new WaitForSeconds(interval + 4f);
+            yield return new WaitForSeconds(interval + 1f);
         }
     }
 

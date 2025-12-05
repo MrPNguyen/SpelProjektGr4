@@ -526,7 +526,7 @@ public class PlayerMovement : MonoBehaviour
             pos.y = SafeHardDropPosition.y;
             transform.position = pos;
             isHardDropping = false;
-            hasHardDropped = false;
+            StartCoroutine(ResetHardDropFlag());
         }
         else if (IsGrounded && !isJumping && !isKnockedBack)
         {
@@ -537,19 +537,18 @@ public class PlayerMovement : MonoBehaviour
             }
 
             velocity.y = 0;
-            
-
         }
-       
-
         else
         {
             velocity.y += Physics2D.gravity.y * multiplier * Time.deltaTime;
         }
-
     }
 
-    float LeftorRight = -2;
+    private IEnumerator ResetHardDropFlag()
+    {
+        yield return null;
+        hasHardDropped = false;
+    }
 
     private void IsWalled()
     {
