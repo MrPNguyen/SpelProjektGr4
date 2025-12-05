@@ -25,7 +25,7 @@ public class PlayerSFXManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (playerMove.hasHardDropped && playerMove.isGrounded() && !playerMove.hasPlayed)
+        if (playerMove.hasHardDropped && playerMove.IsGrounded && !playerMove.hasPlayed)
         {
            
             PlaySFX(hardLandClip);

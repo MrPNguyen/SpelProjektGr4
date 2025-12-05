@@ -25,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
     //Press down key to fall down quicker
     [HideInInspector] public Rigidbody2D rb;
     public ParticleSystem ps;
-    private CapsuleCollider2D cc;
+    private BoxCollider2D bc;
     [HideInInspector] public bool hasPlayed;
     
     [HideInInspector] public bool isFacingRight = true;
@@ -50,9 +50,13 @@ public class PlayerMovement : MonoBehaviour
     [Header("GroundCheck")]
     [SerializeField] private Transform groundCheck;
     [SerializeField] private Transform CeilingCheck;
-    [SerializeField] private Vector2 groundCheckSize = new Vector2(0.5f, 0.05f);
-    [SerializeField] private Vector2 ceilingCheckSize = new Vector2(0.2f,0.002f);
+    [SerializeField] private Transform WallCheck;
+    [SerializeField] private Vector2 groundCheckSize;
+    [SerializeField] private Vector2 ceilingCheckSize;
+    [SerializeField] private Vector2 wallCheckSize;
+    [SerializeField] private Vector2 originalWallCheckSize;
     [SerializeField] private LayerMask whatIsGround;
+    public bool IsGrounded;
     
     
     
@@ -90,6 +94,11 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 SafePosition = Vector3.zero;
     private Vector3 SafeHardDropPosition = Vector3.zero;
     private Vector3 SafeCeilingPosition = Vector3.zero;
+    private Vector3 SafeWallPosition = Vector3.zero;
+
+    [SerializeField] private float CoyoteTime;
+    bool CoroutineStart;
+   
 
     void Start()
     {
@@ -97,25 +106,26 @@ public class PlayerMovement : MonoBehaviour
          spriteRenderer = GetComponent<SpriteRenderer>();
          animator = GetComponent<Animator>();
          tr = GetComponent<TrailRenderer>();
-         cc = GetComponent<CapsuleCollider2D>();
+         bc = GetComponent<BoxCollider2D>();
          CurrentStamina = MaxStamina;
-         isFlying = false;
-         isHardDropping = false;
-         hasHardDropped = false;
-         isJumping = false;
+        originalWallCheckSize = wallCheckSize;
     }
 
     void Update()
     {
         UpdateAnimations();
+        Debug.Log($"Wall Check Position Before: {WallCheck.position}");
         if (isDashing)
         {
-            ceilingCheckSize = new Vector2(0.002f,0.2f);
             hasPlayed = false;
+            wallCheckSize.y = originalWallCheckSize.y - 0.3f;
+            //WallCheck.position = new Vector3(WallCheck.position.x, WallCheck.position.y + 0.3f, WallCheck.position.z);
+            Debug.Log($"Wall Check Position After: {WallCheck.position}");
         }
         else
         {
-            ceilingCheckSize = new Vector2(0.2f,0.002f);
+            wallCheckSize.y = originalWallCheckSize.y;
+            WallCheck.position = WallCheck.position;
         }
         if (!canMove)
         {
@@ -151,7 +161,7 @@ public class PlayerMovement : MonoBehaviour
         
         GradualStaminaUse(DashCost, isDashing);
         
-        if (isGrounded())
+        if (IsGrounded)
         {
             multiplier = 4;
         }
@@ -237,14 +247,19 @@ public class PlayerMovement : MonoBehaviour
                 velocity.x = -DashPower;
             }
         }
+
+        if (!CoroutineStart)
+        {
+            StartCoroutine(isGrounded() );
+        }
         
-        ApplyGravity();
-        
+         ApplyGravity();
         rb.linearVelocity = velocity;
 
         
         IsWalled();
         
+      
     }
     public void Move(InputAction.CallbackContext context)
     {
@@ -276,7 +291,7 @@ public class PlayerMovement : MonoBehaviour
         if (CurrentStamina == 0) return;
 
         // Prevent jumping in the air
-        if (!isGrounded() && context.performed)
+        if (!IsGrounded && context.performed)
         {
             return;
         }
@@ -308,7 +323,7 @@ public class PlayerMovement : MonoBehaviour
         
         if (context.started)
         {
-            GroundedBeforeFlying = isGrounded();
+            GroundedBeforeFlying = IsGrounded;
         }
 
         if (context.performed)
@@ -338,8 +353,8 @@ public class PlayerMovement : MonoBehaviour
         if (context.performed && canDash)
         {
             DashDuration = 0.1f;
-            //Testade att rotera på ceilingcheck för att se om den kunde detecta taket bättre då.... det gick inte
-            CeilingCheck.localRotation = Quaternion.Euler(0, 180, -60);
+            //CeilingCheck.localRotation = Quaternion.Euler(0, 180, -60);
+            //wallCheckSize.y = 0.3f;
             float dashDirection = isFacingRight ? 1 : -1;
 
             if (dashDirection == -1)
@@ -420,32 +435,32 @@ public class PlayerMovement : MonoBehaviour
             StartRecharge();
         }
     }
-    public bool isGrounded()
+    public IEnumerator isGrounded()
     {
-
+        CoroutineStart = true;
         if (Physics2D.OverlapBox(groundCheck.position, groundCheckSize, 0, whatIsGround))
         {
-            return true;
+            IsGrounded = true;
+            if (velocity.x != 0 && !isJumping)
+            {
+                yield return new WaitForSeconds(CoyoteTime);
+            }
+        }
+        else
+        {
+             IsGrounded = false;
         }
 
-        return false;
+        CoroutineStart = false;
     }
 
     private void OnDrawGizmosSelected()
     
     {
-        if (isFacingRight)
-        {
-            LeftorRight = 0.3f;
-        }
-        else
-        {
-            LeftorRight = -0.3f;
-        }
         Gizmos.color = Color.white;
         Gizmos.DrawWireCube(groundCheck.position, groundCheckSize);
         Gizmos.color = Color.white;
-        Gizmos.DrawWireCube( new Vector2(transform.position.x + LeftorRight, transform.position.y),  new Vector2(0.05f, 0.6f));
+        Gizmos.DrawWireCube( WallCheck.position, wallCheckSize);
         Gizmos.color = Color.white;
         Gizmos.DrawWireCube( CeilingCheck.position, ceilingCheckSize);
     }
@@ -477,11 +492,11 @@ public class PlayerMovement : MonoBehaviour
     private void ApplyGravity()
     {   
         Vector3 pos = transform.position;
-        if (!isGrounded())
+        if (!IsGrounded)
         {
             SafeHardDropPosition = transform.position;
         }
-        if (isGrounded() && hasHardDropped)
+        if (IsGrounded && hasHardDropped)
         {
             hasPlayed = false;
             velocity.y = 0;
@@ -490,7 +505,7 @@ public class PlayerMovement : MonoBehaviour
             isHardDropping = false;
             hasHardDropped = false;
         }
-        else if (isGrounded() && !isJumping && !isKnockedBack)
+        else if (IsGrounded && !isJumping && !isKnockedBack)
         {
             if (velocity.y < -5)
             {
@@ -499,6 +514,7 @@ public class PlayerMovement : MonoBehaviour
             }
 
             velocity.y = 0;
+            Debug.Log("No more Down!");
 
         }
        
@@ -514,22 +530,42 @@ public class PlayerMovement : MonoBehaviour
 
     private void IsWalled()
     {
-        Vector3 position = transform.position;
-        Vector3 CeilingPosition = transform.position;
-        Vector2 WallCheckSize = new Vector2(0.05f, 0.55f);
         
-        if (isFacingRight)
+        Vector3 CeilingPosition = transform.position;
+        Vector3 Wallpos = transform.position;
+        if (Physics2D.OverlapBox(WallCheck.position, wallCheckSize, 0, whatIsGround))
         {
-            LeftorRight = 0.3f;
+            Debug.Log("No more Up!");
+            velocity.x = 0;
+                
+            Wallpos.x = SafeWallPosition.x;
+            transform.position = Wallpos;
         }
         else
         {
-            LeftorRight = -0.3f;
+            SafeWallPosition = transform.position;
         }
-        Vector2 dir = new Vector2(transform.position.x + LeftorRight, transform.position.y);
+        
        
-        if (Physics2D.OverlapBox(dir, WallCheckSize, 0, whatIsGround))
+        if (Physics2D.OverlapBox(CeilingCheck.position, ceilingCheckSize, 0, whatIsGround))
         {
+            Debug.Log("No more Up!");
+            if (isDashing)
+            {
+                velocity.y = 0;
+            }
+            CeilingPosition.y = SafeCeilingPosition.y;
+            transform.position = CeilingPosition;
+        }
+        else
+        {
+            SafeCeilingPosition = transform.position;
+        }
+        
+        Vector3 position = transform.position;
+        if (bc.IsTouchingLayers(whatIsGround))
+        {
+            Debug.Log("No More Xmove");
             position.x = SafePosition.x;
             transform.position = position;
         }
@@ -537,31 +573,12 @@ public class PlayerMovement : MonoBehaviour
         {
             SafePosition = transform.position;
         }
-       
-        if (Physics2D.OverlapBox(CeilingCheck.position, ceilingCheckSize, 0, whatIsGround))
-        {
-            if (isDashing)
-            {
-                velocity.x = 0;
-                
-                CeilingPosition.x = SafeCeilingPosition.x;
-                transform.position = CeilingPosition;
-            }
-            else
-            {
-                CeilingPosition.y = SafeCeilingPosition.y;
-                transform.position = CeilingPosition;
-            }
-        }
-        else
-        {
-            SafeCeilingPosition = transform.position;
-        }
+        
     }
 
     private void UpdateAnimations()
     {
-        bool grounded = isGrounded();
+        bool grounded = IsGrounded;
         
 
         if (isFlying)
@@ -608,7 +625,6 @@ public class PlayerMovement : MonoBehaviour
         {
             animator.SetBool(HasFallen, true);
         }
-
         animator.SetBool(IsWalking, grounded && horizontalMovement != 0 && !isDashing);
     }
 }
