@@ -5069,7 +5069,6 @@ MonoBehaviour:
   isFacingRight: 1
   isKnockedBack: 0
   moveSpeed: 5
-  horizontalMovement: 0
   runSpeed: 10
   jumpForce: 6
   HardDropPower: 4
@@ -5078,17 +5077,10 @@ MonoBehaviour:
   isJumping: 0
   groundCheck: {fileID: 2317278850270132637}
   CeilingCheck: {fileID: 4417028373609749199}
-<<<<<<< Updated upstream
   WallCheck: {fileID: 5762388212362669329}
   groundCheckSize: {x: 0.15, y: 0.02}
   ceilingCheckSize: {x: 0.2, y: 0.05}
   wallCheckSize: {x: 0.05, y: 0.55}
-=======
-  WallCheck: {fileID: 0}
-  groundCheckSize: {x: 0.1, y: 0.02}
-  ceilingCheckSize: {x: 0.2, y: 0.002}
-  wallCheckSize: {x: 0, y: 0}
->>>>>>> Stashed changes
   originalWallCheckSize: {x: 0, y: 0}
   whatIsGround:
     serializedVersion: 2
@@ -5106,15 +5098,11 @@ MonoBehaviour:
   DashCost: 25
   FlyingCost: 20
   ChargeRate: 15
-<<<<<<< Updated upstream
   originalOffset: {x: 0.4, y: 0, z: 0}
   dashOffset: {x: 0.4, y: 0, z: 0}
   headOriginalOffset: {x: 0.23, y: 0.504, z: 0}
   headDashOffset: {x: 0.23, y: 0.404, z: 0}
   CoyoteTime: 0.05
-=======
-  CoyoteTime: 0
->>>>>>> Stashed changes
 --- !u!114 &5641837105196010520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5480,23 +5468,6 @@ MonoBehaviour:
   hardLandClip: {fileID: 8300000, guid: a1b96333214124a478a8455d594c653a, type: 3}
   dashClip: {fileID: 8300000, guid: a1b96333214124a478a8455d594c653a, type: 3}
   hurtClip: {fileID: 8300000, guid: 9fc6f0d33427dd64eb0c2dfbc588c954, type: 3}
-  walkingClips:
-  - {fileID: 8300000, guid: 6e35c2f5f1e157a47944793c20a2621e, type: 3}
-  - {fileID: 8300000, guid: 3830da28a33ecee488163515e6b31518, type: 3}
-  - {fileID: 8300000, guid: 4d63d892e1772e946b953811d22ab6fd, type: 3}
-  - {fileID: 8300000, guid: 79582273b6a94cf4c83ca972a23a4afe, type: 3}
-  - {fileID: 8300000, guid: d38613f64f80cd74a9bc48e1cc096b01, type: 3}
-  - {fileID: 8300000, guid: 0b78a826d9ff82f489a4eb5bfa4b1fab, type: 3}
-  - {fileID: 8300000, guid: da41af54fc99c72438aaf311e864c5d9, type: 3}
-  - {fileID: 8300000, guid: a902d82c68aa0334ba1c542bfcc09ddc, type: 3}
-  - {fileID: 8300000, guid: e9940b6a57601144e9b4595ff27f2a93, type: 3}
-  - {fileID: 8300000, guid: 4439211cfb382d446957ae5b9a665951, type: 3}
-  - {fileID: 8300000, guid: eabcb21af46e1df438c1429f5d7662b8, type: 3}
-  - {fileID: 8300000, guid: 535567fcecf1a40489b68e60561f0f8d, type: 3}
-  - {fileID: 8300000, guid: 9657e8807c0b85542a0dab90b08c431d, type: 3}
-  - {fileID: 8300000, guid: bc698376fc7d86b43b0a486314df45cd, type: 3}
-  walkingInterval: 0.1
-  runningMultiplier: 0.6
 --- !u!82 &6379467792457079880
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5510,7 +5481,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.4
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
