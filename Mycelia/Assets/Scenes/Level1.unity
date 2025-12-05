@@ -3697,11 +3697,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2192809267211881265, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
       propertyPath: runSpeed
-      value: 13
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2192809267211881265, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
       propertyPath: DashPower
-      value: 5
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 2192809267211881265, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
       propertyPath: WallCheck
