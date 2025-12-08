@@ -130,7 +130,6 @@ public class PlayerMovement : MonoBehaviour
         if (isDashing)
         {
             hasPlayed = false;
-            Debug.Log($"hasPlayed in isDashing {hasPlayed}");
             
             WallCheck.position = transform.position + temporaryOffset;
             CeilingCheck.position = transform.position + headTemporaryOffset;
@@ -319,7 +318,6 @@ public class PlayerMovement : MonoBehaviour
             velocity = new Vector2(velocity.x, jumpForce);
             isJumping = true;
             hasPlayed = false;
-            Debug.Log($"hasPlayed in jump {hasPlayed}");
             CreateDust();
         }
         
@@ -407,7 +405,6 @@ public class PlayerMovement : MonoBehaviour
             hasHardDropped = true;
             isHardDropping = true;
             hasPlayed = false;
-            Debug.Log($"hasPlayed in harddrop {hasPlayed}");
         }
 
         if (context.canceled)
@@ -517,7 +514,6 @@ public class PlayerMovement : MonoBehaviour
         if (IsGrounded && hasHardDropped)
         {
             hasPlayed = false;
-            Debug.Log($"hasPlayed in ApplyGravity {hasPlayed}");
             velocity.y = 0;
             pos.y = SafeHardDropPosition.y;
             transform.position = pos;

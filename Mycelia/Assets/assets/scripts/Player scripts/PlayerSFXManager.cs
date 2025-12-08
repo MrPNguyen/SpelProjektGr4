@@ -95,7 +95,6 @@ public class PlayerSFXManager : MonoBehaviour
 
         if (playerMove.isJumping)
         {
-            Debug.Log("jumping sounds");
             OneShotSource.PlayOneShot(jumpClip);
             OneShotSource.PlayOneShot(GruntClip);
             playerMove.hasPlayed = true;
