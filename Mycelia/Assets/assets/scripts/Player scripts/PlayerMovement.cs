@@ -127,15 +127,13 @@ public class PlayerMovement : MonoBehaviour
             headTemporaryOffset.x = -headTemporaryOffset.x;
         }
 
-        Vector3 newWallPos;
         if (isDashing)
         {
             hasPlayed = false;
+            Debug.Log($"hasPlayed in isDashing {hasPlayed}");
             
             WallCheck.position = transform.position + temporaryOffset;
             CeilingCheck.position = transform.position + headTemporaryOffset;
-            
-         
           
             Dashed = true;
             
@@ -193,7 +191,6 @@ public class PlayerMovement : MonoBehaviour
             if (isHardDropping)
             {
                 multiplier = HardDropPower;
-                hasPlayed = false;
             }
             else
             {
@@ -214,15 +211,11 @@ public class PlayerMovement : MonoBehaviour
         
         if (!isKnockedBack && CurrentStamina != 0 && canMove)
         {
-            if (isRunning)
+            /*if (isRunning)
             {
                 velocity = new Vector2(horizontalMovement * runSpeed, velocity.y);
-            }
-            
-            else
-            {
-                velocity = new Vector2(horizontalMovement * moveSpeed, velocity.y);
-            }
+            }*/
+            velocity = new Vector2(horizontalMovement * moveSpeed, velocity.y);
         }
         
        
@@ -276,7 +269,7 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine(isGrounded() );
         }
         
-         ApplyGravity();
+        ApplyGravity();
         rb.linearVelocity = velocity;
 
         
@@ -290,7 +283,7 @@ public class PlayerMovement : MonoBehaviour
         horizontalMovement = context.ReadValue<Vector2>().x;
     }
     
-    public void Run(InputAction.CallbackContext context)
+    /*public void Run(InputAction.CallbackContext context)
     {
         if (!canMove) return;
         if (context.performed)
@@ -302,7 +295,7 @@ public class PlayerMovement : MonoBehaviour
         {
             isRunning = false;
         }
-    }
+    }*/
 
 
     public void Jump(InputAction.CallbackContext context)
@@ -326,6 +319,7 @@ public class PlayerMovement : MonoBehaviour
             velocity = new Vector2(velocity.x, jumpForce);
             isJumping = true;
             hasPlayed = false;
+            Debug.Log($"hasPlayed in jump {hasPlayed}");
             CreateDust();
         }
         
@@ -413,6 +407,7 @@ public class PlayerMovement : MonoBehaviour
             hasHardDropped = true;
             isHardDropping = true;
             hasPlayed = false;
+            Debug.Log($"hasPlayed in harddrop {hasPlayed}");
         }
 
         if (context.canceled)
@@ -522,6 +517,7 @@ public class PlayerMovement : MonoBehaviour
         if (IsGrounded && hasHardDropped)
         {
             hasPlayed = false;
+            Debug.Log($"hasPlayed in ApplyGravity {hasPlayed}");
             velocity.y = 0;
             pos.y = SafeHardDropPosition.y;
             transform.position = pos;
@@ -557,7 +553,6 @@ public class PlayerMovement : MonoBehaviour
         Vector3 Wallpos = transform.position;
         if (Physics2D.OverlapBox(WallCheck.position, wallCheckSize, 0, whatIsGround))
         {
-           
             velocity.x = 0;
                 
             Wallpos.x = SafeWallPosition.x;

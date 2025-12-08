@@ -8,6 +8,7 @@ public class PlayerManager : MonoBehaviour
     private Rigidbody2D rb;
     private PlayerMovement playerMovement;
     public Vector3 originalPosition;
+    [SerializeField] private GameObject PlayerUI;
     
     [Header("Health")]
     private int maxHealth = 3; 
@@ -41,6 +42,7 @@ public class PlayerManager : MonoBehaviour
         {
             GameOverPrologText.text = "The Faye has lost its light...";
         }
+        PlayerUI.SetActive(true);
     }
 
     // Update is called once per frame
@@ -49,7 +51,9 @@ public class PlayerManager : MonoBehaviour
         if (currentHealth <= 0)
         { 
             Destroy(this.gameObject);
+            PlayerUI.SetActive(false);
             animator.SetTrigger("isDead");
+            
         }
 
         if (currentHealth == 2)
@@ -89,14 +93,14 @@ public class PlayerManager : MonoBehaviour
         {
             if (playerMovement.multiplier >= playerMovement.HardDropPower && !playerMovement.IsGrounded)
             {
+                Debug.Log($" player collide with when harddropping: {other.name}");
                 other.gameObject.SetActive(false);
                 Instantiate(extraLife, other.transform.position, other.transform.rotation);
-                
             }
             else
             {
+                Debug.Log($" player collide with: {other.name}");
                 TakeDamage();
-                
                 float HitRecoilX = 10f * (playerMovement.isFacingRight ? -1 : 1);
                 float HitRecoilY = HitRecoil;
                 playerMovement.velocity = new Vector2(HitRecoilX, HitRecoilY);

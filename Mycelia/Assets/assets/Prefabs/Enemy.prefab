@@ -91,6 +91,7 @@ GameObject:
   - component: {fileID: 6860140801974534593}
   - component: {fileID: 2513006917046515433}
   - component: {fileID: 7963060136367128537}
+  - component: {fileID: 2897065288774822855}
   m_Layer: 0
   m_Name: Agaric
   m_TagString: Enemy
@@ -247,6 +248,28 @@ CapsuleCollider2D:
   m_Offset: {x: -0.03133869, y: 0}
   m_Size: {x: 0.47195625, y: 0.703125}
   m_Direction: 0
+--- !u!95 &2897065288774822855
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2390297201368069923}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 84f98c282fddea143a8b1bc3cd57f10b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &4744551041113083933
 GameObject:
   m_ObjectHideFlags: 0

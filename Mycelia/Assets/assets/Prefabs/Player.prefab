@@ -4959,7 +4959,7 @@ Transform:
   m_GameObject: {fileID: 4731169498743363079}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.68, y: -0.6292, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.8, y: 0.8, z: 1.6}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -5014,7 +5014,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 1792538982691073040, guid: ba8d68f152f3b5844b4fe07be004e236, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.65882355}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -5216,19 +5216,7 @@ MonoBehaviour:
     m_ActionId: b7230bb6-fc9b-4f52-8b25-f5e19cb2c2ba
     m_ActionName: 'Player/Next[/Keyboard/2]'
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2192809267211881265}
-        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
-        m_MethodName: Run
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 641cd816-40e6-41b4-8c3d-04687c349290
     m_ActionName: 'Player/Sprint[/Keyboard/leftShift]'
   - m_PersistentCalls:
@@ -5469,6 +5457,7 @@ MonoBehaviour:
   hardLandClip: {fileID: 8300000, guid: 573db2be2a810634eb3851a22ad7fe67, type: 3}
   dashClip: {fileID: 8300000, guid: 4d5c279f280fccc42bbc8d3531bcea72, type: 3}
   hurtClip: {fileID: 8300000, guid: a027008ed55f32f48a11f33510efb34f, type: 3}
+  OneShotSource: {fileID: 0}
   walkingClips:
   - {fileID: 8300000, guid: 136edf60935c7594cba1e3304085537a, type: 3}
   - {fileID: 8300000, guid: 19a043d06aa446145b8cb5caf43e96ac, type: 3}
@@ -5486,6 +5475,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 1702ecf2d3f3da740911a31a0ba238e3, type: 3}
   walkingInterval: 0.35
   runningMultiplier: 0.6
+  GruntClip: {fileID: 0}
 --- !u!82 &6379467792457079880
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5616,9 +5606,11 @@ MonoBehaviour:
   hardLandClip: {fileID: 0}
   dashClip: {fileID: 0}
   hurtClip: {fileID: 0}
+  OneShotSource: {fileID: 0}
   walkingClips: []
   walkingInterval: 0.35
   runningMultiplier: 0.6
+  GruntClip: {fileID: 0}
 --- !u!70 &366716697853204253
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -5626,7 +5618,7 @@ CapsuleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4731169498743363079}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}

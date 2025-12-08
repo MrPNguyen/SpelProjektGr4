@@ -32,52 +32,7 @@ public class PlayerSFXManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (playerMove.hasHardDropped && playerMove.IsGrounded && !playerMove.hasPlayed)
-        {
-            PlaySFX(hardLandClip);
-            playerMove.hasPlayed = true;
-        }
-
-        if (playerMove.isDashing && !playerMove.hasPlayed)
-        {
-            PlaySFX(dashClip);
-            playerMove.hasPlayed = true;
-        }
-
-        if (playerMove.isKnockedBack && !playerMove.hasPlayed)
-        {
-            PlaySFX(hurtClip);
-            playerMove.hasPlayed = true;
-        }
-
-        if (playerMove.isJumping && !playerMove.hasPlayed)
-        {
-            OneShotSource.PlayOneShot(jumpClip);
-            OneShotSource.PlayOneShot(GruntClip);
-            playerMove.hasPlayed = true;
-        }
-        
-        if (playerMove.IsGrounded && playerMove.horizontalMovement != 0 && !playerMove.isDashing)
-        {
-            if (footstepRoutine == null)
-            {
-                footstepRoutine = StartCoroutine(FootstepCoroutine());
-            }
-        }
-        else
-        {
-            if (footstepRoutine != null)
-            {
-                StopCoroutine(footstepRoutine);
-                footstepRoutine = null;
-            }
-        }
-        
-        if (!audioSource.isPlaying && !playerMove.hasPlayed)
-        {
-            audioSource.Stop();
-            playerMove.hasPlayed = true;
-        }
+        PlaySounds();
     }
     private void PlaySFX(AudioClip clip)
     {
@@ -114,5 +69,58 @@ public class PlayerSFXManager : MonoBehaviour
     {
         if (clip != null)
             audioSource.PlayOneShot(clip);
+    }
+
+    private void PlaySounds()
+    {
+        if (playerMove.hasPlayed) return;
+        
+        if (playerMove.hasHardDropped && playerMove.IsGrounded)
+        {
+            PlaySFX(hardLandClip);
+            playerMove.hasPlayed = true;
+        }
+
+        if (playerMove.isDashing)
+        {
+            PlaySFX(dashClip);
+            playerMove.hasPlayed = true;
+        }
+
+        if (playerMove.isKnockedBack)
+        {
+            PlaySFX(hurtClip);
+            playerMove.hasPlayed = true;
+        }
+
+        if (playerMove.isJumping)
+        {
+            Debug.Log("jumping sounds");
+            OneShotSource.PlayOneShot(jumpClip);
+            OneShotSource.PlayOneShot(GruntClip);
+            playerMove.hasPlayed = true;
+        }
+        
+        if (playerMove.IsGrounded && playerMove.horizontalMovement != 0 && !playerMove.isDashing)
+        {
+            if (footstepRoutine == null)
+            {
+                footstepRoutine = StartCoroutine(FootstepCoroutine());
+            }
+        }
+        else
+        {
+            if (footstepRoutine != null)
+            {
+                StopCoroutine(footstepRoutine);
+                footstepRoutine = null;
+            }
+        }
+        
+        if (!audioSource.isPlaying)
+        {
+            audioSource.Stop();
+            playerMove.hasPlayed = true;
+        }
     }
 }
