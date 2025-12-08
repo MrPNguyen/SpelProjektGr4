@@ -11,44 +11,31 @@ public class FallingGround : MonoBehaviour
     [SerializeField] private float multiplier =1;
     private Vector3 posA;
     private bool falling;
-
-
-
-
     void Start()
     {
         posA = transform.position;
         rb = GetComponent<Rigidbody2D>();
-      
-
     }
-
     
     void Update()
     {
-
         if (falling)
         {
-           
-            
             StartCoroutine(Wait(WaitTime));
         }
         else
         {
            transform.position = posA; 
         }
-        
     }
     
     public void fall()
     {
         falling = true;
-        
     }
-
+    
     IEnumerator Wait(float WaitTime)
     {
-        
         yield return new WaitForSeconds(WaitTime);
         
         if (rb.gravityScale == 0)
@@ -57,16 +44,13 @@ public class FallingGround : MonoBehaviour
         }
         yield return new WaitUntil(() => transform.position.y <= posA.y-posB);
         
-        Debug.Log("We're in");
         rb.gravityScale = -2;
         
         yield return new WaitUntil(() => transform.position.y >= posA.y);
-        Debug.Log("We're out");
-            rb.gravityScale = 0;
-            rb.linearVelocityY = 0;
+        rb.gravityScale = 0;
+        rb.linearVelocityY = 0;
             
-            
-            falling = false;
+        falling = false;
     }
 }
 
