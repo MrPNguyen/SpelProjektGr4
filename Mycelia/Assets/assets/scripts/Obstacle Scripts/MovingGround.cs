@@ -49,7 +49,7 @@ public class MovingGround : MonoBehaviour
         {
             pos.x = transform.position.x;
             player.transform.position = pos;
-            Debug.Log(player.transform.position.x);
+            //Debug.Log(player.transform.position.x);
         }
     }
     

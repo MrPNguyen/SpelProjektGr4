@@ -7,13 +7,18 @@ public class CameraFollow : MonoBehaviour
     public Transform target;
     
     [SerializeField] private float smoothSpeed = 0.125f;
-    [SerializeField] private Vector3 offset;
+    public Vector3 offset;
     [SerializeField] private PlayerManager playerManager;
     public bool followPlayer = false;
 
     void Start()
     {
         followPlayer = true;
+    }
+
+    void Update()
+    {
+        Debug.Log(offset);
     }
     private void FixedUpdate()
     {

@@ -2,19 +2,26 @@ using UnityEngine;
 
 public class CameraPositionChange : MonoBehaviour
 {
-    [SerializeField] private Transform position;
+    private Vector3 originalOffset;
+    [SerializeField] private Vector3 newOffset;
     [SerializeField] private CameraFollow cameraFollow;
-    void OnTriggerEnter2D(Collider2D other)
+    
+    void Start()
+    {
+        originalOffset = cameraFollow.offset;
+    }
+    
+    void OnTriggerStay2D(Collider2D other)
     { if (other.gameObject.CompareTag("Player") == false)
             return;
         
-        cameraFollow.target = position;
+        cameraFollow.offset = newOffset;
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Player") == false)
             return;
-        cameraFollow.target = other.transform;
+        cameraFollow.offset = originalOffset;
     }
 }
