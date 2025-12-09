@@ -14,7 +14,7 @@ public class ScoreTimer : MonoBehaviour
     }
     private void Update()
     {
-        currentScore += Time.deltaTime * 5f;
+        currentScore += Time.deltaTime * 1f;
         UpdateScoreText();
     }
     
