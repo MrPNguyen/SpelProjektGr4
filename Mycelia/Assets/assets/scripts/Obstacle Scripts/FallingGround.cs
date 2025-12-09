@@ -19,19 +19,23 @@ public class FallingGround : MonoBehaviour
     
     void Update()
     {
-       
+        if (falling)
+        {
+            StartCoroutine(Wait(WaitTime));
+        }
+        else
+        {
+           transform.position = posA; 
+        }
     }
     
     public void fall()
     {
-        if (falling) return;
         falling = true;
-        StartCoroutine(Wait(WaitTime));
     }
     
     IEnumerator Wait(float WaitTime)
     {
-        
         yield return new WaitForSeconds(WaitTime);
         
         if (rb.gravityScale == 0)
@@ -41,11 +45,11 @@ public class FallingGround : MonoBehaviour
         yield return new WaitUntil(() => transform.position.y <= posA.y-posB);
         
         rb.gravityScale = -2;
-        Debug.Log("Falling");
+        
         yield return new WaitUntil(() => transform.position.y >= posA.y);
         rb.gravityScale = 0;
         rb.linearVelocityY = 0;
-        transform.position = posA; 
+            
         falling = false;
     }
 }
