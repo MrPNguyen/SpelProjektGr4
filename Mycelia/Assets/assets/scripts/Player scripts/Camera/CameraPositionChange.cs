@@ -12,7 +12,7 @@ public class CameraPositionChange : MonoBehaviour
     }
     
     void OnTriggerStay2D(Collider2D other)
-    { if (other.gameObject.CompareTag("Player") == false)
+    { if (!other.gameObject.CompareTag("Player"))
             return;
         
         cameraFollow.offset = newOffset;
@@ -20,7 +20,7 @@ public class CameraPositionChange : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player") == false)
+        if (!other.gameObject.CompareTag("Player"))
             return;
         cameraFollow.offset = originalOffset;
     }

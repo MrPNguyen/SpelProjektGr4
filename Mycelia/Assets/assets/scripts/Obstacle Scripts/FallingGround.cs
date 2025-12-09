@@ -16,26 +16,22 @@ public class FallingGround : MonoBehaviour
         posA = transform.position;
         rb = GetComponent<Rigidbody2D>();
     }
-    
-    void Update()
-    {
-        if (falling)
-        {
-            StartCoroutine(Wait(WaitTime));
-        }
-        else
-        {
-           transform.position = posA; 
-        }
-    }
-    
     public void fall()
     {
-        falling = true;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Player")
+        {
+            Debug.Log("Falling Ground");
+            StartCoroutine(Wait(WaitTime));    
+        }
     }
     
     IEnumerator Wait(float WaitTime)
     {
+        Debug.Log("Hit");
         yield return new WaitForSeconds(WaitTime);
         
         if (rb.gravityScale == 0)

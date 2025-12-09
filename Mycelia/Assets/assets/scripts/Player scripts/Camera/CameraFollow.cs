@@ -15,17 +15,12 @@ public class CameraFollow : MonoBehaviour
     {
         followPlayer = true;
     }
-
-    void Update()
-    {
-        Debug.Log(offset);
-    }
     private void FixedUpdate()
     {
         if (playerManager.currentHealth > 0 && followPlayer)
         {
             Vector3 desiredPosition = target.position + offset;
-            desiredPosition.x = Mathf.Clamp(desiredPosition.x, -7.3f, 126.47f);
+            desiredPosition.x = Mathf.Clamp(desiredPosition.x, -5.690001f, 126.47f);
             Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
             transform.position = smoothedPosition;
         }
