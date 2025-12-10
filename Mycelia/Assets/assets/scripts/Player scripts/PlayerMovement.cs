@@ -239,7 +239,11 @@ public class PlayerMovement : MonoBehaviour
                 isDashing = false;
                 isHoldingDash = false;
                 velocity.x = 0;
-                tr.emitting = false;
+                if (tr != null)
+                { 
+                    tr.emitting = false;
+                }
+               
                 transform.localRotation = Quaternion.Euler(0, 0, 0);
             }
             
@@ -248,7 +252,10 @@ public class PlayerMovement : MonoBehaviour
             if (DashDuration <= 0 && !isHoldingDash)
             {
                 isDashing = false;
-                tr.emitting = false;
+                if (tr != null)
+                {
+                    tr.emitting = false;
+                }
                 velocity.x = 0;
                 transform.localRotation = Quaternion.Euler(0, 0, 0);
                 return;
@@ -368,8 +375,6 @@ public class PlayerMovement : MonoBehaviour
         if (context.performed && canDash)
         {
             DashDuration = 0.1f;
-            //CeilingCheck.localRotation = Quaternion.Euler(0, 180, -60);
-            //wallCheckSize.y = 0.3f;
             float dashDirection = isFacingRight ? 1 : -1;
 
             if (dashDirection == -1)
@@ -382,13 +387,20 @@ public class PlayerMovement : MonoBehaviour
             }
             isDashing = true;
             isHoldingDash = true;
-            tr.emitting = true;
+            if (tr != null)
+            {
+                tr.emitting = true;
+            }
+            
         }
 
         if (context.canceled)
         {
             isHoldingDash = false;
-            tr.emitting = false;
+            if (tr != null)
+            {
+                tr.emitting = false;
+            }
 
             DashDuration = 0.1f;
             transform.localRotation = Quaternion.Euler(0, 0, 0);
@@ -470,14 +482,25 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void OnDrawGizmosSelected()
-    
     {
-        Gizmos.color = Color.white;
-        Gizmos.DrawWireCube(groundCheck.position, groundCheckSize);
-        Gizmos.color = Color.white;
-        Gizmos.DrawWireCube( WallCheck.position, wallCheckSize);
-        Gizmos.color = Color.white;
-        Gizmos.DrawWireCube( CeilingCheck.position, ceilingCheckSize);
+        if (groundCheck != null)
+        {
+            Gizmos.color = Color.white;
+            Gizmos.DrawWireCube(groundCheck.position, groundCheckSize);
+        }
+
+        if (WallCheck != null)
+        {
+            Gizmos.color = Color.white;
+            Gizmos.DrawWireCube( WallCheck.position, wallCheckSize);
+        }
+
+        if (CeilingCheck != null)
+        { 
+            Gizmos.color = Color.white;
+            Gizmos.DrawWireCube( CeilingCheck.position, ceilingCheckSize);
+        }
+        
     }
 
     void CreateDust()
