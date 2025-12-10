@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 146777905}
   - component: {fileID: 146777907}
   - component: {fileID: 146777906}
+  - component: {fileID: 146777908}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -176,7 +177,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: START
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a9d2749da095f99409a61584c71b04fb, type: 2}
   m_sharedMaterial: {fileID: -708632928877798410, guid: a9d2749da095f99409a61584c71b04fb, type: 2}
@@ -255,6 +256,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 146777904}
   m_CullTransparentMesh: 1
+--- !u!114 &146777908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 146777904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17811a97cc049d443a51c15008ce5ec4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _textMeshPro: {fileID: 146777906}
+  stringArray:
+  - START
+  timeBtwnChars: 0.2
+  timeBtwnWords: 0.1
 --- !u!1 &184206360
 GameObject:
   m_ObjectHideFlags: 0
@@ -664,6 +682,7 @@ GameObject:
   - component: {fileID: 494311954}
   - component: {fileID: 494311953}
   - component: {fileID: 494311955}
+  - component: {fileID: 494311956}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -710,7 +729,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: QUIT
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a9d2749da095f99409a61584c71b04fb, type: 2}
   m_sharedMaterial: {fileID: -708632928877798410, guid: a9d2749da095f99409a61584c71b04fb, type: 2}
@@ -811,6 +830,23 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &494311956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 494311951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17811a97cc049d443a51c15008ce5ec4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _textMeshPro: {fileID: 494311953}
+  stringArray:
+  - QUIT
+  timeBtwnChars: 0.2
+  timeBtwnWords: 0.1
 --- !u!1 &607082900
 GameObject:
   m_ObjectHideFlags: 0
