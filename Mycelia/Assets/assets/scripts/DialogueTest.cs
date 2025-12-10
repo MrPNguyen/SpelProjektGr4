@@ -4,7 +4,7 @@ using System.Collections;
 
     
 
-public class Dialogue : MonoBehaviour
+public class DialogueTest : MonoBehaviour
 {
     public TextMeshProUGUI textComponent;
     public string[] lines;
