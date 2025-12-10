@@ -19,7 +19,7 @@ TagManager:
   - Obstacle
   - Enemy
   - Camera
-  - 
+  - HiddenRoom
   - Post
   - 
   - 
@@ -45,6 +45,9 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: HiddenRoom
+    uniqueID: 4130323079
     locked: 0
   m_RenderingLayers:
   - Default

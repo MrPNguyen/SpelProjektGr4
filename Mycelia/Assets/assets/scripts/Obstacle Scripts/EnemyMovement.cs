@@ -10,6 +10,7 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private GameObject pointB;
     
     [SerializeField] private float enemyMoveSpeed = 25f;
+    private float WaitBeforeWalking = 2f;
 
     private float EnemyDirection;
     
@@ -22,7 +23,12 @@ public class EnemyMovement : MonoBehaviour
 
     private void Update()
     {
-        rb.linearVelocity = new Vector2(EnemyDirection * enemyMoveSpeed, rb.linearVelocity.y);
+        WaitBeforeWalking -= Time.deltaTime;
+
+        if (WaitBeforeWalking <= 0)
+        {
+            rb.linearVelocity = new Vector2(EnemyDirection * enemyMoveSpeed, rb.linearVelocity.y);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)

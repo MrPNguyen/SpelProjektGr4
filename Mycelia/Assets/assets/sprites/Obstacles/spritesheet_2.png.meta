@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: d828d9340852b5f4c8f1c2492d16db3e
+guid: 1a0a61a266664cf4e9f2a2d62956c8e6
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2596606273423296599
-    second: bar_stamina_0
+      213: 8491956614035521118
+    second: spritesheet_2_0
+  - first:
+      213: -3837702315187162603
+    second: spritesheet_2_1
+  - first:
+      213: 2569100708621144869
+    second: spritesheet_2_2
+  - first:
+      213: -3993288347735931237
+    second: spritesheet_2_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -72,7 +81,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 4096
+    maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: 4
     textureCompression: 1
@@ -100,13 +109,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: bar_stamina_0
+      name: spritesheet_2_0
       rect:
         serializedVersion: 2
-        x: 1
-        y: 7
-        width: 126
-        height: 7
+        x: 2
+        y: 0
+        width: 62
+        height: 45
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +124,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9a7bd0b0a5007fbd0800000000000000
-      internalID: -2596606273423296599
+      spriteID: e5ebd935c8d79d570800000000000000
+      internalID: 8491956614035521118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet_2_1
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 0
+        width: 66
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 512339dc31ebdbac0800000000000000
+      internalID: -3837702315187162603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet_2_2
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 0
+        width: 52
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52351999b7747a320800000000000000
+      internalID: 2569100708621144869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spritesheet_2_3
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 0
+        width: 62
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b964e73b76df498c0800000000000000
+      internalID: -3993288347735931237
       vertices: []
       indices: 
       edges: []
@@ -135,7 +210,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      bar_stamina_0: -2596606273423296599
+      spritesheet_2_0: 8491956614035521118
+      spritesheet_2_1: -3837702315187162603
+      spritesheet_2_2: 2569100708621144869
+      spritesheet_2_3: -3993288347735931237
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

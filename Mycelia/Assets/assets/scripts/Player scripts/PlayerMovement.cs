@@ -567,7 +567,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void IsWalled()
     {
-        
         Vector3 CeilingPosition = transform.position;
         Vector3 Wallpos = transform.position;
         if (Physics2D.OverlapBox(WallCheck.position, wallCheckSize, 0, whatIsGround))
