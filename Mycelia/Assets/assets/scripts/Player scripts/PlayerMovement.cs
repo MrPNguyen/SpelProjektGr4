@@ -191,7 +191,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 multiplier = HardDropPower;
             }
-            else
+            else if(!hasHardDropped)
             {
                 multiplier = 1;
             }

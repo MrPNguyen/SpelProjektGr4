@@ -6,6 +6,8 @@ public class SvampolinHopp : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private float Bounce;
+  
+    
     void Start()
     {
         
@@ -15,15 +17,17 @@ public class SvampolinHopp : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            if (playerMovement.multiplier >= playerMovement.HardDropPower)
+            if (playerMovement.multiplier >= 2)
             {
-                playerMovement.isJumping = true;
+                playerMovement.hasHardDropped = false;
                 playerMovement.velocity.y = Bounce;
+               
             }
-            else playerMovement.isJumping = false;
+            
         }
     }
     // Update is called once per frame
+    
     void Update()
     {
         
