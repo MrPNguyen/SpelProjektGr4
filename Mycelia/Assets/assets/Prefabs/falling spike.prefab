@@ -92,6 +92,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 3729366867992990401}
+  objectPos: {fileID: 982805860178981317}
   posB: 1
   WaitTime: 1
   multiplier: 1

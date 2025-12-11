@@ -1,11 +1,13 @@
 using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.Serialization;
 
 public class FallingGround : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private Transform objectPos;
     [SerializeField] private float posB;
     [SerializeField] private float WaitTime;
     [SerializeField] private float multiplier = 1;
@@ -14,7 +16,7 @@ public class FallingGround : MonoBehaviour
 
     void Start()
     {
-        posA = rb.position;
+        posA = objectPos.position;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -37,15 +39,15 @@ public class FallingGround : MonoBehaviour
             rb.gravityScale = multiplier;
         }
 
-        yield return new WaitUntil(() => transform.position.y <= posA.y - posB);
+        yield return new WaitUntil(() => objectPos.position.y <= posA.y - posB);
         Debug.Log("fallen");
         rb.gravityScale = -2;
        
-        yield return new WaitUntil(() => transform.position.y >= posA.y);
+        yield return new WaitUntil(() => objectPos.position.y >= posA.y);
         Debug.Log("Up again");
         rb.gravityScale = 0;
         rb.linearVelocityY = 0;
-        rb.position = posA;
+        objectPos.position = posA;
         
         falling = false;
        

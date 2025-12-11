@@ -46,9 +46,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 3639926017361532250}
+  objectPos: {fileID: 689044190042167562}
   posB: 1
   WaitTime: 0.2
-  multiplier: 5
+  multiplier: 1
 --- !u!61 &5805159264072230690
 BoxCollider2D:
   m_ObjectHideFlags: 0
