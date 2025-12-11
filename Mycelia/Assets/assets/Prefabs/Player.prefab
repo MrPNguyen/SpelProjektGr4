@@ -5026,6 +5026,7 @@ GameObject:
   - component: {fileID: 6379467792457079880}
   - component: {fileID: 3479644331951188203}
   - component: {fileID: 2550057346731435758}
+  - component: {fileID: 4998531427421196052}
   - component: {fileID: 366716697853204253}
   m_Layer: 0
   m_Name: Player
@@ -5697,6 +5698,43 @@ MonoBehaviour:
   walkingInterval: 0.35
   runningMultiplier: 0.6
   GruntClip: {fileID: 0}
+--- !u!70 &4998531427421196052
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4731169498743363079}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 192
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0.20614006, y: -0.005660951}
+  m_Size: {x: 0.38459495, y: 0.95445454}
+  m_Direction: 0
 --- !u!70 &366716697853204253
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

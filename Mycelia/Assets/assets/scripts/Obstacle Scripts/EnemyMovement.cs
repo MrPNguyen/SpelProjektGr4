@@ -10,7 +10,7 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private GameObject pointB;
     
     [SerializeField] private float enemyMoveSpeed = 25f;
-    private float WaitBeforeWalking = 2f;
+    private float WaitBeforeWalking = 1f;
 
     private float EnemyDirection;
     
