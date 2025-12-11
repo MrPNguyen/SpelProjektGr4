@@ -91,7 +91,7 @@ public class PlayerManager : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            if (playerMovement.multiplier >= playerMovement.HardDropPower && !playerMovement.IsGrounded)
+            if (playerMovement.multiplier >= playerMovement.HardDropPower)
             {
                 Debug.Log($" player collide with when harddropping: {other.name}");
                 other.gameObject.SetActive(false);
