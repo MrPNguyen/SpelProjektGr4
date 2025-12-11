@@ -648,6 +648,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: falling spike (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 771581289560482462, guid: de88ecf85e5e89540b994562db4132f1, type: 3}
+      propertyPath: onTriggerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 771581289560482462, guid: de88ecf85e5e89540b994562db4132f1, type: 3}
+      propertyPath: onTriggerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 572162601}
+    - target: {fileID: 771581289560482462, guid: de88ecf85e5e89540b994562db4132f1, type: 3}
+      propertyPath: onTriggerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TakeDamage
+      objectReference: {fileID: 0}
+    - target: {fileID: 771581289560482462, guid: de88ecf85e5e89540b994562db4132f1, type: 3}
+      propertyPath: onTriggerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 771581289560482462, guid: de88ecf85e5e89540b994562db4132f1, type: 3}
+      propertyPath: onTriggerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 2001617443038344820, guid: de88ecf85e5e89540b994562db4132f1, type: 3}
       propertyPath: posB
       value: 2
@@ -9360,6 +9380,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: falling spike (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 771581289560482462, guid: de88ecf85e5e89540b994562db4132f1, type: 3}
+      propertyPath: onTriggerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 771581289560482462, guid: de88ecf85e5e89540b994562db4132f1, type: 3}
+      propertyPath: onTriggerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 572162601}
+    - target: {fileID: 771581289560482462, guid: de88ecf85e5e89540b994562db4132f1, type: 3}
+      propertyPath: onTriggerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TakeDamage
+      objectReference: {fileID: 0}
+    - target: {fileID: 771581289560482462, guid: de88ecf85e5e89540b994562db4132f1, type: 3}
+      propertyPath: onTriggerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 771581289560482462, guid: de88ecf85e5e89540b994562db4132f1, type: 3}
+      propertyPath: onTriggerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 2001617443038344820, guid: de88ecf85e5e89540b994562db4132f1, type: 3}
       propertyPath: posB
       value: 2
@@ -10872,6 +10912,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: falling spike (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 771581289560482462, guid: de88ecf85e5e89540b994562db4132f1, type: 3}
+      propertyPath: onTriggerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 771581289560482462, guid: de88ecf85e5e89540b994562db4132f1, type: 3}
+      propertyPath: onTriggerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 572162601}
+    - target: {fileID: 771581289560482462, guid: de88ecf85e5e89540b994562db4132f1, type: 3}
+      propertyPath: onTriggerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TakeDamage
+      objectReference: {fileID: 0}
+    - target: {fileID: 771581289560482462, guid: de88ecf85e5e89540b994562db4132f1, type: 3}
+      propertyPath: onTriggerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 771581289560482462, guid: de88ecf85e5e89540b994562db4132f1, type: 3}
+      propertyPath: onTriggerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 2001617443038344820, guid: de88ecf85e5e89540b994562db4132f1, type: 3}
       propertyPath: posB
       value: 2
@@ -11438,6 +11498,26 @@ PrefabInstance:
     - target: {fileID: 727290784336990664, guid: de88ecf85e5e89540b994562db4132f1, type: 3}
       propertyPath: m_Name
       value: falling spike
+      objectReference: {fileID: 0}
+    - target: {fileID: 771581289560482462, guid: de88ecf85e5e89540b994562db4132f1, type: 3}
+      propertyPath: onTriggerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 771581289560482462, guid: de88ecf85e5e89540b994562db4132f1, type: 3}
+      propertyPath: onTriggerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 572162601}
+    - target: {fileID: 771581289560482462, guid: de88ecf85e5e89540b994562db4132f1, type: 3}
+      propertyPath: onTriggerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TakeDamage
+      objectReference: {fileID: 0}
+    - target: {fileID: 771581289560482462, guid: de88ecf85e5e89540b994562db4132f1, type: 3}
+      propertyPath: onTriggerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 771581289560482462, guid: de88ecf85e5e89540b994562db4132f1, type: 3}
+      propertyPath: onTriggerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 2001617443038344820, guid: de88ecf85e5e89540b994562db4132f1, type: 3}
       propertyPath: posB
@@ -12106,7 +12186,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1451310168}
-  - {fileID: 606825563}
   - {fileID: 672550329}
   - {fileID: 1061252319}
   - {fileID: 934849541}
@@ -12116,6 +12195,7 @@ Transform:
   - {fileID: 1035626205}
   - {fileID: 138111012}
   - {fileID: 1348974214}
+  - {fileID: 606825563}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1541513487
