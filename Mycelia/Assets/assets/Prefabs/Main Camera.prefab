@@ -152,5 +152,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   smoothSpeed: 0.125
-  offset: {x: 0, y: 0, z: -3}
+  offset: {x: 0, y: 0, z: -5}
   playerManager: {fileID: 0}
+  followPlayer: 0
