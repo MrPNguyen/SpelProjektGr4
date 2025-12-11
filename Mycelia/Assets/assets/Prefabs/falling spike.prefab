@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2449978284102822350}
   - component: {fileID: 9128237144974267257}
-  - component: {fileID: 4721794932798516830}
+  - component: {fileID: 7049544584251706423}
   m_Layer: 0
   m_Name: triggerbox
   m_TagString: Untagged
@@ -79,7 +79,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &4721794932798516830
+--- !u!114 &7049544584251706423
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -88,28 +88,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 321203738886482918}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 227b1040489d9414abcc32ef604cb7b3, type: 3}
+  m_Script: {fileID: 11500000, guid: b6f597802401a494f9a8da3fc7415d1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tagToActivate: Player
-  onTriggerEnter:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2001617443038344820}
-        m_TargetAssemblyTypeName: FallingGround, Assembly-CSharp
-        m_MethodName: fall
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onTriggerExit:
-    m_PersistentCalls:
-      m_Calls: []
+  rb: {fileID: 3729366867992990401}
+  posB: 1
+  WaitTime: 1
+  multiplier: 1
 --- !u!1 &727290784336990664
 GameObject:
   m_ObjectHideFlags: 0
@@ -153,10 +138,9 @@ GameObject:
   m_Component:
   - component: {fileID: 982805860178981317}
   - component: {fileID: 7399323559994747025}
-  - component: {fileID: 2001617443038344820}
-  - component: {fileID: 224234629533388874}
   - component: {fileID: 2739149368184144355}
   - component: {fileID: 3729366867992990401}
+  - component: {fileID: 771581289560482462}
   m_Layer: 0
   m_Name: Spike
   m_TagString: Untagged
@@ -234,51 +218,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2001617443038344820
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5297796150504180078}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6f597802401a494f9a8da3fc7415d1c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  posB: 1
-  WaitTime: 1
---- !u!114 &224234629533388874
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5297796150504180078}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 227b1040489d9414abcc32ef604cb7b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tagToActivate: Player
-  onTriggerEnter:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onTriggerExit:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!60 &2739149368184144355
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -337,7 +276,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5297796150504180078}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -356,3 +295,34 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 5
+--- !u!114 &771581289560482462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5297796150504180078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 227b1040489d9414abcc32ef604cb7b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tagToActivate: Player
+  onTriggerEnter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onTriggerExit:
+    m_PersistentCalls:
+      m_Calls: []
