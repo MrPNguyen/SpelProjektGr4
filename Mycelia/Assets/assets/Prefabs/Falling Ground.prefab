@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8033735129870603371}
   - component: {fileID: 5776431988161564075}
   - component: {fileID: 5805159264072230690}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: FallTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 3639926017361532250}
-  posB: 2
+  posB: 1
   WaitTime: 0.2
   multiplier: 5
 --- !u!61 &5805159264072230690
@@ -83,7 +83,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.005571842, y: 0.4154962}
+  m_Offset: {x: -0.003730774, y: 0.43941832}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -93,7 +93,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.837224, y: 0.11129981}
+  m_Size: {x: 0.77002525, y: 0.15914404}
   m_EdgeRadius: 0
 --- !u!1 &8845148177394801856
 GameObject:
@@ -193,7 +193,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8845148177394801856}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -246,7 +246,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.004781246, y: -0.052863657}
+  m_Offset: {x: -0.006911278, y: -0.052863657}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -256,5 +256,5 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.83487606, y: 0.82639205}
+  m_Size: {x: 0.89878654, y: 0.82639205}
   m_EdgeRadius: 0

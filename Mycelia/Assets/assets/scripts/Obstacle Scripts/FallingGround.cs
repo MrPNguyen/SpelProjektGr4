@@ -11,40 +11,47 @@ public class FallingGround : MonoBehaviour
     [SerializeField] private float multiplier = 1;
     private Vector3 posA;
     private bool falling;
+
     void Start()
     {
-        posA = transform.position;
+        posA = rb.position;
     }
-    
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Player" && falling == false)
         {
-            Debug.Log("OnTriggerEnter2D");
-            StartCoroutine(Wait(WaitTime));    
+            falling = true;
+            StartCoroutine(Wait(WaitTime));
         }
     }
-    
+
+
     IEnumerator Wait(float WaitTime)
     {
-        Debug.Log("Wait triggered");
-        falling = true;
+        Debug.Log($"wait 0 seconds");
         yield return new WaitForSeconds(WaitTime);
         
-        Vector3 targetPosition = posA + Vector3.down * posB;
-        while (Vector3.Distance(transform.position, targetPosition) > 0.01f)
+        if (rb.gravityScale == 0)
         {
-            rb.MovePosition(Vector3.MoveTowards(transform.position, targetPosition, multiplier * Time.fixedDeltaTime));
-            yield return new WaitForFixedUpdate();
+            rb.gravityScale = multiplier;
         }
-        
-        while (Vector3.Distance(transform.position, posA) > 0.01f)
-        {
-            rb.MovePosition(Vector3.MoveTowards(transform.position, posA, multiplier * Time.fixedDeltaTime));
-            yield return new WaitForFixedUpdate();
-        }
+
+        yield return new WaitUntil(() => transform.position.y <= posA.y - posB);
+        Debug.Log("fallen");
+        rb.gravityScale = -2;
+       
+        yield return new WaitUntil(() => transform.position.y >= posA.y);
+        Debug.Log("Up again");
+        rb.gravityScale = 0;
+        rb.linearVelocityY = 0;
+        rb.position = posA;
         
         falling = false;
+       
     }
+
 }
+
+
 
