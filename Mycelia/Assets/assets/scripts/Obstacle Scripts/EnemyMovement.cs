@@ -1,52 +1,79 @@
-using System;
 using UnityEngine;
+using System.Collections;
 
 public class EnemyMovement : MonoBehaviour
 {
-    private Rigidbody2D rb;
-    private SpriteRenderer sr;
-
+    [SerializeField] private float enemyMoveSpeed = 3f;
+    [SerializeField] public float waitBeforeWalking = 2f;
     [SerializeField] private GameObject pointA;
     [SerializeField] private GameObject pointB;
-    
-    [SerializeField] private float enemyMoveSpeed = 25f;
-    private float WaitBeforeWalking = 1f;
 
-    private float EnemyDirection;
-    
-    private void Start()
+    private Rigidbody2D rb;
+    private SpriteRenderer sr;
+    private Animator anim;
+
+    private float EnemyDirection = 1f;
+    private bool canMove = false;
+
+    private void Awake()
     {
-        EnemyDirection = 1f;
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
     }
 
-    private void Update()
+    private void Start()
     {
-        WaitBeforeWalking -= Time.deltaTime;
+        StartCoroutine(StartMovingAfterDelay(waitBeforeWalking));
+    }
 
-        if (WaitBeforeWalking <= 0)
-        {
-            rb.linearVelocity = new Vector2(EnemyDirection * enemyMoveSpeed, rb.linearVelocity.y);
-        }
+    private void FixedUpdate()
+    {
+        if (!canMove) return;
+
+        Vector2 newPos = rb.position + new Vector2(enemyMoveSpeed * EnemyDirection, 0) * Time.fixedDeltaTime;
+        rb.MovePosition(newPos);
+    }
+
+    private IEnumerator StartMovingAfterDelay(float delay)
+    {
+        canMove = false;
+        anim.SetBool("isWalking", false);
+
+        yield return new WaitForSeconds(delay);
+
+        canMove = true;
+        anim.SetBool("isWalking", true);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("PointA"))
+        if (other.CompareTag("PointA"))
         {
             EnemyDirection = 1;
             sr.flipX = true;
         }
-        
-        else if (other.gameObject.CompareTag("PointB"))
+        else if (other.CompareTag("PointB"))
         {
             EnemyDirection = -1;
             sr.flipX = false;
         }
     }
 
+    // Call this after respawn
+    public void StartMovingAfterRespawn(float riseLength)
+    {
+        StartCoroutine(MoveAfterRespawn(riseLength));
+    }
 
-    
-   
+    private IEnumerator MoveAfterRespawn(float riseLength)
+    {
+        canMove = false;
+        anim.SetBool("isWalking", false);
+
+        yield return new WaitForSeconds(riseLength + waitBeforeWalking);
+
+        canMove = true;
+        anim.SetBool("isWalking", true);
+    }
 }
