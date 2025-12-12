@@ -112,6 +112,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        Debug.Log($"Multiplier: {multiplier} compared to Harddrop: {HardDropPower}");
         UpdateAnimations();
         Vector3 temporaryOffset = isDashing ? dashOffset : originalOffset;
         Vector3 headTemporaryOffset = isDashing ? headDashOffset : headOriginalOffset;

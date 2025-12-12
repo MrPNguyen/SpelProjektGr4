@@ -30,7 +30,6 @@ public class EnemyMovement : MonoBehaviour
         if (canMove)
         {
             Vector2 newPos = rb.position + new Vector2(enemyMoveSpeed * EnemyDirection, 0) * Time.fixedDeltaTime;
-            Debug.Log($"newPosition: {newPos}");
             rb.MovePosition(newPos);
         }
     }
