@@ -9,6 +9,12 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private Animator agaricAnim;
     [SerializeField] private EnemyMovement enemyMovement;
     private bool isRespawning = false;
+    private Vector3 originalPosition;
+
+    void Start()
+    {
+        originalPosition = enemy.transform.position;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -21,7 +27,8 @@ public class EnemyManager : MonoBehaviour
     IEnumerator RespawnEnemy()
     {
         isRespawning = true;
-        enemyMovement.waitBeforeWalking = 2f;
+        enemy.transform.position = originalPosition;
+        enemyMovement.WaitBeforeWalking = 2f;
         yield return new WaitForSeconds(SecondsToWait);
         agaricAnim.SetTrigger("Revive");       
         yield return null;
