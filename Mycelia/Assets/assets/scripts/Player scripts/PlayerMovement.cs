@@ -84,7 +84,7 @@ public class PlayerMovement : MonoBehaviour
     
     [NonSerialized] public Vector2 velocity;
     [NonSerialized] public float multiplier;
-    private Vector3 SafePosition = Vector3.zero;
+    
     private Vector3 SafeHardDropPosition = Vector3.zero;
     private Vector3 SafeCeilingPosition = Vector3.zero;
     private Vector3 SafeWallPosition = Vector3.zero;
@@ -571,7 +571,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector3 CeilingPosition = transform.position;
         Vector3 Wallpos = transform.position;
-        if (Physics2D.OverlapBox(WallCheck.position, wallCheckSize, 0, whatIsGround))
+        if (cc.IsTouchingLayers(whatIsGround) ||Physics2D.OverlapBox(WallCheck.position, wallCheckSize, 0, whatIsGround))
         {
             velocity.x = 0;
                 
@@ -595,18 +595,7 @@ public class PlayerMovement : MonoBehaviour
             SafeCeilingPosition = transform.position;
         }
         
-        Vector3 position = transform.position;
-        if (cc.IsTouchingLayers(whatIsGround))
-        {
-           
-            position.x = SafePosition.x;
-            transform.position = position;
-        }
-        else
-        {
-            SafePosition = transform.position;
-        }
-        
+       
     }
 
     private void UpdateAnimations()
