@@ -473,6 +473,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 yield return new WaitForSeconds(CoyoteTime);
             }
+          
         }
         else
         {
