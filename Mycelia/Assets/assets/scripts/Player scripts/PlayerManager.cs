@@ -134,14 +134,14 @@ public class PlayerManager : MonoBehaviour
 
     public void SaveKantarells()
     {
-        SavedKantarells++;
+        //SavedKantarells++;
     }
     public void SetUI()
     {
-        ScoreText.text = $"{SavedKantarells} / {MaxKantarells}";
+        //ScoreText.text = $"{SavedKantarells} / {MaxKantarells}";
     }
     public void UpdateUI()
     {
-        ScoreText.text = $"{SavedKantarells} / {MaxKantarells}";
+        //ScoreText.text = $"{SavedKantarells} / {MaxKantarells}";
     }
 }
