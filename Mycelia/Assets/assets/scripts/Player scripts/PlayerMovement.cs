@@ -88,6 +88,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 SafeHardDropPosition = Vector3.zero;
     private Vector3 SafeCeilingPosition = Vector3.zero;
     private Vector3 SafeWallPosition = Vector3.zero;
+    private Vector3 SafePosition = Vector3.zero;
 
     [SerializeField] private Vector3 originalOffset;
     [SerializeField] Vector3 dashOffset;
@@ -569,32 +570,45 @@ public class PlayerMovement : MonoBehaviour
 
     private void IsWalled()
     {
-        Vector3 CeilingPosition = transform.position;
-        Vector3 Wallpos = transform.position;
+        // Bara vägg
         if (cc.IsTouchingLayers(whatIsGround) ||Physics2D.OverlapBox(WallCheck.position, wallCheckSize, 0, whatIsGround))
         {
             velocity.x = 0;
                 
+            Vector3 Wallpos = transform.position;
             Wallpos.x = SafeWallPosition.x;
             transform.position = Wallpos;
+            Debug.Log("Wall collision");
         }
         else
         {
             SafeWallPosition = transform.position;
         }
         
-       
         if (Physics2D.OverlapBox(CeilingCheck.position, ceilingCheckSize, 0, whatIsGround))
         {
-            
+            Vector3 CeilingPosition = transform.position;
             CeilingPosition.y = SafeCeilingPosition.y;
             transform.position = CeilingPosition;
+            Debug.Log("Ceiling collision");
         }
         else
         {
             SafeCeilingPosition = transform.position;
         }
-        
+      
+        // if Tak
+        //if (Physics2D.OverlapBox(CeilingCheck.position, ceilingCheckSize, 0, whatIsGround))
+        //{
+        //    Vector3 CeiliingCollisionPosition = Physics2D.OverlapBox(CeilingCheck.position, ceilingCheckSize, 0, whatIsGround).ClosestPoint(CeilingCheck.position);
+//
+        //    if (CeiliingCollisionPosition.y < CeilingCheck.position.y)
+        //    {
+        //        Vector3 tempPos = transform.position;
+        //        tempPos.y += CeiliingCollisionPosition.y - CeilingCheck.position.y;
+        //        transform.position = tempPos;
+        //    }
+        //}
        
     }
 
