@@ -1,22 +1,10 @@
 fileFormatVersion: 2
-guid: 74d194325562dee42aa8d41a2f79016e
+guid: f8c205d11fcdb054f83b2ed45feedeb8
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6529727138617122772
-    second: JUMP_sheet_0
-  - first:
-      213: -3799599615625936066
-    second: JUMP_sheet_1
-  - first:
-      213: 6254365438201351223
-    second: JUMP_sheet_2
-  - first:
-      213: -6163928911235356522
-    second: JUMP_sheet_3
-  - first:
-      213: 956816589535080393
-    second: JUMP_sheet_4
+      213: -6661674353701173199
+    second: Cage1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -112,111 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: JUMP_sheet_0
+      name: Cage1_0
       rect:
         serializedVersion: 2
-        x: 24
-        y: 32
-        width: 51
-        height: 67
-      alignment: 9
-      pivot: {x: 0.75, y: 0}
+        x: 0
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4df50819c304e9a50800000000000000
-      internalID: 6529727138617122772
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: JUMP_sheet_1
-      rect:
-        serializedVersion: 2
-        x: 154
-        y: 32
-        width: 53
-        height: 65
-      alignment: 9
-      pivot: {x: 0.75, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e33c7edd74c154bc0800000000000000
-      internalID: -3799599615625936066
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: JUMP_sheet_2
-      rect:
-        serializedVersion: 2
-        x: 284
-        y: 32
-        width: 51
-        height: 70
-      alignment: 9
-      pivot: {x: 0.75, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 73cc87f9a38fbc650800000000000000
-      internalID: 6254365438201351223
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: JUMP_sheet_3
-      rect:
-        serializedVersion: 2
-        x: 414
-        y: 33
-        width: 51
-        height: 72
-      alignment: 9
-      pivot: {x: 0.74, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6986e092053557aa0800000000000000
-      internalID: -6163928911235356522
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: JUMP_sheet_4
-      rect:
-        serializedVersion: 2
-        x: 544
-        y: 33
-        width: 51
-        height: 72
-      alignment: 9
-      pivot: {x: 0.75, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9cf60766e9b474d00800000000000000
-      internalID: 956816589535080393
+      spriteID: 138cf4a687afc83a0800000000000000
+      internalID: -6661674353701173199
       vertices: []
       indices: 
       edges: []
@@ -225,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: e428eabf92cfcad4bbbe62d2626ab07d
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -235,11 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      JUMP_sheet_0: 6529727138617122772
-      JUMP_sheet_1: -3799599615625936066
-      JUMP_sheet_2: 6254365438201351223
-      JUMP_sheet_3: -6163928911235356522
-      JUMP_sheet_4: 956816589535080393
+      Cage1_0: -6661674353701173199
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

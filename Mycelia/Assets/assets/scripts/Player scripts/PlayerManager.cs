@@ -27,6 +27,11 @@ public class PlayerManager : MonoBehaviour
     
     [Header("Extra Life")]
     [SerializeField] private GameObject extraLife;
+    
+    [Header("Score")]
+    private int SavedKantarells = 0;
+    [SerializeField] private int MaxKantarells;
+    [SerializeField] private TMP_Text ScoreText;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -81,6 +86,8 @@ public class PlayerManager : MonoBehaviour
             Heart2.enabled = true;
             Heart3.enabled = true;
         }
+
+        UpdateUI();
     }
     public void TakeDamage()
     {
@@ -123,5 +130,18 @@ public class PlayerManager : MonoBehaviour
         yield return new WaitForSeconds(duration);
         playerMovement.isKnockedBack = false;
         player.color = Color.white;
+    }
+
+    public void SaveKantarells()
+    {
+        SavedKantarells++;
+    }
+    public void SetUI()
+    {
+        ScoreText.text = $"{SavedKantarells} / {MaxKantarells}";
+    }
+    public void UpdateUI()
+    {
+        ScoreText.text = $"{SavedKantarells} / {MaxKantarells}";
     }
 }
