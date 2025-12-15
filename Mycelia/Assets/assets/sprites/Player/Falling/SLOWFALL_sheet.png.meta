@@ -129,7 +129,7 @@ TextureImporter:
         width: 55
         height: 74
       alignment: 9
-      pivot: {x: 0.658605, y: 0.5}
+      pivot: {x: 0.658605, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -151,7 +151,7 @@ TextureImporter:
         width: 51
         height: 74
       alignment: 9
-      pivot: {x: 0.6249973, y: 0.5}
+      pivot: {x: 0.6249973, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -173,7 +173,7 @@ TextureImporter:
         width: 46
         height: 74
       alignment: 9
-      pivot: {x: 0.6088874, y: 0.5}
+      pivot: {x: 0.6088874, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -194,8 +194,8 @@ TextureImporter:
         y: 30
         width: 36
         height: 74
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -216,8 +216,8 @@ TextureImporter:
         y: 30
         width: 34
         height: 74
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -234,12 +234,12 @@ TextureImporter:
       name: SLOWFALL_sheet_5
       rect:
         serializedVersion: 2
-        x: 694
+        x: 693
         y: 30
         width: 36
         height: 74
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -261,7 +261,7 @@ TextureImporter:
         width: 46
         height: 74
       alignment: 9
-      pivot: {x: 0.5989884, y: 0.5}
+      pivot: {x: 0.5989884, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -283,7 +283,7 @@ TextureImporter:
         width: 51
         height: 74
       alignment: 9
-      pivot: {x: 0.6339255, y: 0.5}
+      pivot: {x: 0.6339255, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
