@@ -5208,7 +5208,7 @@ MonoBehaviour:
   Heart1: {fileID: 0}
   Heart2: {fileID: 0}
   Heart3: {fileID: 0}
-  animator: {fileID: 0}
+  animator: {fileID: 4043659103143534288}
   GameOverPrologText: {fileID: 0}
   DeathText:
   - The Agarics continue to rule over the kingdom...
