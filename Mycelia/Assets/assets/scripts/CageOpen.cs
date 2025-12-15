@@ -9,13 +9,13 @@ using UnityEngine.InputSystem;
 public class CageOpen : MonoBehaviour
 
 {
-    //public UnityEvent onTriggerEnter;
+    public UnityEvent onTriggerEnter;
 
     private bool IsOpen = false;
     private bool isInRange = false;
     [SerializeField] private Sprite openDoor;
     private SpriteRenderer Sr;
-    [SerializeField] private PlayerManager player;
+    private BoxCollider2D bx;
     
     
    
@@ -23,6 +23,7 @@ public class CageOpen : MonoBehaviour
     void Start()
     {
         Sr = gameObject.GetComponent<SpriteRenderer>();
+        bx = gameObject.GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
@@ -31,28 +32,15 @@ public class CageOpen : MonoBehaviour
         
     }
 
-    /*void OnTriggerEnter2D(Collider2D other)
-    {
-        if (IsOpen && other.CompareTag(tagToActivate))
-        {  onTriggerEnter.Invoke();
-            Sr.sprite = openDoor;
-            Debug.Log("isOpen");
-            GetComponent<BoxCollider2D>().isTrigger = false;
-            
-        }
-    }*/
-
     void OnTriggerEnter2D(Collider2D other)
     {
-        isInRange = true;
-    }
-    public void OpenCage(InputAction.CallbackContext context)
-    {
-        if (isInRange)
-        {
-            player.SaveKantarells();
+        if (IsOpen && other.CompareTag(tagToActivate))
+        {  
+            onTriggerEnter.Invoke();
             Sr.sprite = openDoor;
-            GetComponent<BoxCollider2D>().isTrigger = false;
+            Debug.Log("isOpen");
+            bx.enabled = false;
+            
         }
     }
 
@@ -60,7 +48,7 @@ public class CageOpen : MonoBehaviour
     {
         Debug.Log("isOpen=true");
         IsOpen = true;
-        GetComponent<BoxCollider2D>().enabled = true;
+        bx.enabled = true;
     }
 
 }
