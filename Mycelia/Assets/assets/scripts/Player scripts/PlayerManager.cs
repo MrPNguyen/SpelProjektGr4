@@ -99,7 +99,6 @@ public class PlayerManager : MonoBehaviour
             }
             else
             {
-                Debug.Log($" player collide with: {other.name}");
                 TakeDamage();
                 float HitRecoilX = 10f * (playerMovement.isFacingRight ? -1 : 1);
                 float HitRecoilY = HitRecoil;

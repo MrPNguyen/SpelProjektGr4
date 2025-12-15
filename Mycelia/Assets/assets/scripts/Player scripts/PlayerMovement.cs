@@ -112,7 +112,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        Debug.Log($"Multiplier: {multiplier} compared to Harddrop: {HardDropPower}");
+        //Debug.Log($"Multiplier: {multiplier} compared to Harddrop: {HardDropPower}");
         UpdateAnimations();
         Vector3 temporaryOffset = isDashing ? dashOffset : originalOffset;
         Vector3 headTemporaryOffset = isDashing ? headDashOffset : headOriginalOffset;
@@ -184,7 +184,7 @@ public class PlayerMovement : MonoBehaviour
         
         if (IsGrounded)
         {
-            multiplier = 4;
+            multiplier = 1;
         }
         else
         {
