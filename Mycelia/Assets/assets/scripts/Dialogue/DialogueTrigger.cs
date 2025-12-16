@@ -42,7 +42,6 @@ public class DialogueTrigger : MonoBehaviour
         else
         {
             FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
-
         }
     }
 }

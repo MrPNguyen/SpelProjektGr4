@@ -31,7 +31,7 @@ public class FallingGround : MonoBehaviour
 
     IEnumerator Wait(float WaitTime)
     {
-        Debug.Log($"wait 0 seconds");
+        //Debug.Log($"wait 0 seconds");
         yield return new WaitForSeconds(WaitTime);
         
         if (rb.gravityScale == 0)
@@ -40,11 +40,11 @@ public class FallingGround : MonoBehaviour
         }
 
         yield return new WaitUntil(() => objectPos.position.y <= posA.y - posB);
-        Debug.Log("fallen");
+        //Debug.Log("fallen");
         rb.gravityScale = -2;
        
         yield return new WaitUntil(() => objectPos.position.y >= posA.y);
-        Debug.Log("Up again");
+        //Debug.Log("Up again");
         rb.gravityScale = 0;
         rb.linearVelocityY = 0;
         objectPos.position = posA;

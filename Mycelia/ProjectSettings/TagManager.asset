@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - PointB
   - ExtraLife
+  - Portal
   layers:
   - Default
   - TransparentFX
