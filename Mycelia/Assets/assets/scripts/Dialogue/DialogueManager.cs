@@ -46,11 +46,11 @@ public class DialogueManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            Debug.Log("DialogueManager Instance created. Instance ID: " + this.GetInstanceID());
+            //Debug.Log("DialogueManager Instance created. Instance ID: " + this.GetInstanceID());
         }
         else
         {
-            Debug.LogWarning("Another DialogueManager instance already exists. Destroying this one.");
+            //Debug.LogWarning("Another DialogueManager instance already exists. Destroying this one.");
             Destroy(gameObject);
         }
 
@@ -99,10 +99,10 @@ public class DialogueManager : MonoBehaviour
 
         StartCoroutine(TypeSentence(currentLine));
         
-        if (lines.Count == 0)
+        /*if (lines.Count == 0)
         {
             FindObjectOfType<DialogueEnd>().StartTransitionEarly();
-        }
+        }*/
         
     }
 
@@ -138,12 +138,12 @@ public class DialogueManager : MonoBehaviour
         Debug.Log("EndDialogue called. skipExitAnimation: " + skipExitAnimation);
         if (skipExitAnimation)
         {
-            Debug.Log("Skipping exit animation.");
+           //Debug.Log("Skipping exit animation.");
             animator.enabled = false;
         }
         else
         {
-            Debug.Log("Playing exit animation.");
+            //Debug.Log("Playing exit animation.");
             animator.SetBool("started", false);
         }
         
@@ -156,11 +156,5 @@ public class DialogueManager : MonoBehaviour
         }
         DialogueEnd = true;
     }
-
-    public void SkipExitAnimation()
-    {
-        Debug.Log("SkipExitAnimation called. Setting skipExitAnimation to true.");
-        Debug.Log("DialogueManager Instance ID: " + this.GetInstanceID());
-        skipExitAnimation = true;
-    }
+    
 }

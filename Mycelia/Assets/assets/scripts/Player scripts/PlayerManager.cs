@@ -24,6 +24,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private float HitRecoil = 20;
     private Material player;
     [SerializeField] private GameObject enemy;
+    private Coroutine knockbackRoutine;
     
     [Header("Extra Life")]
     [SerializeField] private GameObject extraLife;
@@ -33,10 +34,10 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private int MaxKantarells;
     [SerializeField] private TMP_Text ScoreText;
     [SerializeField] private Animator portal;
-    [SerializeField] private Camera mainCamera;
     [SerializeField] private CameraFollow cameraFollow;
-    private Vector2 originalCameraOffset;
-    private Vector2 newCameraOffset;
+    private Vector2 originalCameraPosition;
+    private Vector2 newCameraPosition;
+    private Coroutine UnlockWinRoutine;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -53,8 +54,8 @@ public class PlayerManager : MonoBehaviour
             GameOverPrologText.text = "The Faye has lost its light...";
         }
         PlayerUI.SetActive(true);
-        newCameraOffset = new Vector3(85.2f, 2.73f, -4.37f);
-        originalCameraOffset = cameraFollow.offset;
+        newCameraPosition = new Vector3(85.2f, 2.73f, -4.37f);
+        originalCameraPosition = cameraFollow.transform.position;
     }
 
     // Update is called once per frame
@@ -121,7 +122,7 @@ public class PlayerManager : MonoBehaviour
                 float HitRecoilY = HitRecoil;
                 playerMovement.velocity = new Vector2(HitRecoilX, HitRecoilY);
 
-                StartCoroutine(KnockbackCoroutine(0.2f));
+               KnockBack(0.2f);
             }
         }
 
@@ -140,6 +141,16 @@ public class PlayerManager : MonoBehaviour
         yield return new WaitForSeconds(duration);
         playerMovement.isKnockedBack = false;
         player.color = Color.white;
+        knockbackRoutine = null;
+    }
+
+    private void KnockBack(float duration)
+    {
+        if (knockbackRoutine != null)
+        {
+            return;
+        }
+        knockbackRoutine = StartCoroutine(KnockbackCoroutine(duration));
     }
 
     public void SaveKantarells()
@@ -157,26 +168,35 @@ public class PlayerManager : MonoBehaviour
 
     private IEnumerator WinUnlock()
     {
+        Debug.Log("Coroutine Called");
         playerMovement.canMove = false;
+        cameraFollow.followPlayer = false;
         playerMovement.horizontalMovement = 0f;
         playerMovement.velocity = Vector2.zero;
         playerMovement.rb.linearVelocity = Vector2.zero;
         
-        cameraFollow.offset = newCameraOffset;
+        cameraFollow.offset = newCameraPosition;
         yield return new WaitForSeconds(2);
         portal.SetTrigger("Winnable");
         yield return new WaitForSeconds(2);
-        cameraFollow.offset = originalCameraOffset;
+        cameraFollow.offset = originalCameraPosition;
         
         playerMovement.horizontalMovement = 0f;
         playerMovement.velocity = Vector2.zero;
         playerMovement.rb.linearVelocity = Vector2.zero;
         playerMovement.canMove = true;
-        playerMovement.canMove = true;
+        cameraFollow.followPlayer = true;
+
+        UnlockWinRoutine = null;
+        //TODO: Set originalCamerPosition to player position.
     }
 
     private void UnlockWin()
     {
-        StartCoroutine(WinUnlock());
+        if (UnlockWinRoutine != null)
+        {
+            return;
+        }
+        UnlockWinRoutine = StartCoroutine(WinUnlock());
     }
 }

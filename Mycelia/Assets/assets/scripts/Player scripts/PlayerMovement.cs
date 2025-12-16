@@ -578,7 +578,7 @@ public class PlayerMovement : MonoBehaviour
             Vector3 Wallpos = transform.position;
             Wallpos.x = SafeWallPosition.x;
             transform.position = Wallpos;
-            Debug.Log("Wall collision");
+            //Debug.Log("Wall collision");
         }
         else
         {
@@ -590,7 +590,7 @@ public class PlayerMovement : MonoBehaviour
             Vector3 CeilingPosition = transform.position;
             CeilingPosition.y = SafeCeilingPosition.y;
             transform.position = CeilingPosition;
-            Debug.Log("Ceiling collision");
+            //Debug.Log("Ceiling collision");
         }
         else
         {
