@@ -32,6 +32,11 @@ public class PlayerManager : MonoBehaviour
     private int SavedKantarells = 0;
     [SerializeField] private int MaxKantarells;
     [SerializeField] private TMP_Text ScoreText;
+    [SerializeField] private Animator portal;
+    [SerializeField] private Camera mainCamera;
+    [SerializeField] private CameraFollow cameraFollow;
+    private Vector2 originalCameraOffset;
+    private Vector2 newCameraOffset;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -48,6 +53,8 @@ public class PlayerManager : MonoBehaviour
             GameOverPrologText.text = "The Faye has lost its light...";
         }
         PlayerUI.SetActive(true);
+        newCameraOffset = new Vector3(85.2f, 2.73f, -4.37f);
+        originalCameraOffset = cameraFollow.offset;
     }
 
     // Update is called once per frame
@@ -58,7 +65,6 @@ public class PlayerManager : MonoBehaviour
             Destroy(this.gameObject);
             PlayerUI.SetActive(false);
             animator.SetTrigger("isDead");
-            
         }
 
         if (currentHealth == 2)
@@ -88,6 +94,10 @@ public class PlayerManager : MonoBehaviour
         }
 
         UpdateUI();
+        if (SavedKantarells >= MaxKantarells)
+        {
+            UnlockWin();
+        }
     }
     public void TakeDamage()
     {
@@ -143,5 +153,30 @@ public class PlayerManager : MonoBehaviour
     public void UpdateUI()
     {
         ScoreText.text = $"{SavedKantarells} / {MaxKantarells}";
+    }
+
+    private IEnumerator WinUnlock()
+    {
+        playerMovement.canMove = false;
+        playerMovement.horizontalMovement = 0f;
+        playerMovement.velocity = Vector2.zero;
+        playerMovement.rb.linearVelocity = Vector2.zero;
+        
+        cameraFollow.offset = newCameraOffset;
+        yield return new WaitForSeconds(2);
+        portal.SetTrigger("Winnable");
+        yield return new WaitForSeconds(2);
+        cameraFollow.offset = originalCameraOffset;
+        
+        playerMovement.horizontalMovement = 0f;
+        playerMovement.velocity = Vector2.zero;
+        playerMovement.rb.linearVelocity = Vector2.zero;
+        playerMovement.canMove = true;
+        playerMovement.canMove = true;
+    }
+
+    private void UnlockWin()
+    {
+        StartCoroutine(WinUnlock());
     }
 }
