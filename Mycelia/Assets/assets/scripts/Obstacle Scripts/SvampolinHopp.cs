@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -17,7 +18,7 @@ public class SvampolinHopp : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            if (playerMovement.multiplier >= 2)
+            if (playerMovement.multiplier >= 2 && Bounce > 0)
             {
                 //BounceCoroutine(Delay);
                 //animator.SetBool("isBounce", true);
@@ -25,7 +26,13 @@ public class SvampolinHopp : MonoBehaviour
                 playerMovement.hasHardDropped = false;
                 playerMovement.velocity.y = Bounce;
             }
-        
+            else if (playerMovement.velocity.y <= -1f)
+            {
+                playerMovement.hasHardDropped = false;
+                playerMovement.velocity.y = 0.5f * MathF.Abs(playerMovement.velocity.y);
+            }
+
+
         }
     }
     
