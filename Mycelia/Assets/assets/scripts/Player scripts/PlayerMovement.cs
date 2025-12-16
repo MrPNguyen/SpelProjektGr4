@@ -210,7 +210,7 @@ public class PlayerMovement : MonoBehaviour
         
         rb.linearVelocity = velocity;
         
-        if (!isKnockedBack && CurrentStamina != 0 && canMove)
+        if (!isKnockedBack && canMove)
         {
             /*if (isRunning)
             {
@@ -312,7 +312,7 @@ public class PlayerMovement : MonoBehaviour
         
         if (isFlying) return;
 
-        if (CurrentStamina == 0) return;
+        //if (CurrentStamina == 0) return;
 
         // Prevent jumping in the air
         if (!IsGrounded && context.performed)
@@ -412,7 +412,7 @@ public class PlayerMovement : MonoBehaviour
     public void HardDrop(InputAction.CallbackContext context)
     {
         if(!canMove) return;
-        if (CurrentStamina == 0) return;
+        //if (CurrentStamina == 0) return;
 
         if (context.performed)
         {
