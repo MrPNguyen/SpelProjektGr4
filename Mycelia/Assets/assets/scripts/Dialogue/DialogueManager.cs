@@ -21,6 +21,7 @@ public class DialogueManager : MonoBehaviour
     public Animator animator;
 
     [SerializeField] public PlayerMovement playerMovement;
+    [SerializeField] private DialogueTrigger dialogueTrigger;
 
     [Header("Audio")]
 
@@ -37,6 +38,7 @@ public class DialogueManager : MonoBehaviour
     private void Start()
     {
         playerMovement = FindObjectOfType<PlayerMovement>();
+        dialogueTrigger = FindObjectOfType<DialogueTrigger>();
     }
 
     private void Awake()
@@ -70,10 +72,12 @@ public class DialogueManager : MonoBehaviour
         }
 
         DisplayNextDialogueLine();
-        if (playerMovement != null)
+        if (playerMovement != null && !dialogueTrigger.ableToWalkDuringDialogue)
         {
             playerMovement.canMove = false;
-
+            playerMovement.horizontalMovement = 0f;
+            playerMovement.velocity = Vector2.zero;
+            playerMovement.rb.linearVelocity = Vector2.zero;
         }
     }
 
@@ -143,8 +147,11 @@ public class DialogueManager : MonoBehaviour
             animator.SetBool("started", false);
         }
         
-        if (playerMovement != null)
+        if (playerMovement != null  && !dialogueTrigger.ableToWalkDuringDialogue)
         {
+            playerMovement.horizontalMovement = 0f;
+            playerMovement.velocity = Vector2.zero;
+            playerMovement.rb.linearVelocity = Vector2.zero;
             playerMovement.canMove = true;
         }
         DialogueEnd = true;

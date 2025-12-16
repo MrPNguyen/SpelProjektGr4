@@ -16,6 +16,7 @@ public class CageOpen : MonoBehaviour
     [SerializeField] private Sprite openDoor;
     private SpriteRenderer Sr;
     private BoxCollider2D bx;
+    private DialogueTrigger dialogueTrigger;
     
     
    
@@ -24,6 +25,7 @@ public class CageOpen : MonoBehaviour
     {
         Sr = gameObject.GetComponent<SpriteRenderer>();
         bx = gameObject.GetComponent<BoxCollider2D>();
+        dialogueTrigger = gameObject.GetComponent<DialogueTrigger>();
     }
 
     // Update is called once per frame
@@ -40,7 +42,7 @@ public class CageOpen : MonoBehaviour
             Sr.sprite = openDoor;
             Debug.Log("isOpen");
             bx.enabled = false;
-            
+            dialogueTrigger.TriggerDialogue();
         }
     }
 

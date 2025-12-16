@@ -26,6 +26,7 @@ public class DialogueTrigger : MonoBehaviour
     public Dialogue dialogue;
     public Animator animator;
     private bool hasDialogueAlreadyBegun = false;
+    public bool ableToWalkDuringDialogue = false;
 
     void Start()
     {
