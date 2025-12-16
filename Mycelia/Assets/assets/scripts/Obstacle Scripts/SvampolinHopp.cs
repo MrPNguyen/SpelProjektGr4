@@ -20,7 +20,8 @@ public class SvampolinHopp : MonoBehaviour
             if (playerMovement.multiplier >= 2)
             {
                 //BounceCoroutine(Delay);
-                animator.SetBool("isBounce", true);
+                //animator.SetBool("isBounce", true);
+                animator.SetTrigger("Bounce");
                 playerMovement.hasHardDropped = false;
                 playerMovement.velocity.y = Bounce;
             }
@@ -30,7 +31,7 @@ public class SvampolinHopp : MonoBehaviour
     
     public void OnTriggerExit2D(Collider2D other)
     {
-        animator.SetBool("isBounce", false);
+        //animator.SetBool("isBounce", false);
     }
     
     /*private IEnumerator BounceCoroutine(float Delay)
