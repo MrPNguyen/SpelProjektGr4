@@ -4055,6 +4055,14 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 19707030}
+    - target: {fileID: 2455445038416584106, guid: 01e787c4daa366541bd8df992bbb655b, type: 3}
+      propertyPath: m_Volume
+      value: 0.872
+      objectReference: {fileID: 0}
+    - target: {fileID: 2455445038416584106, guid: 01e787c4daa366541bd8df992bbb655b, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: df23f51854a5ce84e9f2720a33d4e51d, type: 3}
     - target: {fileID: 4653586621824406032, guid: 01e787c4daa366541bd8df992bbb655b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 38.771687
