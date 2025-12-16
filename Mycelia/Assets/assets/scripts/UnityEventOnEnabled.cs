@@ -15,7 +15,7 @@ public class UnityEventOnEnabled : MonoBehaviour
         if (toggle)
             customEvent.Invoke();
         
-        Debug.Log("Unity Event invoked in " + gameObject.name);
+        
         toggle = false;
     }
 
@@ -26,6 +26,6 @@ public class UnityEventOnEnabled : MonoBehaviour
 
     public void DebugMessage()
     {
-        Debug.Log("You've activated the DebugMessage in " + gameObject);
+       
     }
 }

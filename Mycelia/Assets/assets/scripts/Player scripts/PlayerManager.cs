@@ -61,8 +61,7 @@ public class PlayerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log($"newCameraPosition: {newCameraPosition} & originalCameraPosition: {originalCameraPosition}");
-        Debug.Log($"CurrentCameraPosition: {cameraFollow.transform.position}");
+       
         if (currentHealth <= 0)
         { 
             Destroy(this.gameObject);
@@ -109,7 +108,6 @@ public class PlayerManager : MonoBehaviour
         {
             if (playerMovement.multiplier >= playerMovement.HardDropPower)
             {
-                Debug.Log($" player collide with when harddropping: {other.name}");
                 other.gameObject.SetActive(false);
                 Instantiate(extraLife, other.transform.position, other.transform.rotation);
             }
@@ -177,7 +175,6 @@ public class PlayerManager : MonoBehaviour
 
     private IEnumerator WinUnlock()
     {
-        Debug.Log("Coroutine Called");
         playerMovement.canMove = false;
         cameraFollow.followPlayer = false;
         playerMovement.horizontalMovement = 0f;

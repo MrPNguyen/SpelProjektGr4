@@ -15,7 +15,7 @@ public class UnityEventOnTrigger : MonoBehaviour
     {
         if ((GetComponent<Collider>() == null) && (GetComponent<Collider2D>() == null))
         {
-            Debug.Log($"{gameObject} is missing a collider");
+           
         }
         
     }
@@ -43,7 +43,7 @@ public class UnityEventOnTrigger : MonoBehaviour
         if (other.CompareTag(tagToActivate))
         {
             onTriggerEnter.Invoke();
-            Debug.Log("Unity Event Trigger (enter) activated on " + gameObject);
+            
         }
     }
     
@@ -52,7 +52,7 @@ public class UnityEventOnTrigger : MonoBehaviour
         if (other.CompareTag(tagToActivate))
         {
             onTriggerExit.Invoke();
-            Debug.Log("Unity Event Trigger (exit) activated on " + gameObject);
+            
         }
     }
 }
