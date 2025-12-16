@@ -30,13 +30,13 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private GameObject extraLife;
     
     [Header("Score")]
-    private int SavedKantarells = 0;
+    [SerializeField]private int SavedKantarells = 0;
     [SerializeField] private int MaxKantarells;
     [SerializeField] private TMP_Text ScoreText;
     [SerializeField] private Animator portal;
     [SerializeField] private CameraFollow cameraFollow;
-    private Vector2 originalCameraPosition;
-    private Vector2 newCameraPosition;
+    private Vector3 originalCameraPosition;
+    private Vector3 newCameraPosition;
     private Coroutine UnlockWinRoutine;
     void Start()
     {
@@ -61,6 +61,8 @@ public class PlayerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log($"newCameraPosition: {newCameraPosition} & originalCameraPosition: {originalCameraPosition}");
+        Debug.Log($"CurrentCameraPosition: {cameraFollow.transform.position}");
         if (currentHealth <= 0)
         { 
             Destroy(this.gameObject);
@@ -94,11 +96,7 @@ public class PlayerManager : MonoBehaviour
             Heart3.enabled = true;
         }
 
-        UpdateUI();
-        if (SavedKantarells >= MaxKantarells)
-        {
-            UnlockWin();
-        }
+        
     }
     public void TakeDamage()
     {
@@ -131,6 +129,11 @@ public class PlayerManager : MonoBehaviour
             currentHealth++;
             Destroy(other.gameObject);
         }
+
+        if (other.tag == "Portal")
+        {
+            
+        }
     }
     
     private IEnumerator KnockbackCoroutine(float duration)
@@ -156,7 +159,13 @@ public class PlayerManager : MonoBehaviour
     public void SaveKantarells()
     {
         SavedKantarells++;
+        UpdateUI();
+        if (SavedKantarells >= MaxKantarells)
+        {
+            UnlockWin();
+        }
     }
+
     public void SetUI()
     {
         ScoreText.text = $"{SavedKantarells} / {MaxKantarells}";
@@ -175,11 +184,11 @@ public class PlayerManager : MonoBehaviour
         playerMovement.velocity = Vector2.zero;
         playerMovement.rb.linearVelocity = Vector2.zero;
         
-        cameraFollow.offset = newCameraPosition;
+        cameraFollow.transform.position = newCameraPosition;
         yield return new WaitForSeconds(2);
         portal.SetTrigger("Winnable");
-        yield return new WaitForSeconds(2);
-        cameraFollow.offset = originalCameraPosition;
+        yield return new WaitForSeconds(6f);
+        cameraFollow.transform.position = originalCameraPosition;
         
         playerMovement.horizontalMovement = 0f;
         playerMovement.velocity = Vector2.zero;
@@ -187,16 +196,13 @@ public class PlayerManager : MonoBehaviour
         playerMovement.canMove = true;
         cameraFollow.followPlayer = true;
 
-        UnlockWinRoutine = null;
         //TODO: Set originalCamerPosition to player position.
     }
 
     private void UnlockWin()
     {
-        if (UnlockWinRoutine != null)
-        {
-            return;
-        }
+        if (UnlockWinRoutine != null) return;
+        
         UnlockWinRoutine = StartCoroutine(WinUnlock());
     }
 }

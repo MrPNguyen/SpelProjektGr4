@@ -40,7 +40,7 @@ public class CageOpen : MonoBehaviour
         {  
             onTriggerEnter.Invoke();
             Sr.sprite = openDoor;
-            Debug.Log("isOpen");
+            //Debug.Log("isOpen");
             bx.enabled = false;
             dialogueTrigger.TriggerDialogue();
         }
@@ -48,7 +48,7 @@ public class CageOpen : MonoBehaviour
 
     public void OpenDoor()
     {
-        Debug.Log("isOpen=true");
+        //Debug.Log("isOpen=true");
         IsOpen = true;
         bx.enabled = true;
     }
