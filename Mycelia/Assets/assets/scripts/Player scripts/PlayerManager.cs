@@ -9,6 +9,7 @@ public class PlayerManager : MonoBehaviour
     private PlayerMovement playerMovement;
     public Vector3 originalPosition;
     [SerializeField] private GameObject PlayerUI;
+    [SerializeField] private DialogueTrigger dialogueTrigger;
     
     [Header("Health")]
     private int maxHealth = 3; 
@@ -195,8 +196,7 @@ public class PlayerManager : MonoBehaviour
         playerMovement.rb.linearVelocity = Vector2.zero;
         playerMovement.canMove = true;
         cameraFollow.followPlayer = true;
-
-        //TODO: Set originalCamerPosition to player position.
+        dialogueTrigger.TriggerDialogue();
     }
 
     private void UnlockWin()
