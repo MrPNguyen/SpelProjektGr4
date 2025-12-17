@@ -42,7 +42,6 @@ public class CageOpen : MonoBehaviour
             Sr.sprite = openDoor;
             //Debug.Log("isOpen");
             bx.enabled = false;
-            dialogueTrigger.TriggerDialogue();
         }
     }
 
