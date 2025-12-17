@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class SvampolinHopp : MonoBehaviour
@@ -26,10 +27,15 @@ public class SvampolinHopp : MonoBehaviour
                 playerMovement.hasHardDropped = false;
                 playerMovement.velocity.y = Bounce;
             }
-            else if (playerMovement.velocity.y <= -1f)
+            else if (playerMovement.velocity.y <= -3f )
             {
+                Debug.Log(playerMovement.velocity.y);
                 playerMovement.hasHardDropped = false;
-                playerMovement.velocity.y = 0.5f * MathF.Abs(playerMovement.velocity.y);
+                playerMovement.velocity.y = 0.4f * MathF.Abs(playerMovement.velocity.y);
+            }
+            if (Keyboard.current.spaceKey.wasPressedThisFrame)
+            {
+                playerMovement.velocity.y = 6.5f;
             }
 
 
