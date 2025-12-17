@@ -37,7 +37,7 @@
                     "name": "Interact",
                     "type": "Button",
                     "id": "852140f2-7766-474d-8707-702459ba45f3",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "Hold",
                     "initialStateCheck": false
@@ -109,6 +109,15 @@
                     "name": "Hard Drop",
                     "type": "Button",
                     "id": "ce63804a-2283-4370-8a82-a41c604396c4",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Backup",
+                    "type": "Button",
+                    "id": "f70fe97c-8acb-48d5-ad56-b8993d144c77",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -542,6 +551,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Hard Drop",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "aca276b2-418f-496d-8716-7eec63a4e1a7",
+                    "path": "<Keyboard>/p",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Backup",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
