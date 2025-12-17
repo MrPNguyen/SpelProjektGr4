@@ -591,6 +591,7 @@ public class PlayerMovement : MonoBehaviour
             Vector3 CeilingPosition = transform.position;
             CeilingPosition.y = SafeCeilingPosition.y;
             transform.position = CeilingPosition;
+            velocity.y = 0;
             //Debug.Log("Ceiling collision");
         }
         else

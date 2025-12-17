@@ -5475,8 +5475,12 @@ MonoBehaviour:
   HitRecoil: 5
   enemy: {fileID: 0}
   extraLife: {fileID: 5097334356680221191, guid: ce3831b2fa01c6a468bb5d0a884f1a01, type: 3}
+  EnemyBounce: 5
+  SavedKantarells: 0
   MaxKantarells: 0
   ScoreText: {fileID: 0}
+  portal: {fileID: 0}
+  cameraFollow: {fileID: 0}
 --- !u!114 &8841612456383048459
 MonoBehaviour:
   m_ObjectHideFlags: 0

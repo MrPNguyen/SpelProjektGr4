@@ -29,6 +29,7 @@ public class PlayerManager : MonoBehaviour
     [Header("Extra Life")]
     [SerializeField] private GameObject extraLife;
     
+    
     [Header("Score")]
     [SerializeField]private int SavedKantarells = 0;
     [SerializeField] private int MaxKantarells;
@@ -110,6 +111,8 @@ public class PlayerManager : MonoBehaviour
             {
                 other.gameObject.SetActive(false);
                 Instantiate(extraLife, other.transform.position, other.transform.rotation);
+                playerMovement.hasHardDropped = false;
+               
             }
             else
             {
