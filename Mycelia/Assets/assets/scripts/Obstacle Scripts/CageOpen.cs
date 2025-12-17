@@ -14,9 +14,11 @@ public class CageOpen : MonoBehaviour
     private bool IsOpen = false;
     private bool isInRange = false;
     [SerializeField] private Sprite openDoor;
+    [SerializeField] private Sprite HappySprite;
     private SpriteRenderer Sr;
     private BoxCollider2D bx;
     private DialogueTrigger dialogueTrigger;
+    [SerializeField] private PlayerManager playerManager;
     
     
    
@@ -42,6 +44,10 @@ public class CageOpen : MonoBehaviour
             Sr.sprite = openDoor;
             //Debug.Log("isOpen");
             bx.enabled = false;
+            if (playerManager.SavedKantarells < playerManager.MaxKantarells)
+            {
+                dialogueTrigger.TriggerDialogue();
+            }
         }
     }
 

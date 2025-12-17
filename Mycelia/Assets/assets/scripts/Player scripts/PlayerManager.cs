@@ -32,8 +32,8 @@ public class PlayerManager : MonoBehaviour
     
     
     [Header("Score")]
-    [SerializeField]private int SavedKantarells = 0;
-    [SerializeField] private int MaxKantarells;
+    public int SavedKantarells = 0;
+    public int MaxKantarells;
     [SerializeField] private TMP_Text ScoreText;
     [SerializeField] private Animator portal;
     [SerializeField] private CameraFollow cameraFollow;
