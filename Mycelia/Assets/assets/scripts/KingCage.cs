@@ -37,6 +37,7 @@ public class KingCage : MonoBehaviour
             if (RedKey.activeSelf == false)
             {
                 RedLock.SetActive(false);
+               
             }
             if (GreenKey.activeSelf == false)
             {
@@ -45,6 +46,7 @@ public class KingCage : MonoBehaviour
             if (RedLock.activeSelf == false && GreenLock.activeSelf == false && YellowLock.activeSelf == false)
             {
                 CageSprite.sprite = OpenCageSprite;
+              
                 //trigga slut-dialogen här
             }
             else
