@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: 584eda88798e41249ae2c26083c876cf
+guid: 0143148bda99cd34f8af53eae5f0faa4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 9147024313637940093
-    second: Kantarell_sheet_0
+      213: 3029369826745097323
+    second: KantarellHAPPY_sheet_0
   - first:
-      213: -8551072162653504264
-    second: Kantarell_sheet_1
+      213: 4071597294589561894
+    second: KantarellHAPPY_sheet_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -103,13 +103,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Kantarell_sheet_0
+      name: KantarellHAPPY_sheet_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 11
         y: 0
-        width: 66
-        height: 66
+        width: 44
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -118,20 +118,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d7b20467622c0fe70800000000000000
-      internalID: 9147024313637940093
+      spriteID: b6c9d60aecb7a0a20800000000000000
+      internalID: 3029369826745097323
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Kantarell_sheet_1
+      name: KantarellHAPPY_sheet_1
       rect:
         serializedVersion: 2
-        x: 66
+        x: 77
         y: 0
-        width: 66
-        height: 66
+        width: 44
+        height: 46
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,8 +140,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8fc7e407c2d745980800000000000000
-      internalID: -8551072162653504264
+      spriteID: 62cc37cca28318830800000000000000
+      internalID: 4071597294589561894
       vertices: []
       indices: 
       edges: []
@@ -150,7 +150,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 7f17870726e348244bdb9d4bbd265b54
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -160,8 +160,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Kantarell_sheet_0: 9147024313637940093
-      Kantarell_sheet_1: -8551072162653504264
+      KantarellHAPPY_sheet_0: 3029369826745097323
+      KantarellHAPPY_sheet_1: 4071597294589561894
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
