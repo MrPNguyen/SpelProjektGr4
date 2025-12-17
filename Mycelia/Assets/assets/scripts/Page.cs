@@ -2,30 +2,15 @@ using UnityEngine;
 
 public class Page : MonoBehaviour
 {
-    public int normalOrder = 0;
-    public int flipOrder = 10;
-
-    SpriteRenderer spriteRenderer;
+    Animator animator;
 
     void Awake() {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
     }
     
-    public void BringToFront()
+    public void TriggerAnimation()
     {
-        if (spriteRenderer != null)
-            spriteRenderer.sortingOrder = flipOrder;
-    }
-
-    public void SendToBack()
-    {
-        if (spriteRenderer != null)
-            spriteRenderer.sortingOrder = normalOrder;
-    }
-    
-    public void ResetOrder() 
-    {
-        if (spriteRenderer != null)
-        spriteRenderer.sortingOrder = normalOrder;
+        if (animator != null)
+            animator.SetTrigger("Move"); //0B1D1C
     }
 }

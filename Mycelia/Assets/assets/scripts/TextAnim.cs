@@ -15,9 +15,14 @@ public class TextAnim : MonoBehaviour
 
     int i = 0;
 
+    [SerializeField] private bool AutomaticStart;
+
     void Start()
     {
-        EndCheck();
+        if (AutomaticStart)
+        {
+            EndCheck();
+        }
     }
 
     void EndCheck()
@@ -50,6 +55,11 @@ public class TextAnim : MonoBehaviour
             counter += 1;
             yield return new WaitForSeconds(timeBtwnChars);
         }
+    }
+
+    public void BeginAnimation()
+    {
+        EndCheck();
     }
 }
 
