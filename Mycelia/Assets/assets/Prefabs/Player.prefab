@@ -5419,9 +5419,9 @@ MonoBehaviour:
   groundCheck: {fileID: 2317278850270132637}
   CeilingCheck: {fileID: 4417028373609749199}
   WallCheck: {fileID: 5762388212362669329}
-  groundCheckSize: {x: 0.15, y: 0.02}
-  ceilingCheckSize: {x: 0.2, y: 0.05}
-  wallCheckSize: {x: 0.05, y: 0.55}
+  groundCheckSize: {x: 0.25, y: 0.02}
+  ceilingCheckSize: {x: 0.25, y: 0.02}
+  wallCheckSize: {x: 0.02, y: 0.72}
   originalWallCheckSize: {x: 0, y: 0}
   whatIsGround:
     serializedVersion: 2
@@ -5443,7 +5443,7 @@ MonoBehaviour:
   dashOffset: {x: 0.5, y: 0.43, z: 0}
   headOriginalOffset: {x: 0.026, y: 0.85, z: 0}
   headDashOffset: {x: 0.326, y: 0.75, z: 0}
-  CoyoteTime: 0.05
+  CoyoteTime: 0.1
 --- !u!114 &5641837105196010520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5462,7 +5462,7 @@ MonoBehaviour:
   Heart1: {fileID: 0}
   Heart2: {fileID: 0}
   Heart3: {fileID: 0}
-  animator: {fileID: 4043659103143534288}
+  animator: {fileID: 0}
   GameOverPrologText: {fileID: 0}
   DeathText:
   - The Agarics continue to rule over the kingdom...
@@ -5475,9 +5475,8 @@ MonoBehaviour:
   HitRecoil: 5
   enemy: {fileID: 0}
   extraLife: {fileID: 5097334356680221191, guid: ce3831b2fa01c6a468bb5d0a884f1a01, type: 3}
-  EnemyBounce: 5
   SavedKantarells: 0
-  MaxKantarells: 0
+  MaxKantarells: 3
   ScoreText: {fileID: 0}
   portal: {fileID: 0}
   cameraFollow: {fileID: 0}
@@ -6057,7 +6056,7 @@ Transform:
   m_GameObject: {fileID: 6110480642243746149}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.026, y: 0.013, z: 0}
+  m_LocalPosition: {x: 0.013, y: 0.013, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6120,7 +6119,7 @@ Transform:
   m_GameObject: {fileID: 8331562109022913811}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.174, y: 0.518, z: 0}
+  m_LocalPosition: {x: 0.174, y: 0.574, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
