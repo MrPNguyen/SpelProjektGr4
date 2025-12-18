@@ -79,10 +79,13 @@ public class PlayerManager : MonoBehaviour
         if (currentHealth == 2)
         {
             Heart1.enabled = false;
+            Heart2.enabled = true;
+            Heart3.enabled = true;
         }
         if (currentHealth == 1)
         {
             Heart2.enabled = false;
+            Heart3.enabled = true;
         }
 
         if (currentHealth == 0)
