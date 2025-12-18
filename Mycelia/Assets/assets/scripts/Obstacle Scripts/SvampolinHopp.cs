@@ -43,7 +43,7 @@ public class SvampolinHopp : MonoBehaviour
             }
             else if (playerMovement.velocity.y <= -3f)
             {
-                Debug.Log(playerMovement.velocity.y);
+                
                 playerMovement.hasHardDropped = false;
                 playerMovement.velocity.y = 0.4f * MathF.Abs(playerMovement.velocity.y);
             }

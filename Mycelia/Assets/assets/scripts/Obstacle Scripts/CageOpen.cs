@@ -42,14 +42,14 @@ public class CageOpen : MonoBehaviour
         {  
             
             KantarellAnimator.SetBool("sad", false);
-            Sr.sprite = openDoor;
+            //Sr.sprite = openDoor;
             //Debug.Log("isOpen");
             bx.isTrigger = false;
             Debug.Log(bx.isTrigger);
-            if (playerManager.SavedKantarells < playerManager.MaxKantarells)
+            /*if (playerManager.SavedKantarells < playerManager.MaxKantarells)
             {
                 dialogueTrigger.TriggerDialogue();
-            }
+            }*/
             onTriggerEnter.Invoke();
         }
     }
