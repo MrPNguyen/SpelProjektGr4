@@ -81,10 +81,11 @@ public class PlayerSFXManager : MonoBehaviour
             playerMove.hasPlayed = true;
         }
 
-        if (playerMove.isDashing)
+        if (playerMove.Dashed)
         {
             PlaySFX(dashClip);
             playerMove.hasPlayed = true;
+           
         }
 
         if (playerMove.isKnockedBack)
@@ -93,11 +94,13 @@ public class PlayerSFXManager : MonoBehaviour
             playerMove.hasPlayed = true;
         }
 
-        if (playerMove.isJumping)
+        if (playerMove.Jumped == true)
         {
             OneShotSource.PlayOneShot(jumpClip);
             OneShotSource.PlayOneShot(GruntClip);
             playerMove.hasPlayed = true;
+           playerMove.Jumped = false;
+           
         }
         
         if (playerMove.IsGrounded && playerMove.horizontalMovement != 0 && !playerMove.isDashing)

@@ -38,6 +38,7 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector]public bool isHardDropping;
     [HideInInspector]public bool hasHardDropped;
     [HideInInspector]public bool isJumping;
+    public bool Jumped;
     
     [Header("GroundCheck")]
     [SerializeField] private Transform groundCheck;
@@ -62,7 +63,7 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector] public bool isDashing;
     [HideInInspector] public bool isHoldingDash;
     private bool canDash = true;
-    private bool Dashed;
+    public bool Dashed;
     private float DashDuration = 0.10f;
     private TrailRenderer tr;
     
@@ -327,6 +328,7 @@ public class PlayerMovement : MonoBehaviour
             multiplier = 1;
             velocity = new Vector2(velocity.x, jumpForce);
             isJumping = true;
+            Jumped = true;
             hasPlayed = false;
             CreateDust();
         }

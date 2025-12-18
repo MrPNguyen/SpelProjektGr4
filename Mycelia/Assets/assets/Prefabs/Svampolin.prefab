@@ -205,6 +205,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerMovement: {fileID: 0}
   Bounce: 12
+  animator: {fileID: 0}
+  Delay: 0
+  audio: {fileID: 0}
+  BigBounce: {fileID: 8300000, guid: b43766041b0053f459ec7484d5da888d, type: 3}
 --- !u!61 &391329301895418428
 BoxCollider2D:
   m_ObjectHideFlags: 0
