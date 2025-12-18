@@ -10,6 +10,7 @@ public class PlayerManager : MonoBehaviour
     public Vector3 originalPosition;
     [SerializeField] private GameObject PlayerUI;
     [SerializeField] private DialogueTrigger dialogueTrigger;
+    private SpriteRenderer RenderDis;
     
     [Header("Health")]
     private int maxHealth = 3; 
@@ -40,6 +41,9 @@ public class PlayerManager : MonoBehaviour
     private Vector3 originalCameraPosition;
     private Vector3 newCameraPosition;
     private Coroutine UnlockWinRoutine;
+
+    private bool Invincible;
+    private float time;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -47,6 +51,7 @@ public class PlayerManager : MonoBehaviour
         player = GameObject.Find("Player").GetComponent<Renderer>().material;
         originalPosition = transform.position;
         currentHealth = maxHealth;
+        RenderDis = GetComponent<SpriteRenderer>();
         if (DeathText.Count > 0)
         {
             GameOverPrologText.text = DeathText[Random.Range(0, DeathText.Count)];
@@ -97,13 +102,32 @@ public class PlayerManager : MonoBehaviour
             Heart3.enabled = true;
         }
 
+        if (Invincible)
+        {
+            time -= Time.deltaTime;
+            if (time < 0)
+            {
+                Invincible = false;
+                RenderDis.color = Color.white;
+            }
+        }
         
     }
     public void TakeDamage()
     {
         Debug.Log("Ouch");
-        currentHealth--;
+        if (!Invincible)
+        {
+            currentHealth--;
+            time = 1;
+            Invincible = true;
+            RenderDis.color = Color.grey;
+
+        }
+        
     }
+
+   
     
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -141,12 +165,10 @@ public class PlayerManager : MonoBehaviour
     
     private IEnumerator KnockbackCoroutine(float duration)
     {
-        player.color = Color.red;
         playerMovement.isKnockedBack = true;
         playerMovement.hasPlayed = false;
         yield return new WaitForSeconds(duration);
         playerMovement.isKnockedBack = false;
-        player.color = Color.white;
         knockbackRoutine = null;
     }
 
