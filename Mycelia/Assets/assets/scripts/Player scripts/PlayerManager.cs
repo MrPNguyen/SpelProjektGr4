@@ -9,6 +9,7 @@ public class PlayerManager : MonoBehaviour
     private PlayerMovement playerMovement;
     public Vector3 originalPosition;
     [SerializeField] private GameObject PlayerUI;
+    [SerializeField] private GameObject FinalMessage;
     [SerializeField] private DialogueTrigger dialogueTrigger;
     private SpriteRenderer RenderDis;
     
@@ -129,8 +130,6 @@ public class PlayerManager : MonoBehaviour
         }
         
     }
-
-   
     
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -158,11 +157,6 @@ public class PlayerManager : MonoBehaviour
         {
             currentHealth++;
             Destroy(other.gameObject);
-        }
-
-        if (other.tag == "Portal")
-        {
-            
         }
     }
     
@@ -218,11 +212,12 @@ public class PlayerManager : MonoBehaviour
         yield return new WaitForSeconds(6f);
         cameraFollow.transform.position = originalCameraPosition;
         
+        cameraFollow.followPlayer = true;
+        FinalMessage.SetActive(true);
         playerMovement.horizontalMovement = 0f;
         playerMovement.velocity = Vector2.zero;
         playerMovement.rb.linearVelocity = Vector2.zero;
         playerMovement.canMove = true;
-        cameraFollow.followPlayer = true;
         dialogueTrigger.TriggerDialogue();
     }
 

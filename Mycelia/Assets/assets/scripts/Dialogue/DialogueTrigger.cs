@@ -20,32 +20,19 @@ public class DialogueLine
 public class Dialogue
 {
     public List<DialogueLine> dialogueLines = new List<DialogueLine>();
+    
+    [Header("Automatically Display Next DialogueLine")]
+    public bool automaticAdvance;
+    public float autoAdvanceDelay = 1.5f;
 }
 public class DialogueTrigger : MonoBehaviour
 {
     public Dialogue dialogue;
     public Animator animator;
-    private bool hasDialogueAlreadyBegun = false;
-    public bool ableToWalkDuringDialogue = false;
-
-    [Header("Automatically Display Next DialogueLine")]
-    public bool automaticAdvance = false;
-    public float autoAdvanceDelay = 1.5f;
-
-    void Start()
-    {
-        hasDialogueAlreadyBegun = animator.GetBool("started");
-    }
-
+    public bool ableToWalkDuringDialogue;
+    
     public void TriggerDialogue()
     {
-        if (hasDialogueAlreadyBegun)
-        {
-            
-        }
-        else
-        {
-            FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
-        }
+        DialogueManager.Instance.StartDialogue(dialogue, ableToWalkDuringDialogue);
     }
 }

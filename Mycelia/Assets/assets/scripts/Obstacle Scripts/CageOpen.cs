@@ -9,56 +9,45 @@ using UnityEngine.InputSystem;
 public class CageOpen : MonoBehaviour
 
 {
+    [Header("References")]
     public UnityEvent onTriggerEnter;
-
-    private bool IsOpen = false;
-    private bool isInRange = false;
     [SerializeField] private Sprite openDoor;
     [SerializeField] private Animator KantarellAnimator;
-    private SpriteRenderer Sr;
-    [SerializeField] private BoxCollider2D bx;
-    private DialogueTrigger dialogueTrigger;
+    [SerializeField] private SpriteRenderer Sr;
+    [SerializeField] private DialogueTrigger dialogueTrigger;
     [SerializeField] private PlayerManager playerManager;
     
+    private bool IsOpen = false;
+    private bool isInRange = false;
     
-   
     private string tagToActivate = "Player";
+    private bool isTriggered = false;
     void Start()
     {
-        Sr = gameObject.GetComponent<SpriteRenderer>();
-     
         dialogueTrigger = gameObject.GetComponent<DialogueTrigger>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        if (isTriggered) return;
         if (IsOpen && other.CompareTag(tagToActivate))
         {  
-            
+            isTriggered = true;
+            onTriggerEnter.Invoke();
             KantarellAnimator.SetBool("sad", false);
-            //Sr.sprite = openDoor;
-            //Debug.Log("isOpen");
-            bx.isTrigger = false;
-            Debug.Log(bx.isTrigger);
-            /*if (playerManager.SavedKantarells < playerManager.MaxKantarells)
+            Debug.Log("Sr: " + Sr);
+            Debug.Log("openDoor: " + openDoor);
+            Sr.sprite = openDoor;
+            if (playerManager.SavedKantarells < playerManager.MaxKantarells)
             {
                 dialogueTrigger.TriggerDialogue();
-            }*/
-            onTriggerEnter.Invoke();
+            }
         }
     }
 
     public void OpenDoor()
     {
-        //Debug.Log("isOpen=true");
         IsOpen = true;
-        bx.enabled = true;
     }
 
 }

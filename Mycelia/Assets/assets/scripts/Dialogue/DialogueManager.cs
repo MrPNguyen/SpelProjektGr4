@@ -16,12 +16,12 @@ public class DialogueManager : MonoBehaviour
     private Queue<DialogueLine> lines;
 
 
-    public float typingSpeed = 2f;
+    public float typingSpeed = 2f;  
+    [SerializeField] private float autoAdvanceDelay = 1.5f;
 
     public Animator animator;
 
     [SerializeField] public PlayerMovement playerMovement;
-    [SerializeField] private DialogueTrigger dialogueTrigger;
 
     [Header("Audio")]
 
@@ -34,11 +34,15 @@ public class DialogueManager : MonoBehaviour
     public bool DialogueEnd = false;
 
     public bool skipExitAnimation = false;
+    
+    private bool currentAutoAdvance;
+    private float currentAutoAdvanceDelay;
+    private bool movementWasLocked;
+    private bool isTyping;
 
     private void Start()
     {
         playerMovement = FindObjectOfType<PlayerMovement>();
-        dialogueTrigger = FindObjectOfType<DialogueTrigger>();
     }
 
     private void Awake()
@@ -59,10 +63,13 @@ public class DialogueManager : MonoBehaviour
         audioSource = this.gameObject.AddComponent<AudioSource>();
     }
 
-    public void StartDialogue(Dialogue dialogue)
+    public void StartDialogue(Dialogue dialogue, bool ableToWalkDuringDialogue)
     {
         Debug.Log("Starting new dialogue. Resetting skipExitAnimation to false.");
         animator.SetBool("started", true);
+        
+        currentAutoAdvance = dialogue.automaticAdvance;
+        currentAutoAdvanceDelay = dialogue.autoAdvanceDelay;
 
         lines.Clear();
 
@@ -71,18 +78,22 @@ public class DialogueManager : MonoBehaviour
             lines.Enqueue(dialogueLine);
         }
 
-        DisplayNextDialogueLine();
-        if (playerMovement != null && !dialogueTrigger.ableToWalkDuringDialogue)
+        movementWasLocked = playerMovement != null && !ableToWalkDuringDialogue;
+        if (movementWasLocked)
         {
             playerMovement.canMove = false;
-            playerMovement.horizontalMovement = 0f;
             playerMovement.velocity = Vector2.zero;
             playerMovement.rb.linearVelocity = Vector2.zero;
         }
+        
+        DisplayNextDialogueLine();
     }
 
     public void DisplayNextDialogueLine()
     {
+        StopAllCoroutines();
+        audioSource.Stop();
+        isTyping = false;
         if (lines.Count == 0)
         {
             EndDialogue();
@@ -95,19 +106,12 @@ public class DialogueManager : MonoBehaviour
         characterIcon.sprite = currentLine.character.icon;
         nameText.text = currentLine.character.name; 
 
-        StopAllCoroutines();
-
         StartCoroutine(TypeSentence(currentLine));
-        
-        /*if (lines.Count == 0)
-        {
-            FindObjectOfType<DialogueEnd>().StartTransitionEarly();
-        }*/
-        
     }
 
     IEnumerator TypeSentence(DialogueLine dialogueLine)
     {
+        isTyping = true;
         dialogueText.text = "";
         int charCount = 0;
         foreach (char letter in dialogueLine.line.ToCharArray())
@@ -118,11 +122,12 @@ public class DialogueManager : MonoBehaviour
             yield return new WaitForSeconds(typingSpeed);
         }
 
+        isTyping = false;
         audioSource.Stop();
 
-        if (dialogueTrigger.automaticAdvance)
+        if (currentAutoAdvance)
         {
-            yield return new WaitForSeconds(dialogueTrigger.autoAdvanceDelay);
+            yield return new WaitForSeconds(currentAutoAdvanceDelay);
             DisplayNextDialogueLine();
         }
     }
@@ -135,32 +140,27 @@ public class DialogueManager : MonoBehaviour
             {
                 audioSource.Stop();
             }
-            //Debug.Log("Playing sound");
-            audioSource.PlayOneShot(dialogueTypingSoundClip);
+
+            if (audioSource != null)
+            {
+                audioSource.PlayOneShot(dialogueTypingSoundClip);
+            }
         }
     }
     public void EndDialogue()
     {
-        Debug.Log("EndDialogue called. skipExitAnimation: " + skipExitAnimation);
-        if (skipExitAnimation)
-        {
-           //Debug.Log("Skipping exit animation.");
-            animator.enabled = false;
-        }
-        else
-        {
-            //Debug.Log("Playing exit animation.");
-            animator.SetBool("started", false);
-        }
+        StopAllCoroutines();
+        audioSource.Stop();
+        isTyping = false;
+        animator.SetBool("started", false);
         
-        if (playerMovement != null  && !dialogueTrigger.ableToWalkDuringDialogue)
+        if (movementWasLocked)
         {
             playerMovement.horizontalMovement = 0f;
             playerMovement.velocity = Vector2.zero;
             playerMovement.rb.linearVelocity = Vector2.zero;
             playerMovement.canMove = true;
         }
-        DialogueEnd = true;
     }
     
 }

@@ -5416,6 +5416,7 @@ MonoBehaviour:
   isHardDropping: 0
   hasHardDropped: 0
   isJumping: 0
+  Jumped: 0
   groundCheck: {fileID: 2317278850270132637}
   CeilingCheck: {fileID: 4417028373609749199}
   WallCheck: {fileID: 5762388212362669329}
@@ -5431,6 +5432,7 @@ MonoBehaviour:
   DashPower: 13
   isDashing: 0
   isHoldingDash: 0
+  Dashed: 0
   flyingPower: 2
   StaminaBar: {fileID: 0}
   CurrentStamina: 0
@@ -5458,6 +5460,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   originalPosition: {x: 0, y: 0, z: 0}
   PlayerUI: {fileID: 0}
+  FinalMessage: {fileID: 0}
   dialogueTrigger: {fileID: 0}
   currentHealth: 3
   Heart1: {fileID: 0}
@@ -6012,8 +6015,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.004107654, y: 0.50635326}
-  m_Size: {x: 0.2885002, y: 0.46107236}
+  m_Offset: {x: 0.004107654, y: 0.49037755}
+  m_Size: {x: 0.2885002, y: 0.44736743}
   m_Direction: 0
 --- !u!82 &4761619104841001515
 AudioSource:

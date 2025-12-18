@@ -10,6 +10,10 @@ public class OnTriggerDialogue : MonoBehaviour
         if (other.tag == "Player")
         {
             dialogueTrigger.TriggerDialogue();
+            foreach (BoxCollider2D box in bcs)
+            {
+                box.enabled = false;
+            }
         }
     }
 }
