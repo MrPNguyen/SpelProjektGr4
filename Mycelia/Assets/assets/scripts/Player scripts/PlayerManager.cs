@@ -101,6 +101,7 @@ public class PlayerManager : MonoBehaviour
     }
     public void TakeDamage()
     {
+        Debug.Log("Ouch");
         currentHealth--;
     }
     
