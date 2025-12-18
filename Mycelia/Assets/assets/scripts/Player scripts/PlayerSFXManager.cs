@@ -81,11 +81,11 @@ public class PlayerSFXManager : MonoBehaviour
             playerMove.hasPlayed = true;
         }
 
-        if (playerMove.Dashed)
+        if (!playerMove.isHoldingDash && playerMove.isDashing)
         {
             PlaySFX(dashClip);
             playerMove.hasPlayed = true;
-           
+           playerMove.Dashed = false;
         }
 
         if (playerMove.isKnockedBack)
