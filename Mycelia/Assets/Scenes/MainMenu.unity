@@ -1334,6 +1334,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 947573485}
   transitionWall: {fileID: 947573483}
+  audioSource: {fileID: 607082901}
 --- !u!114 &689254155
 MonoBehaviour:
   m_ObjectHideFlags: 0
