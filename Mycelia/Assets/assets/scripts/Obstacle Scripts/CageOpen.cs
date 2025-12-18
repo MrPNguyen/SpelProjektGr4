@@ -16,7 +16,7 @@ public class CageOpen : MonoBehaviour
     [SerializeField] private Sprite openDoor;
     [SerializeField] private Animator KantarellAnimator;
     private SpriteRenderer Sr;
-    private BoxCollider2D bx;
+    [SerializeField] private BoxCollider2D bx;
     private DialogueTrigger dialogueTrigger;
     [SerializeField] private PlayerManager playerManager;
     
@@ -26,7 +26,7 @@ public class CageOpen : MonoBehaviour
     void Start()
     {
         Sr = gameObject.GetComponent<SpriteRenderer>();
-        bx = gameObject.GetComponent<BoxCollider2D>();
+     
         dialogueTrigger = gameObject.GetComponent<DialogueTrigger>();
     }
 
@@ -40,15 +40,17 @@ public class CageOpen : MonoBehaviour
     {
         if (IsOpen && other.CompareTag(tagToActivate))
         {  
-            onTriggerEnter.Invoke();
+            
             KantarellAnimator.SetBool("sad", false);
             Sr.sprite = openDoor;
             //Debug.Log("isOpen");
-            bx.enabled = false;
+            bx.isTrigger = false;
+            Debug.Log(bx.isTrigger);
             if (playerManager.SavedKantarells < playerManager.MaxKantarells)
             {
                 dialogueTrigger.TriggerDialogue();
             }
+            onTriggerEnter.Invoke();
         }
     }
 
