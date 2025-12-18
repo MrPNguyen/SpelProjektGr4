@@ -5,6 +5,7 @@ using UnityEngine;
 using TMPro;
 using System.Linq;
 
+//AudioClip from: "Talking Synthesizer" by tcarisland via OpenArtGame.Org, CC-BY 40 license
 public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager Instance;
