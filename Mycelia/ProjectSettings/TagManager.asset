@@ -50,5 +50,8 @@ TagManager:
   - name: HiddenRoom
     uniqueID: 4130323079
     locked: 0
+  - name: Main Menu
+    uniqueID: 139811149
+    locked: 0
   m_RenderingLayers:
   - Default

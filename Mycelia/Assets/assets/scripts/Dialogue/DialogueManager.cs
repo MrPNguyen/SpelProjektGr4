@@ -119,6 +119,12 @@ public class DialogueManager : MonoBehaviour
         }
 
         audioSource.Stop();
+
+        if (dialogueTrigger.automaticAdvance)
+        {
+            yield return new WaitForSeconds(dialogueTrigger.autoAdvanceDelay);
+            DisplayNextDialogueLine();
+        }
     }
     private void PlayDialogueSound(int currentDisplayedCharacterCount)
     {

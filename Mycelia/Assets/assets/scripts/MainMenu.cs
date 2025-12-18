@@ -7,6 +7,7 @@ public class MainMenu : MonoBehaviour
 {
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject transitionWall;
+    [SerializeField] private AudioSource audioSource;
     public void PlayGame()
     {
         StartCoroutine(StartGameCoroutine());
@@ -19,6 +20,7 @@ public class MainMenu : MonoBehaviour
 
     IEnumerator StartGameCoroutine()
     {
+        audioSource.Stop();
         transitionWall.SetActive(true);
         animator.SetTrigger("play");
         

@@ -28,6 +28,10 @@ public class DialogueTrigger : MonoBehaviour
     private bool hasDialogueAlreadyBegun = false;
     public bool ableToWalkDuringDialogue = false;
 
+    [Header("Automatically Display Next DialogueLine")]
+    public bool automaticAdvance = false;
+    public float autoAdvanceDelay = 1.5f;
+
     void Start()
     {
         hasDialogueAlreadyBegun = animator.GetBool("started");
