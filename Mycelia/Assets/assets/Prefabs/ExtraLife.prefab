@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1700112416036804646}
   - component: {fileID: 3494640292204423494}
+  - component: {fileID: 1860198407439598451}
   - component: {fileID: -8366197340850742346}
   - component: {fileID: -1263952172647242220}
   - component: {fileID: -7161769920680795502}
@@ -28,13 +29,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5097334356680221191}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.008726558, y: 0, z: 0, w: 0.999962}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.35, y: 0.35, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 1, y: 0, z: 0}
 --- !u!212 &3494640292204423494
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -79,17 +80,29 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 8254571449526861975, guid: 35ef6ac212d30f34f98d30daca483265, type: 3}
+  m_Sprite: {fileID: -670186365627664181, guid: 4bf9a9f6f3ceaca4c9287ce9fd2e3fd2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 0.90625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1860198407439598451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5097334356680221191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f89d634620f869b448138e83d3bebb5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!50 &-8366197340850742346
 Rigidbody2D:
   serializedVersion: 5
@@ -155,24 +168,24 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
+    oldSize: {x: 1, y: 0.90625}
+    newSize: {x: 1, y: 0.90625}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.18719815, y: 0.28760767}
-      - {x: -0.3079666, y: 0.17857529}
-      - {x: -0.32435334, y: -0.015043069}
-      - {x: -0.2825182, y: -0.057102077}
-      - {x: -0.23702389, y: -0.10715972}
-      - {x: -0.069705226, y: -0.2533982}
-      - {x: 0.00418216, y: -0.31795597}
-      - {x: 0.32552904, y: -0.028943412}
-      - {x: 0.31997275, y: 0.19796619}
-      - {x: 0.24941808, y: 0.27950418}
+    - - {x: -0.18719815, y: 0.18386748}
+      - {x: -0.26212788, y: 0.11343612}
+      - {x: -0.2780233, y: -0.06609301}
+      - {x: -0.28155023, y: -0.11518097}
+      - {x: -0.22831206, y: -0.19234209}
+      - {x: -0.06970523, y: -0.29889336}
+      - {x: 0.0061181188, y: -0.34893137}
+      - {x: 0.27809796, y: -0.15187708}
+      - {x: 0.26448384, y: 0.10870139}
+      - {x: 0.20840453, y: 0.17576398}
   m_UseDelaunayMesh: 0
 --- !u!58 &-7161769920680795502
 CircleCollider2D:
@@ -208,5 +221,5 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.022920668}
-  m_Radius: 0.2347751
+  m_Offset: {x: 0, y: -0.065916166}
+  m_Radius: 0.21320398
