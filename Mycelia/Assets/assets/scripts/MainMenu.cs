@@ -20,9 +20,9 @@ public class MainMenu : MonoBehaviour
     IEnumerator StartGameCoroutine()
     {
         transitionWall.SetActive(true);
-        animator.SetBool("play", true);
+        animator.SetTrigger("play");
         
-        yield return new WaitForSecondsRealtime(5f);
+        yield return new WaitForSecondsRealtime(2f);
         
         Debug.Log("Transitioning");
         SceneManager.LoadSceneAsync(1);
