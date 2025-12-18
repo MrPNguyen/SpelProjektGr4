@@ -108,7 +108,6 @@ GameObject:
   - component: {fileID: 4503905094454945630}
   - component: {fileID: 3639926017361532250}
   - component: {fileID: 1786408864159771811}
-  - component: {fileID: 5521662105069253322}
   m_Layer: 3
   m_Name: Falling Ground
   m_TagString: Untagged
@@ -260,18 +259,3 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.89878654, y: 0.9109441}
   m_EdgeRadius: 0
---- !u!114 &5521662105069253322
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8845148177394801856}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1d0ca1914c09fb48859dc48d6b3e113, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  WinScreen: {fileID: 0}
-  player: {fileID: 0}
-  PlayerUI: {fileID: 0}
