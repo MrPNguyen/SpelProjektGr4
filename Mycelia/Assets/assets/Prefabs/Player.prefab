@@ -5172,7 +5172,7 @@ MonoBehaviour:
   originalWallCheckSize: {x: 0, y: 0}
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 6216
+    m_Bits: 4168
   IsGrounded: 0
   canMove: 1
   DashPower: 13
