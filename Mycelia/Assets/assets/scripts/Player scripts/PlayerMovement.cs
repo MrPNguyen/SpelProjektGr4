@@ -89,7 +89,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 SafeHardDropPosition = Vector3.zero;
     private Vector3 SafeCeilingPosition = Vector3.zero;
     private Vector3 SafeWallPosition = Vector3.zero;
-    private Vector3 SafePosition = Vector3.zero;
+   
 
     [SerializeField] private Vector3 originalOffset;
     [SerializeField] Vector3 dashOffset;
