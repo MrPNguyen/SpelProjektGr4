@@ -11,6 +11,14 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] private PlayerManager playerManager;
     public bool followPlayer = false;
 
+    [Header("Camera Preferences")] 
+    [SerializeField] private float MinX;
+    [SerializeField] private float MaxX;
+    [SerializeField] private float MinY;
+    [SerializeField] private float MaxY;
+    
+
+
     void Start()
     {
         followPlayer = true;
@@ -20,8 +28,8 @@ public class CameraFollow : MonoBehaviour
         if (playerManager.currentHealth > 0 && followPlayer)
         {
             Vector3 desiredPosition = target.position + offset;
-            desiredPosition.x = Mathf.Clamp(desiredPosition.x, -12.84762f, 126.47f);
-            desiredPosition.y = Mathf.Clamp(desiredPosition.y, -14f, 12f);
+            desiredPosition.x = Mathf.Clamp(desiredPosition.x, MinX, MaxX);
+            desiredPosition.y = Mathf.Clamp(desiredPosition.y, MinY, MaxY);
             Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
             transform.position = smoothedPosition;
         }
