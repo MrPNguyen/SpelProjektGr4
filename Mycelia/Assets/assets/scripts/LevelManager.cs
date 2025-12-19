@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
@@ -7,6 +8,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private int LevelIndex;
     [SerializeField] private PlayerMovement player;
     [SerializeField] private PlayerManager playerM;
+    //[SerializeField] private GameObject PauseMenu;
     public void StartGame()
     {
         SceneManager.LoadScene(LevelIndex, LoadSceneMode.Single);
@@ -23,7 +25,7 @@ public class LevelManager : MonoBehaviour
         else
         {
             player.canMove = false;
-            Debug.Log("Game paused, canMove = " + player.canMove);
+            //Debug.Log("Game paused, canMove = " + player.canMove);
         }
     }
 
@@ -37,4 +39,20 @@ public class LevelManager : MonoBehaviour
         player.transform.position = playerM.originalPosition;
         player.canMove = true;
     }
+
+    /*public void Pause(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            Debug.Log("Pause");
+            PauseGame();
+            if (PauseMenu != null) PauseMenu.SetActive(true);
+        }
+
+        if (context.performed && !player.canMove)
+        {
+            ResumeGame();
+            if (PauseMenu != null) PauseMenu.SetActive(false);
+        }
+    }*/
 }

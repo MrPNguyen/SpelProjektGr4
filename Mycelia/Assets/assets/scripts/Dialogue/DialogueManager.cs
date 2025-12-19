@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
 using System.Linq;
+using UnityEngine.InputSystem;
 
 //AudioClip from: "Talking Synthesizer" by tcarisland via OpenArtGame.Org, CC-BY 40 license
 public class DialogueManager : MonoBehaviour
@@ -34,12 +35,11 @@ public class DialogueManager : MonoBehaviour
     private AudioSource audioSource;
     public bool DialogueEnd = false;
 
-    public bool skipExitAnimation = false;
-
     private bool currentAutoAdvance;
     private float currentAutoAdvanceDelay;
     private bool movementWasLocked;
     private bool isTyping;
+    private string currentLineText;
 
     private void Start()
     {
@@ -67,7 +67,7 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(Dialogue dialogue, bool ableToWalkDuringDialogue)
     {
-        Debug.Log("Starting new dialogue. Resetting skipExitAnimation to false.");
+        //Debug.Log("Starting new dialogue. Resetting skipExitAnimation to false.");
         animator.SetBool("started", true);
         DialogueEnd = false;
 
@@ -96,7 +96,10 @@ public class DialogueManager : MonoBehaviour
     {
         if (isTyping)
         {
+            StopAllCoroutines();
+            audioSource.Stop();
             isTyping = false;
+            dialogueText.text = currentLineText;
             return;
         }
 
@@ -107,12 +110,21 @@ public class DialogueManager : MonoBehaviour
         }
 
         DialogueLine currentLine = lines.Dequeue();
+        currentLineText = currentLine.line;
 
 
         characterIcon.sprite = currentLine.character.icon;
         nameText.text = currentLine.character.name;
 
         StartCoroutine(TypeSentence(currentLine));
+    }
+
+    public void OnAdvanceDialogue(InputAction.CallbackContext context)
+    {
+        if (context.performed && !DialogueEnd)
+        {
+            DisplayNextDialogueLine();
+        }
     }
 
     IEnumerator TypeSentence(DialogueLine dialogueLine)
@@ -131,7 +143,7 @@ public class DialogueManager : MonoBehaviour
             yield return new WaitForSeconds(typingSpeed);
         }
 
-        dialogueText.text = dialogueLine.line;
+        dialogueText.text = currentLineText;
         isTyping = false;
         audioSource.Stop();
 

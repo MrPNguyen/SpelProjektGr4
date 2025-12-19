@@ -4813,15 +4813,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8841612456383048459, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
       propertyPath: m_ActionEvents.Array.size
-      value: 23
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 8841612456383048459, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
       propertyPath: m_ActionEvents.Array.data[22].m_ActionId
       value: f70fe97c-8acb-48d5-ad56-b8993d144c77
       objectReference: {fileID: 0}
     - target: {fileID: 8841612456383048459, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
+      propertyPath: m_ActionEvents.Array.data[23].m_ActionId
+      value: 6d1210af-d5cd-4d69-a777-47c6f83bfada
+      objectReference: {fileID: 0}
+    - target: {fileID: 8841612456383048459, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
+      propertyPath: m_ActionEvents.Array.data[24].m_ActionId
+      value: 3e7f66cd-de45-4c8c-bad4-a26fbc071bc6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8841612456383048459, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
       propertyPath: m_ActionEvents.Array.data[22].m_ActionName
       value: 'Player/Backup[/Keyboard/p]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 8841612456383048459, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
+      propertyPath: m_ActionEvents.Array.data[23].m_ActionName
+      value: 'UI/ContinueDialogue[/Keyboard/e]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 8841612456383048459, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
+      propertyPath: m_ActionEvents.Array.data[24].m_ActionName
+      value: 'UI/Pause[/Keyboard/escape]'
       objectReference: {fileID: 0}
     - target: {fileID: 8841612456383048459, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
       propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.size
@@ -4829,6 +4845,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8841612456383048459, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
       propertyPath: m_ActionEvents.Array.data[22].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8841612456383048459, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
+      propertyPath: m_ActionEvents.Array.data[23].m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8841612456383048459, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
@@ -4840,6 +4860,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8841612456383048459, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
+      propertyPath: m_ActionEvents.Array.data[23].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8841612456383048459, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
       propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 0}
@@ -4848,11 +4872,19 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 572162639}
     - target: {fileID: 8841612456383048459, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
+      propertyPath: m_ActionEvents.Array.data[23].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 94855309}
+    - target: {fileID: 8841612456383048459, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
       propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8841612456383048459, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
       propertyPath: m_ActionEvents.Array.data[22].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8841612456383048459, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
+      propertyPath: m_ActionEvents.Array.data[23].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8841612456383048459, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
@@ -4864,6 +4896,10 @@ PrefabInstance:
       value: SlutLevel
       objectReference: {fileID: 0}
     - target: {fileID: 8841612456383048459, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
+      propertyPath: m_ActionEvents.Array.data[23].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: DisplayNextDialogueLine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8841612456383048459, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
       propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: InteractEvent, Assembly-CSharp
       objectReference: {fileID: 0}
@@ -4872,11 +4908,19 @@ PrefabInstance:
       value: Backup, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 8841612456383048459, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
+      propertyPath: m_ActionEvents.Array.data[23].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: DialogueManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8841612456383048459, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
       propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8841612456383048459, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
       propertyPath: m_ActionEvents.Array.data[22].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8841612456383048459, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
+      propertyPath: m_ActionEvents.Array.data[23].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents:
@@ -5501,7 +5545,6 @@ MonoBehaviour:
         kiddo!'
     automaticAdvance: 0
     autoAdvanceDelay: 1.5
-  animator: {fileID: 776804350}
   ableToWalkDuringDialogue: 1
 --- !u!61 &671875323
 BoxCollider2D:
@@ -6298,7 +6341,6 @@ MonoBehaviour:
       line: .......You're gonna need it......
     automaticAdvance: 0
     autoAdvanceDelay: 1.5
-  animator: {fileID: 776804350}
   ableToWalkDuringDialogue: 0
 --- !u!114 &840967986 stripped
 MonoBehaviour:
@@ -6830,7 +6872,7 @@ MonoBehaviour:
         name: Elder Cap
         icon: {fileID: 8238638941979423301, guid: 6ead8f8e694501b4eb48a851baedab56, type: 3}
       line: You can't go into the water. Those damn Agarics poisoned all our water
-        supply eith their foul odor.
+        supply with their foul odor.
     - character:
         name: Elder Cap
         icon: {fileID: 8238638941979423301, guid: 6ead8f8e694501b4eb48a851baedab56, type: 3}
@@ -6838,7 +6880,6 @@ MonoBehaviour:
         sure not to fall in.
     automaticAdvance: 0
     autoAdvanceDelay: 1.5
-  animator: {fileID: 776804350}
   ableToWalkDuringDialogue: 1
 --- !u!1001 &934849540
 PrefabInstance:
@@ -8069,7 +8110,7 @@ PrefabInstance:
     - target: {fileID: 1250404360066646076, guid: b6834b7c6383039439c88fbc14c6febc, type: 3}
       propertyPath: InteractText
       value: 
-      objectReference: {fileID: 1354065484}
+      objectReference: {fileID: 0}
     - target: {fileID: 1250404360066646076, guid: b6834b7c6383039439c88fbc14c6febc, type: 3}
       propertyPath: playerManager
       value: 
@@ -8576,11 +8617,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 689044190042167562, guid: a821f483f35bbe5428f86a7409d93201, type: 3}
   m_PrefabInstance: {fileID: 1348974213}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1354065484 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1105471172351990352, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
-  m_PrefabInstance: {fileID: 572162591}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1361621975
 PrefabInstance:
@@ -9104,7 +9140,6 @@ MonoBehaviour:
         ;) '
     automaticAdvance: 0
     autoAdvanceDelay: 1.5
-  animator: {fileID: 776804350}
   ableToWalkDuringDialogue: 1
 --- !u!61 &1460482499
 BoxCollider2D:
@@ -10192,7 +10227,6 @@ MonoBehaviour:
       line: Go on give it a try and get rid of they're putrid odor.
     automaticAdvance: 0
     autoAdvanceDelay: 1.5
-  animator: {fileID: 776804350}
   ableToWalkDuringDialogue: 1
 --- !u!114 &1641624678
 MonoBehaviour:
@@ -10621,7 +10655,6 @@ MonoBehaviour:
         in Mycelia so keep an eye out for them.
     automaticAdvance: 0
     autoAdvanceDelay: 1.5
-  animator: {fileID: 776804350}
   ableToWalkDuringDialogue: 1
 --- !u!1001 &1734191236
 PrefabInstance:
@@ -18658,7 +18691,7 @@ Tilemap:
       - {fileID: -7373168968592995429, guid: 05511a7569bd63b46b454c1926a5832c, type: 3}
       - {fileID: -7031007450491264660, guid: 05511a7569bd63b46b454c1926a5832c, type: 3}
       - {fileID: 648905387608988143, guid: 05511a7569bd63b46b454c1926a5832c, type: 3}
-      m_AnimationSpeed: 5.0000005
+      m_AnimationSpeed: 5
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 69, y: -3, z: 0}
@@ -18746,7 +18779,7 @@ Tilemap:
       - {fileID: -7373168968592995429, guid: 05511a7569bd63b46b454c1926a5832c, type: 3}
       - {fileID: -7031007450491264660, guid: 05511a7569bd63b46b454c1926a5832c, type: 3}
       - {fileID: 648905387608988143, guid: 05511a7569bd63b46b454c1926a5832c, type: 3}
-      m_AnimationSpeed: 5.0000005
+      m_AnimationSpeed: 5
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 77, y: -3, z: 0}
@@ -18768,7 +18801,7 @@ Tilemap:
       - {fileID: -7373168968592995429, guid: 05511a7569bd63b46b454c1926a5832c, type: 3}
       - {fileID: -7031007450491264660, guid: 05511a7569bd63b46b454c1926a5832c, type: 3}
       - {fileID: 648905387608988143, guid: 05511a7569bd63b46b454c1926a5832c, type: 3}
-      m_AnimationSpeed: 5.0000005
+      m_AnimationSpeed: 5
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 79, y: -3, z: 0}
@@ -19616,7 +19649,6 @@ MonoBehaviour:
         harddropping on them like you did the Agarics!
     automaticAdvance: 0
     autoAdvanceDelay: 1.5
-  animator: {fileID: 776804350}
   ableToWalkDuringDialogue: 1
 --- !u!1 &2001194922
 GameObject:
@@ -19854,7 +19886,7 @@ PrefabInstance:
     - target: {fileID: 1250404360066646076, guid: b6834b7c6383039439c88fbc14c6febc, type: 3}
       propertyPath: InteractText
       value: 
-      objectReference: {fileID: 1354065484}
+      objectReference: {fileID: 0}
     - target: {fileID: 1250404360066646076, guid: b6834b7c6383039439c88fbc14c6febc, type: 3}
       propertyPath: playerManager
       value: 
