@@ -46,6 +46,7 @@ public class DialogueManager : MonoBehaviour
         playerMovement = FindObjectOfType<PlayerMovement>();
     }
 
+   
     private void Awake()
     {
         if (Instance == null)
@@ -68,6 +69,7 @@ public class DialogueManager : MonoBehaviour
     {
         Debug.Log("Starting new dialogue. Resetting skipExitAnimation to false.");
         animator.SetBool("started", true);
+        DialogueEnd = false;
 
         currentAutoAdvance = dialogue.automaticAdvance;
         currentAutoAdvanceDelay = dialogue.autoAdvanceDelay;
@@ -161,7 +163,8 @@ public class DialogueManager : MonoBehaviour
         audioSource.Stop();
         isTyping = false;
         animator.SetBool("started", false);
-
+        DialogueEnd = true;
+        
         if (movementWasLocked)
         {
             playerMovement.horizontalMovement = 0f;

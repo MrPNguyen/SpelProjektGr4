@@ -28,7 +28,6 @@ public class Dialogue
 public class DialogueTrigger : MonoBehaviour
 {
     public Dialogue dialogue;
-    public Animator animator;
     public bool ableToWalkDuringDialogue;
     
     public void TriggerDialogue()

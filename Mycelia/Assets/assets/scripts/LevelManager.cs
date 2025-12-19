@@ -9,7 +9,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private PlayerManager playerM;
     public void StartGame()
     {
-        SceneManager.LoadScene(LevelIndex);
+        SceneManager.LoadScene(LevelIndex, LoadSceneMode.Single);
     }
 
     public void EndGame()

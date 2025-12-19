@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 82965096}
   - component: {fileID: 82965095}
   - component: {fileID: 82965094}
+  - component: {fileID: 82965097}
   m_Layer: 5
   m_Name: EpiSvamp
   m_TagString: Untagged
@@ -217,6 +218,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 82965092}
   m_CullTransparentMesh: 1
+--- !u!114 &82965097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 82965092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1969f18cc40f6434ebaa3ebd599e3f54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LevelIndex: 0
+  player: {fileID: 0}
+  playerM: {fileID: 0}
 --- !u!1 &120286847
 GameObject:
   m_ObjectHideFlags: 0
@@ -554,7 +570,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -1047, y: -80}
+  m_AnchoredPosition: {x: -1121, y: -80}
   m_SizeDelta: {x: 215.14185, y: 206.6127}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &394361568
@@ -781,7 +797,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 1045, y: -77}
+  m_AnchoredPosition: {x: 1118, y: -77}
   m_SizeDelta: {x: 215.14185, y: 206.6127}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1027638921
