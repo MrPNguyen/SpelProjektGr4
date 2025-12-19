@@ -4338,6 +4338,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1932031365150228989, guid: 54beca3aa97dcb94dbcf044de1a8fba6, type: 3}
   m_PrefabInstance: {fileID: 1734191236}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &546089661 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1882276380320300888, guid: 54beca3aa97dcb94dbcf044de1a8fba6, type: 3}
+  m_PrefabInstance: {fileID: 1734191236}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c72b0d58db31b504aba9123fdf2d8afb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &560752202
 GameObject:
   m_ObjectHideFlags: 0
@@ -10720,6 +10731,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1882276380320300888, guid: 54beca3aa97dcb94dbcf044de1a8fba6, type: 3}
+      propertyPath: dialogueManager
+      value: 
+      objectReference: {fileID: 94855309}
     - target: {fileID: 1932031365150228989, guid: 54beca3aa97dcb94dbcf044de1a8fba6, type: 3}
       propertyPath: m_Layer
       value: 5
@@ -10888,6 +10903,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 4881916883917236571, guid: 54beca3aa97dcb94dbcf044de1a8fba6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4902475851966954484, guid: 54beca3aa97dcb94dbcf044de1a8fba6, type: 3}
       propertyPath: m_Name
       value: /2
@@ -10908,6 +10927,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5401700750978894889, guid: 54beca3aa97dcb94dbcf044de1a8fba6, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 0fa01c0fe9884dc4c887d943dafb14f1, type: 3}
     - target: {fileID: 5431689740507468931, guid: 54beca3aa97dcb94dbcf044de1a8fba6, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -171.3
@@ -10979,6 +11002,38 @@ PrefabInstance:
     - target: {fileID: 7480694784087643080, guid: 54beca3aa97dcb94dbcf044de1a8fba6, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7631255660079609239, guid: 54beca3aa97dcb94dbcf044de1a8fba6, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[0].m_Text
+      value: Slow
+      objectReference: {fileID: 0}
+    - target: {fileID: 7631255660079609239, guid: 54beca3aa97dcb94dbcf044de1a8fba6, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[1].m_Text
+      value: Medium
+      objectReference: {fileID: 0}
+    - target: {fileID: 7631255660079609239, guid: 54beca3aa97dcb94dbcf044de1a8fba6, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7631255660079609239, guid: 54beca3aa97dcb94dbcf044de1a8fba6, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7631255660079609239, guid: 54beca3aa97dcb94dbcf044de1a8fba6, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 546089661}
+    - target: {fileID: 7631255660079609239, guid: 54beca3aa97dcb94dbcf044de1a8fba6, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ChangeTypingSpeed
+      objectReference: {fileID: 0}
+    - target: {fileID: 7631255660079609239, guid: 54beca3aa97dcb94dbcf044de1a8fba6, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: TypingSpeed, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7631255660079609239, guid: 54beca3aa97dcb94dbcf044de1a8fba6, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7774404852398270657, guid: 54beca3aa97dcb94dbcf044de1a8fba6, type: 3}
       propertyPath: customEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -19073,10 +19128,38 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1821054265218477483, guid: 66a3d85f7826c774882883da574fd3b3, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 2252176151663510832, guid: 66a3d85f7826c774882883da574fd3b3, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 2781062072462276696, guid: 66a3d85f7826c774882883da574fd3b3, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 572162602}
+    - target: {fileID: 2781062072462276696, guid: 66a3d85f7826c774882883da574fd3b3, type: 3}
+      propertyPath: playerM
+      value: 
+      objectReference: {fileID: 572162601}
     - target: {fileID: 2781062072462276696, guid: 66a3d85f7826c774882883da574fd3b3, type: 3}
       propertyPath: LevelIndex
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3864625457728094800, guid: 66a3d85f7826c774882883da574fd3b3, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 5392330388312175711, guid: 66a3d85f7826c774882883da574fd3b3, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 572162602}
+    - target: {fileID: 5392330388312175711, guid: 66a3d85f7826c774882883da574fd3b3, type: 3}
+      propertyPath: playerM
+      value: 
+      objectReference: {fileID: 572162601}
     - target: {fileID: 6686268228539368934, guid: 66a3d85f7826c774882883da574fd3b3, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0

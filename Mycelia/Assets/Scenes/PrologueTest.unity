@@ -812,7 +812,7 @@ MonoBehaviour:
   - To MYCELIA...
   timeBtwnChars: 0.1
   timeBtwnWords: 1.3
-  AutomaticStart: 0
+  AutomaticStart: 1
 --- !u!114 &1225053062
 MonoBehaviour:
   m_ObjectHideFlags: 0
