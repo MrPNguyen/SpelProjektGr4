@@ -17,7 +17,7 @@ public class DialogueManager : MonoBehaviour
     private Queue<DialogueLine> lines;
 
 
-    public float typingSpeed = 2f;  
+    public float typingSpeed = 2f;
     [SerializeField] private float autoAdvanceDelay = 1.5f;
 
     public Animator animator;
@@ -28,14 +28,14 @@ public class DialogueManager : MonoBehaviour
 
     [SerializeField] private AudioClip dialogueTypingSoundClip;
     [SerializeField] private int frequencyLevel = 4;
-    [Range(-5,5)]
+    [Range(-5, 5)]
     [SerializeField] private bool stopAudioSource;
 
     private AudioSource audioSource;
     public bool DialogueEnd = false;
 
     public bool skipExitAnimation = false;
-    
+
     private bool currentAutoAdvance;
     private float currentAutoAdvanceDelay;
     private bool movementWasLocked;
@@ -68,7 +68,7 @@ public class DialogueManager : MonoBehaviour
     {
         Debug.Log("Starting new dialogue. Resetting skipExitAnimation to false.");
         animator.SetBool("started", true);
-        
+
         currentAutoAdvance = dialogue.automaticAdvance;
         currentAutoAdvanceDelay = dialogue.autoAdvanceDelay;
 
@@ -86,15 +86,18 @@ public class DialogueManager : MonoBehaviour
             playerMovement.velocity = Vector2.zero;
             playerMovement.rb.linearVelocity = Vector2.zero;
         }
-        
+
         DisplayNextDialogueLine();
     }
 
     public void DisplayNextDialogueLine()
     {
-        StopAllCoroutines();
-        audioSource.Stop();
-        isTyping = false;
+        if (isTyping)
+        {
+            isTyping = false;
+            return;
+        }
+
         if (lines.Count == 0)
         {
             EndDialogue();
@@ -105,7 +108,7 @@ public class DialogueManager : MonoBehaviour
 
 
         characterIcon.sprite = currentLine.character.icon;
-        nameText.text = currentLine.character.name; 
+        nameText.text = currentLine.character.name;
 
         StartCoroutine(TypeSentence(currentLine));
     }
@@ -117,12 +120,16 @@ public class DialogueManager : MonoBehaviour
         int charCount = 0;
         foreach (char letter in dialogueLine.line.ToCharArray())
         {
+            if (isTyping == false)
+                break;
+
             PlayDialogueSound(charCount);
             dialogueText.text += letter;
             charCount++;
             yield return new WaitForSeconds(typingSpeed);
         }
 
+        dialogueText.text = dialogueLine.line;
         isTyping = false;
         audioSource.Stop();
 
@@ -154,7 +161,7 @@ public class DialogueManager : MonoBehaviour
         audioSource.Stop();
         isTyping = false;
         animator.SetBool("started", false);
-        
+
         if (movementWasLocked)
         {
             playerMovement.horizontalMovement = 0f;
@@ -163,5 +170,5 @@ public class DialogueManager : MonoBehaviour
             playerMovement.canMove = true;
         }
     }
-    
+
 }
