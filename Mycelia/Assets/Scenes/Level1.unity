@@ -5491,7 +5491,7 @@ MonoBehaviour:
     automaticAdvance: 0
     autoAdvanceDelay: 1.5
   animator: {fileID: 776804350}
-  ableToWalkDuringDialogue: 0
+  ableToWalkDuringDialogue: 1
 --- !u!61 &671875323
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6828,7 +6828,7 @@ MonoBehaviour:
     automaticAdvance: 0
     autoAdvanceDelay: 1.5
   animator: {fileID: 776804350}
-  ableToWalkDuringDialogue: 0
+  ableToWalkDuringDialogue: 1
 --- !u!1001 &934849540
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9094,7 +9094,7 @@ MonoBehaviour:
     automaticAdvance: 0
     autoAdvanceDelay: 1.5
   animator: {fileID: 776804350}
-  ableToWalkDuringDialogue: 0
+  ableToWalkDuringDialogue: 1
 --- !u!61 &1460482499
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10182,7 +10182,7 @@ MonoBehaviour:
     automaticAdvance: 0
     autoAdvanceDelay: 1.5
   animator: {fileID: 776804350}
-  ableToWalkDuringDialogue: 0
+  ableToWalkDuringDialogue: 1
 --- !u!114 &1641624678
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10611,7 +10611,7 @@ MonoBehaviour:
     automaticAdvance: 0
     autoAdvanceDelay: 1.5
   animator: {fileID: 776804350}
-  ableToWalkDuringDialogue: 0
+  ableToWalkDuringDialogue: 1
 --- !u!1001 &1734191236
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19534,7 +19534,7 @@ MonoBehaviour:
     automaticAdvance: 0
     autoAdvanceDelay: 1.5
   animator: {fileID: 776804350}
-  ableToWalkDuringDialogue: 0
+  ableToWalkDuringDialogue: 1
 --- !u!1 &2001194922
 GameObject:
   m_ObjectHideFlags: 0
