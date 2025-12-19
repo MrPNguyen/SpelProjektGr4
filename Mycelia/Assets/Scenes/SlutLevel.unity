@@ -15549,26 +15549,6 @@ PrefabInstance:
       propertyPath: StaminaBar
       value: 
       objectReference: {fileID: 114292907}
-    - target: {fileID: 2192809267211881265, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
-      propertyPath: dashOffset.x
-      value: 0.174
-      objectReference: {fileID: 0}
-    - target: {fileID: 2192809267211881265, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
-      propertyPath: dashOffset.y
-      value: 0.45
-      objectReference: {fileID: 0}
-    - target: {fileID: 2192809267211881265, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
-      propertyPath: headDashOffset.x
-      value: 0.26
-      objectReference: {fileID: 0}
-    - target: {fileID: 2192809267211881265, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
-      propertyPath: headDashOffset.y
-      value: 0.85
-      objectReference: {fileID: 0}
-    - target: {fileID: 2192809267211881265, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
-      propertyPath: originalCeilingCheckSize.x
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4731169498743363079, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
       propertyPath: m_Name
       value: Player
