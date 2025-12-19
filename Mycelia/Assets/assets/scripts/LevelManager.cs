@@ -11,7 +11,14 @@ public class LevelManager : MonoBehaviour
     //[SerializeField] private GameObject PauseMenu;
     public void StartGame()
     {
+        Debug.Log(LevelIndex);
         SceneManager.LoadScene(LevelIndex, LoadSceneMode.Single);
+    }
+
+    public void NextLevel()
+    {
+        SceneManager.LoadSceneAsync("SlutLevel", LoadSceneMode.Single);
+
     }
 
     public void EndGame()

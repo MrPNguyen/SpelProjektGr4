@@ -5190,7 +5190,7 @@ MonoBehaviour:
   originalOffset: {x: 0.174, y: 0.45, z: 0}
   dashOffset: {x: 0.174, y: 0.45, z: 0}
   headOriginalOffset: {x: 0.026, y: 0.85, z: 0}
-  headDashOffset: {x: 0.26, y: 0.85, z: 0}
+  headDashOffset: {x: 0.026, y: 0.85, z: 0}
   CoyoteTime: 0.1
 --- !u!114 &5641837105196010520
 MonoBehaviour:
