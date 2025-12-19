@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8033735129870603371}
   - component: {fileID: 5776431988161564075}
   - component: {fileID: 5805159264072230690}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FallTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
