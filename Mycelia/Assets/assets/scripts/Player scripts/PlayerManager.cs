@@ -210,6 +210,7 @@ public class PlayerManager : MonoBehaviour
         yield return new WaitForSeconds(2);
         portal.SetTrigger("Winnable");
         yield return new WaitForSeconds(6f);
+        portal.SetTrigger("Animate");
         cameraFollow.transform.position = originalCameraPosition;
         
         cameraFollow.followPlayer = true;
