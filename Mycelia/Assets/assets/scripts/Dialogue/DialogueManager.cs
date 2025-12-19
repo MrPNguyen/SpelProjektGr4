@@ -17,7 +17,7 @@ public class DialogueManager : MonoBehaviour
     private Queue<DialogueLine> lines;
 
 
-    public float typingSpeed = 2f;
+    public float typingSpeed;
     [SerializeField] private float autoAdvanceDelay = 1.5f;
 
     public Animator animator;
@@ -170,5 +170,4 @@ public class DialogueManager : MonoBehaviour
             playerMovement.canMove = true;
         }
     }
-
 }
