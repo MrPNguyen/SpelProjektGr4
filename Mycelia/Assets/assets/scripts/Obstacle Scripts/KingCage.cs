@@ -13,11 +13,14 @@ public class KingCage : MonoBehaviour
    [SerializeField] private GameObject RedKey;
    [SerializeField] private GameObject GreenKey;
    [SerializeField] private GameObject YellowKey;
+   private DialogueTrigger saved;
+   [SerializeField] private CameraFollow cameraFollow;
   
    
     void Start()
     {
         CageSprite = GetComponent<SpriteRenderer>();
+        saved = new DialogueTrigger();
     }
 
     // Update is called once per frame
@@ -47,7 +50,9 @@ public class KingCage : MonoBehaviour
             {
                 CageSprite.sprite = OpenCageSprite;
               
-                //trigga slut-dialogen här
+               saved.TriggerDialogue();
+               cameraFollow.offset.z = -4;
+               Debug.Log("cameraFollow");
             }
             else
             {
