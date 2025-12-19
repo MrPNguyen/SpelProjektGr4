@@ -43,6 +43,7 @@ public class DialogueManager : MonoBehaviour
 
     private void Start()
     {
+        audioSource.volume = 0.2f;
         playerMovement = FindObjectOfType<PlayerMovement>();
     }
 

@@ -219,6 +219,7 @@ public class PlayerManager : MonoBehaviour
         playerMovement.velocity = Vector2.zero;
         playerMovement.rb.linearVelocity = Vector2.zero;
         playerMovement.canMove = true;
+        //TODO: lös så att båda cages kan ha TriggerDialogue.
         dialogueTrigger.TriggerDialogue();
     }
 
