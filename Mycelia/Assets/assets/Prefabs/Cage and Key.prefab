@@ -473,6 +473,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -6661674353701173199, guid: f8c205d11fcdb054f83b2ed45feedeb8, type: 3}
     - target: {fileID: 187893601005808917, guid: 253ab4adbe9416845892c2116fa12c64, type: 3}
+      propertyPath: KantaRender
+      value: 
+      objectReference: {fileID: 5948379735044737096}
+    - target: {fileID: 187893601005808917, guid: 253ab4adbe9416845892c2116fa12c64, type: 3}
       propertyPath: onTriggerEnter.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -622,7 +626,9 @@ MonoBehaviour:
         name: Pixie
         icon: {fileID: 1792538982691073040, guid: ba8d68f152f3b5844b4fe07be004e236, type: 3}
       line: Don't worry. I won't let anything happen to them.
-  animator: {fileID: 0}
+    automaticAdvance: 0
+    autoAdvanceDelay: 1.5
+  ableToWalkDuringDialogue: 0
 --- !u!4 &4896957941464270882 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5779421597561251083, guid: 253ab4adbe9416845892c2116fa12c64, type: 3}
