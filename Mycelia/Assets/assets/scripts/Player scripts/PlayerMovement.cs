@@ -85,6 +85,7 @@ public class PlayerMovement : MonoBehaviour
     
     [NonSerialized] public Vector2 velocity;
     [NonSerialized] public float multiplier;
+	[SerializeField] private float fallSpeed = 1.5f;
     
     private Vector3 SafeHardDropPosition = Vector3.zero;
     private Vector3 SafeCeilingPosition = Vector3.zero;
@@ -197,7 +198,7 @@ public class PlayerMovement : MonoBehaviour
             }
             else if(!hasHardDropped)
             {
-                multiplier = 1;
+                multiplier = fallSpeed;
             }
         }
     }
