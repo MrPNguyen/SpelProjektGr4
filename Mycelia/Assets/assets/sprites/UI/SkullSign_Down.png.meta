@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 0c16f703f375af546b373473529380ba
+guid: 07545290fff072a4baae3faa9e2a7aa1
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4347544937462273523
-    second: DeadTree_0
+      213: -7607821462503941319
+    second: SkullSign_Down_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: DeadTree_0
+      name: SkullSign_Down_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 15
         y: 0
-        width: 64
-        height: 190
+        width: 33
+        height: 47
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3f59c7a1615955c30800000000000000
-      internalID: 4347544937462273523
+      spriteID: 93b1cd410b69b6690800000000000000
+      internalID: -7607821462503941319
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      DeadTree_0: 4347544937462273523
+      SkullSign_Down_0: -7607821462503941319
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
