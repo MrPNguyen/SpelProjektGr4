@@ -184,7 +184,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerMovement: {fileID: 0}
-  Bounce: 4
+  Bounce: 12
   audio: {fileID: 0}
   BigBounce: {fileID: 8300000, guid: f8e80251f9e27bf469f1e903f9ff623d, type: 3}
 --- !u!95 &2897065288774822855

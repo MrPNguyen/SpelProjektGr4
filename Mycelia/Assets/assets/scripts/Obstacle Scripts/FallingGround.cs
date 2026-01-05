@@ -37,8 +37,11 @@ public class FallingGround : MonoBehaviour
         }
 
         if (other.tag == "Player" && falling == true) pause = true;
-        else pause = false;
+     
     }
+    void OnTriggerExit2D(Collider2D other){
+		pause = false;
+	}
 
 
     IEnumerator Wait(float WaitTime)
