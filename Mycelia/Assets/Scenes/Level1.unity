@@ -226,7 +226,7 @@ Transform:
   m_GameObject: {fileID: 80635594}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -33.330017, y: -0.9519903, z: 0}
+  m_LocalPosition: {x: -33.330017, y: -0.97, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -451,8 +451,8 @@ Transform:
   m_GameObject: {fileID: 130387290}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -25.78, y: 3.35, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalPosition: {x: -25.79, y: 3.04, z: 0}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 486216349}
@@ -1323,7 +1323,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -6761,6 +6761,14 @@ PrefabInstance:
       propertyPath: onTriggerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 982805860178981317, guid: de88ecf85e5e89540b994562db4132f1, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 982805860178981317, guid: de88ecf85e5e89540b994562db4132f1, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2001617443038344820, guid: de88ecf85e5e89540b994562db4132f1, type: 3}
       propertyPath: posB
       value: 2
@@ -7680,7 +7688,7 @@ Transform:
   m_GameObject: {fileID: 857104665}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.7162609, y: 0.60443175, z: 0}
+  m_LocalPosition: {x: -0.7162609, y: 0.542, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8255,8 +8263,8 @@ Transform:
   m_GameObject: {fileID: 931533791}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -13.78, y: 0.39, z: 0}
-  m_LocalScale: {x: -2, y: 2, z: 1}
+  m_LocalPosition: {x: -13.76, y: 0.06, z: 0}
+  m_LocalScale: {x: -1.2, y: 1.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 486216349}
@@ -9739,6 +9747,14 @@ PrefabInstance:
       propertyPath: onTriggerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 982805860178981317, guid: de88ecf85e5e89540b994562db4132f1, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 982805860178981317, guid: de88ecf85e5e89540b994562db4132f1, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2001617443038344820, guid: de88ecf85e5e89540b994562db4132f1, type: 3}
       propertyPath: posB
       value: 2
@@ -10165,11 +10181,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4896957941464270882, guid: b6834b7c6383039439c88fbc14c6febc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.004
       objectReference: {fileID: 0}
     - target: {fileID: 4896957941464270882, guid: b6834b7c6383039439c88fbc14c6febc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.065
       objectReference: {fileID: 0}
     - target: {fileID: 4896957941464270882, guid: b6834b7c6383039439c88fbc14c6febc, type: 3}
       propertyPath: m_LocalPosition.z
@@ -10221,11 +10237,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6122013030206411214, guid: b6834b7c6383039439c88fbc14c6febc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.022
       objectReference: {fileID: 0}
     - target: {fileID: 6122013030206411214, guid: b6834b7c6383039439c88fbc14c6febc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.009
       objectReference: {fileID: 0}
     - target: {fileID: 6122013030206411214, guid: b6834b7c6383039439c88fbc14c6febc, type: 3}
       propertyPath: m_LocalPosition.z
@@ -10609,6 +10625,22 @@ PrefabInstance:
     - target: {fileID: 771581289560482462, guid: de88ecf85e5e89540b994562db4132f1, type: 3}
       propertyPath: onTriggerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 982805860178981317, guid: de88ecf85e5e89540b994562db4132f1, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 982805860178981317, guid: de88ecf85e5e89540b994562db4132f1, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 982805860178981317, guid: de88ecf85e5e89540b994562db4132f1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.312
+      objectReference: {fileID: 0}
+    - target: {fileID: 982805860178981317, guid: de88ecf85e5e89540b994562db4132f1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.124
       objectReference: {fileID: 0}
     - target: {fileID: 2001617443038344820, guid: de88ecf85e5e89540b994562db4132f1, type: 3}
       propertyPath: posB
@@ -11194,8 +11226,8 @@ Transform:
   m_GameObject: {fileID: 1475670865}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -16.81, y: -5.69, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalPosition: {x: -16.96, y: -5.97, z: 0}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 486216349}
@@ -13687,6 +13719,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1591018648}
     m_Modifications:
+    - target: {fileID: 191490317348136227, guid: de88ecf85e5e89540b994562db4132f1, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[1].x
+      value: -0.25694865
+      objectReference: {fileID: 0}
+    - target: {fileID: 191490317348136227, guid: de88ecf85e5e89540b994562db4132f1, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[1].y
+      value: 0.20165925
+      objectReference: {fileID: 0}
     - target: {fileID: 727290784336990664, guid: de88ecf85e5e89540b994562db4132f1, type: 3}
       propertyPath: m_Name
       value: falling spike (2)
@@ -13710,6 +13750,14 @@ PrefabInstance:
     - target: {fileID: 771581289560482462, guid: de88ecf85e5e89540b994562db4132f1, type: 3}
       propertyPath: onTriggerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 982805860178981317, guid: de88ecf85e5e89540b994562db4132f1, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 982805860178981317, guid: de88ecf85e5e89540b994562db4132f1, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2449978284102822350, guid: de88ecf85e5e89540b994562db4132f1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14422,7 +14470,7 @@ Transform:
   m_GameObject: {fileID: 1858309155}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 11.712183, y: 0.55131596, z: 0}
+  m_LocalPosition: {x: 11.717, y: 0.532, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -22457,7 +22505,7 @@ Transform:
   m_GameObject: {fileID: 1895258320}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -28.526485, y: -0.94483787, z: 0}
+  m_LocalPosition: {x: -28.526485, y: -0.963, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
