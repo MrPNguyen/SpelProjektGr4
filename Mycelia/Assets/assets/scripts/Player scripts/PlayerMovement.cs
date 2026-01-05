@@ -291,7 +291,6 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        // Normal jump
         if (context.performed)
         {
             multiplier = 1;
@@ -470,7 +469,6 @@ public class PlayerMovement : MonoBehaviour
     {
         ps.Play();
     }
-    
 
     private void StartRecharge()
     {
