@@ -13,10 +13,18 @@ public class FallingGround : MonoBehaviour
     [SerializeField] private float multiplier = 1;
     private Vector3 posA;
     private bool falling;
+    private bool pause;
+    
 
     void Start()
     {
         posA = objectPos.position;
+    }
+
+    void Update()
+    {
+        if (transform.position.y > posA.y) transform.position = posA;
+        if (falling == false && transform.position.y != posA.y) transform.position = posA;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -26,6 +34,9 @@ public class FallingGround : MonoBehaviour
             falling = true;
             StartCoroutine(Wait(WaitTime));
         }
+
+        if (other.tag == "Player" && falling == true) pause = true;
+        else pause = false;
     }
 
 
@@ -42,6 +53,7 @@ public class FallingGround : MonoBehaviour
         yield return new WaitUntil(() => objectPos.position.y <= posA.y - posB);
         //Debug.Log("fallen");
         rb.gravityScale = -2;
+        if (pause) rb.linearVelocity = Vector2.zero;
        
         yield return new WaitUntil(() => objectPos.position.y >= posA.y);
         //Debug.Log("Up again");

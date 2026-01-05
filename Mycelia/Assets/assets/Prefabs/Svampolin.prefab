@@ -204,7 +204,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerMovement: {fileID: 0}
-  Bounce: 12
+  Bounce: 13
   animator: {fileID: 0}
   Delay: 0
   audio: {fileID: 0}
