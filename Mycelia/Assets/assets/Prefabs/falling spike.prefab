@@ -93,9 +93,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 3729366867992990401}
   objectPos: {fileID: 982805860178981317}
-  posB: 1
-  WaitTime: 1
+  posB: 2
+  WaitTime: 0
   multiplier: 1
+  fallSpeed: -1
 --- !u!1 &727290784336990664
 GameObject:
   m_ObjectHideFlags: 0
@@ -325,8 +326,8 @@ PolygonCollider2D:
     m_Paths:
     - - {x: -0.26, y: 0.205}
       - {x: -0.2588521, y: 0.2045879}
-      - {x: -0.00067210617, y: -0.08402886}
-      - {x: -0.00045266649, y: -0.08409221}
+      - {x: -0.00033046643, y: -0.15619075}
+      - {x: -0.00011102663, y: -0.15625411}
       - {x: 0.258717, y: 0.20567667}
       - {x: 0.25861394, y: 0.20557089}
       - {x: 0.2586054, y: 0.20566908}

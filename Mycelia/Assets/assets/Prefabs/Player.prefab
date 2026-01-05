@@ -5187,6 +5187,7 @@ MonoBehaviour:
   DashCost: 25
   FlyingCost: 20
   ChargeRate: 15
+  fallSpeed: 1.3
   originalOffset: {x: 0.174, y: 0.45, z: 0}
   dashOffset: {x: 0.174, y: 0.45, z: 0}
   headOriginalOffset: {x: 0.026, y: 0.85, z: 0}
