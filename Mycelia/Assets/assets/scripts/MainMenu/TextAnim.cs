@@ -1,7 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
-
+using UnityEngine.SceneManagement;
 
 
 public class TextAnim : MonoBehaviour
@@ -16,6 +16,14 @@ public class TextAnim : MonoBehaviour
     int i = 0;
 
     [SerializeField] private bool AutomaticStart;
+    
+    [Header("NextButton")]
+    [SerializeField] private TMP_Text nextButton;
+    [SerializeField] private bool AutomaticAdvance;
+    [SerializeField] private float startDelay;
+    private bool isLineFinished;
+    private Coroutine typingCoroutine;
+
 
     void Start()
     {
@@ -25,17 +33,44 @@ public class TextAnim : MonoBehaviour
         }
     }
 
+    void Update()
+    {
+        if (i < stringArray.Length - 1)
+        {
+            if (nextButton != null)
+            {
+                nextButton.text = "Next>>";
+            }
+        }
+        else
+        {
+            if (nextButton != null)
+            {
+                nextButton.text = "Venture Into The Forest>>";
+            }
+        }
+    }
+
     void EndCheck()
     {
         if (i <= stringArray.Length - 1)
         {
+            StopAllCoroutines();
             _textMeshPro.text = stringArray[i];
-            StartCoroutine(TextVisible());
+            _textMeshPro.maxVisibleCharacters = 0;
+            typingCoroutine = StartCoroutine(TextVisible());
         }
     }
     
     private IEnumerator TextVisible()
     {
+        isLineFinished = false;
+
+        if (i == 0)
+        {
+            yield return new WaitForSeconds(startDelay);
+        }
+        
         _textMeshPro.ForceMeshUpdate();
         int totalVisibleCharacters = _textMeshPro.textInfo.characterCount;
         int counter = 0;
@@ -47,12 +82,18 @@ public class TextAnim : MonoBehaviour
 
             if (visibleCount >= totalVisibleCharacters)
             {
-                i += 1;
-                Invoke("EndCheck", timeBtwnWords);
+                isLineFinished = true;
+
+                if (AutomaticAdvance)
+                {
+                    i++; 
+                    Invoke("EndCheck", timeBtwnWords);
+                }
+                
                 break;
             }
             
-            counter += 1;
+            counter++;
             yield return new WaitForSeconds(timeBtwnChars);
         }
     }
@@ -60,6 +101,32 @@ public class TextAnim : MonoBehaviour
     public void BeginAnimation()
     {
         EndCheck();
+    }
+
+    public void NextLine()
+    {
+        CancelInvoke();
+        if (!isLineFinished)
+        {
+            if (typingCoroutine != null)
+            {
+                StopCoroutine(typingCoroutine);
+            }
+            
+            _textMeshPro.maxVisibleCharacters = _textMeshPro.textInfo.characterCount;
+            isLineFinished = true;
+            return;
+        }
+
+        if (i < stringArray.Length - 1)
+        {
+            i++;
+            EndCheck();
+        }
+        else
+        {
+            SceneManager.LoadSceneAsync(2, LoadSceneMode.Single);
+        }
     }
 
     public void RestartAnimation()

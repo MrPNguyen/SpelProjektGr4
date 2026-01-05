@@ -23,7 +23,10 @@ public class ButtonSFXManager : MonoBehaviour,
 
     private void Start()
     {
-        highlight.gameObject.SetActive(false);
+        if (highlight != null)
+        {
+            highlight.gameObject.SetActive(false);
+        }
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -32,7 +35,7 @@ public class ButtonSFXManager : MonoBehaviour,
         {
             UIAudio.Instance.Play(HoverClip);
 
-            if (highlightCoroutine != null)
+            if (highlightCoroutine != null  && highlight != null)
             {
                 StopCoroutine(highlightCoroutine);
             }
@@ -44,7 +47,7 @@ public class ButtonSFXManager : MonoBehaviour,
     public void OnPointerExit(PointerEventData eventData)
     {
         isHovering = false;
-        if (highlightCoroutine != null)
+        if (highlightCoroutine != null && highlight != null)
         {
             StopCoroutine(highlightCoroutine);
         }
@@ -75,32 +78,38 @@ public class ButtonSFXManager : MonoBehaviour,
     
     public IEnumerator HighlightFadeOutcoroutine(float duration)
     {
-        float startOpacity = highlight.alpha;
-
-        float time = 0;
-        while (time < duration)
+        if (highlight != null)
         {
-            time += Time.deltaTime;
-            highlight.alpha = Mathf.Lerp(startOpacity, 0f, time / duration);
-            yield return null;
-        }
+            float startOpacity = highlight.alpha;
+
+            float time = 0;
+            while (time < duration)
+            {
+                time += Time.deltaTime;
+                highlight.alpha = Mathf.Lerp(startOpacity, 0f, time / duration);
+                yield return null;
+            }
         
-        highlight.alpha = 0;
-        highlight.gameObject.SetActive(false);
+            highlight.alpha = 0;
+            highlight.gameObject.SetActive(false);
+        }
     }
     public IEnumerator HighlightFadeIncoroutine(float duration)
     {
-        highlight.gameObject.SetActive(true);
-        highlight.alpha = 0f;
-
-        float time = 0;
-        while (time < duration)
+        if (highlight != null)
         {
-            time += Time.deltaTime;
-            highlight.alpha = Mathf.Lerp(0f, 1f, time / duration);
-            yield return null;
-        }
+            highlight.gameObject.SetActive(true);
+            highlight.alpha = 0f;
+
+            float time = 0;
+            while (time < duration)
+            {
+                time += Time.deltaTime;
+                highlight.alpha = Mathf.Lerp(0f, 1f, time / duration);
+                yield return null;
+            }
         
-        highlight.alpha = 1f;
+            highlight.alpha = 1f;
+        }
     }
 }
