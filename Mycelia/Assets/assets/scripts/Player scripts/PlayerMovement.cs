@@ -249,7 +249,7 @@ public class PlayerMovement : MonoBehaviour
                     tr.emitting = false;
                 }
                
-                transform.localRotation = Quaternion.Euler(0, 0, 0);
+                animator.SetBool("isDashing", false);
             }
             
             DashDuration -= Time.deltaTime;
@@ -262,7 +262,7 @@ public class PlayerMovement : MonoBehaviour
                     tr.emitting = false;
                 }
                 velocity.x = 0;
-                transform.localRotation = Quaternion.Euler(0, 0, 0);
+                animator.SetBool("isDashing", false);
                 return;
             }
             if (isFacingRight)
@@ -373,7 +373,7 @@ public class PlayerMovement : MonoBehaviour
         if (!canMove) return;
         if (CurrentStamina == 0)
         {
-            transform.localRotation = Quaternion.Euler(0, 0, 0);
+            animator.SetBool("isDashing", false);
             isDashing = false;
             return;
         }
@@ -385,11 +385,11 @@ public class PlayerMovement : MonoBehaviour
 
             if (dashDirection == -1)
             {
-                transform.localRotation = Quaternion.Euler(0, 0, 60);
+                animator.SetBool("isDashing", true);
             }
             else if (dashDirection == 1)
             {
-                transform.localRotation = Quaternion.Euler(0, 0, -60);
+                animator.SetBool("isDashing", true);
             }
             isDashing = true;
             isHoldingDash = true;
@@ -409,7 +409,7 @@ public class PlayerMovement : MonoBehaviour
             }
 
             DashDuration = 0.1f;
-            transform.localRotation = Quaternion.Euler(0, 0, 0);
+            animator.SetBool("isDashing", false);
         }
     }
     

@@ -14,6 +14,7 @@ public class FallingGround : MonoBehaviour
     private Vector3 posA;
     private bool falling;
     private bool pause;
+    [SerializeField] private float fallSpeed = -1f;
     
 
     void Start()
@@ -23,8 +24,8 @@ public class FallingGround : MonoBehaviour
 
     void Update()
     {
-        if (transform.position.y > posA.y) transform.position = posA;
-        if (falling == false && transform.position.y != posA.y) transform.position = posA;
+        if (objectPos.position.y > posA.y) objectPos.position = posA;
+        if (falling == false && objectPos.position.y != posA.y) objectPos.position = posA;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -48,6 +49,7 @@ public class FallingGround : MonoBehaviour
         if (rb.gravityScale == 0)
         {
             rb.gravityScale = multiplier;
+            rb.linearVelocity = new Vector2(0, fallSpeed);
         }
 
         yield return new WaitUntil(() => objectPos.position.y <= posA.y - posB);
