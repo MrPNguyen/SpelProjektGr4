@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 0c16f703f375af546b373473529380ba
+guid: e478062ec3ed33746b4809d91adb709f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4347544937462273523
-    second: DeadTree_0
+      213: 1773913499538872275
+    second: YellowKey_Left_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: DeadTree_0
+      name: YellowKey_Left_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 15
         y: 0
-        width: 64
-        height: 190
+        width: 33
+        height: 47
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3f59c7a1615955c30800000000000000
-      internalID: 4347544937462273523
+      spriteID: 3d7d842ede43e9810800000000000000
+      internalID: 1773913499538872275
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      DeadTree_0: 4347544937462273523
+      YellowKey_Left_0: 1773913499538872275
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

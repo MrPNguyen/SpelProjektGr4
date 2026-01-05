@@ -14,6 +14,7 @@ public class CageOpen : MonoBehaviour
     [SerializeField] private Sprite openDoor;
     [SerializeField] private Animator KantarellAnimator;
     [SerializeField] private SpriteRenderer Sr;
+    [SerializeField] private SpriteRenderer KantaRender;
     [SerializeField] private DialogueTrigger dialogueTrigger;
     [SerializeField] private PlayerManager playerManager;
     
@@ -38,6 +39,7 @@ public class CageOpen : MonoBehaviour
             Debug.Log("Sr: " + Sr);
             Debug.Log("openDoor: " + openDoor);
             Sr.sprite = openDoor;
+            KantaRender.sortingOrder = 3;
             if (playerManager.SavedKantarells < playerManager.MaxKantarells)
             {
                 dialogueTrigger.TriggerDialogue();

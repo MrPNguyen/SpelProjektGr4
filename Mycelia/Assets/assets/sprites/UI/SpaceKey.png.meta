@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 0c16f703f375af546b373473529380ba
+guid: cb34af2148b13044a89fdd64a3fb6c99
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4347544937462273523
-    second: DeadTree_0
+      213: -2446405635089033712
+    second: SpaceKey_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: DeadTree_0
+      name: SpaceKey_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 2
         width: 64
-        height: 190
+        height: 30
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3f59c7a1615955c30800000000000000
-      internalID: 4347544937462273523
+      spriteID: 0161108590f9c0ed0800000000000000
+      internalID: -2446405635089033712
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      DeadTree_0: 4347544937462273523
+      SpaceKey_0: -2446405635089033712
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

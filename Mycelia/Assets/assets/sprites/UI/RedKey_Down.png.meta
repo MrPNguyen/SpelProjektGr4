@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 0c16f703f375af546b373473529380ba
+guid: e12d1f010007c9d438bbd8e66dce3251
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4347544937462273523
-    second: DeadTree_0
+      213: -6386909563783252859
+    second: RedKey_Down_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: DeadTree_0
+      name: RedKey_Down_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 15
         y: 0
-        width: 64
-        height: 190
+        width: 33
+        height: 47
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3f59c7a1615955c30800000000000000
-      internalID: 4347544937462273523
+      spriteID: 584772e47932d57a0800000000000000
+      internalID: -6386909563783252859
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      DeadTree_0: 4347544937462273523
+      RedKey_Down_0: -6386909563783252859
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
