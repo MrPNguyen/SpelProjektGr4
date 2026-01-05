@@ -1153,6 +1153,7 @@ MonoBehaviour:
   nextButton: {fileID: 2016785807}
   AutomaticAdvance: 1
   startDelay: 3
+  mainMenu: {fileID: 264847495}
 --- !u!114 &1225053062
 MonoBehaviour:
   m_ObjectHideFlags: 0

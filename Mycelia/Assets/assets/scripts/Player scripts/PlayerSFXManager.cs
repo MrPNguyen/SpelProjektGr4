@@ -22,6 +22,8 @@ public class PlayerSFXManager : MonoBehaviour
     [SerializeField] private float runningMultiplier = 0.6f;
     [SerializeField] private AudioClip GruntClip;
     private Coroutine footstepRoutine;
+
+    private bool wasDashing;
     
     void Start()
     {
@@ -81,11 +83,10 @@ public class PlayerSFXManager : MonoBehaviour
             playerMove.hasPlayed = true;
         }
 
-        if (!playerMove.isHoldingDash && playerMove.isDashing)
+        if (playerMove.isDashing && !wasDashing)
         {
             PlaySFX(dashClip);
             playerMove.hasPlayed = true;
-           playerMove.Dashed = false;
         }
 
         if (playerMove.isKnockedBack)
@@ -124,5 +125,7 @@ public class PlayerSFXManager : MonoBehaviour
             audioSource.Stop();
             playerMove.hasPlayed = true;
         }
+        
+        wasDashing = playerMove.isDashing;
     }
 }

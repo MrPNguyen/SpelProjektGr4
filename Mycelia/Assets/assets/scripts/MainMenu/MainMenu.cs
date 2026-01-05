@@ -38,7 +38,7 @@ public class MainMenu : MonoBehaviour
         yield return new WaitForSecondsRealtime(2f);
         
         Debug.Log("Transitioning");
-        SceneManager.LoadSceneAsync(levelIndex);
+        SceneManager.LoadSceneAsync(levelIndex, LoadSceneMode.Single);
     }
     IEnumerator QuitGameCoroutine(float duration)
     {

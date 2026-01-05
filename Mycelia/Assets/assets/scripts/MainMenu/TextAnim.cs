@@ -23,6 +23,7 @@ public class TextAnim : MonoBehaviour
     [SerializeField] private float startDelay;
     private bool isLineFinished;
     private Coroutine typingCoroutine;
+    [SerializeField] private MainMenu mainMenu;
 
 
     void Start()
@@ -125,7 +126,7 @@ public class TextAnim : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadSceneAsync(2, LoadSceneMode.Single);
+            mainMenu.PlayGame();
         }
     }
 

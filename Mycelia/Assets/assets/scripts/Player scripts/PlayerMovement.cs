@@ -61,10 +61,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Dash")]
     [SerializeField] private float DashPower = 20f;
     [HideInInspector] public bool isDashing;
-    [HideInInspector] public bool isHoldingDash;
     private bool canDash = true;
-    public bool Dashed;
-    private float DashDuration = 0.10f;
     private TrailRenderer tr;
     
     [Header("Flying")]
@@ -115,7 +112,6 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        //Debug.Log($"Multiplier: {multiplier} compared to Harddrop: {HardDropPower}");
         UpdateAnimations();
         Vector3 temporaryOffset = isDashing ? dashOffset : originalOffset;
         Vector3 headTemporaryOffset = isDashing ? headDashOffset : headOriginalOffset;
@@ -138,17 +134,15 @@ public class PlayerMovement : MonoBehaviour
             WallCheck.position = transform.position + temporaryOffset;
             CeilingCheck.position = transform.position + headTemporaryOffset;
           
-            Dashed = true;
             
         }
-        else if(Dashed)
+        else
         {
             WallCheck.position = transform.position + temporaryOffset;
             CeilingCheck.position = transform.position + headTemporaryOffset;
             
             wallCheckSize.y = originalWallCheckSize.y;
            
-            Dashed = false;
         }
        
         if (!canMove)
@@ -165,7 +159,7 @@ public class PlayerMovement : MonoBehaviour
             isJumping = false;
         }
 
-        if (!isDashing && canMove)
+        if (!isDashing)
         {
             if (horizontalMovement < 0)
             {
@@ -179,7 +173,7 @@ public class PlayerMovement : MonoBehaviour
 
         ApplyFlip();
 
-        GradualStaminaUse(RunCost, isRunning);
+        //GradualStaminaUse(RunCost, isRunning);
         
         GradualStaminaUse(FlyingCost, isFlying);
         
@@ -239,45 +233,19 @@ public class PlayerMovement : MonoBehaviour
         
         if (isDashing)
         {
-            if (CurrentStamina <= 0 || !isHoldingDash)
+            if (CurrentStamina <= 0)
             {
-                isDashing = false;
-                isHoldingDash = false;
-                velocity.x = 0;
-                if (tr != null)
-                { 
-                    tr.emitting = false;
-                }
-               
-                animator.SetBool("isDashing", false);
-            }
-            
-            DashDuration -= Time.deltaTime;
-
-            if (DashDuration <= 0 && !isHoldingDash)
-            {
-                isDashing = false;
-                if (tr != null)
-                {
-                    tr.emitting = false;
-                }
-                velocity.x = 0;
-                animator.SetBool("isDashing", false);
-                return;
-            }
-            if (isFacingRight)
-            {
-                velocity.x = DashPower;
+                StopDash();
             }
             else
             {
-                velocity.x = -DashPower;
+                velocity.x = isFacingRight? DashPower : -DashPower;
             }
         }
 
         if (!CoroutineStart)
         {
-            StartCoroutine(isGrounded() );
+            StartCoroutine(isGrounded());
         }
         
         ApplyGravity();
@@ -373,26 +341,13 @@ public class PlayerMovement : MonoBehaviour
         if (!canMove) return;
         if (CurrentStamina == 0)
         {
-            animator.SetBool("isDashing", false);
             isDashing = false;
             return;
         }
             
         if (context.performed && canDash)
         {
-            DashDuration = 0.1f;
-            float dashDirection = isFacingRight ? 1 : -1;
-
-            if (dashDirection == -1)
-            {
-                animator.SetBool("isDashing", true);
-            }
-            else if (dashDirection == 1)
-            {
-                animator.SetBool("isDashing", true);
-            }
             isDashing = true;
-            isHoldingDash = true;
             if (tr != null)
             {
                 tr.emitting = true;
@@ -402,17 +357,18 @@ public class PlayerMovement : MonoBehaviour
 
         if (context.canceled)
         {
-            isHoldingDash = false;
-            if (tr != null)
-            {
-                tr.emitting = false;
-            }
-
-            DashDuration = 0.1f;
-            animator.SetBool("isDashing", false);
+            StopDash();
         }
     }
-    
+    private void StopDash()
+    {
+        if (!isDashing) return;
+
+        isDashing = false;
+        velocity.x = 0;
+
+        if (tr != null) tr.emitting = false;
+    }
     public void HardDrop(InputAction.CallbackContext context)
     {
         if(!canMove) return;
