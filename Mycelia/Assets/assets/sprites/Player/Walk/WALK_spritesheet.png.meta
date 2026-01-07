@@ -137,7 +137,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 24
-        y: 32
+        y: 33
         width: 51
         height: 67
       alignment: 9
@@ -159,7 +159,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 154
-        y: 32
+        y: 33
         width: 52
         height: 68
       alignment: 9
@@ -181,7 +181,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 284
-        y: 32
+        y: 33
         width: 52
         height: 68
       alignment: 9
@@ -203,7 +203,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 414
-        y: 32
+        y: 33
         width: 51
         height: 67
       alignment: 9
@@ -225,7 +225,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 544
-        y: 32
+        y: 33
         width: 51
         height: 67
       alignment: 9
@@ -247,7 +247,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 674
-        y: 32
+        y: 33
         width: 51
         height: 68
       alignment: 9
@@ -269,7 +269,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 804
-        y: 32
+        y: 33
         width: 51
         height: 68
       alignment: 9
@@ -291,7 +291,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 934
-        y: 32
+        y: 33
         width: 51
         height: 68
       alignment: 9
@@ -313,7 +313,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1064
-        y: 32
+        y: 33
         width: 51
         height: 67
       alignment: 9
@@ -335,7 +335,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1194
-        y: 32
+        y: 33
         width: 51
         height: 67
       alignment: 9
@@ -361,7 +361,7 @@ TextureImporter:
         width: 51
         height: 67
       alignment: 9
-      pivot: {x: 0.75, y: 0}
+      pivot: {x: 0.7752973, y: 0.00825119}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -379,7 +379,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1454
-        y: 32
+        y: 33
         width: 52
         height: 68
       alignment: 9
