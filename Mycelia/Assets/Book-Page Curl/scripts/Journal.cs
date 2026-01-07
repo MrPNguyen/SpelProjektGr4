@@ -6,6 +6,10 @@ public class Journal : MonoBehaviour
 {
     [SerializeField] private TMP_Text leftPageText;
     [SerializeField] private TMP_Text rightPageText;
+    [SerializeField] private TMP_Text leftFlipText;  
+    [SerializeField] private TMP_Text rightFlipText;
+
+    [SerializeField] private AnimationCurve curve;
     
     [SerializeField] private List<string> pages = new List<string>();
     public int currentPageIndex = 0;
@@ -13,30 +17,69 @@ public class Journal : MonoBehaviour
     public void AddPaper(string content)
     {
         pages.Add(content);
-        UpdateVisiblePage();
     }
 
-    public void NextPage()
+    public void UpdateVisiblePage(int rightPageIndex)
     {
-        if (currentPageIndex + 2 < pages.Count)
+        if (rightPageIndex == 0)
         {
-            currentPageIndex =+ 2;
-            UpdateVisiblePage();
+            SetText(leftPageText, -1);
+            SetText(rightPageText, 0);
+            rightPageText.alignment = TextAlignmentOptions.Center;
+            return;
+        }
+        else
+        {
+            rightPageText.alignment = TextAlignmentOptions.TopLeft;
+        }
+        
+        int leftTextIndex = rightPageIndex - 1;
+        int rightTextIndex = rightPageIndex;
+        Debug.Log(
+            $"LEFT parent: {leftPageText.transform.parent.name}, " +
+            $"RIGHT parent: {rightPageText.transform.parent.name}"
+        );
+       SetText(leftPageText, leftTextIndex);
+       SetText(rightPageText, rightTextIndex);
+       
+       SetText(leftFlipText, leftTextIndex);
+       SetText(rightFlipText, rightTextIndex);
+    }
+
+    private void SetText(TMP_Text text, int index)
+    {
+        if (index >= 0 && index < pages.Count)
+            text.text = pages[index];
+        else
+            text.text = "";
+    }
+
+    public void ActivateRightFlipText()
+    {
+        if (rightFlipText != null)
+        {
+            rightFlipText.gameObject.SetActive(true);
         }
     }
-
-    public void PreviousPage()
+    
+    public void ActivateLeftFlipText()
     {
-        if (currentPageIndex - 2 >= 0)
+        if (leftFlipText != null)
         {
-            currentPageIndex -= 2;
-            UpdateVisiblePage();
+            leftFlipText.gameObject.SetActive(true);
         }
     }
-
-    public void UpdateVisiblePage()
+    
+    public void DeactivateFlipText()
     {
-        leftPageText.text = currentPageIndex < pages.Count ? pages[currentPageIndex] : "";
-        rightPageText.text = currentPageIndex + 1 < pages.Count ? pages[currentPageIndex + 1] : "";
+        if (rightFlipText != null)
+        {
+            rightFlipText.gameObject.SetActive(false);
+        }
+        
+        if (leftFlipText != null)
+        {
+            leftFlipText.gameObject.SetActive(false);
+        }
     }
 }
