@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private static readonly int IsWalking = Animator.StringToHash("isWalking");
+    public static readonly int IsWalking = Animator.StringToHash("isWalking");
     private static readonly int IsJumping = Animator.StringToHash("isJumping");
     private static readonly int IsFlying = Animator.StringToHash("isFlying");
     private static readonly int IsHarddropping = Animator.StringToHash("isHarddropping");
@@ -40,6 +40,7 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector]public bool isJumping;
     public bool Jumped;
     private bool canJump;
+    public bool isWalking;
     
     [Header("GroundCheck")]
     [SerializeField] private Transform groundCheck;
@@ -56,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
     
     
     private SpriteRenderer spriteRenderer;
-    private Animator animator;
+    public Animator animator;
 
     [HideInInspector] public bool canMove;
 
@@ -633,5 +634,6 @@ public class PlayerMovement : MonoBehaviour
         }
         else   animator.SetBool(HasFallen, false);
         animator.SetBool(IsWalking, grounded && horizontalMovement != 0 && !isDashing);
+        isWalking = animator.GetBool("isWalking");
     }
 }

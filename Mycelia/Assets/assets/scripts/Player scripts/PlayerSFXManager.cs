@@ -36,10 +36,11 @@ public class PlayerSFXManager : MonoBehaviour
     void Update()
     {
         PlaySounds();
-        Debug.Log($"PlayerMove Grounded: {playerMove.IsGrounded}");
+        /*Debug.Log($"PlayerMove Grounded: {playerMove.IsGrounded}");
         Debug.Log($"PlayerMove Moving: {playerMove.horizontalMovement}");
         Debug.Log($"PlayerMove Dashing: {playerMove.isDashing}");
-        Debug.Log($"Coroutine start: {coroutineStart}");
+        Debug.Log($"Coroutine start: {coroutineStart}");*/
+        Debug.Log($"IsWalking: {playerMove.isWalking} \n Anim {playerMove.animator.GetBool("isWalking")}");
     }
     private void PlaySFX(AudioClip clip)
     {
@@ -87,7 +88,7 @@ public class PlayerSFXManager : MonoBehaviour
     {
         if (playerMove.hasPlayed) return;
         
-        if (playerMove.IsGrounded  && playerMove.horizontalMovement !=0  && !playerMove.isDashing && !coroutineStart)
+        if (!coroutineStart && playerMove.isWalking)
         {
             Debug.Log("Start footstep Coroutine");
             StartCoroutine(FootstepCoroutine());
