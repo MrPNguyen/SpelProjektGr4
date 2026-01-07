@@ -11,6 +11,7 @@ public class Portal : MonoBehaviour
     [SerializeField] private GameObject PlayerUI;
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private SpriteRenderer PlayerSprite;
+    
         
     [Header("Player rising")]
     private bool isRising = false;
@@ -29,6 +30,7 @@ public class Portal : MonoBehaviour
     {
         if (isRising)
         {
+            
             Vector2 targetPos = new Vector3(rb.position.x, targetHeight);
             Vector2 newPos = Vector2.MoveTowards(rb.position, targetPos, riseSpeed * Time.fixedDeltaTime);
             rb.MovePosition(newPos);
@@ -56,7 +58,7 @@ public class Portal : MonoBehaviour
     public void StartRising()
     {
         Debug.Log("StartRising");
-
+       
         isRising = true;
         coll.isTrigger = true;
         PlayerSprite.sortingOrder = -1;

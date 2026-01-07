@@ -2,8 +2,10 @@
 //As the rbarraza.com website is not live anymore you can get an archived version from web archive 
 //or check an archived version that I uploaded on my website: https://dandarawy.com/html5-canvas-pageflip/
 
+//Script källa: https://www.youtube.com/watch?v=6cnQptnL-dY&list=WL&index=54&t=87s
 using UnityEngine;
 using System.Collections;
+using TMPro;
 using UnityEngine.UI;
 using UnityEngine.Events;
 public enum FlipMode
@@ -77,6 +79,12 @@ public class Book : MonoBehaviour {
         Left.gameObject.SetActive(false);
         Right.gameObject.SetActive(false);
         UpdateSprites();
+        
+        if (journal != null)
+        {
+            journal.UpdateVisiblePage(currentPage);
+        }
+        
         CalcCurlCriticalPoints();
 
         float pageWidth = BookPanel.rect.width / 2.0f;
@@ -190,10 +198,6 @@ public class Book : MonoBehaviour {
 
         ShadowLTR.rectTransform.SetParent(Left.rectTransform, true);
         
-        if (journal != null)
-        {
-            journal.UpdateVisiblePage();
-        }
     }
     public void UpdateBookRTLToPoint(Vector3 followLocation)
     {
@@ -230,10 +234,6 @@ public class Book : MonoBehaviour {
         Left.transform.SetAsFirstSibling();
 
         Shadow.rectTransform.SetParent(Right.rectTransform, true);
-        if (journal != null)
-        {
-            journal.UpdateVisiblePage();
-        }
     }
     private float CalcClipAngle(Vector3 c,Vector3 bookCorner,out  Vector3 t1)
     {
@@ -398,6 +398,20 @@ public class Book : MonoBehaviour {
         LeftNext.transform.SetParent(BookPanel.transform, true);
         Left.gameObject.SetActive(false);
         Right.gameObject.SetActive(false);
+        
+        TMP_Text leftTmp = Left.GetComponentInChildren<TMP_Text>(true);
+        TMP_Text rightTmp = Right.GetComponentInChildren<TMP_Text>(true);
+
+        if (leftTmp)
+        {
+            leftTmp.gameObject.SetActive(false);
+        }
+
+        if (rightTmp)
+        {
+            rightTmp.gameObject.SetActive(false);
+        }
+        
         Right.transform.SetParent(BookPanel.transform, true);
         RightNext.transform.SetParent(BookPanel.transform, true);
         UpdateSprites();
@@ -406,8 +420,7 @@ public class Book : MonoBehaviour {
 
         if (journal != null)
         {
-            journal.currentPageIndex = currentPage;
-            journal.UpdateVisiblePage();
+            journal.UpdateVisiblePage(currentPage);
         }
         if (OnFlip != null)
             OnFlip.Invoke();
