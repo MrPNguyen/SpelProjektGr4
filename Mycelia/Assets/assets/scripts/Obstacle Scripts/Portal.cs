@@ -11,7 +11,7 @@ public class Portal : MonoBehaviour
     [SerializeField] private GameObject PlayerUI;
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private SpriteRenderer PlayerSprite;
-    [SerializeField] private GameObject portalSign;
+    
         
     [Header("Player rising")]
     private bool isRising = false;
@@ -50,8 +50,6 @@ public class Portal : MonoBehaviour
         if(hasTriggered) return;
         if (other.tag == "Player")
         {
-            portalSign.SetActive(true);
-            Debug.Log("Portal Sign active in hirearchy"+ portalSign.activeInHierarchy);
             hasTriggered = true;
             StartRising();
         }

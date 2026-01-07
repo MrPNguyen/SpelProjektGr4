@@ -43,6 +43,7 @@ public class PlayerManager : MonoBehaviour
     private Vector3 newCameraPosition;
     private Coroutine UnlockWinRoutine;
     [SerializeField] private GameObject winPortal;
+    [SerializeField] private GameObject portalSign;
 
     private bool Invincible;
     private float time;
@@ -210,6 +211,7 @@ public class PlayerManager : MonoBehaviour
         
         cameraFollow.transform.position = newCameraPosition;
         winPortal.SetActive(true);
+        portalSign.SetActive(true);
         yield return new WaitForSeconds(2);
         portal.SetTrigger("Winnable");
         yield return new WaitForSeconds(6f);
