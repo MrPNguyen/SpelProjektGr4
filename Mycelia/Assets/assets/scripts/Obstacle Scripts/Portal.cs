@@ -18,6 +18,13 @@ public class Portal : MonoBehaviour
     [SerializeField] private float riseSpeed;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private float targetHeight;
+    private Collider2D coll;
+
+    void Start()
+    {
+        coll = GetComponent<Collider2D>();
+        coll.isTrigger = false;
+    }
     void FixedUpdate()
     {
         if (isRising)
@@ -51,6 +58,7 @@ public class Portal : MonoBehaviour
         Debug.Log("StartRising");
 
         isRising = true;
+        coll.isTrigger = true;
         PlayerSprite.sortingOrder = -1;
 
         if (playerMovement != null)
