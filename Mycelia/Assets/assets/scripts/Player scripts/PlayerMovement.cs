@@ -39,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector]public bool hasHardDropped;
     [HideInInspector]public bool isJumping;
     public bool Jumped;
+    private bool canJump;
     
     [Header("GroundCheck")]
     [SerializeField] private Transform groundCheck;
@@ -242,12 +243,9 @@ public class PlayerMovement : MonoBehaviour
                 velocity.x = isFacingRight? DashPower : -DashPower;
             }
         }
-
-        if (!CoroutineStart)
-        {
-            StartCoroutine(isGrounded());
-        }
         
+         isGrounded();
+         
         ApplyGravity();
         rb.linearVelocity = velocity;
 
@@ -286,7 +284,7 @@ public class PlayerMovement : MonoBehaviour
         //if (CurrentStamina == 0) return;
 
         // Prevent jumping in the air
-        if (!IsGrounded && context.performed)
+        if (!canJump && context.performed)
         {
             return;
         }
@@ -318,7 +316,7 @@ public class PlayerMovement : MonoBehaviour
         
         if (context.started)
         {
-            GroundedBeforeFlying = IsGrounded;
+            GroundedBeforeFlying = canJump;
         }
 
         if (context.performed)
@@ -423,24 +421,36 @@ public class PlayerMovement : MonoBehaviour
             StartRecharge();
         }
     }
-    public IEnumerator isGrounded()
+    public void isGrounded()
     {
-        CoroutineStart = true;
+        
         if (Physics2D.OverlapBox(groundCheck.position, groundCheckSize, 0, whatIsGround))
         {
             IsGrounded = true;
-            if (velocity.x != 0 && !isJumping)
-            {
-                yield return new WaitForSeconds(CoyoteTime);
-            }
-          
+        }
+        else IsGrounded = false;
+        if (Physics2D.OverlapBox(groundCheck.position, groundCheckSize, 0, whatIsGround) || 
+            Physics2D.OverlapBox(groundCheck.position, groundCheckSize, 0, 11))
+        {
+            canJump = true;
         }
         else
         {
-             IsGrounded = false;
+            if (!isJumping && !CoroutineStart && !hasHardDropped)
+            {
+                StartCoroutine(SetJumpBool());
+            }
+            if (isJumping){canJump = false;}
         }
+        
+    }
 
+    private IEnumerator SetJumpBool()
+    {
+        CoroutineStart = true;
+        yield return new WaitForSeconds(CoyoteTime);
         CoroutineStart = false;
+        canJump = false;
     }
 
     private void OnDrawGizmosSelected()
