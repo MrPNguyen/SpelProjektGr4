@@ -50,6 +50,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Vector2 wallCheckSize;
     [SerializeField] private Vector2 originalWallCheckSize;
     [SerializeField] private LayerMask whatIsGround;
+    [SerializeField] private LayerMask Svamp;
     public bool IsGrounded;
     
     
@@ -429,20 +430,19 @@ public class PlayerMovement : MonoBehaviour
             IsGrounded = true;
         }
         else IsGrounded = false;
-        if (Physics2D.OverlapBox(groundCheck.position, groundCheckSize, 0, whatIsGround) || 
-            Physics2D.OverlapBox(groundCheck.position, groundCheckSize, 0, 11))
+        if (Physics2D.OverlapBox(groundCheck.position, groundCheckSize, 0, whatIsGround)||
+            Physics2D.OverlapBox(groundCheck.position, groundCheckSize, 0, Svamp))
         {
             canJump = true;
         }
         else
         {
-            if (!isJumping && !CoroutineStart && !hasHardDropped)
+            if (!isJumping && !CoroutineStart)
             {
                 StartCoroutine(SetJumpBool());
             }
             if (isJumping){canJump = false;}
         }
-        
     }
 
     private IEnumerator SetJumpBool()
