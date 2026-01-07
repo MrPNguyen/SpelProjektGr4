@@ -41,7 +41,7 @@ public class SvampolinHopp : MonoBehaviour
                 playerMovement.velocity.y = Bounce;
                 audio.Play();
             }
-            /*else if (playerMovement.velocity.y <= -3f)
+            else if (playerMovement.velocity.y <= -3f)
             {
                 
                 playerMovement.hasHardDropped = false;
@@ -51,7 +51,7 @@ public class SvampolinHopp : MonoBehaviour
             if (Keyboard.current.spaceKey.wasPressedThisFrame)
             {
                 playerMovement.velocity.y = 6.5f;
-            }*/
+            }
             
         
         }
