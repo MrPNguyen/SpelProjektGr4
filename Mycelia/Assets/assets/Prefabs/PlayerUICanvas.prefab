@@ -302,13 +302,13 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 550831251458362803}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 2793611239310709556}
+        m_TargetAssemblyTypeName: AudioSlider, Assembly-CSharp
+        m_MethodName: SetLevel
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -460,6 +460,7 @@ MonoBehaviour:
   LevelIndex: 0
   player: {fileID: 2192809267211881265, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
   playerM: {fileID: 5641837105196010520, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
+  PauseMenu: {fileID: 0}
 --- !u!1 &710727405401384872
 GameObject:
   m_ObjectHideFlags: 0

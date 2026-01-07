@@ -36,6 +36,11 @@ public class PlayerSFXManager : MonoBehaviour
     void Update()
     {
         PlaySounds();
+        /*Debug.Log($"PlayerMove Grounded: {playerMove.IsGrounded}");
+        Debug.Log($"PlayerMove Moving: {playerMove.horizontalMovement}");
+        Debug.Log($"PlayerMove Dashing: {playerMove.isDashing}");
+        Debug.Log($"Coroutine start: {coroutineStart}");*/
+        Debug.Log($"IsWalking: {playerMove.isWalking} \n Anim {playerMove.animator.GetBool("isWalking")}");
     }
     private void PlaySFX(AudioClip clip)
     {
@@ -50,8 +55,8 @@ public class PlayerSFXManager : MonoBehaviour
     private IEnumerator FootstepCoroutine()
     {
         Debug.Log("Start footstep Coroutine");
-        while (true)
-        {
+        coroutineStart = true;
+        
             float interval = walkingInterval;
             if (playerMove.isRunning)
             {
@@ -60,24 +65,42 @@ public class PlayerSFXManager : MonoBehaviour
             walkingTimer -= Time.deltaTime;
             if (walkingTimer <= 0)
             {
-                if (walkingClips != null && walkingClips.Count > 0)
+                if (walkingClips != null && walkingClips.Count > 0 && !OneShotSource.isPlaying)
                 {
                     PlayOneShot(walkingClips[Random.Range(0, walkingClips.Count)]);
                 }
             }
             yield return new WaitForSeconds(interval + 1f);
-        }
+        coroutineStart = false;
     }
 
     private void PlayOneShot(AudioClip clip)
     {
-        if (clip != null)
-            audioSource.PlayOneShot(clip);
+        if (OneShotSource.clip != clip || !OneShotSource.isPlaying)
+        {
+            OneShotSource.Stop();
+            OneShotSource.clip = clip;
+        }
+        OneShotSource.Play();
     }
 
     private void PlaySounds()
     {
         if (playerMove.hasPlayed) return;
+        
+        if (!coroutineStart && playerMove.isWalking)
+        {
+            Debug.Log("Start footstep Coroutine");
+            StartCoroutine(FootstepCoroutine());
+        }
+        else
+        {
+            StopCoroutine(FootstepCoroutine());
+            coroutineStart = false;
+            footstepRoutine = null;
+            Debug.Log($"Stop Coroutine. footstepRoutine: {footstepRoutine}");
+            
+        }
         
         if (playerMove.hasHardDropped && playerMove.IsGrounded)
         {
@@ -103,24 +126,8 @@ public class PlayerSFXManager : MonoBehaviour
             OneShotSource.PlayOneShot(GruntClip);
             playerMove.hasPlayed = true; playerMove.Jumped = false;
         }
+       
         
-        if (playerMove.IsGrounded && playerMove.horizontalMovement != 0 && !playerMove.isDashing && !playerMove.isJumping)
-        {
-            if (footstepRoutine == null)
-            {
-                footstepRoutine = StartCoroutine(FootstepCoroutine());
-            }
-        }
-        else
-        {
-            if (footstepRoutine != null)
-            {
-              
-                StopCoroutine(footstepRoutine);
-                footstepRoutine = null;
-                Debug.Log($"Stop Coroutine. footstepRoutine: {footstepRoutine}");
-            }
-        }
         
         if (!audioSource.isPlaying)
         {
