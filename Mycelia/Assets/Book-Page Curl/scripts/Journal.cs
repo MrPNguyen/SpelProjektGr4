@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using TMPro;
 using System.Collections.Generic;
@@ -9,10 +10,12 @@ public class Journal : MonoBehaviour
     [SerializeField] private TMP_Text leftFlipText;  
     [SerializeField] private TMP_Text rightFlipText;
 
-    [SerializeField] private AnimationCurve curve;
-    
-    [SerializeField] private List<string> pages = new List<string>();
-    public int currentPageIndex = 0;
+    [SerializeField] private List<string> pages;
+
+    private void Start()
+    {
+        pages = new List<string>();
+    }
 
     public void AddPaper(string content)
     {
@@ -21,6 +24,9 @@ public class Journal : MonoBehaviour
 
     public void UpdateVisiblePage(int rightPageIndex)
     {
+        leftPageText.gameObject.SetActive(true);
+        rightPageText.gameObject.SetActive(true);
+        
         if (rightPageIndex == 0)
         {
             SetText(leftPageText, -1);

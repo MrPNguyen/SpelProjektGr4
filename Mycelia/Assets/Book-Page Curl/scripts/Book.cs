@@ -292,7 +292,10 @@ public class Book : MonoBehaviour {
         mode = FlipMode.RightToLeft;
         f = point;
 
-
+        if (journal != null)
+        {
+            journal.ActivateRightFlipText();
+        }
         NextPageClip.rectTransform.pivot = new Vector2(0, 0.12f);
         ClippingPlane.rectTransform.pivot = new Vector2(1, 0.35f);
 
@@ -327,6 +330,11 @@ public class Book : MonoBehaviour {
         mode = FlipMode.LeftToRight;
         f = point;
 
+        if (journal != null)
+        {
+            journal.ActivateLeftFlipText();
+        }
+        
         NextPageClip.rectTransform.pivot = new Vector2(1, 0.12f);
         ClippingPlane.rectTransform.pivot = new Vector2(0, 0.35f);
 
@@ -399,17 +407,9 @@ public class Book : MonoBehaviour {
         Left.gameObject.SetActive(false);
         Right.gameObject.SetActive(false);
         
-        TMP_Text leftTmp = Left.GetComponentInChildren<TMP_Text>(true);
-        TMP_Text rightTmp = Right.GetComponentInChildren<TMP_Text>(true);
-
-        if (leftTmp)
+        if (journal != null)
         {
-            leftTmp.gameObject.SetActive(false);
-        }
-
-        if (rightTmp)
-        {
-            rightTmp.gameObject.SetActive(false);
+            journal.DeactivateFlipText();
         }
         
         Right.transform.SetParent(BookPanel.transform, true);
@@ -439,6 +439,12 @@ public class Book : MonoBehaviour {
                     Left.gameObject.SetActive(false);
                     Right.gameObject.SetActive(false);
                     pageDragging = false;
+                    
+                    if (journal != null)
+                    {
+                        journal.DeactivateFlipText();
+                        journal.UpdateVisiblePage(currentPage);
+                    }
                 }
                 ));
         }
@@ -455,6 +461,12 @@ public class Book : MonoBehaviour {
                     Left.gameObject.SetActive(false);
                     Right.gameObject.SetActive(false);
                     pageDragging = false;
+                    
+                    if (journal != null)
+                    {
+                        journal.DeactivateFlipText();
+                        journal.UpdateVisiblePage(currentPage);
+                    }
                 }
                 ));
         }
