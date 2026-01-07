@@ -50,6 +50,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Vector2 wallCheckSize;
     [SerializeField] private Vector2 originalWallCheckSize;
     [SerializeField] private LayerMask whatIsGround;
+    [SerializeField] private LayerMask Svamp;
     public bool IsGrounded;
     
     
@@ -324,6 +325,7 @@ public class PlayerMovement : MonoBehaviour
             if(!GroundedBeforeFlying) return;
 
             isFlying = true;
+            isJumping = false;
             flyingDuration = 0.8f;
         }
 
@@ -429,20 +431,19 @@ public class PlayerMovement : MonoBehaviour
             IsGrounded = true;
         }
         else IsGrounded = false;
-        if (Physics2D.OverlapBox(groundCheck.position, groundCheckSize, 0, whatIsGround) || 
-            Physics2D.OverlapBox(groundCheck.position, groundCheckSize, 0, 11))
+        if (Physics2D.OverlapBox(groundCheck.position, groundCheckSize, 0, whatIsGround)||
+            Physics2D.OverlapBox(groundCheck.position, groundCheckSize, 0, Svamp))
         {
             canJump = true;
         }
         else
         {
-            if (!isJumping && !CoroutineStart && !hasHardDropped)
+            if (!isJumping && !CoroutineStart)
             {
                 StartCoroutine(SetJumpBool());
             }
             if (isJumping){canJump = false;}
         }
-        
     }
 
     private IEnumerator SetJumpBool()
@@ -593,17 +594,18 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool(IsDashing, false);
             return;
         }
-        animator.SetBool(IsFlying, false);
+        else animator.SetBool(IsFlying, false);
+       
         
-        if (isHardDropping)
+        if (hasHardDropped)
         {
+            Debug.Log($"hasHardDropped: {animator.GetBool(IsHarddropping)}");
             animator.SetBool(IsFlying, false);
             animator.SetBool(IsJumping, false);
             animator.SetBool(IsHarddropping, true);
             animator.SetBool(IsDashing, false);
             return;
-        }
-        animator.SetBool(IsHarddropping, false);
+        } else animator.SetBool(IsHarddropping, false);
         
         if (isDashing)
         {
@@ -625,10 +627,11 @@ public class PlayerMovement : MonoBehaviour
         }
         animator.SetBool(IsJumping, false);
 
-        if (!grounded && velocity.y < 0)
+        if (!grounded && velocity.y < 0 && !hasHardDropped)
         {
             animator.SetBool(HasFallen, true);
         }
+        else   animator.SetBool(HasFallen, false);
         animator.SetBool(IsWalking, grounded && horizontalMovement != 0 && !isDashing);
     }
 }

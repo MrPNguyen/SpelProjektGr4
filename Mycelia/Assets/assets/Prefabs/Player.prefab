@@ -5024,7 +5024,6 @@ GameObject:
   - component: {fileID: 498701441302121748}
   - component: {fileID: -441173067643279493}
   - component: {fileID: 6379467792457079880}
-  - component: {fileID: 3479644331951188203}
   - component: {fileID: 4998531427421196052}
   - component: {fileID: 366716697853204253}
   - component: {fileID: 4761619104841001515}
@@ -5173,26 +5172,27 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 4168
+  Svamp:
+    serializedVersion: 2
+    m_Bits: 16384
   IsGrounded: 0
   canMove: 1
-  DashPower: 13
+  DashPower: 13.2
   isDashing: 0
-  isHoldingDash: 0
-  Dashed: 0
   flyingPower: 2
   StaminaBar: {fileID: 0}
   CurrentStamina: 0
   MaxStamina: 100
   RunCost: 10
-  DashCost: 25
-  FlyingCost: 20
+  DashCost: 40
+  FlyingCost: 30
   ChargeRate: 15
-  fallSpeed: 1.3
+  fallSpeed: 1
   originalOffset: {x: 0.174, y: 0.45, z: 0}
   dashOffset: {x: 0.174, y: 0.45, z: 0}
   headOriginalOffset: {x: 0.026, y: 0.85, z: 0}
   headDashOffset: {x: 0.026, y: 0.85, z: 0}
-  CoyoteTime: 0.1
+  CoyoteTime: 0.5
 --- !u!114 &5641837105196010520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5231,6 +5231,7 @@ MonoBehaviour:
   ScoreText: {fileID: 0}
   portal: {fileID: 0}
   cameraFollow: {fileID: 0}
+  winPortal: {fileID: 0}
 --- !u!114 &8841612456383048459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5408,6 +5409,18 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: f70fe97c-8acb-48d5-ad56-b8993d144c77
     m_ActionName: 'Player/Backup[/Keyboard/p]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c75ea376-af76-4ce1-a1c2-c17c130855f7
+    m_ActionName: 'Player/Pause[/Keyboard/escape]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6d1210af-d5cd-4d69-a777-47c6f83bfada
+    m_ActionName: 'UI/ContinueDialogue[/Keyboard/e]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6cf167f0-7f08-4b38-a89f-ede8a7a97f28
+    m_ActionName: 'UI/Pause[/Keyboard/escape]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: 
@@ -5674,23 +5687,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &3479644331951188203
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4731169498743363079}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20af00a4567aa5c4d9c2b2a1ca69fc12, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioSource: {fileID: 6379467792457079880}
-  currentMaterial: 0
-  audioSoundType:
-  - audioClip: []
-  - audioClip: []
 --- !u!70 &4998531427421196052
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

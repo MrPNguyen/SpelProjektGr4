@@ -101,8 +101,7 @@ public class PlayerSFXManager : MonoBehaviour
         {
             OneShotSource.PlayOneShot(jumpClip);
             OneShotSource.PlayOneShot(GruntClip);
-            playerMove.hasPlayed = true;
-           playerMove.Jumped = false;
+            playerMove.hasPlayed = true; playerMove.Jumped = false;
         }
         
         if (playerMove.IsGrounded && playerMove.horizontalMovement != 0 && !playerMove.isDashing && !playerMove.isJumping)

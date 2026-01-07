@@ -1054,6 +1054,10 @@ PrefabInstance:
       propertyPath: playerMovement
       value: 
       objectReference: {fileID: 572162602}
+    - target: {fileID: 9152536611803671254, guid: 99bd71008c19e93468111d2dd5edfb88, type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5388,7 +5392,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2052722778094988803, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 67.35
+      value: -3.9
       objectReference: {fileID: 0}
     - target: {fileID: 2052722778094988803, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
       propertyPath: m_LocalPosition.y
@@ -5425,22 +5429,6 @@ PrefabInstance:
     - target: {fileID: 2052722778094988803, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2192809267211881265, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
-      propertyPath: DashCost
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 2192809267211881265, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
-      propertyPath: DashPower
-      value: 13.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2192809267211881265, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
-      propertyPath: CoyoteTime
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2192809267211881265, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
-      propertyPath: FlyingCost
-      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 2192809267211881265, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
       propertyPath: StaminaBar
@@ -5810,11 +5798,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4731169498743363079, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
   m_PrefabInstance: {fileID: 572162591}
   m_PrefabAsset: {fileID: 0}
---- !u!82 &572162593 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 6379467792457079880, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
-  m_PrefabInstance: {fileID: 572162591}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &572162595
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5827,11 +5810,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20af00a4567aa5c4d9c2b2a1ca69fc12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 572162593}
-  currentMaterial: 0
-  audioSoundType:
-  - audioClip: []
-  - audioClip: []
 --- !u!114 &572162601 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5641837105196010520, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
@@ -7000,6 +6978,10 @@ PrefabInstance:
       propertyPath: playerMovement
       value: 
       objectReference: {fileID: 572162602}
+    - target: {fileID: 9152536611803671254, guid: 99bd71008c19e93468111d2dd5edfb88, type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8029,6 +8011,32 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 325015310}
     m_Modifications:
+    - target: {fileID: 331689016479420297, guid: 0e5cd0bbbc270704bb92471b6096a039, type: 3}
+      propertyPath: dialogue.autoAdvanceDelay
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 331689016479420297, guid: 0e5cd0bbbc270704bb92471b6096a039, type: 3}
+      propertyPath: dialogue.dialogueLines.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 331689016479420297, guid: 0e5cd0bbbc270704bb92471b6096a039, type: 3}
+      propertyPath: dialogue.dialogueLines.Array.data[0].line
+      value: Thank you for saving me, faye! But my brethren are still in danger.
+        Please find the missing keys and free them
+      objectReference: {fileID: 0}
+    - target: {fileID: 331689016479420297, guid: 0e5cd0bbbc270704bb92471b6096a039, type: 3}
+      propertyPath: dialogue.dialogueLines.Array.data[1].line
+      value: And please, find the King! He must be saved at all costs! Slay the putrid
+        Agarics and free the King... You must
+      objectReference: {fileID: 0}
+    - target: {fileID: 331689016479420297, guid: 0e5cd0bbbc270704bb92471b6096a039, type: 3}
+      propertyPath: dialogue.dialogueLines.Array.data[1].character.icon
+      value: 
+      objectReference: {fileID: 9147024313637940093, guid: 584eda88798e41249ae2c26083c876cf, type: 3}
+    - target: {fileID: 331689016479420297, guid: 0e5cd0bbbc270704bb92471b6096a039, type: 3}
+      propertyPath: dialogue.dialogueLines.Array.data[1].character.name
+      value: Kantarelder
+      objectReference: {fileID: 0}
     - target: {fileID: 2113216413915551942, guid: 0e5cd0bbbc270704bb92471b6096a039, type: 3}
       propertyPath: m_LocalPosition.x
       value: -36.749863
@@ -10348,28 +10356,34 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7350832452455051506, guid: b6834b7c6383039439c88fbc14c6febc, type: 3}
+      propertyPath: dialogue.autoAdvanceDelay
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7350832452455051506, guid: b6834b7c6383039439c88fbc14c6febc, type: 3}
+      propertyPath: dialogue.automaticAdvance
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7350832452455051506, guid: b6834b7c6383039439c88fbc14c6febc, type: 3}
       propertyPath: dialogue.dialogueLines.Array.size
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7350832452455051506, guid: b6834b7c6383039439c88fbc14c6febc, type: 3}
       propertyPath: dialogue.dialogueLines.Array.data[0].line
-      value: Why hello there Winged One. Many thanks for releasing me. How did you
-        find me? No matter, not important.
+      value: Hello there Winged One. Many thanks for releasing me.
       objectReference: {fileID: 0}
     - target: {fileID: 7350832452455051506, guid: b6834b7c6383039439c88fbc14c6febc, type: 3}
       propertyPath: dialogue.dialogueLines.Array.data[1].line
-      value: Have you found my sister? She's around here somewhere. Please, if it's
-        not too much to ask, help her as well.
+      value: Did you speak to the old geezer? He can be a little whack, but sometimes
+        he says something of importance.
       objectReference: {fileID: 0}
     - target: {fileID: 7350832452455051506, guid: b6834b7c6383039439c88fbc14c6febc, type: 3}
       propertyPath: dialogue.dialogueLines.Array.data[2].line
-      value: Oh by the way, before you leave. If you're going deeper into the forest,
-        beware of loose and shaky ground. Almost plunged to my death before, Haha!
+      value: Oh by the way, if you're heading further, beware of falling ground.
+        It'l get ya!
       objectReference: {fileID: 0}
     - target: {fileID: 7350832452455051506, guid: b6834b7c6383039439c88fbc14c6febc, type: 3}
       propertyPath: dialogue.dialogueLines.Array.data[3].line
-      value: Appreciate the warning, and don't worry. I won't let anything happen
-        to her.
+      value: Appreciate the warning. Find somewhere safe to stay now.
       objectReference: {fileID: 0}
     - target: {fileID: 7350832452455051506, guid: b6834b7c6383039439c88fbc14c6febc, type: 3}
       propertyPath: dialogue.dialogueLines.Array.data[0].character.icon
@@ -22284,7 +22298,7 @@ Tilemap:
       - {fileID: -7373168968592995429, guid: 05511a7569bd63b46b454c1926a5832c, type: 3}
       - {fileID: -7031007450491264660, guid: 05511a7569bd63b46b454c1926a5832c, type: 3}
       - {fileID: 648905387608988143, guid: 05511a7569bd63b46b454c1926a5832c, type: 3}
-      m_AnimationSpeed: 5
+      m_AnimationSpeed: 5.0000005
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 75, y: -3, z: 0}
@@ -23823,21 +23837,24 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7350832452455051506, guid: b6834b7c6383039439c88fbc14c6febc, type: 3}
+      propertyPath: dialogue.autoAdvanceDelay
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7350832452455051506, guid: b6834b7c6383039439c88fbc14c6febc, type: 3}
       propertyPath: dialogue.automaticAdvance
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7350832452455051506, guid: b6834b7c6383039439c88fbc14c6febc, type: 3}
       propertyPath: dialogue.dialogueLines.Array.data[0].line
-      value: Oh thank you for saving me dear! I was almost shroom stew!
+      value: Thank you for saving me! I was almost shroom stew!
       objectReference: {fileID: 0}
     - target: {fileID: 7350832452455051506, guid: b6834b7c6383039439c88fbc14c6febc, type: 3}
       propertyPath: dialogue.dialogueLines.Array.data[1].line
-      value: My dork of a brother should be caged here somewhere too. Please do rescue
-        him, he cant handle himself without my help.
+      value: 'There should be others who need help, plese save them! '
       objectReference: {fileID: 0}
     - target: {fileID: 7350832452455051506, guid: b6834b7c6383039439c88fbc14c6febc, type: 3}
       propertyPath: dialogue.dialogueLines.Array.data[2].line
-      value: Don't worry. I won't let anything happen to him.
+      value: Don't worry, il get to it.
       objectReference: {fileID: 0}
     - target: {fileID: 7350832452455051506, guid: b6834b7c6383039439c88fbc14c6febc, type: 3}
       propertyPath: dialogue.dialogueLines.Array.data[0].character.icon
