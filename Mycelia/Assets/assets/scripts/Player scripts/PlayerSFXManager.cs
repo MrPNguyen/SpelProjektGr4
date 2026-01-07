@@ -22,6 +22,7 @@ public class PlayerSFXManager : MonoBehaviour
     [SerializeField] private float runningMultiplier = 0.6f;
     [SerializeField] private AudioClip GruntClip;
     private Coroutine footstepRoutine;
+    private bool coroutineStart = false;
 
     private bool wasDashing;
     
@@ -48,6 +49,7 @@ public class PlayerSFXManager : MonoBehaviour
 
     private IEnumerator FootstepCoroutine()
     {
+        Debug.Log("Start footstep Coroutine");
         while (true)
         {
             float interval = walkingInterval;
@@ -101,10 +103,9 @@ public class PlayerSFXManager : MonoBehaviour
             OneShotSource.PlayOneShot(GruntClip);
             playerMove.hasPlayed = true;
            playerMove.Jumped = false;
-           
         }
         
-        if (playerMove.IsGrounded && playerMove.horizontalMovement != 0 && !playerMove.isDashing)
+        if (playerMove.IsGrounded && playerMove.horizontalMovement != 0 && !playerMove.isDashing && !playerMove.isJumping)
         {
             if (footstepRoutine == null)
             {
@@ -115,8 +116,10 @@ public class PlayerSFXManager : MonoBehaviour
         {
             if (footstepRoutine != null)
             {
+              
                 StopCoroutine(footstepRoutine);
                 footstepRoutine = null;
+                Debug.Log($"Stop Coroutine. footstepRoutine: {footstepRoutine}");
             }
         }
         
