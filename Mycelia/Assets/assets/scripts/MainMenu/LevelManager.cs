@@ -8,7 +8,8 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private int LevelIndex;
     [SerializeField] private PlayerMovement player;
     [SerializeField] private PlayerManager playerM;
-    //[SerializeField] private GameObject PauseMenu;
+    [SerializeField] private GameObject PauseMenu;
+    private bool isPauseActive = false;
     public void StartGame()
     {
         Debug.Log(LevelIndex);
@@ -28,16 +29,13 @@ public class LevelManager : MonoBehaviour
 
     public void PauseGame()
     {
-        if(player == null) Debug.LogError("Player reference not set in LevelManager!");
-        else
-        {
-            player.canMove = false;
-            //Debug.Log("Game paused, canMove = " + player.canMove);
-        }
+        Time.timeScale = 0;
+        player.canMove = false;
     }
 
     public void ResumeGame()
     {
+        Time.timeScale = 1;
         player.canMove = true;
     }
 
@@ -47,19 +45,22 @@ public class LevelManager : MonoBehaviour
         player.canMove = true;
     }
 
-    /*public void Pause(InputAction.CallbackContext context)
+    public void Pause(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
-            Debug.Log("Pause");
-            PauseGame();
-            if (PauseMenu != null) PauseMenu.SetActive(true);
+            isPauseActive = !isPauseActive;
+            
+            if (!isPauseActive)
+            {
+                PauseGame();
+                if (PauseMenu != null) PauseMenu.SetActive(true);
+            }
+            else
+            {
+                ResumeGame();
+                if (PauseMenu != null) PauseMenu.SetActive(false);
+            }
         }
-
-        if (context.performed && !player.canMove)
-        {
-            ResumeGame();
-            if (PauseMenu != null) PauseMenu.SetActive(false);
-        }
-    }*/
+    }
 }
