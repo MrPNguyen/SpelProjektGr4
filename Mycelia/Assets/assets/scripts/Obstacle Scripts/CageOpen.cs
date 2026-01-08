@@ -36,8 +36,6 @@ public class CageOpen : MonoBehaviour
             isTriggered = true;
             onTriggerEnter.Invoke();
             KantarellAnimator.SetBool("sad", false);
-            Debug.Log("Sr: " + Sr);
-            Debug.Log("openDoor: " + openDoor);
             Sr.sprite = openDoor;
             KantaRender.sortingOrder = 3;
             if (playerManager.SavedKantarells < playerManager.MaxKantarells)

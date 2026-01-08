@@ -125,7 +125,6 @@ public class PlayerManager : MonoBehaviour
     }
     public void TakeDamage()
     {
-        Debug.Log("Ouch");
         if (!Invincible)
         {
             currentHealth--;
@@ -186,7 +185,6 @@ public class PlayerManager : MonoBehaviour
 
     public void SaveKantarells()
     {
-        Debug.Log("Saving Kantarells");
         SavedKantarells++;
         UpdateUI();
         if (SavedKantarells >= MaxKantarells)

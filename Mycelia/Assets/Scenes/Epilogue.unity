@@ -235,6 +235,7 @@ MonoBehaviour:
   LevelIndex: 0
   player: {fileID: 0}
   playerM: {fileID: 0}
+  PauseMenu: {fileID: 0}
 --- !u!1 &120286847
 GameObject:
   m_ObjectHideFlags: 0
@@ -301,6 +302,10 @@ MonoBehaviour:
   timeBtwnChars: 0.1
   timeBtwnWords: 1.3
   AutomaticStart: 1
+  nextButton: {fileID: 0}
+  AutomaticAdvance: 1
+  startDelay: 0
+  mainMenu: {fileID: 0}
 --- !u!114 &120286850
 MonoBehaviour:
   m_ObjectHideFlags: 0
