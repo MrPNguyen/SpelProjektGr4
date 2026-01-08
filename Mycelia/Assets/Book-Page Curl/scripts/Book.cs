@@ -294,7 +294,7 @@ public class Book : MonoBehaviour {
 
         if (journal != null)
         {
-            journal.ActivateRightFlipText();
+            journal.ActivateRightFlipText(currentPage);
         }
         NextPageClip.rectTransform.pivot = new Vector2(0, 0.12f);
         ClippingPlane.rectTransform.pivot = new Vector2(1, 0.35f);
@@ -332,7 +332,7 @@ public class Book : MonoBehaviour {
 
         if (journal != null)
         {
-            journal.ActivateLeftFlipText();
+            journal.ActivateLeftFlipText(currentPage);
         }
         
         NextPageClip.rectTransform.pivot = new Vector2(1, 0.12f);
@@ -387,6 +387,11 @@ public class Book : MonoBehaviour {
     {
         LeftNext.sprite= (currentPage > 0 && currentPage <= bookPages.Length) ? bookPages[currentPage-1] : background;
         RightNext.sprite=(currentPage>=0 &&currentPage<bookPages.Length) ? bookPages[currentPage] : background;
+        
+        /*if (journal != null)
+        {
+            LeftNext.transform.SetAsFirstSibling();
+        }*/
     }
     public void TweenForward()
     {
@@ -410,6 +415,7 @@ public class Book : MonoBehaviour {
         if (journal != null)
         {
             journal.DeactivateFlipText();
+            journal.UpdateVisiblePage(currentPage);
         }
         
         Right.transform.SetParent(BookPanel.transform, true);
@@ -417,11 +423,7 @@ public class Book : MonoBehaviour {
         UpdateSprites();
         Shadow.gameObject.SetActive(false);
         ShadowLTR.gameObject.SetActive(false);
-
-        if (journal != null)
-        {
-            journal.UpdateVisiblePage(currentPage);
-        }
+        
         if (OnFlip != null)
             OnFlip.Invoke();
     }
