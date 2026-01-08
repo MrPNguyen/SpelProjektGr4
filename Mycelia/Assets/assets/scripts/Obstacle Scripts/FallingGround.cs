@@ -13,7 +13,7 @@ public class FallingGround : MonoBehaviour
     [SerializeField] private float multiplier = 1;
     private Vector3 posA;
     private bool falling;
-    private bool pause;
+   
     [SerializeField] private float fallSpeed = -1f;
     private Coroutine lastRoutine;
 

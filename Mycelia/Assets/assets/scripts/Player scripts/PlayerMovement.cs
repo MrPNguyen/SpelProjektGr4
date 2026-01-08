@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
@@ -75,6 +76,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Stamina")] 
     [SerializeField] public Image StaminaBar;
+    [SerializeField] private Volume staminaVolume;
     [SerializeField] public float CurrentStamina, MaxStamina;
     [SerializeField] private float RunCost;
     [SerializeField] private float DashCost;
@@ -405,6 +407,8 @@ public class PlayerMovement : MonoBehaviour
                 CurrentStamina = MaxStamina;
             }
             StaminaBar.fillAmount = CurrentStamina / MaxStamina;
+            float one = 1;
+            staminaVolume.weight = one -(CurrentStamina / MaxStamina);
             yield return new WaitForSeconds(.1f);
 
         }
@@ -420,7 +424,8 @@ public class PlayerMovement : MonoBehaviour
                 CurrentStamina = 0;
             }
             StaminaBar.fillAmount = CurrentStamina / MaxStamina;
-
+            float one = 1;
+            staminaVolume.weight = one -(CurrentStamina / MaxStamina);
             StartRecharge();
         }
     }

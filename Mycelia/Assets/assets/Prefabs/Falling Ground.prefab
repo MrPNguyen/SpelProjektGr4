@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 3639926017361532250}
   objectPos: {fileID: 689044190042167562}
-  posB: 6
+  posB: 3
   WaitTime: 0.05
   multiplier: 1
   fallSpeed: -1
