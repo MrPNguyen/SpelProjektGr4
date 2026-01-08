@@ -11,6 +11,7 @@ public class Portal : MonoBehaviour
     [SerializeField] private GameObject PlayerUI;
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private SpriteRenderer PlayerSprite;
+    [SerializeField] private TextAnim WinText;
     
         
     [Header("Player rising")]
@@ -39,7 +40,7 @@ public class Portal : MonoBehaviour
                 isRising = false;
                 PlayerUI.SetActive(false);
                 WinScreen.SetTrigger("Win");
-                
+                WinText.BeginAnimation();
                 rb.linearVelocity = Vector2.zero;
                 rb.simulated = false;
             }

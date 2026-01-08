@@ -36,11 +36,7 @@ public class PlayerSFXManager : MonoBehaviour
     void Update()
     {
         PlaySounds();
-        /*Debug.Log($"PlayerMove Grounded: {playerMove.IsGrounded}");
-        Debug.Log($"PlayerMove Moving: {playerMove.horizontalMovement}");
-        Debug.Log($"PlayerMove Dashing: {playerMove.isDashing}");
-        Debug.Log($"Coroutine start: {coroutineStart}");*/
-        //Debug.Log($"IsWalking: {playerMove.isWalking} \n Anim {playerMove.animator.GetBool("isWalking")}");
+       
     }
     private void PlaySFX(AudioClip clip)
     {
@@ -54,7 +50,6 @@ public class PlayerSFXManager : MonoBehaviour
 
     private IEnumerator FootstepCoroutine()
     {
-        //Debug.Log("Start footstep Coroutine");
         coroutineStart = true;
         
             float interval = walkingInterval;
@@ -86,16 +81,16 @@ public class PlayerSFXManager : MonoBehaviour
 
     private void PlaySounds()
     {
-        if (playerMove.hasPlayed) return;
         
         if (playerMove.isWalking )
         {
             if (walkingClips != null && walkingClips.Count > 0 && !OneShotSource.isPlaying)
             {
-                Debug.Log("Play Sound");
                 PlayOneShot(walkingClips[Random.Range(0, walkingClips.Count)]);
             }
         }
+        
+        if (playerMove.hasPlayed) return;
         
         if (playerMove.hasHardDropped && playerMove.IsGrounded)
         {

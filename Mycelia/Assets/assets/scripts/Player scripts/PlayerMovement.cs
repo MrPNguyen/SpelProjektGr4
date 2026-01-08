@@ -76,7 +76,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Stamina")] 
     [SerializeField] public Image StaminaBar;
-    [SerializeField] private Volume staminaVolume;
+    [SerializeField] public Volume staminaVolume;
     [SerializeField] public float CurrentStamina, MaxStamina;
     [SerializeField] private float RunCost;
     [SerializeField] private float DashCost;
@@ -105,6 +105,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        staminaVolume.weight = 0;
          rb = GetComponent<Rigidbody2D>();
          spriteRenderer = GetComponent<SpriteRenderer>();
          animator = GetComponent<Animator>();
@@ -553,7 +554,6 @@ public class PlayerMovement : MonoBehaviour
             Vector3 Wallpos = transform.position;
             Wallpos.x = SafeWallPosition.x;
             transform.position = Wallpos;
-            //Debug.Log("Wall collision");
         }
         else
         {
@@ -565,26 +565,13 @@ public class PlayerMovement : MonoBehaviour
             Vector3 CeilingPosition = transform.position;
             CeilingPosition.y = SafeCeilingPosition.y;
             transform.position = CeilingPosition;
-            //Debug.Log("Ceiling collision");
+            
         }
         else
         {
             SafeCeilingPosition = transform.position;
         }
       
-        // if Tak
-        //if (Physics2D.OverlapBox(CeilingCheck.position, ceilingCheckSize, 0, whatIsGround))
-        //{
-        //    Vector3 CeiliingCollisionPosition = Physics2D.OverlapBox(CeilingCheck.position, ceilingCheckSize, 0, whatIsGround).ClosestPoint(CeilingCheck.position);
-//
-        //    if (CeiliingCollisionPosition.y < CeilingCheck.position.y)
-        //    {
-        //        Vector3 tempPos = transform.position;
-        //        tempPos.y += CeiliingCollisionPosition.y - CeilingCheck.position.y;
-        //        transform.position = tempPos;
-        //    }
-        //}
-       
     }
 
     private void UpdateAnimations()
@@ -605,7 +592,6 @@ public class PlayerMovement : MonoBehaviour
         
         if (hasHardDropped)
         {
-            Debug.Log($"hasHardDropped: {animator.GetBool(IsHarddropping)}");
             animator.SetBool(IsFlying, false);
             animator.SetBool(IsJumping, false);
             animator.SetBool(IsHarddropping, true);

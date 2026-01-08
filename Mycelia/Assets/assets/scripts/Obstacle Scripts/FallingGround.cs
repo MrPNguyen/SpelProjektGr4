@@ -37,17 +37,6 @@ public class FallingGround : MonoBehaviour
             falling = true;
            lastRoutine = StartCoroutine(Wait(WaitTime));
         }
-
-        if (other.tag == "Player" && falling && rb.gravityScale == -2f)
-        {
-            Debug.Log($"last coroutine: {lastRoutine}");
-            if (lastRoutine != null)
-            {
-                StopCoroutine(lastRoutine);
-                lastRoutine = StartCoroutine(Wait(0));
-            }
-           
-        }
      
     }
 
