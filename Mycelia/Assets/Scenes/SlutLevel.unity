@@ -1019,6 +1019,10 @@ PrefabInstance:
       propertyPath: posB
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 5776431988161564075, guid: a821f483f35bbe5428f86a7409d93201, type: 3}
+      propertyPath: WaitTime
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 8845148177394801856, guid: a821f483f35bbe5428f86a7409d93201, type: 3}
       propertyPath: m_Name
       value: Falling Ground (1)
@@ -7570,6 +7574,10 @@ PrefabInstance:
       propertyPath: posB
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 5776431988161564075, guid: a821f483f35bbe5428f86a7409d93201, type: 3}
+      propertyPath: WaitTime
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 8845148177394801856, guid: a821f483f35bbe5428f86a7409d93201, type: 3}
       propertyPath: m_Name
       value: Falling Ground (2)
@@ -7914,10 +7922,26 @@ PrefabInstance:
       propertyPath: onTriggerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3893557901906958321, guid: 54beca3aa97dcb94dbcf044de1a8fba6, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4775297000497727056, guid: 54beca3aa97dcb94dbcf044de1a8fba6, type: 3}
       propertyPath: m_Name
       value: PlayerUICanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 4881916883917236571, guid: 54beca3aa97dcb94dbcf044de1a8fba6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4920473978972246166, guid: 54beca3aa97dcb94dbcf044de1a8fba6, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4920473978972246166, guid: 54beca3aa97dcb94dbcf044de1a8fba6, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -5113469029405553909, guid: d380bf99415f94e45939482eb307e680, type: 3}
     - target: {fileID: 5071677860174795175, guid: 54beca3aa97dcb94dbcf044de1a8fba6, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -902
@@ -7953,6 +7977,22 @@ PrefabInstance:
     - target: {fileID: 7863710079214909264, guid: 54beca3aa97dcb94dbcf044de1a8fba6, type: 3}
       propertyPath: m_fontColor32.rgba
       value: 4093640703
+      objectReference: {fileID: 0}
+    - target: {fileID: 8119037821367514810, guid: 54beca3aa97dcb94dbcf044de1a8fba6, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 8119037821367514810, guid: 54beca3aa97dcb94dbcf044de1a8fba6, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8119037821367514810, guid: 54beca3aa97dcb94dbcf044de1a8fba6, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -350
+      objectReference: {fileID: 0}
+    - target: {fileID: 8119037821367514810, guid: 54beca3aa97dcb94dbcf044de1a8fba6, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 250
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3494346712468491476, guid: 54beca3aa97dcb94dbcf044de1a8fba6, type: 3}
@@ -8166,6 +8206,10 @@ PrefabInstance:
     - target: {fileID: 689044190042167562, guid: a821f483f35bbe5428f86a7409d93201, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5776431988161564075, guid: a821f483f35bbe5428f86a7409d93201, type: 3}
+      propertyPath: WaitTime
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 8845148177394801856, guid: a821f483f35bbe5428f86a7409d93201, type: 3}
       propertyPath: m_Name
@@ -9249,7 +9293,7 @@ GameObject:
   - component: {fileID: 837877987}
   - component: {fileID: 837877991}
   - component: {fileID: 837877990}
-  m_Layer: 11
+  m_Layer: 14
   m_Name: Flugbounce
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11772,6 +11816,10 @@ PrefabInstance:
       propertyPath: posB
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5776431988161564075, guid: a821f483f35bbe5428f86a7409d93201, type: 3}
+      propertyPath: WaitTime
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 8845148177394801856, guid: a821f483f35bbe5428f86a7409d93201, type: 3}
       propertyPath: m_Name
       value: Falling Ground
@@ -11848,6 +11896,10 @@ PrefabInstance:
     - target: {fileID: 5776431988161564075, guid: a821f483f35bbe5428f86a7409d93201, type: 3}
       propertyPath: posB
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5776431988161564075, guid: a821f483f35bbe5428f86a7409d93201, type: 3}
+      propertyPath: WaitTime
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 8845148177394801856, guid: a821f483f35bbe5428f86a7409d93201, type: 3}
       propertyPath: m_Name
@@ -11964,10 +12016,6 @@ PrefabInstance:
       propertyPath: m_Resource
       value: 
       objectReference: {fileID: 8300000, guid: 58a37424ec75c9d4091f5c70836f3c2e, type: 3}
-    - target: {fileID: 2455445038416584106, guid: 01e787c4daa366541bd8df992bbb655b, type: 3}
-      propertyPath: OutputAudioMixerGroup
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 4653586621824406032, guid: 01e787c4daa366541bd8df992bbb655b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 38.771687
@@ -12024,10 +12072,6 @@ PrefabInstance:
       propertyPath: m_Color.g
       value: 0.6273585
       objectReference: {fileID: 0}
-    - target: {fileID: 9191528762443261023, guid: 01e787c4daa366541bd8df992bbb655b, type: 3}
-      propertyPath: OutputAudioMixerGroup
-      value: 
-      objectReference: {fileID: 7584519081890529295, guid: 1b147bdefafce3c4babd8c229f1afa51, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -16915,10 +16959,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2192809267211881265, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
-      propertyPath: CoyoteTime
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2192809267211881265, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
       propertyPath: StaminaBar
       value: 
       objectReference: {fileID: 114292907}
@@ -18028,6 +18068,10 @@ PrefabInstance:
     - target: {fileID: 689044190042167562, guid: a821f483f35bbe5428f86a7409d93201, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5776431988161564075, guid: a821f483f35bbe5428f86a7409d93201, type: 3}
+      propertyPath: WaitTime
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 8845148177394801856, guid: a821f483f35bbe5428f86a7409d93201, type: 3}
       propertyPath: m_Name

@@ -15,7 +15,7 @@ public class FallingGround : MonoBehaviour
     private bool falling;
     private bool pause;
     [SerializeField] private float fallSpeed = -1f;
-    
+    private Coroutine lastRoutine;
 
     void Start()
     {
@@ -25,24 +25,31 @@ public class FallingGround : MonoBehaviour
     void Update()
     {
         if (objectPos.position.y > posA.y) objectPos.position = posA;
-        if (falling == false && objectPos.position.y != posA.y) objectPos.position = posA;
+        if (!falling && objectPos.position.y != posA.y) objectPos.position = posA;
+        
+        
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Player" && falling == false)
+        if (other.tag == "Player" && !falling)
         {
             falling = true;
-            StartCoroutine(Wait(WaitTime));
+           lastRoutine = StartCoroutine(Wait(WaitTime));
         }
 
-        if (other.tag == "Player" && falling == true) pause = true;
+        if (other.tag == "Player" && falling && rb.gravityScale == -2f)
+        {
+            Debug.Log($"last coroutine: {lastRoutine}");
+            if (lastRoutine != null)
+            {
+                StopCoroutine(lastRoutine);
+                lastRoutine = StartCoroutine(Wait(0));
+            }
+           
+        }
      
     }
-    void OnTriggerExit2D(Collider2D other){
-		pause = false;
-	}
-
 
     IEnumerator Wait(float WaitTime)
     {
@@ -56,10 +63,10 @@ public class FallingGround : MonoBehaviour
         }
 
         yield return new WaitUntil(() => objectPos.position.y <= posA.y - posB);
-        //Debug.Log("fallen");
-        rb.gravityScale = -2;
-        if (pause) rb.linearVelocity = Vector2.zero;
-       
+      
+            rb.gravityScale = -2;
+        
+   
         yield return new WaitUntil(() => objectPos.position.y >= posA.y);
         //Debug.Log("Up again");
         rb.gravityScale = 0;
@@ -69,6 +76,7 @@ public class FallingGround : MonoBehaviour
         falling = false;
        
     }
+    
 
 }
 
