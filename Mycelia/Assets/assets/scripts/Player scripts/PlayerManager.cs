@@ -49,7 +49,10 @@ public class PlayerManager : MonoBehaviour
     private float time;
     void Start()
     {
-        winPortal.SetActive(false);
+        if(winPortal != null)
+        {
+            winPortal.SetActive(false);
+        }
         rb = GetComponent<Rigidbody2D>();
         playerMovement = GetComponent<PlayerMovement>();
         player = GameObject.Find("Player").GetComponent<Renderer>().material;
@@ -210,7 +213,10 @@ public class PlayerManager : MonoBehaviour
         playerMovement.rb.linearVelocity = Vector2.zero;
         
         cameraFollow.transform.position = newCameraPosition;
-        winPortal.SetActive(true);
+        if (winPortal!=null)
+        {
+            winPortal.SetActive(true);
+        }
         portalSign.SetActive(true);
         yield return new WaitForSeconds(2);
         portal.SetTrigger("Winnable");

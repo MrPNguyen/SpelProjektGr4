@@ -5162,6 +5162,7 @@ MonoBehaviour:
   hasHardDropped: 0
   isJumping: 0
   Jumped: 0
+  isWalking: 0
   groundCheck: {fileID: 2317278850270132637}
   CeilingCheck: {fileID: 4417028373609749199}
   WallCheck: {fileID: 5762388212362669329}
@@ -5176,6 +5177,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 16384
   IsGrounded: 0
+  animator: {fileID: 0}
   canMove: 1
   DashPower: 13.2
   isDashing: 0
@@ -5192,7 +5194,7 @@ MonoBehaviour:
   dashOffset: {x: 0.174, y: 0.45, z: 0}
   headOriginalOffset: {x: 0.026, y: 0.85, z: 0}
   headDashOffset: {x: 0.026, y: 0.85, z: 0}
-  CoyoteTime: 0.5
+  CoyoteTime: 0.2
 --- !u!114 &5641837105196010520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5232,6 +5234,7 @@ MonoBehaviour:
   portal: {fileID: 0}
   cameraFollow: {fileID: 0}
   winPortal: {fileID: 0}
+  portalSign: {fileID: 0}
 --- !u!114 &8841612456383048459
 MonoBehaviour:
   m_ObjectHideFlags: 0
