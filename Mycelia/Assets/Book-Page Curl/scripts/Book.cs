@@ -20,6 +20,8 @@ public class Book : MonoBehaviour {
     RectTransform BookPanel;
     public Sprite background;
     public Sprite[] bookPages;
+    
+    //Ta bort
     public bool interactable=true;
     public bool enableShadowEffect=true;
     //represent the index of the sprite shown in the right page
@@ -146,21 +148,7 @@ public class Book : MonoBehaviour {
             return localPos;
         }
     }
-    void Update()
-    {
-        if (pageDragging && interactable)
-        {
-            UpdateBook();
-        }
-    }
-    public void UpdateBook()
-    {
-        f = Vector3.Lerp(f, transformPoint(Input.mousePosition), Time.deltaTime * 10);
-        if (mode == FlipMode.RightToLeft)
-            UpdateBookRTLToPoint(f);
-        else
-            UpdateBookLTRToPoint(f);
-    }
+    
     public void UpdateBookLTRToPoint(Vector3 followLocation)
     {
         mode = FlipMode.LeftToRight;
@@ -319,6 +307,7 @@ public class Book : MonoBehaviour {
     }
     public void OnMouseDragRightPage()
     {
+        //Ta bort
         if (interactable)
         DragRightPageToPoint(transformPoint(Input.mousePosition));
         
@@ -358,12 +347,14 @@ public class Book : MonoBehaviour {
     }
     public void OnMouseDragLeftPage()
     {
+        //Ta bort
         if (interactable)
         DragLeftPageToPoint(transformPoint(Input.mousePosition));
         
     }
     public void OnMouseRelease()
     {
+        //Ta bort
         if (interactable)
             ReleasePage();
     }

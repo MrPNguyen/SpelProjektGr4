@@ -14,6 +14,7 @@ public class Journal : MonoBehaviour
     [SerializeField] private TMP_Text leftStaticText;  
     [SerializeField] private TMP_Text rightStaticText;
 
+    [TextArea(3, 10)]
     [SerializeField] private List<string> pages;
 
     private void Awake()
@@ -65,12 +66,9 @@ public class Journal : MonoBehaviour
         );
         SetText(leftStaticText, leftTextIndex);
         SetText(rightStaticText, rightTextIndex);
-
-        // These are for the pages underneath
-        /*SetText(leftFlipText, leftTextIndex);
-        SetText(rightFlipText, rightTextIndex);*/
-        SetText(leftFlipText, leftTextIndex + 1);
-        SetText(rightFlipText, rightTextIndex + 2);
+        
+        SetText(leftFlipText, leftTextIndex - 2);
+        SetText(rightFlipText, rightTextIndex - 1);
         
     }
 
