@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 public class PlayerManager : MonoBehaviour
@@ -10,7 +11,8 @@ public class PlayerManager : MonoBehaviour
     public Vector3 originalPosition;
     [SerializeField] private GameObject PlayerUI;
     [SerializeField] private GameObject FinalMessage;
-    [SerializeField] private DialogueTrigger dialogueTrigger;
+    [SerializeField] private DialogueTrigger dialogueGreen;
+    [SerializeField] private DialogueTrigger dialogueRed;
     private SpriteRenderer RenderDis;
     
     [Header("Health")]
@@ -19,7 +21,9 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private Image Heart1;
     [SerializeField] private Image Heart2;
     [SerializeField] private Image Heart3;
-    
+    private bool Invincible;
+        private float time;
+        
     [Header("Death")]
     [SerializeField] private Animator animator;
     [SerializeField] private TMP_Text GameOverPrologText;
@@ -39,14 +43,18 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private TMP_Text ScoreText;
     [SerializeField] private Animator portal;
     [SerializeField] private CameraFollow cameraFollow;
-    private Vector3 originalCameraPosition;
-    private Vector3 newCameraPosition;
+    public Vector3 originalCameraPosition;
+    public Vector3 newCameraPosition;
+    
+    [Header("Winning")]
     private Coroutine UnlockWinRoutine;
     [SerializeField] private GameObject winPortal;
     [SerializeField] private GameObject portalSign;
-
-    private bool Invincible;
-    private float time;
+    public bool IsRed;
+  
+    
+    
+    
     void Start()
     {
         if(winPortal != null)
@@ -209,8 +217,10 @@ public class PlayerManager : MonoBehaviour
         playerMovement.horizontalMovement = 0f;
         playerMovement.velocity = Vector2.zero;
         playerMovement.rb.linearVelocity = Vector2.zero;
-        
-        cameraFollow.transform.position = newCameraPosition;
+        cameraFollow.win = true;
+        yield return new WaitUntil(() => cameraFollow.transform.position == newCameraPosition);
+        cameraFollow.win = false;
+        cameraFollow.WhatTime = 0;
         if (winPortal!=null)
         {
             winPortal.SetActive(true);
@@ -220,16 +230,31 @@ public class PlayerManager : MonoBehaviour
         portal.SetTrigger("Winnable");
         yield return new WaitForSeconds(6f);
         portal.SetTrigger("Animate");
-        cameraFollow.transform.position = originalCameraPosition;
-        
+        cameraFollow.back = true;
+        yield return new WaitUntil(() => cameraFollow.transform.position == cameraFollow.EndPosition);
+        cameraFollow.back = false;
         cameraFollow.followPlayer = true;
         FinalMessage.SetActive(true);
         playerMovement.horizontalMovement = 0f;
         playerMovement.velocity = Vector2.zero;
         playerMovement.rb.linearVelocity = Vector2.zero;
-        playerMovement.canMove = true;
+       
+        if (IsRed)
+        {
+            dialogueRed.TriggerDialogue();
+        }
+
+        if (!IsRed)
+        {
+            dialogueGreen.TriggerDialogue();
+        }
         //TODO: lös så att båda cages kan ha TriggerDialogue.
-        dialogueTrigger.TriggerDialogue();
+         playerMovement.canMove = true;
+    }
+
+    public void SetRed(bool Red)
+    {
+        IsRed = Red;
     }
 
     private void UnlockWin()
@@ -237,5 +262,6 @@ public class PlayerManager : MonoBehaviour
         if (UnlockWinRoutine != null) return;
         
         UnlockWinRoutine = StartCoroutine(WinUnlock());
+        
     }
 }
