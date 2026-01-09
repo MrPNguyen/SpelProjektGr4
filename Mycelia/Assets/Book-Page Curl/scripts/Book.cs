@@ -21,8 +21,6 @@ public class Book : MonoBehaviour {
     public Sprite background;
     public Sprite[] bookPages;
     
-    //Ta bort
-    public bool interactable=true;
     public bool enableShadowEffect=true;
     //represent the index of the sprite shown in the right page
     public int currentPage = 0;
@@ -305,13 +303,6 @@ public class Book : MonoBehaviour {
         if (enableShadowEffect) Shadow.gameObject.SetActive(true);
         UpdateBookRTLToPoint(f);
     }
-    public void OnMouseDragRightPage()
-    {
-        //Ta bort
-        if (interactable)
-        DragRightPageToPoint(transformPoint(Input.mousePosition));
-        
-    }
     public void DragLeftPageToPoint(Vector3 point)
     {
         if (currentPage <= 0) return;
@@ -345,19 +336,6 @@ public class Book : MonoBehaviour {
         if (enableShadowEffect) ShadowLTR.gameObject.SetActive(true);
         UpdateBookLTRToPoint(f);
     }
-    public void OnMouseDragLeftPage()
-    {
-        //Ta bort
-        if (interactable)
-        DragLeftPageToPoint(transformPoint(Input.mousePosition));
-        
-    }
-    public void OnMouseRelease()
-    {
-        //Ta bort
-        if (interactable)
-            ReleasePage();
-    }
     public void ReleasePage()
     {
         if (pageDragging)
@@ -378,11 +356,6 @@ public class Book : MonoBehaviour {
     {
         LeftNext.sprite= (currentPage > 0 && currentPage <= bookPages.Length) ? bookPages[currentPage-1] : background;
         RightNext.sprite=(currentPage>=0 &&currentPage<bookPages.Length) ? bookPages[currentPage] : background;
-        
-        /*if (journal != null)
-        {
-            LeftNext.transform.SetAsFirstSibling();
-        }*/
     }
     public void TweenForward()
     {
