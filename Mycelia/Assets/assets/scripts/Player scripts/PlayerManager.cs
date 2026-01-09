@@ -57,7 +57,7 @@ public class PlayerManager : MonoBehaviour
     
     void Start()
     {
-        GameOverCanvas.enabled = false;
+        GameOverCanvas.GameObject().SetActive(false);
         if(winPortal != null)
         {
             winPortal.SetActive(false);
@@ -83,20 +83,18 @@ public class PlayerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+
         if (currentHealth <= 0)
-        { 
+        {
             Destroy(this.gameObject);
             PlayerUI.SetActive(false);
-            GameOverCanvas.enabled = true;
-            if (GameOverCanvas.enabled == true)
-            { 
-                Debug.Log("Game Over");
-                animator.SetTrigger("isDead");
-            }
-           
+            GameOverCanvas.gameObject.SetActive(true);
+            
+            animator.SetTrigger("isDead");
+
+
         }
-       
+
 
         if (currentHealth == 2)
         {
