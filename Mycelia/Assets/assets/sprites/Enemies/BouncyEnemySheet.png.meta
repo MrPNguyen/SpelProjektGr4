@@ -124,12 +124,12 @@ TextureImporter:
       name: BouncyEnemySheet_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 66
-        height: 66
+        x: 11
+        y: 1
+        width: 45
+        height: 45
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -146,12 +146,12 @@ TextureImporter:
       name: BouncyEnemySheet_1
       rect:
         serializedVersion: 2
-        x: 66
-        y: 0
-        width: 66
-        height: 66
+        x: 77
+        y: 1
+        width: 45
+        height: 45
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -168,12 +168,12 @@ TextureImporter:
       name: BouncyEnemySheet_2
       rect:
         serializedVersion: 2
-        x: 132
-        y: 0
-        width: 66
-        height: 66
+        x: 143
+        y: 1
+        width: 45
+        height: 45
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -190,12 +190,12 @@ TextureImporter:
       name: BouncyEnemySheet_3
       rect:
         serializedVersion: 2
-        x: 198
-        y: 0
-        width: 66
-        height: 66
+        x: 209
+        y: 1
+        width: 45
+        height: 45
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -212,12 +212,12 @@ TextureImporter:
       name: BouncyEnemySheet_4
       rect:
         serializedVersion: 2
-        x: 264
-        y: 0
-        width: 66
-        height: 66
+        x: 275
+        y: 1
+        width: 45
+        height: 45
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -234,12 +234,12 @@ TextureImporter:
       name: BouncyEnemySheet_5
       rect:
         serializedVersion: 2
-        x: 330
-        y: 0
-        width: 66
-        height: 66
+        x: 341
+        y: 1
+        width: 45
+        height: 45
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -256,12 +256,12 @@ TextureImporter:
       name: BouncyEnemySheet_6
       rect:
         serializedVersion: 2
-        x: 396
-        y: 0
-        width: 66
-        height: 66
+        x: 407
+        y: 1
+        width: 45
+        height: 45
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -278,12 +278,12 @@ TextureImporter:
       name: BouncyEnemySheet_7
       rect:
         serializedVersion: 2
-        x: 462
-        y: 0
-        width: 66
-        height: 66
+        x: 473
+        y: 1
+        width: 45
+        height: 45
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
