@@ -1,0 +1,767 @@
+fileFormatVersion: 2
+guid: be54fc4c7b8b86f42aabe98bd2456cf8
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -8959170966905367083
+    second: Evil_bubbles_sheet_0
+  - first:
+      213: 4682762693067778093
+    second: Evil_bubbles_sheet_1
+  - first:
+      213: -6509204166288915294
+    second: Evil_bubbles_sheet_2
+  - first:
+      213: 4335609666003114678
+    second: Evil_bubbles_sheet_3
+  - first:
+      213: -2947886617486290208
+    second: Evil_bubbles_sheet_4
+  - first:
+      213: 2533293724615154628
+    second: Evil_bubbles_sheet_5
+  - first:
+      213: -6450871744744686295
+    second: Evil_bubbles_sheet_6
+  - first:
+      213: 4535776789174779776
+    second: Evil_bubbles_sheet_7
+  - first:
+      213: -5226294442645557637
+    second: Evil_bubbles_sheet_8
+  - first:
+      213: 690341863049104116
+    second: Evil_bubbles_sheet_9
+  - first:
+      213: 5011484121986346946
+    second: Evil_bubbles_sheet_10
+  - first:
+      213: -6028051822242663979
+    second: Evil_bubbles_sheet_11
+  - first:
+      213: -6957288726895151976
+    second: Evil_bubbles_sheet_12
+  - first:
+      213: -2214950034565229424
+    second: Evil_bubbles_sheet_13
+  - first:
+      213: -1682719765754797149
+    second: Evil_bubbles_sheet_14
+  - first:
+      213: -4316281901209489697
+    second: Evil_bubbles_sheet_15
+  - first:
+      213: 5305198837686507090
+    second: Evil_bubbles_sheet_16
+  - first:
+      213: 3053747924299680614
+    second: Evil_bubbles_sheet_17
+  - first:
+      213: -3642503555213407795
+    second: Evil_bubbles_sheet_18
+  - first:
+      213: 4362187483434534021
+    second: Evil_bubbles_sheet_19
+  - first:
+      213: 7520148039806369322
+    second: Evil_bubbles_sheet_20
+  - first:
+      213: -7597435001147861365
+    second: Evil_bubbles_sheet_21
+  - first:
+      213: 2623284051147217322
+    second: Evil_bubbles_sheet_22
+  - first:
+      213: -1696764760726602525
+    second: Evil_bubbles_sheet_23
+  - first:
+      213: 5228600016074189693
+    second: Evil_bubbles_sheet_24
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 64
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Evil_bubbles_sheet_0
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 54
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d5dc9b2971aaa380800000000000000
+      internalID: -8959170966905367083
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Evil_bubbles_sheet_1
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 58
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d28a1c7ebd38cf040800000000000000
+      internalID: 4682762693067778093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Evil_bubbles_sheet_2
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 60
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a44bd94c49aaa5a0800000000000000
+      internalID: -6509204166288915294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Evil_bubbles_sheet_3
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 56
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ba9dda250e2b2c30800000000000000
+      internalID: 4335609666003114678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Evil_bubbles_sheet_4
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 58
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e21a9e6db00717d0800000000000000
+      internalID: -2947886617486290208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Evil_bubbles_sheet_5
+      rect:
+        serializedVersion: 2
+        x: 356
+        y: 55
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4cb99677831182320800000000000000
+      internalID: 2533293724615154628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Evil_bubbles_sheet_6
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 49
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92d73ea8356e976a0800000000000000
+      internalID: -6450871744744686295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Evil_bubbles_sheet_7
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 52
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08f793b45f052fe30800000000000000
+      internalID: 4535776789174779776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Evil_bubbles_sheet_8
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 38
+        width: 13
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b7e638ef4e87877b0800000000000000
+      internalID: -5226294442645557637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Evil_bubbles_sheet_9
+      rect:
+        serializedVersion: 2
+        x: 290
+        y: 53
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4fa8f905446949900800000000000000
+      internalID: 690341863049104116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Evil_bubbles_sheet_10
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 50
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2cfa188c14e5c8540800000000000000
+      internalID: 5011484121986346946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Evil_bubbles_sheet_11
+      rect:
+        serializedVersion: 2
+        x: 366
+        y: 35
+        width: 14
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d1749f3ece085ca0800000000000000
+      internalID: -6028051822242663979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Evil_bubbles_sheet_12
+      rect:
+        serializedVersion: 2
+        x: 376
+        y: 52
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 894b591a3ceb27f90800000000000000
+      internalID: -6957288726895151976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Evil_bubbles_sheet_13
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 45
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 094108acdaae241e0800000000000000
+      internalID: -2214950034565229424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Evil_bubbles_sheet_14
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 42
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a328a9d947c5a8e0800000000000000
+      internalID: -1682719765754797149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Evil_bubbles_sheet_15
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 46
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fdee5ffba7c7914c0800000000000000
+      internalID: -4316281901209489697
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Evil_bubbles_sheet_16
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 40
+        width: 14
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2569e171c3adf9940800000000000000
+      internalID: 5305198837686507090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Evil_bubbles_sheet_17
+      rect:
+        serializedVersion: 2
+        x: 235
+        y: 42
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66b0875ce87116a20800000000000000
+      internalID: 3053747924299680614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Evil_bubbles_sheet_18
+      rect:
+        serializedVersion: 2
+        x: 243
+        y: 46
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc9486ab05a337dc0800000000000000
+      internalID: -3642503555213407795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Evil_bubbles_sheet_19
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 46
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58445c1876a998c30800000000000000
+      internalID: 4362187483434534021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Evil_bubbles_sheet_20
+      rect:
+        serializedVersion: 2
+        x: 348
+        y: 38
+        width: 13
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2e320b7cceec5860800000000000000
+      internalID: 7520148039806369322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Evil_bubbles_sheet_21
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 38
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8656709e1d709690800000000000000
+      internalID: -7597435001147861365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Evil_bubbles_sheet_22
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 35
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa9d39d12f6c76420800000000000000
+      internalID: 2623284051147217322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Evil_bubbles_sheet_23
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 39
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ec7d71a071e378e0800000000000000
+      internalID: -1696764760726602525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Evil_bubbles_sheet_24
+      rect:
+        serializedVersion: 2
+        x: 283
+        y: 38
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7b24b62308bf8840800000000000000
+      internalID: 5228600016074189693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Evil_bubbles_sheet_0: -8959170966905367083
+      Evil_bubbles_sheet_1: 4682762693067778093
+      Evil_bubbles_sheet_10: 5011484121986346946
+      Evil_bubbles_sheet_11: -6028051822242663979
+      Evil_bubbles_sheet_12: -6957288726895151976
+      Evil_bubbles_sheet_13: -2214950034565229424
+      Evil_bubbles_sheet_14: -1682719765754797149
+      Evil_bubbles_sheet_15: -4316281901209489697
+      Evil_bubbles_sheet_16: 5305198837686507090
+      Evil_bubbles_sheet_17: 3053747924299680614
+      Evil_bubbles_sheet_18: -3642503555213407795
+      Evil_bubbles_sheet_19: 4362187483434534021
+      Evil_bubbles_sheet_2: -6509204166288915294
+      Evil_bubbles_sheet_20: 7520148039806369322
+      Evil_bubbles_sheet_21: -7597435001147861365
+      Evil_bubbles_sheet_22: 2623284051147217322
+      Evil_bubbles_sheet_23: -1696764760726602525
+      Evil_bubbles_sheet_24: 5228600016074189693
+      Evil_bubbles_sheet_3: 4335609666003114678
+      Evil_bubbles_sheet_4: -2947886617486290208
+      Evil_bubbles_sheet_5: 2533293724615154628
+      Evil_bubbles_sheet_6: -6450871744744686295
+      Evil_bubbles_sheet_7: 4535776789174779776
+      Evil_bubbles_sheet_8: -5226294442645557637
+      Evil_bubbles_sheet_9: 690341863049104116
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
