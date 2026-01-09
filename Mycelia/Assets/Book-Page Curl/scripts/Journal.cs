@@ -23,8 +23,16 @@ public class Journal : MonoBehaviour
         {
             pages = new List<string>();
         }
-        leftFlipText.gameObject.SetActive(false);
-        rightFlipText.gameObject.SetActive(false);
+        //leftFlipText.gameObject.SetActive(false);
+        //rightFlipText.gameObject.SetActive(false);
+    }
+
+    void Update()
+    {
+        Debug.Log($"rightStaticText: {rightStaticText.text}");
+        Debug.Log($"rightFlipText: {rightFlipText.text}");
+        Debug.Log($"leftStaticText: {leftStaticText.text}");
+        Debug.Log($"leftFlipText: {leftFlipText.text}");
     }
     public void AddPaper(string content)
     {
@@ -35,21 +43,16 @@ public class Journal : MonoBehaviour
     {
         if (rightPageIndex == 0)
         {
-            SetText(leftFlipText, -1);
-            SetText(rightFlipText, 0);
-            
             SetText(leftStaticText, -1);
             SetText(rightStaticText, 0);
             
-            rightFlipText.alignment = TextAlignmentOptions.TopLeft;
             rightStaticText.alignment = TextAlignmentOptions.Center;
+            rightStaticText.fontSize = 60;
             return;
         }
 
         if (rightPageIndex == pages.Count)
         {
-            SetText(leftFlipText, -1);
-            SetText(rightFlipText, -1);
             SetText(leftStaticText, -1);
             SetText(rightStaticText, -1);
             return;
@@ -57,6 +60,12 @@ public class Journal : MonoBehaviour
         
         rightFlipText.alignment = TextAlignmentOptions.TopLeft;
         rightStaticText.alignment = TextAlignmentOptions.TopLeft;
+        
+        rightStaticText.fontSize = 45;
+        leftStaticText.fontSize = 45;
+        rightFlipText.fontSize = 45;
+        leftFlipText.fontSize = 45;
+
         
         int leftTextIndex = rightPageIndex - 1;
         int rightTextIndex = rightPageIndex;
@@ -66,10 +75,6 @@ public class Journal : MonoBehaviour
         );
         SetText(leftStaticText, leftTextIndex);
         SetText(rightStaticText, rightTextIndex);
-        
-        SetText(leftFlipText, leftTextIndex - 2);
-        SetText(rightFlipText, rightTextIndex - 1);
-        
     }
 
     private void SetText(TMP_Text text, int index)
@@ -82,7 +87,7 @@ public class Journal : MonoBehaviour
 
     public void ActivateRightFlipText(int rightPageIndex)
     {
-        if (rightPageIndex == 0)
+        /*if (rightPageIndex == 0)
         {
             if (leftStaticText != null) leftStaticText.gameObject.SetActive(false);
             if (rightStaticText != null) rightStaticText.gameObject.SetActive(false);
@@ -95,12 +100,29 @@ public class Journal : MonoBehaviour
         SetText(rightFlipText, rightIndex);
         
         if (leftFlipText != null) leftFlipText.gameObject.SetActive(true);
-        if (rightFlipText != null) rightFlipText.gameObject.SetActive(true);
+        if (rightFlipText != null) rightFlipText.gameObject.SetActive(true);*/
+        
+        /*if (rightFlipText != null)
+        {
+            rightFlipText.text = "";
+            rightStaticText.text = "";
+        }*/
+        leftFlipText.gameObject.SetActive(true);
+        rightFlipText.gameObject.SetActive(true);
+        
+        int leftIndex = rightPageIndex + 1;
+        int rightIndex = rightPageIndex + 2;
+        
+        SetText(leftFlipText, leftIndex);
+        SetText(rightFlipText, rightIndex);
+        
+        //leftStaticText.gameObject.SetActive(false);
+        //rightStaticText.gameObject.SetActive(false);
     }
     
     public void ActivateLeftFlipText(int rightPageIndex)
     {
-        if (rightPageIndex == 0)
+        /*if (rightPageIndex == 0)
         {
             if (leftStaticText != null) leftStaticText.gameObject.SetActive(false);
             if (rightStaticText != null) rightStaticText.gameObject.SetActive(false);
@@ -114,34 +136,34 @@ public class Journal : MonoBehaviour
         
         if (leftFlipText != null) leftFlipText.gameObject.SetActive(true);
         if (rightFlipText != null) rightFlipText.gameObject.SetActive(true);
-
-        if (leftFlipText != null)
+        
+        /*if (leftFlipText != null)
         {
             leftFlipText.text = "";
             leftStaticText.text = "";
-        }
+        }*/
+        
+        leftFlipText.gameObject.SetActive(true);
+        rightFlipText.gameObject.SetActive(true);
+        
+        int leftIndex = rightPageIndex - 2;
+        int rightIndex = rightPageIndex - 1;
+        
+        SetText(leftFlipText, leftIndex);
+        SetText(rightFlipText, rightIndex);
+        
+        leftStaticText.gameObject.SetActive(false);
+        //rightStaticText.gameObject.SetActive(false);
     }
-    
+
     public void DeactivateFlipText()
     {
-        if (rightFlipText != null)
-        {
-            rightFlipText.gameObject.SetActive(false);
-        }
-        
-        if (leftFlipText != null)
-        {
-            leftFlipText.gameObject.SetActive(false);
-        }
+        rightFlipText.gameObject.SetActive(false);
 
-        if (leftStaticText != null)
-        {
-            leftStaticText.gameObject.SetActive(true);
-        }
+        leftFlipText.gameObject.SetActive(false);
 
-        if (rightStaticText != null)
-        {
-            rightStaticText.gameObject.SetActive(true);
-        }
+        leftStaticText.gameObject.SetActive(true);
+
+        rightStaticText.gameObject.SetActive(true);
     }
 }
