@@ -29,9 +29,9 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private TMP_Text GameOverPrologText;
     [SerializeField] private List<string> DeathText;
     [SerializeField] private float HitRecoil = 20;
-    private Material player;
     [SerializeField] private GameObject enemy;
     private Coroutine knockbackRoutine;
+    [SerializeField] private Canvas GameOverCanvas;
     
     [Header("Extra Life")]
     [SerializeField] private GameObject extraLife;
@@ -57,13 +57,13 @@ public class PlayerManager : MonoBehaviour
     
     void Start()
     {
+        GameOverCanvas.enabled = false;
         if(winPortal != null)
         {
             winPortal.SetActive(false);
         }
         rb = GetComponent<Rigidbody2D>();
         playerMovement = GetComponent<PlayerMovement>();
-        player = GameObject.Find("Player").GetComponent<Renderer>().material;
         originalPosition = transform.position;
         currentHealth = maxHealth;
         RenderDis = GetComponent<SpriteRenderer>();
@@ -88,8 +88,15 @@ public class PlayerManager : MonoBehaviour
         { 
             Destroy(this.gameObject);
             PlayerUI.SetActive(false);
-            animator.SetTrigger("isDead");
+            GameOverCanvas.enabled = true;
+            if (GameOverCanvas.enabled == true)
+            { 
+                Debug.Log("Game Over");
+                animator.SetTrigger("isDead");
+            }
+           
         }
+       
 
         if (currentHealth == 2)
         {
