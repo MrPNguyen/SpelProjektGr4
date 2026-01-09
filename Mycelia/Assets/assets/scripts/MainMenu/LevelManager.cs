@@ -43,6 +43,7 @@ public class LevelManager : MonoBehaviour
     {
         player.transform.position = playerM.originalPosition;
         player.canMove = true;
+        Time.timeScale = 1;
     }
 
     public void Pause(InputAction.CallbackContext context)
