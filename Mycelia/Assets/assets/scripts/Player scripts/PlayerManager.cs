@@ -91,8 +91,6 @@ public class PlayerManager : MonoBehaviour
             GameOverCanvas.gameObject.SetActive(true);
             
             animator.SetTrigger("isDead");
-
-
         }
 
 
@@ -243,16 +241,19 @@ public class PlayerManager : MonoBehaviour
         playerMovement.horizontalMovement = 0f;
         playerMovement.velocity = Vector2.zero;
         playerMovement.rb.linearVelocity = Vector2.zero;
-       
-        if (IsRed)
+        if (winPortal != null)
         {
-            dialogueRed.TriggerDialogue();
+            if (IsRed)
+            {
+                dialogueRed.TriggerDialogue();
+            }
+
+            if (!IsRed)
+            {
+                dialogueGreen.TriggerDialogue();
+            }
         }
 
-        if (!IsRed)
-        {
-            dialogueGreen.TriggerDialogue();
-        }
         //TODO: lös så att båda cages kan ha TriggerDialogue.
          playerMovement.canMove = true;
     }
