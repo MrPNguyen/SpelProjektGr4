@@ -996,6 +996,10 @@ MonoBehaviour:
   timeBtwnChars: 0.2
   timeBtwnWords: 0.1
   AutomaticStart: 1
+  nextButton: {fileID: 0}
+  AutomaticAdvance: 0
+  startDelay: 0
+  mainMenu: {fileID: 0}
 --- !u!1 &180523934
 GameObject:
   m_ObjectHideFlags: 0
@@ -2060,6 +2064,10 @@ MonoBehaviour:
   timeBtwnChars: 0.2
   timeBtwnWords: 0.1
   AutomaticStart: 1
+  nextButton: {fileID: 0}
+  AutomaticAdvance: 0
+  startDelay: 0
+  mainMenu: {fileID: 0}
 --- !u!95 &484260323
 Animator:
   serializedVersion: 7
@@ -2237,6 +2245,10 @@ MonoBehaviour:
   timeBtwnChars: 0.2
   timeBtwnWords: 0.1
   AutomaticStart: 1
+  nextButton: {fileID: 0}
+  AutomaticAdvance: 0
+  startDelay: 0
+  mainMenu: {fileID: 0}
 --- !u!1 &504539280
 GameObject:
   m_ObjectHideFlags: 0
@@ -3329,6 +3341,10 @@ MonoBehaviour:
   timeBtwnChars: 0.2
   timeBtwnWords: 0.1
   AutomaticStart: 1
+  nextButton: {fileID: 0}
+  AutomaticAdvance: 0
+  startDelay: 0
+  mainMenu: {fileID: 0}
 --- !u!114 &689873978
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10143,6 +10159,10 @@ MonoBehaviour:
   timeBtwnChars: 0.2
   timeBtwnWords: 0.1
   AutomaticStart: 1
+  nextButton: {fileID: 0}
+  AutomaticAdvance: 0
+  startDelay: 0
+  mainMenu: {fileID: 0}
 --- !u!114 &1153337078
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10374,6 +10394,10 @@ MonoBehaviour:
   timeBtwnChars: 0.2
   timeBtwnWords: 0.1
   AutomaticStart: 1
+  nextButton: {fileID: 0}
+  AutomaticAdvance: 0
+  startDelay: 0
+  mainMenu: {fileID: 0}
 --- !u!95 &1173863430
 Animator:
   serializedVersion: 7
@@ -11232,30 +11256,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16f0b0b6d0b7542bfbd20a3e05b04ff1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_IsTrail: 0
-  m_IgnoreCanvasScaler: 0
-  m_AbsoluteMode: 0
-  m_Scale3D: {x: 10, y: 10, z: 10}
-  m_AnimatableProperties: []
-  m_Particles:
-  - {fileID: 1007014222}
-  m_MeshSharing: 0
-  m_GroupId: 0
-  m_GroupMaxId: 0
-  m_PositionMode: 0
-  m_AutoScaling: 0
-  m_AutoScalingMode: 2
-  m_UseCustomView: 0
-  m_CustomViewSize: 10
-  m_TimeScaleMultiplier: 2
 --- !u!222 &1312934436
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -13566,7 +13566,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.25
+  m_Volume: 0.061
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -13918,6 +13918,10 @@ MonoBehaviour:
   timeBtwnChars: 0.2
   timeBtwnWords: 0.1
   AutomaticStart: 1
+  nextButton: {fileID: 0}
+  AutomaticAdvance: 0
+  startDelay: 0
+  mainMenu: {fileID: 0}
 --- !u!95 &2078080717
 Animator:
   serializedVersion: 7
