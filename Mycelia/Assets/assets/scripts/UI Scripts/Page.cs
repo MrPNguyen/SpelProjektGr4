@@ -6,7 +6,7 @@ public class Page : MonoBehaviour
     [SerializeField] private int newSortOrder;
     private Canvas page;
     private Animator animator;
-    void Start()
+    void Awake()
     {
         page = GetComponent<Canvas>();
         animator = GetComponent<Animator>();
