@@ -2,15 +2,23 @@ using UnityEngine;
 
 public class Page : MonoBehaviour
 {
-    Animator animator;
+    [SerializeField] private int originalSortOrder;
+    [SerializeField] private int newSortOrder;
+    private Canvas page;
+    void Start()
+    {
+        page = GetComponent<Canvas>();
+        page.overrideSorting = true;
+    }
 
-    void Awake() {
-        animator = GetComponent<Animator>();
+    public void BringToFront()
+    {
+       page.sortingOrder = newSortOrder;
+    }
+
+    public void ReturnBack()
+    {
+        page.sortingOrder = originalSortOrder;
     }
     
-    public void TriggerAnimation()
-    {
-        if (animator != null)
-            animator.SetTrigger("Move"); //0B1D1C
-    }
 }

@@ -94,7 +94,7 @@ public class Book : MonoBehaviour {
 
         ClippingPlane.rectTransform.sizeDelta = new Vector2(pageWidth * 2 + pageHeight, pageHeight + pageHeight * 2);
 
-        //hypotenous (diagonal) page length
+        //hypotenuse (diagonal) page length
         float hyp = Mathf.Sqrt(pageWidth * pageWidth + pageHeight * pageHeight);
         float shadowPageHeight = pageWidth / 2 + hyp;
 
@@ -359,10 +359,16 @@ public class Book : MonoBehaviour {
     }
     public void TweenForward()
     {
-        if(mode== FlipMode.RightToLeft)
-        currentCoroutine = StartCoroutine(TweenTo(ebl, 0.15f, () => { Flip(); }));
+        if (mode == FlipMode.RightToLeft)
+        {
+            currentCoroutine = StartCoroutine(TweenTo(ebl, 0.15f, () => { Flip(); }));
+            journal?.CommitPageChange(currentPage + 2);
+        }
         else
-        currentCoroutine = StartCoroutine(TweenTo(ebr, 0.15f, () => { Flip(); }));
+        {
+            journal?.CommitPageChange(currentPage - 2);
+            currentCoroutine = StartCoroutine(TweenTo(ebr, 0.15f, () => { Flip(); }));
+        }
     }
     void Flip()
     {
@@ -379,7 +385,6 @@ public class Book : MonoBehaviour {
         if (journal != null)
         {
             journal.DeactivateFlipText();
-            journal.UpdateVisiblePage(currentPage);
         }
         
         Right.transform.SetParent(BookPanel.transform, true);
