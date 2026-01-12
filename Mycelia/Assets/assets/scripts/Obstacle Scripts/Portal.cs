@@ -1,5 +1,6 @@
 using System;
 using System.Numerics;
+using Unity.VisualScripting;
 using UnityEngine;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
@@ -39,6 +40,7 @@ public class Portal : MonoBehaviour
             {
                 isRising = false;
                 PlayerUI.SetActive(false);
+                WinScreen.GameObject().SetActive(true);
                 WinScreen.SetTrigger("Win");
                 WinText.BeginAnimation();
                 rb.linearVelocity = Vector2.zero;

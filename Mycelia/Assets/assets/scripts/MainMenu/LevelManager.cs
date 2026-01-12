@@ -14,6 +14,7 @@ public class LevelManager : MonoBehaviour
     {
         Debug.Log(LevelIndex);
         SceneManager.LoadScene(LevelIndex, LoadSceneMode.Single);
+        Time.timeScale = 1;
     }
 
     public void NextLevel()
