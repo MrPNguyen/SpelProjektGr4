@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 1.3
       objectReference: {fileID: 0}
+    - target: {fileID: 2897065288774822855, guid: 98bb661bdca982644a8ecfd7e4b94231, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: c117ead2e741f8a4e84c59f733ceb77e, type: 2}
     - target: {fileID: 3794898471093653221, guid: 98bb661bdca982644a8ecfd7e4b94231, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -53,20 +57,32 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4691860658563727110, guid: 98bb661bdca982644a8ecfd7e4b94231, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 4426393612699877447, guid: 26d8edd5900309945b78f6e7b2be2ead, type: 3}
+    - target: {fileID: 4691860658563727110, guid: 98bb661bdca982644a8ecfd7e4b94231, type: 3}
       propertyPath: m_Color.b
-      value: 0.735849
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4691860658563727110, guid: 98bb661bdca982644a8ecfd7e4b94231, type: 3}
       propertyPath: m_Color.g
-      value: 0.5882353
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4691860658563727110, guid: 98bb661bdca982644a8ecfd7e4b94231, type: 3}
       propertyPath: m_Color.r
-      value: 0.38431373
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4744551041113083933, guid: 98bb661bdca982644a8ecfd7e4b94231, type: 3}
       propertyPath: m_Name
       value: BouncyEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5124848856582767467, guid: 98bb661bdca982644a8ecfd7e4b94231, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5124848856582767467, guid: 98bb661bdca982644a8ecfd7e4b94231, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8240353998233197712, guid: 98bb661bdca982644a8ecfd7e4b94231, type: 3}
       propertyPath: Bounce

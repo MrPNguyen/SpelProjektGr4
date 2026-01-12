@@ -77,6 +77,7 @@ public class PlayerSFXManager : MonoBehaviour
             OneShotSource.clip = clip;
         }
         OneShotSource.Play();
+       
     }
 
     private void PlaySounds()

@@ -29,9 +29,9 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private TMP_Text GameOverPrologText;
     [SerializeField] private List<string> DeathText;
     [SerializeField] private float HitRecoil = 20;
-    private Material player;
     [SerializeField] private GameObject enemy;
     private Coroutine knockbackRoutine;
+    [SerializeField] private Canvas GameOverCanvas;
     
     [Header("Extra Life")]
     [SerializeField] private GameObject extraLife;
@@ -57,13 +57,13 @@ public class PlayerManager : MonoBehaviour
     
     void Start()
     {
+        GameOverCanvas.GameObject().SetActive(false);
         if(winPortal != null)
         {
             winPortal.SetActive(false);
         }
         rb = GetComponent<Rigidbody2D>();
         playerMovement = GetComponent<PlayerMovement>();
-        player = GameObject.Find("Player").GetComponent<Renderer>().material;
         originalPosition = transform.position;
         currentHealth = maxHealth;
         RenderDis = GetComponent<SpriteRenderer>();
@@ -83,13 +83,16 @@ public class PlayerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+
         if (currentHealth <= 0)
-        { 
+        {
             Destroy(this.gameObject);
             PlayerUI.SetActive(false);
+            GameOverCanvas.gameObject.SetActive(true);
+            
             animator.SetTrigger("isDead");
         }
+
 
         if (currentHealth == 2)
         {
@@ -238,16 +241,19 @@ public class PlayerManager : MonoBehaviour
         playerMovement.horizontalMovement = 0f;
         playerMovement.velocity = Vector2.zero;
         playerMovement.rb.linearVelocity = Vector2.zero;
-       
-        if (IsRed)
+        if (winPortal != null)
         {
-            dialogueRed.TriggerDialogue();
+            if (IsRed)
+            {
+                dialogueRed.TriggerDialogue();
+            }
+
+            if (!IsRed)
+            {
+                dialogueGreen.TriggerDialogue();
+            }
         }
 
-        if (!IsRed)
-        {
-            dialogueGreen.TriggerDialogue();
-        }
         //TODO: lös så att båda cages kan ha TriggerDialogue.
          playerMovement.canMove = true;
     }

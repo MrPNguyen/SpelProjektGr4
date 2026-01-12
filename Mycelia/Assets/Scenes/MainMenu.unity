@@ -996,6 +996,10 @@ MonoBehaviour:
   timeBtwnChars: 0.2
   timeBtwnWords: 0.1
   AutomaticStart: 1
+  nextButton: {fileID: 0}
+  AutomaticAdvance: 0
+  startDelay: 0
+  mainMenu: {fileID: 0}
 --- !u!1 &180523934
 GameObject:
   m_ObjectHideFlags: 0
@@ -2060,6 +2064,10 @@ MonoBehaviour:
   timeBtwnChars: 0.2
   timeBtwnWords: 0.1
   AutomaticStart: 1
+  nextButton: {fileID: 0}
+  AutomaticAdvance: 0
+  startDelay: 0
+  mainMenu: {fileID: 0}
 --- !u!95 &484260323
 Animator:
   serializedVersion: 7
@@ -2237,6 +2245,10 @@ MonoBehaviour:
   timeBtwnChars: 0.2
   timeBtwnWords: 0.1
   AutomaticStart: 1
+  nextButton: {fileID: 0}
+  AutomaticAdvance: 0
+  startDelay: 0
+  mainMenu: {fileID: 0}
 --- !u!1 &504539280
 GameObject:
   m_ObjectHideFlags: 0
@@ -2587,7 +2599,7 @@ AudioSource:
   m_GameObject: {fileID: 607082900}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -3654942972267785537, guid: 1b147bdefafce3c4babd8c229f1afa51, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 177c04d50ac23ee499a925db3104d46a, type: 3}
   m_PlayOnAwake: 1
@@ -3329,6 +3341,10 @@ MonoBehaviour:
   timeBtwnChars: 0.2
   timeBtwnWords: 0.1
   AutomaticStart: 1
+  nextButton: {fileID: 0}
+  AutomaticAdvance: 0
+  startDelay: 0
+  mainMenu: {fileID: 0}
 --- !u!114 &689873978
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10143,6 +10159,10 @@ MonoBehaviour:
   timeBtwnChars: 0.2
   timeBtwnWords: 0.1
   AutomaticStart: 1
+  nextButton: {fileID: 0}
+  AutomaticAdvance: 0
+  startDelay: 0
+  mainMenu: {fileID: 0}
 --- !u!114 &1153337078
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10374,6 +10394,10 @@ MonoBehaviour:
   timeBtwnChars: 0.2
   timeBtwnWords: 0.1
   AutomaticStart: 1
+  nextButton: {fileID: 0}
+  AutomaticAdvance: 0
+  startDelay: 0
+  mainMenu: {fileID: 0}
 --- !u!95 &1173863430
 Animator:
   serializedVersion: 7
@@ -11255,7 +11279,7 @@ MonoBehaviour:
   m_AutoScalingMode: 2
   m_UseCustomView: 0
   m_CustomViewSize: 10
-  m_TimeScaleMultiplier: 2
+  m_TimeScaleMultiplier: 1
 --- !u!222 &1312934436
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -13562,11 +13586,11 @@ AudioSource:
   m_GameObject: {fileID: 1972300978}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 7584519081890529295, guid: 1b147bdefafce3c4babd8c229f1afa51, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.25
+  m_Volume: 0.061
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -13918,6 +13942,10 @@ MonoBehaviour:
   timeBtwnChars: 0.2
   timeBtwnWords: 0.1
   AutomaticStart: 1
+  nextButton: {fileID: 0}
+  AutomaticAdvance: 0
+  startDelay: 0
+  mainMenu: {fileID: 0}
 --- !u!95 &2078080717
 Animator:
   serializedVersion: 7
