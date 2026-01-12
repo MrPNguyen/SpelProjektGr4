@@ -166,4 +166,9 @@ public class Journal : MonoBehaviour
 
         rightStaticText.gameObject.SetActive(true);
     }
+    
+    public void CommitPageChange(int newRightPageIndex)
+    {
+        UpdateVisiblePage(newRightPageIndex);
+    }
 }
