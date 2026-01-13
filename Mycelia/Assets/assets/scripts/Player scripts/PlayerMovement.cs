@@ -101,7 +101,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Particle System")]
     [SerializeField] private ParticleSystem jumpParticles;
     [SerializeField] private ParticleSystem harddropParticles;
-
+    private bool hasPixeled;
    
 
     void Start()
@@ -382,6 +382,7 @@ public class PlayerMovement : MonoBehaviour
             hasHardDropped = true;
             isHardDropping = true;
             hasPlayed = false;
+            hasPixeled = false;
         }
 
         if (context.canceled)
@@ -520,6 +521,11 @@ public class PlayerMovement : MonoBehaviour
         }
         if (IsGrounded && hasHardDropped)
         {
+            if (!hasPixeled)
+            {
+                harddropDust();
+                hasPixeled = true;
+            }
             hasPlayed = false;
             velocity.y = 0;
             pos.y = SafeHardDropPosition.y;
