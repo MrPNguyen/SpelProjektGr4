@@ -10,6 +10,7 @@ public class Portal : MonoBehaviour
     [Header("References")]
     [SerializeField] private Animator WinScreen;
     [SerializeField] private GameObject PlayerUI;
+    [SerializeField] private GameObject DialogueBox;
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private SpriteRenderer PlayerSprite;
     [SerializeField] private TextAnim WinText;
@@ -40,6 +41,7 @@ public class Portal : MonoBehaviour
             {
                 isRising = false;
                 PlayerUI.SetActive(false);
+                DialogueBox.SetActive(false);
                 WinScreen.GameObject().SetActive(true);
                 WinScreen.SetTrigger("Win");
                 WinText.BeginAnimation();

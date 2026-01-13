@@ -32,6 +32,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private GameObject enemy;
     private Coroutine knockbackRoutine;
     [SerializeField] private Canvas GameOverCanvas;
+    [SerializeField] private GameObject DialogueBox;
     
     [Header("Extra Life")]
     [SerializeField] private GameObject extraLife;
@@ -86,8 +87,9 @@ public class PlayerManager : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
             PlayerUI.SetActive(false);
+            DialogueBox.SetActive(false);
             GameOverCanvas.gameObject.SetActive(true);
             
             animator.SetTrigger("isDead");
