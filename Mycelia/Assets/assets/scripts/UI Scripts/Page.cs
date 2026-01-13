@@ -5,9 +5,11 @@ public class Page : MonoBehaviour
     [SerializeField] private int originalSortOrder;
     [SerializeField] private int newSortOrder;
     private Canvas page;
-    void Start()
+    private Animator animator;
+    void Awake()
     {
         page = GetComponent<Canvas>();
+        animator = GetComponent<Animator>();
         page.overrideSorting = true;
     }
 
@@ -21,4 +23,11 @@ public class Page : MonoBehaviour
         page.sortingOrder = originalSortOrder;
     }
     
+    public void OnBookOpened()
+    {
+        if (animator != null)
+        {
+            animator.enabled = false;
+        }
+    }
 }

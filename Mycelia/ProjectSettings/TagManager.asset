@@ -10,6 +10,7 @@ TagManager:
   - PointB
   - ExtraLife
   - Portal
+  - Scroll
   layers:
   - Default
   - TransparentFX
@@ -22,7 +23,7 @@ TagManager:
   - Camera
   - HiddenRoom
   - Post
-  - 
+  - Scroll
   - Kantarell
   - Background
   - Svamp
