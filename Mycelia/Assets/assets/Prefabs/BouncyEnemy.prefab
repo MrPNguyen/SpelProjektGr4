@@ -78,20 +78,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5124848856582767467, guid: 98bb661bdca982644a8ecfd7e4b94231, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 1
+      value: 0.703125
       objectReference: {fileID: 0}
     - target: {fileID: 5124848856582767467, guid: 98bb661bdca982644a8ecfd7e4b94231, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 1
+      value: 0.703125
       objectReference: {fileID: 0}
     - target: {fileID: 8240353998233197712, guid: 98bb661bdca982644a8ecfd7e4b94231, type: 3}
       propertyPath: Bounce
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 8240353998233197712, guid: 98bb661bdca982644a8ecfd7e4b94231, type: 3}
-      propertyPath: BigBounce
-      value: 
-      objectReference: {fileID: 8300000, guid: ac0162c05fda49c48842fb4d9d4d8049, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
