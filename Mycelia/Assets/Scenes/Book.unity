@@ -471,6 +471,51 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7985742125485373295, guid: 4fb62f0298d0748408332bd09e17e3f1, type: 3}
+      propertyPath: 'pages.Array.data[0]'
+      value: 'Entry 1 - The Journey Begins: I''ve finally been summoned after so
+        long. The call came later then expected. The last one must have been at least
+        sixhundred years ago. It has been quite lonely.. But no matter! Now it''s
+        my turn.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 7985742125485373295, guid: 4fb62f0298d0748408332bd09e17e3f1, type: 3}
+      propertyPath: 'pages.Array.data[1]'
+      value: '2 - Edge of The Forest: This area is calm and still, i''ve only seen
+        some critters and such jumping around. Also, it is very bright this far out,
+        im a little unsure however if it''s going to stay that way.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 7985742125485373295, guid: 4fb62f0298d0748408332bd09e17e3f1, type: 3}
+      propertyPath: 'pages.Array.data[2]'
+      value: 3 - The Cyclops
+      objectReference: {fileID: 0}
+    - target: {fileID: 7985742125485373295, guid: 4fb62f0298d0748408332bd09e17e3f1, type: 3}
+      propertyPath: 'pages.Array.data[3]'
+      value: 4 - Circes
+      objectReference: {fileID: 0}
+    - target: {fileID: 7985742125485373295, guid: 4fb62f0298d0748408332bd09e17e3f1, type: 3}
+      propertyPath: 'pages.Array.data[4]'
+      value: 5 - The underworld
+      objectReference: {fileID: 0}
+    - target: {fileID: 7985742125485373295, guid: 4fb62f0298d0748408332bd09e17e3f1, type: 3}
+      propertyPath: 'pages.Array.data[5]'
+      value: 6 - Scylla
+      objectReference: {fileID: 0}
+    - target: {fileID: 7985742125485373295, guid: 4fb62f0298d0748408332bd09e17e3f1, type: 3}
+      propertyPath: 'pages.Array.data[6]'
+      value: 7 - I am a Monster
+      objectReference: {fileID: 0}
+    - target: {fileID: 7985742125485373295, guid: 4fb62f0298d0748408332bd09e17e3f1, type: 3}
+      propertyPath: 'pages.Array.data[7]'
+      value: 8 - Ithaca
+      objectReference: {fileID: 0}
+    - target: {fileID: 7985742125485373295, guid: 4fb62f0298d0748408332bd09e17e3f1, type: 3}
+      propertyPath: 'pages.Array.data[8]'
+      value: 9 - The Challenge
+      objectReference: {fileID: 0}
+    - target: {fileID: 7985742125485373295, guid: 4fb62f0298d0748408332bd09e17e3f1, type: 3}
+      propertyPath: 'pages.Array.data[9]'
+      value: 10 - Penelope
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
