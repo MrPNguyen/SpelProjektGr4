@@ -473,10 +473,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7985742125485373295, guid: 4fb62f0298d0748408332bd09e17e3f1, type: 3}
       propertyPath: 'pages.Array.data[0]'
-      value: 'Entry 1 - The Journey Begins: I''ve finally been summoned after so
-        long. The call came later then expected. The last one must have been at least
-        sixhundred years ago. It has been quite lonely.. But no matter! Now it''s
-        my turn.'
+      value: '*The first entry dates back around sixty years*           Entry 1 -
+        The Journey Begins: I''ve finally been summoned after so long. The call came
+        later then expected. The last one must have been at least sixhundred years
+        ago. It has been quite lonely.. But no matter! Now it''s my turn.'
       objectReference: {fileID: 0}
     - target: {fileID: 7985742125485373295, guid: 4fb62f0298d0748408332bd09e17e3f1, type: 3}
       propertyPath: 'pages.Array.data[1]'
@@ -486,35 +486,57 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7985742125485373295, guid: 4fb62f0298d0748408332bd09e17e3f1, type: 3}
       propertyPath: 'pages.Array.data[2]'
-      value: 3 - The Cyclops
+      value: 3 - I saw some of them, the Agarics. Bone white body, red coloured hathead
+        and angry faces. They don't only look vicious but they act the part too.
+        Not only to others but between themselves aswell. Nasty bunch. I wonder who's
+        in charge of keeping tabs on them. They must have some sort of captain or
+        leader, right?
       objectReference: {fileID: 0}
     - target: {fileID: 7985742125485373295, guid: 4fb62f0298d0748408332bd09e17e3f1, type: 3}
       propertyPath: 'pages.Array.data[3]'
-      value: 4 - Circes
+      value: '4 - I ran into a small, gold touched little fellow. He was surprisingly
+        friendly towards me. He wass very interested in who i was, where i came from
+        and where i was going. We spoke for a while until a voice i couldn''t hear
+        called for him. He gave me a qucik smile and goodbye and ran off into the
+        brush. I wonder if i''ll get to meet him again. '
       objectReference: {fileID: 0}
     - target: {fileID: 7985742125485373295, guid: 4fb62f0298d0748408332bd09e17e3f1, type: 3}
       propertyPath: 'pages.Array.data[4]'
-      value: 5 - The underworld
+      value: 5 - Haven't seen much of late. It's been a while since my encounter
+        with that friendly little shroom. To my knowledge the Agarics continue their
+        expanse, though very slowly. I won't write for a while, and instead focus
+        on exploring more of the forest. When I find something of note, il write
+        again.
       objectReference: {fileID: 0}
     - target: {fileID: 7985742125485373295, guid: 4fb62f0298d0748408332bd09e17e3f1, type: 3}
       propertyPath: 'pages.Array.data[5]'
-      value: 6 - Scylla
+      value: ' ...'
       objectReference: {fileID: 0}
     - target: {fileID: 7985742125485373295, guid: 4fb62f0298d0748408332bd09e17e3f1, type: 3}
       propertyPath: 'pages.Array.data[6]'
-      value: 7 - I am a Monster
+      value: 7 -  Such senseless slaughter. Is all this really necessary?
       objectReference: {fileID: 0}
     - target: {fileID: 7985742125485373295, guid: 4fb62f0298d0748408332bd09e17e3f1, type: 3}
       propertyPath: 'pages.Array.data[7]'
-      value: 8 - Ithaca
+      value: 8 - I've slayed surely over twohundred agarics now. Most of them are
+        struck with fear as they lay their eyes upon me. It feels sort of... unjust.
+        I know I know crazy talk, right? But still something about it just feels
+        off. I mean most of them don't even fight back anymore, but something else
+        just fuels me to keep seeking them out. I want to try communicating with
+        them. Maybe, if they refuse, it's just a reason to further this culling i've
+        begun. But maybe, if they surprise me. I can put an end to this...
       objectReference: {fileID: 0}
     - target: {fileID: 7985742125485373295, guid: 4fb62f0298d0748408332bd09e17e3f1, type: 3}
       propertyPath: 'pages.Array.data[8]'
-      value: 9 - The Challenge
+      value: 9 -  Im a fool. What did i think would happen. How could i have been
+        so blind. Whoever finds this notebook. Don't think they can be reasoned with,
+        don't think they can be bargained with. They only want destruction, they
+        want to put them all to death, with no exceptions at all. And il be next.
+        Good luck, whoever comes after.
       objectReference: {fileID: 0}
     - target: {fileID: 7985742125485373295, guid: 4fb62f0298d0748408332bd09e17e3f1, type: 3}
       propertyPath: 'pages.Array.data[9]'
-      value: 10 - Penelope
+      value: '*Blood stains the last few pages*'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
