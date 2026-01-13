@@ -5183,6 +5183,7 @@ MonoBehaviour:
   isDashing: 0
   flyingPower: 2
   StaminaBar: {fileID: 0}
+  staminaVolume: {fileID: 0}
   CurrentStamina: 0
   MaxStamina: 100
   RunCost: 10
@@ -5210,7 +5211,8 @@ MonoBehaviour:
   originalPosition: {x: 0, y: 0, z: 0}
   PlayerUI: {fileID: 0}
   FinalMessage: {fileID: 0}
-  dialogueTrigger: {fileID: 0}
+  dialogueGreen: {fileID: 0}
+  dialogueRed: {fileID: 0}
   currentHealth: 3
   Heart1: {fileID: 0}
   Heart2: {fileID: 0}
@@ -5227,14 +5229,18 @@ MonoBehaviour:
   - The Faye succumbs to peril in their Journey
   HitRecoil: 5
   enemy: {fileID: 0}
+  GameOverCanvas: {fileID: 0}
   extraLife: {fileID: 5097334356680221191, guid: ce3831b2fa01c6a468bb5d0a884f1a01, type: 3}
   SavedKantarells: 0
   MaxKantarells: 3
   ScoreText: {fileID: 0}
   portal: {fileID: 0}
   cameraFollow: {fileID: 0}
+  originalCameraPosition: {x: 0, y: 0, z: 0}
+  newCameraPosition: {x: 0, y: 0, z: 0}
   winPortal: {fileID: 0}
   portalSign: {fileID: 0}
+  IsRed: 0
 --- !u!114 &8841612456383048459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5570,9 +5576,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad3a10993011f58489593a0d1ffa35b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpClip: {fileID: 8300000, guid: 4d5c279f280fccc42bbc8d3531bcea72, type: 3}
+  jumpClip: {fileID: 8300000, guid: b43766041b0053f459ec7484d5da888d, type: 3}
   hardLandClip: {fileID: 8300000, guid: 573db2be2a810634eb3851a22ad7fe67, type: 3}
-  dashClip: {fileID: 8300000, guid: 4d5c279f280fccc42bbc8d3531bcea72, type: 3}
+  dashClip: {fileID: 8300000, guid: a1b96333214124a478a8455d594c653a, type: 3}
   hurtClip: {fileID: 8300000, guid: a027008ed55f32f48a11f33510efb34f, type: 3}
   OneShotSource: {fileID: 4761619104841001515}
   walkingClips:
@@ -5590,9 +5596,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f2f95ef5a700945449cd0152e5dc6940, type: 3}
   - {fileID: 8300000, guid: bd5c4d8e6bbabe543b0091bc02a01334, type: 3}
   - {fileID: 8300000, guid: 1702ecf2d3f3da740911a31a0ba238e3, type: 3}
-  walkingInterval: 0.35
+  walkingInterval: 0.1
   runningMultiplier: 0.6
-  GruntClip: {fileID: 8300000, guid: e5a48a4c827830844b662fae1977d68f, type: 3}
+  GruntClip: {fileID: 8300000, guid: c72b18f80b8382d499378e22f531ff1f, type: 3}
 --- !u!82 &6379467792457079880
 AudioSource:
   m_ObjectHideFlags: 0

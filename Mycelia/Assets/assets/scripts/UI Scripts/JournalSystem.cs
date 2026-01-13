@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -11,12 +12,11 @@ public class JournalSystem : MonoBehaviour
     [SerializeField] private TMP_Text pageRight;
     [SerializeField] private Animator pageFlipper;
     [SerializeField] PlayableDirector director;
-    [SerializeField] private Animator animator;
     [SerializeField] private GameObject Alert;
     
     private int currentPage = 0;
     private bool isFlipping = false;
-    [SerializeField] private List<string> pages;
+    [SerializeField] private PageList pageList;
     
     [Header("Speed Toggle")]
     [SerializeField] private float delay;
@@ -31,45 +31,34 @@ public class JournalSystem : MonoBehaviour
 
     void Start()
     {
-        if (pages.Count > 0)
-        {
-            pageLeft.text = pages[0];
-            if (pages.Count > 1)
-            {
-                pageRight.text = pages[1];
-            }
-            else
-            {
-                pageRight.text = "";
-            }
-        }
-        else
-        {
-            pageLeft.text = "Dear winged one... scour the forest for the hidden past of Mycelia";
-            pageRight.text = "";
-        }
         director.timeUpdateMode = DirectorUpdateMode.UnscaledGameTime;
+        if (PageList.instance != null)
+        {
+            pageList = PageList.instance;
+        }
+        UpdatePage();
     }
 
     void Update()
     {
-        bool canFlip = pages.Count > 1 && !isFlipping;
+        bool canFlip = pageList.pages.Count > 1 && !isFlipping;
         
         buttonPrevious.SetActive(canFlip && currentPage > 0);
         PreviousHighlight.SetActive(canFlip && currentPage > 0);
         
-        buttonNext.SetActive(canFlip && currentPage < pages.Count - 2);
-        NextHighlight.SetActive(canFlip && currentPage < pages.Count - 2);
+        buttonNext.SetActive(canFlip && currentPage < pageList.pages.Count - 2);
+        NextHighlight.SetActive(canFlip && currentPage < pageList.pages.Count - 2);
+        UpdatePage();
     }
     public void AddPage(string content)
     {
-        pages.Add(content);
-        UpdatePages();
+        pageList.pages.Add(content);
+        UpdatePage();
     }
 
     public void FlipPageRight()
     {
-        if (!isFlipping && pages.Count > 1)
+        if (!isFlipping && pageList.pages.Count > 1)
         {
             StartCoroutine(PageRightFlipcoroutine());
         }
@@ -78,7 +67,7 @@ public class JournalSystem : MonoBehaviour
     public void FlipPageLeft()
     {
         
-        if (!isFlipping && pages.Count > 1)
+        if (!isFlipping && pageList.pages.Count > 1)
         {
             StartCoroutine(PageLeftFlipcoroutine());
         }
@@ -100,7 +89,7 @@ public class JournalSystem : MonoBehaviour
         yield return new WaitForSeconds(delay);
         
         currentPage -= 2;
-        UpdatePages();
+        UpdatePage();
         
         yield return new WaitForSeconds(delay  + 0.5f);
 
@@ -126,7 +115,7 @@ public class JournalSystem : MonoBehaviour
         yield return new WaitForSeconds(delay);
         
         currentPage += 2;
-        UpdatePages();
+        UpdatePage();
         
         yield return new WaitForSeconds(delay + 0.5f);
 
@@ -136,19 +125,21 @@ public class JournalSystem : MonoBehaviour
         isFlipping = false;
     }
 
-    private void UpdatePages()
+    private void UpdatePage()
     {
-        if (pages.Count == 0)
+        if (pageList.pages.Count == 0)
         {
-            pageLeft.text = "";
+            pageLeft.text = "Dear winged one... scour the forest for the hidden past of Mycelia";
             pageRight.text = "";
             return;
         }
     
-        pageLeft.text = pages[currentPage];
+        currentPage = Mathf.Clamp(currentPage, 0, Mathf.Max(0, pageList.pages.Count - 1));
 
-        if (currentPage + 1 < pages.Count)
-            pageRight.text = pages[currentPage + 1];
+        pageLeft.text = pageList.pages[currentPage];
+
+        if (currentPage + 1 < pageList.pages.Count)
+            pageRight.text = pageList.pages[currentPage + 1];
         else
             pageRight.text = "";
        
@@ -194,8 +185,13 @@ public class JournalSystem : MonoBehaviour
     public void ActivateBook()
     {
         director.Play();
+        director.stopped += OnTimeLinesStopped;
+        
         Time.timeScale = 0;
-        animator.enabled = true;
+        foreach (Animator animator in GetComponentsInChildren<Animator>())
+        {
+            animator.enabled = true;
+        }
         ResetCanvasOrder();
         Alert.SetActive(false);
     }
@@ -204,11 +200,17 @@ public class JournalSystem : MonoBehaviour
     {
         Time.timeScale = 1;
     }
+
+    private void OnTimeLinesStopped(PlayableDirector d)
+    {
+        director.stopped -= OnTimeLinesStopped;
+        director.Stop();
+    }
     
     public void ResetCanvasOrder()
     {
-        Page[] pages = GetComponentsInChildren<Page>(true);
-        foreach (Page page in pages)
+        Page[] pageList = GetComponentsInChildren<Page>(true);
+        foreach (Page page in pageList)
         {
             page.ReturnBack();
         }
