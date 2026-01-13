@@ -10997,6 +10997,10 @@ PrefabInstance:
       propertyPath: m_ReferenceResolution.y
       value: 1080
       objectReference: {fileID: 0}
+    - target: {fileID: 4000258848115014387, guid: 4fb62f0298d0748408332bd09e17e3f1, type: 3}
+      propertyPath: m_UpdateMode
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4384119853453487273, guid: 4fb62f0298d0748408332bd09e17e3f1, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

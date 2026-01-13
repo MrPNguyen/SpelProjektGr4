@@ -16,7 +16,6 @@ public class JournalSystem : MonoBehaviour
     
     private int currentPage = 0;
     private bool isFlipping = false;
-    [SerializeField] private PageList pageList;
     
     [Header("Speed Toggle")]
     [SerializeField] private float delay;
@@ -32,35 +31,31 @@ public class JournalSystem : MonoBehaviour
     void Start()
     {
         director.timeUpdateMode = DirectorUpdateMode.UnscaledGameTime;
-        if (PageList.instance != null)
-        {
-            pageList = PageList.instance;
-        }
         UpdatePage();
     }
 
     void Update()
     {
-        bool canFlip = pageList.pages.Count > 1 && !isFlipping;
+        bool canFlip = PageList.instance.pages.Count > 1 && !isFlipping;
         
         buttonPrevious.SetActive(canFlip && currentPage > 0);
         PreviousHighlight.SetActive(canFlip && currentPage > 0);
         
-        buttonNext.SetActive(canFlip && currentPage < pageList.pages.Count - 2);
-        NextHighlight.SetActive(canFlip && currentPage < pageList.pages.Count - 2);
+        buttonNext.SetActive(canFlip && currentPage < PageList.instance.pages.Count - 2);
+        NextHighlight.SetActive(canFlip && currentPage < PageList.instance.pages.Count - 2);
     }
     public void AddPage(string content)
     {
-        pageList.pages.Add(content);
+        PageList.instance.pages.Add(content);
         
-        currentPage = Mathf.Max(0, pageList.pages.Count - 2);
+        currentPage = Mathf.Max(0, PageList.instance.pages.Count - 2);
 
         UpdatePage();
     }
 
     public void FlipPageRight()
     {
-        if (!isFlipping && pageList.pages.Count > 1)
+        if (!isFlipping && PageList.instance.pages.Count > 1)
         {
             StartCoroutine(PageRightFlipcoroutine());
         }
@@ -69,7 +64,7 @@ public class JournalSystem : MonoBehaviour
     public void FlipPageLeft()
     {
         
-        if (!isFlipping && pageList.pages.Count > 1)
+        if (!isFlipping && PageList.instance.pages.Count > 1)
         {
             StartCoroutine(PageLeftFlipcoroutine());
         }
@@ -129,19 +124,19 @@ public class JournalSystem : MonoBehaviour
 
     private void UpdatePage()
     {
-        if (pageList.pages.Count == 0)
+        if (PageList.instance.pages.Count == 0)
         {
             pageLeft.text = "Dear winged one... scour the forest for the hidden past of Mycelia";
             pageRight.text = "";
             return;
         }
     
-        currentPage = Mathf.Clamp(currentPage, 0, Mathf.Max(0, pageList.pages.Count - 2));
+        currentPage = Mathf.Clamp(currentPage, 0, Mathf.Max(0, PageList.instance.pages.Count - 2));
 
-        pageLeft.text = pageList.pages[currentPage];
+        pageLeft.text = PageList.instance.pages[currentPage];
 
-        if (currentPage + 1 < pageList.pages.Count)
-            pageRight.text = pageList.pages[currentPage + 1];
+        if (currentPage + 1 < PageList.instance.pages.Count)
+            pageRight.text = PageList.instance.pages[currentPage + 1];
         else
             pageRight.text = "";
        
