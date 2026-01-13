@@ -36,7 +36,6 @@ public class PlayerSFXManager : MonoBehaviour
     void Update()
     {
         PlaySounds();
-       
     }
     private void PlaySFX(AudioClip clip)
     {
@@ -111,15 +110,13 @@ public class PlayerSFXManager : MonoBehaviour
             playerMove.hasPlayed = true;
         }
 
-        if (playerMove.Jumped == true)
+        if (playerMove.Jumped)
         {
             OneShotSource.PlayOneShot(jumpClip);
             OneShotSource.PlayOneShot(GruntClip);
             playerMove.hasPlayed = true; playerMove.Jumped = false;
         }
        
-        
-        
         if (!audioSource.isPlaying)
         {
             audioSource.Stop();
