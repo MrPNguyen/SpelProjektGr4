@@ -8,6 +8,7 @@ using UnityEngine.InputSystem;
 public class Scrolls : MonoBehaviour
 {
     private bool inRange = false;
+    private static Scrolls instance;
     [SerializeField] private GameObject interactText;
     [SerializeField] private TMP_Text scrollText;
     [SerializeField] private GameObject scrollCanvas;
@@ -22,22 +23,23 @@ public class Scrolls : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(inRange);
         if (inRange)
         {
             if (interactText != null)
             {
                 interactText.SetActive(true);
+                instance = this;
             }
         }
         else
         {
-            if (interactText != null)
+            if (interactText != null && instance != null && instance.gameObject == gameObject)
             {
                 interactText.SetActive(false);
             }
         }
     }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if(other.tag == "Player") inRange = true;
