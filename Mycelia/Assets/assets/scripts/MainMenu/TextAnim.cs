@@ -9,6 +9,7 @@ public class TextAnim : MonoBehaviour
     [SerializeField] TextMeshProUGUI _textMeshPro;
 
     public string[] stringArray;
+    [SerializeField] private string EndButton;
 
     [SerializeField] private float timeBtwnChars;
     [SerializeField] private float timeBtwnWords;
@@ -49,7 +50,10 @@ public class TextAnim : MonoBehaviour
             {
                 nextButton.text = "Venture Into The Forest>>";
             }
+          
         }
+
+       
     }
 
     void EndCheck()
