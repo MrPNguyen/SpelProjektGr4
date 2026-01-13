@@ -18685,6 +18685,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4761619104841001515, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
+      propertyPath: m_Volume
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 5641837105196010520, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
       propertyPath: enemy
       value: 
@@ -18729,6 +18733,10 @@ PrefabInstance:
       propertyPath: GameOverPrologText
       value: 
       objectReference: {fileID: 249580155}
+    - target: {fileID: 6379467792457079880, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
+      propertyPath: m_Volume
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 8841612456383048459, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
       propertyPath: m_ActionEvents.Array.size
       value: 25
