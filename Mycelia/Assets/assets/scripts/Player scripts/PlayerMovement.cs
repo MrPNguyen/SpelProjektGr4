@@ -17,7 +17,6 @@ public class PlayerMovement : MonoBehaviour
     
     //Press down key to fall down quicker
     [HideInInspector] public Rigidbody2D rb;
-    public ParticleSystem ps;
     private CapsuleCollider2D cc;
     [HideInInspector] public bool hasPlayed;
     
@@ -55,10 +54,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask Svamp;
     public bool IsGrounded;
     
-    
-    
-    private SpriteRenderer spriteRenderer;
-    public Animator animator;
+    [HideInInspector] public Animator animator;
 
     [HideInInspector] public bool canMove;
 
@@ -101,13 +97,17 @@ public class PlayerMovement : MonoBehaviour
     
     [SerializeField] private float CoyoteTime;
     bool CoroutineStart;
+    
+    [Header("Particle System")]
+    [SerializeField] private ParticleSystem jumpParticles;
+    [SerializeField] private ParticleSystem harddropParticles;
+
    
 
     void Start()
     {
         staminaVolume.weight = 0;
          rb = GetComponent<Rigidbody2D>();
-         spriteRenderer = GetComponent<SpriteRenderer>();
          animator = GetComponent<Animator>();
          tr = GetComponent<TrailRenderer>();
          cc = GetComponent<CapsuleCollider2D>();
@@ -301,7 +301,7 @@ public class PlayerMovement : MonoBehaviour
             isJumping = true;
             Jumped = true;
             hasPlayed = false;
-            CreateDust();
+            jumpDust();
         }
         
         if (context.canceled)
@@ -483,9 +483,14 @@ public class PlayerMovement : MonoBehaviour
         
     }
 
-    void CreateDust()
+    void jumpDust()
     {
-        ps.Play();
+        jumpParticles.Play();
+    }
+
+    void harddropDust()
+    {
+        harddropParticles.Play();
     }
 
     private void StartRecharge()
