@@ -48,7 +48,6 @@ public class JournalSystem : MonoBehaviour
         
         buttonNext.SetActive(canFlip && currentPage < pageList.pages.Count - 2);
         NextHighlight.SetActive(canFlip && currentPage < pageList.pages.Count - 2);
-        UpdatePage();
     }
     public void AddPage(string content)
     {
