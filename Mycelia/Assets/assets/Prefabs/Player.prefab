@@ -10040,7 +10040,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
-  ps: {fileID: 4514214975969688312}
   hasPlayed: 0
   isFacingRight: 1
   isKnockedBack: 0
@@ -10087,6 +10086,8 @@ MonoBehaviour:
   headOriginalOffset: {x: 0.026, y: 0.85, z: 0}
   headDashOffset: {x: 0.026, y: 0.85, z: 0}
   CoyoteTime: 0.2
+  jumpParticles: {fileID: 0}
+  harddropParticles: {fileID: 0}
 --- !u!114 &5641837105196010520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10113,9 +10114,6 @@ MonoBehaviour:
   DeathText:
   - The Agarics continue to rule over the kingdom...
   - The Faye falls by the hand of the Agarics
-  - You died Bitch
-  - You died (Dark Souls Style)
-  - Maybe play better?
   - Even the Agarics play better than this
   - The Faye succumbs to peril in their Journey
   HitRecoil: 5
@@ -10309,10 +10307,6 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: f70fe97c-8acb-48d5-ad56-b8993d144c77
     m_ActionName: 'Player/Backup[/Keyboard/p]'
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: c75ea376-af76-4ce1-a1c2-c17c130855f7
-    m_ActionName: 'Player/Pause[/Keyboard/escape]'
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 6d1210af-d5cd-4d69-a777-47c6f83bfada
