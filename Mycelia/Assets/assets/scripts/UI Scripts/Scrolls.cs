@@ -22,6 +22,7 @@ public class Scrolls : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(inRange);
         if (inRange)
         {
             if (interactText != null)
@@ -39,12 +40,12 @@ public class Scrolls : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D other)
     {
-        inRange = true;
+        if(other.tag == "Player") inRange = true;
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        inRange = false;
+       if(other.tag == "Player") inRange = false;
     }
 
     public void PickupScroll(InputAction.CallbackContext context)

@@ -198,7 +198,7 @@ MonoBehaviour:
     Soon met
     their inevitable demise...
 
-    
+
 
 '
   m_isRightToLeft: 0
@@ -414,7 +414,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1829017521307177076}
   - component: {fileID: 6921141722761954431}
-  - component: {fileID: 3991919780305353227}
   - component: {fileID: 6544580364120690035}
   - component: {fileID: 1848281521819725725}
   - component: {fileID: 2504860100478799683}
@@ -495,28 +494,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &3991919780305353227
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5972328738454576152}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 4a021569edc3a324ca0ce9551b1c9f9c, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!58 &6544580364120690035
 CircleCollider2D:
   m_ObjectHideFlags: 0
