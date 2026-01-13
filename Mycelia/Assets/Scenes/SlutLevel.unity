@@ -18714,6 +18714,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 797334165}
     - target: {fileID: 5641837105196010520, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
+      propertyPath: DialogueBox
+      value: 
+      objectReference: {fileID: 1724556929}
+    - target: {fileID: 5641837105196010520, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
       propertyPath: cameraFollow
       value: 
       objectReference: {fileID: 1773264188}
@@ -19882,6 +19886,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1724556929 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 270747928667924944, guid: 320c08b9dc878b44486a50213fc5c34d, type: 3}
+  m_PrefabInstance: {fileID: 591260460}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1762315122
 GameObject:
   m_ObjectHideFlags: 0
