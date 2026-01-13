@@ -10905,6 +10905,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 38
       objectReference: {fileID: 0}
+    - target: {fileID: 802990692612286600, guid: 4fb62f0298d0748408332bd09e17e3f1, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 802990692612286600, guid: 4fb62f0298d0748408332bd09e17e3f1, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 802990692612286600, guid: 4fb62f0298d0748408332bd09e17e3f1, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
+      objectReference: {fileID: 0}
     - target: {fileID: 942375920433000237, guid: 4fb62f0298d0748408332bd09e17e3f1, type: 3}
       propertyPath: m_OverrideSorting
       value: 1
@@ -10972,6 +10984,18 @@ PrefabInstance:
     - target: {fileID: 1520191635715230303, guid: 4fb62f0298d0748408332bd09e17e3f1, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1581507656601510635, guid: 4fb62f0298d0748408332bd09e17e3f1, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1581507656601510635, guid: 4fb62f0298d0748408332bd09e17e3f1, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 1581507656601510635, guid: 4fb62f0298d0748408332bd09e17e3f1, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
       objectReference: {fileID: 0}
     - target: {fileID: 4384119853453487273, guid: 4fb62f0298d0748408332bd09e17e3f1, type: 3}
       propertyPath: m_Pivot.x
@@ -11157,6 +11181,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 38
       objectReference: {fileID: 0}
+    - target: {fileID: 5664430138676435759, guid: 4fb62f0298d0748408332bd09e17e3f1, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5664430138676435759, guid: 4fb62f0298d0748408332bd09e17e3f1, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 5664430138676435759, guid: 4fb62f0298d0748408332bd09e17e3f1, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
+      objectReference: {fileID: 0}
     - target: {fileID: 5673208617200025670, guid: 4fb62f0298d0748408332bd09e17e3f1, type: 3}
       propertyPath: originalSortOrder
       value: 10
@@ -11239,6 +11275,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3281375868206998883, guid: 4fb62f0298d0748408332bd09e17e3f1, type: 3}
+    - {fileID: 3932734401700578679, guid: 4fb62f0298d0748408332bd09e17e3f1, type: 3}
+    - {fileID: 5673208617200025670, guid: 4fb62f0298d0748408332bd09e17e3f1, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 1028448880367959746, guid: 4fb62f0298d0748408332bd09e17e3f1, type: 3}
