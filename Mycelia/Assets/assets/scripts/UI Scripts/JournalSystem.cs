@@ -52,6 +52,9 @@ public class JournalSystem : MonoBehaviour
     public void AddPage(string content)
     {
         pageList.pages.Add(content);
+        
+        currentPage = Mathf.Max(0, pageList.pages.Count - 2);
+
         UpdatePage();
     }
 
@@ -77,23 +80,23 @@ public class JournalSystem : MonoBehaviour
         Debug.Log("FlipPageRight");
         isFlipping = true;
         
-        pageLeft.gameObject.SetActive(false);
-        pageRight.gameObject.SetActive(false);
+        StartCoroutine(HighlightFadeOutcoroutine(duration, pageLeft));
+        StartCoroutine(HighlightFadeOutcoroutine(duration, pageRight));
         
-        yield return new WaitForSeconds(duration);
+        yield return new WaitForSecondsRealtime(duration);
 
-        pageFlipper.SetTrigger("FlipRight");
         pageFlipper.SetFloat("speed", flipSpeed);
+        pageFlipper.SetTrigger("FlipRight");
         
-        yield return new WaitForSeconds(delay);
+        yield return new WaitForSecondsRealtime(delay);
         
         currentPage -= 2;
         UpdatePage();
         
-        yield return new WaitForSeconds(delay  + 0.5f);
+        yield return new WaitForSecondsRealtime(delay  + 0.5f);
 
-        pageRight.gameObject.SetActive(true);
-        pageLeft.gameObject.SetActive(true);
+        StartCoroutine(HighlightFadeIncoroutine(duration, pageLeft));
+        StartCoroutine(HighlightFadeIncoroutine(duration, pageRight));
 
         isFlipping = false;
     }
@@ -106,17 +109,17 @@ public class JournalSystem : MonoBehaviour
         StartCoroutine(HighlightFadeOutcoroutine(duration, pageLeft));
         StartCoroutine(HighlightFadeOutcoroutine(duration, pageRight));
         
-        yield return new WaitForSeconds(duration);
+        yield return new WaitForSecondsRealtime(duration);
 
-        pageFlipper.SetTrigger("FlipLeft");
         pageFlipper.SetFloat("speed", flipSpeed);
+        pageFlipper.SetTrigger("FlipLeft");
         
-        yield return new WaitForSeconds(delay);
+        yield return new WaitForSecondsRealtime(delay);
         
         currentPage += 2;
         UpdatePage();
         
-        yield return new WaitForSeconds(delay + 0.5f);
+        yield return new WaitForSecondsRealtime(delay + 0.5f);
 
         StartCoroutine(HighlightFadeIncoroutine(duration, pageLeft));
         StartCoroutine(HighlightFadeIncoroutine(duration, pageRight));
@@ -133,7 +136,7 @@ public class JournalSystem : MonoBehaviour
             return;
         }
     
-        currentPage = Mathf.Clamp(currentPage, 0, Mathf.Max(0, pageList.pages.Count - 1));
+        currentPage = Mathf.Clamp(currentPage, 0, Mathf.Max(0, pageList.pages.Count - 2));
 
         pageLeft.text = pageList.pages[currentPage];
 
@@ -153,7 +156,7 @@ public class JournalSystem : MonoBehaviour
             float time = 0;
             while (time < duration)
             {
-                time += Time.deltaTime;
+                time += Time.unscaledDeltaTime;
                 text.alpha = Mathf.Lerp(startOpacity, 0f, time / duration);
                 yield return null;
             }
@@ -172,7 +175,7 @@ public class JournalSystem : MonoBehaviour
             float time = 0;
             while (time < duration)
             {
-                time += Time.deltaTime;
+                time += Time.unscaledDeltaTime;
                 text.alpha = Mathf.Lerp(0f, 1f, time / duration);
                 yield return null;
             }
@@ -193,6 +196,8 @@ public class JournalSystem : MonoBehaviour
         }
         ResetCanvasOrder();
         Alert.SetActive(false);
+        
+        UpdatePage();
     }
 
     public void DeactivateBook()
