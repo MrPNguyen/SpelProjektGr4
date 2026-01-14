@@ -10462,11 +10462,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad3a10993011f58489593a0d1ffa35b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpClip: {fileID: 8300000, guid: b43766041b0053f459ec7484d5da888d, type: 3}
+  OneShotSource: {fileID: 0}
+  jumpClip: {fileID: 8300000, guid: c72b18f80b8382d499378e22f531ff1f, type: 3}
   hardLandClip: {fileID: 8300000, guid: 573db2be2a810634eb3851a22ad7fe67, type: 3}
   dashClip: {fileID: 8300000, guid: a1b96333214124a478a8455d594c653a, type: 3}
   hurtClip: {fileID: 8300000, guid: a027008ed55f32f48a11f33510efb34f, type: 3}
-  OneShotSource: {fileID: 4761619104841001515}
   walkingClips:
   - {fileID: 8300000, guid: 136edf60935c7594cba1e3304085537a, type: 3}
   - {fileID: 8300000, guid: 19a043d06aa446145b8cb5caf43e96ac, type: 3}
@@ -10484,7 +10484,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 1702ecf2d3f3da740911a31a0ba238e3, type: 3}
   walkingInterval: 0.1
   runningMultiplier: 0.6
-  GruntClip: {fileID: 8300000, guid: c72b18f80b8382d499378e22f531ff1f, type: 3}
 --- !u!82 &6379467792457079880
 AudioSource:
   m_ObjectHideFlags: 0

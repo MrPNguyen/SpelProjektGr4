@@ -7,12 +7,12 @@ public class PlayerSFXManager : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     [Header("SFX")]
+    private AudioSource audioSource;
+    [SerializeField] private AudioSource OneShotSource;
     [SerializeField] private AudioClip jumpClip;
     [SerializeField] private AudioClip hardLandClip;
     [SerializeField] private AudioClip dashClip;
     [SerializeField] private AudioClip hurtClip;
-    private AudioSource audioSource;
-    [SerializeField] private AudioSource OneShotSource;
     
     [Header("Walking")]
     [SerializeField] private List<AudioClip> walkingClips;
@@ -20,7 +20,6 @@ public class PlayerSFXManager : MonoBehaviour
     private float walkingTimer;
     [SerializeField] private float walkingInterval = 0.10f;
     [SerializeField] private float runningMultiplier = 0.6f;
-    [SerializeField] private AudioClip GruntClip;
     private Coroutine footstepRoutine;
     private bool coroutineStart = false;
 
@@ -70,12 +69,7 @@ public class PlayerSFXManager : MonoBehaviour
 
     private void PlayOneShot(AudioClip clip)
     {
-        if (OneShotSource.clip != clip || !OneShotSource.isPlaying)
-        {
-            OneShotSource.Stop();
-            OneShotSource.clip = clip;
-        }
-        OneShotSource.Play();
+        OneShotSource.PlayOneShot(clip);
        
     }
 
@@ -86,8 +80,17 @@ public class PlayerSFXManager : MonoBehaviour
         {
             if (walkingClips != null && walkingClips.Count > 0 && !OneShotSource.isPlaying)
             {
-                PlayOneShot(walkingClips[Random.Range(0, walkingClips.Count)]);
+                OneShotSource.PlayOneShot(walkingClips[Random.Range(0, walkingClips.Count)]);
             }
+        }
+        
+        if (playerMove.Jumped)
+        {
+            OneShotSource.PlayOneShot(jumpClip);
+            
+            playerMove.hasPlayed = true; 
+            playerMove.Jumped = false;
+            return;
         }
         
         if (playerMove.hasPlayed) return;
@@ -110,12 +113,6 @@ public class PlayerSFXManager : MonoBehaviour
             playerMove.hasPlayed = true;
         }
 
-        if (playerMove.Jumped)
-        {
-            OneShotSource.PlayOneShot(jumpClip);
-            OneShotSource.PlayOneShot(GruntClip);
-            playerMove.hasPlayed = true; playerMove.Jumped = false;
-        }
        
         if (!audioSource.isPlaying)
         {
