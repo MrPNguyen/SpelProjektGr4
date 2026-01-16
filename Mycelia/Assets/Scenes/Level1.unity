@@ -124,6 +124,51 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7541790992093834774, guid: de88ecf85e5e89540b994562db4132f1, type: 3}
   m_PrefabInstance: {fileID: 731206221}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &14652596
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 14652598}
+  - component: {fileID: 14652597}
+  m_Layer: 0
+  m_Name: UIAudio
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &14652597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 14652596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab88220e59ad03342bab7bae9b65fd41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  source: {fileID: 412509460}
+--- !u!4 &14652598
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 14652596}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 528681104}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &18096357 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9208354278571157437, guid: b6834b7c6383039439c88fbc14c6febc, type: 3}
@@ -519,6 +564,28 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a04ad5f75f3dded44acd74ada883cfcb, type: 3}
+--- !u!1 &116001980 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5010831391178407370, guid: 54beca3aa97dcb94dbcf044de1a8fba6, type: 3}
+  m_PrefabInstance: {fileID: 1734191236}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &116001985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 116001980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f85e4a35c43607142baf1b70bdc5f550, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 412509460}
+  ClickClip: {fileID: 8300000, guid: 0b5bd01c6371eb4419bee82833fe6968, type: 3}
+  HoverClip: {fileID: 8300000, guid: 4774e463689351c4b96baf0415904d88, type: 3}
+  highlight: {fileID: 0}
+  duration: 0
 --- !u!1 &126771857
 GameObject:
   m_ObjectHideFlags: 0
@@ -4836,6 +4903,17 @@ Transform:
   - {fileID: 341388315}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &305207389 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1379541937466071901, guid: 66a3d85f7826c774882883da574fd3b3, type: 3}
+  m_PrefabInstance: {fileID: 1901425140}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &323024576 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 197813904316879407, guid: 54beca3aa97dcb94dbcf044de1a8fba6, type: 3}
@@ -5401,6 +5479,135 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &412509459
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 412509461}
+  - component: {fileID: 412509460}
+  m_Layer: 0
+  m_Name: ButtonSource
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &412509460
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 412509459}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 0.5
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &412509461
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 412509459}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 528681104}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &416729097
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5687,6 +5894,40 @@ Transform:
   - {fileID: 1200672046}
   - {fileID: 775217159}
   - {fileID: 664087542}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &528681103
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 528681104}
+  m_Layer: 0
+  m_Name: VFX
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &528681104
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 528681103}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 882.24585, y: 373.98532, z: -8.5845}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 412509461}
+  - {fileID: 14652598}
+  - {fileID: 764631482}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &560752202
@@ -6171,7 +6412,7 @@ PrefabInstance:
     - target: {fileID: 5641837105196010520, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
       propertyPath: FinalMessage
       value: 
-      objectReference: {fileID: 824496274}
+      objectReference: {fileID: 0}
     - target: {fileID: 5641837105196010520, guid: c1b37f4a9b36e514c97941cd725d4556, type: 3}
       propertyPath: cameraFollow
       value: 
@@ -7133,164 +7374,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &671875319
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 671875320}
-  - component: {fileID: 671875323}
-  - component: {fileID: 671875322}
-  - component: {fileID: 671875321}
-  m_Layer: 0
-  m_Name: HowToDash
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &671875320
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 671875319}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 41.97, y: -10.68, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1559475278}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &671875321
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 671875319}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 603e0ecaef9ab424694376a76bbf60fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogueTrigger: {fileID: 671875322}
-  bcs:
-  - {fileID: 671875323}
---- !u!114 &671875322
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 671875319}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57603701dd0147e43b5295c375e99a88, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogue:
-    dialogueLines:
-    - character:
-        name: 
-        icon: {fileID: 8238638941979423301, guid: 6ead8f8e694501b4eb48a851baedab56, type: 3}
-      line: "Hold it there Faye!\t"
-    - character:
-        name: Elder Cap
-        icon: {fileID: 8238638941979423301, guid: 6ead8f8e694501b4eb48a851baedab56, type: 3}
-      line: More traps from them dang Agarics.
-    - character:
-        name: Elder Cap
-        icon: {fileID: 8238638941979423301, guid: 6ead8f8e694501b4eb48a851baedab56, type: 3}
-      line: These are more tricky than last time though.
-    - character:
-        name: Elder Cap
-        icon: {fileID: 8238638941979423301, guid: 6ead8f8e694501b4eb48a851baedab56, type: 3}
-      line: This time is about more than just timing.
-    - character:
-        name: Elder Cap
-        icon: {fileID: 8238638941979423301, guid: 6ead8f8e694501b4eb48a851baedab56, type: 3}
-      line: now you need speed. and walking over is not enough those spikes are too
-        fast.
-    - character:
-        name: Elder Cap
-        icon: {fileID: 8238638941979423301, guid: 6ead8f8e694501b4eb48a851baedab56, type: 3}
-      line: Luckily for you there is yet another technique you can utitlize from
-        the great ancient Goldcaps.
-    - character:
-        name: Elder Cap
-        icon: {fileID: 8238638941979423301, guid: 6ead8f8e694501b4eb48a851baedab56, type: 3}
-      line: through flapping your wings hard enough while leaning forward you can
-        perform a so called "dash".
-    - character:
-        name: Elder Cap
-        icon: {fileID: 8238638941979423301, guid: 6ead8f8e694501b4eb48a851baedab56, type: 3}
-      line: Now to do this all you have to do is hold the LSHIFT (left shift) key
-        in conjunction with any directional key to dash forward.
-    - character:
-        name: Elder Cap
-        icon: {fileID: 8238638941979423301, guid: 6ead8f8e694501b4eb48a851baedab56, type: 3}
-      line: Now the real skilled once can do this while jumping but for now try just
-        dashing and get the hang of that.
-    - character:
-        name: Elder Cap
-        icon: {fileID: 8238638941979423301, guid: 6ead8f8e694501b4eb48a851baedab56, type: 3}
-      line: 'You know what they say: you gotta dash before you can dash and jump
-        kiddo!'
-    automaticAdvance: 0
-    autoAdvanceDelay: 1.5
-  ableToWalkDuringDialogue: 1
---- !u!61 &671875323
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 671875319}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0.032484055, y: -0.44177294}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 1.7925911, y: 0.116454124}
-  m_EdgeRadius: 0
 --- !u!1001 &672550328
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7715,6 +7798,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &691591907 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5797972967962286374, guid: 66a3d85f7826c774882883da574fd3b3, type: 3}
+  m_PrefabInstance: {fileID: 1901425140}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &691591913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 691591907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f85e4a35c43607142baf1b70bdc5f550, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 412509460}
+  ClickClip: {fileID: 8300000, guid: 0b5bd01c6371eb4419bee82833fe6968, type: 3}
+  HoverClip: {fileID: 8300000, guid: 4774e463689351c4b96baf0415904d88, type: 3}
+  highlight: {fileID: 305207389}
+  duration: 0.3
 --- !u!1 &695347522
 GameObject:
   m_ObjectHideFlags: 0
@@ -8162,6 +8267,135 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1969f18cc40f6434ebaa3ebd599e3f54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &764631481
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 764631482}
+  - component: {fileID: 764631483}
+  m_Layer: 0
+  m_Name: PageFlipSource
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &764631482
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 764631481}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 528681104}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &764631483
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 764631481}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &769859040
 GameObject:
   m_ObjectHideFlags: 0
@@ -8428,165 +8662,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &824496274
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 824496275}
-  - component: {fileID: 824496276}
-  - component: {fileID: 824496278}
-  - component: {fileID: 824496277}
-  m_Layer: 0
-  m_Name: Ending
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &824496275
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 824496274}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 82.25, y: -0.71, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1559475278}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &824496276
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 824496274}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.65955234}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 1, y: 2.3191047}
-  m_EdgeRadius: 0
---- !u!114 &824496277
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 824496274}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 603e0ecaef9ab424694376a76bbf60fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogueTrigger: {fileID: 824496278}
-  bcs:
-  - {fileID: 824496276}
---- !u!114 &824496278
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 824496274}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57603701dd0147e43b5295c375e99a88, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogue:
-    dialogueLines:
-    - character:
-        name: Elder Cap
-        icon: {fileID: 8238638941979423301, guid: 6ead8f8e694501b4eb48a851baedab56, type: 3}
-      line: Congratulations Faye on saving Shrooliver and Chantarella!
-    - character:
-        name: Elder Cap
-        icon: {fileID: 8238638941979423301, guid: 6ead8f8e694501b4eb48a851baedab56, type: 3}
-      line: But your journey is not over yet.
-    - character:
-        name: Elder Cap
-        icon: {fileID: 8238638941979423301, guid: 6ead8f8e694501b4eb48a851baedab56, type: 3}
-      line: I'm sure there are more Goldcaps who need your help further into the
-        forest,
-    - character:
-        name: Elder Cap
-        icon: {fileID: 8238638941979423301, guid: 6ead8f8e694501b4eb48a851baedab56, type: 3}
-      line: And most importantly the king still needs your help.
-    - character:
-        name: Elder Cap
-        icon: {fileID: 8238638941979423301, guid: 6ead8f8e694501b4eb48a851baedab56, type: 3}
-      line: I'm sorry Faye but i cannot follow you any further into the forest and
-        continue to guide you in your journey,
-    - character:
-        name: Elder Cap
-        icon: {fileID: 8238638941979423301, guid: 6ead8f8e694501b4eb48a851baedab56, type: 3}
-      line: For the forest is to dangerous and toxic for an old soul like me.
-    - character:
-        name: Elder Cap
-        icon: {fileID: 8238638941979423301, guid: 6ead8f8e694501b4eb48a851baedab56, type: 3}
-      line: You'll have to do without me but don't worry,
-    - character:
-        name: Elder Cap
-        icon: {fileID: 8238638941979423301, guid: 6ead8f8e694501b4eb48a851baedab56, type: 3}
-      line: I've taught you everything i know and all you need to know,
-    - character:
-        name: Elder Cap
-        icon: {fileID: 8238638941979423301, guid: 6ead8f8e694501b4eb48a851baedab56, type: 3}
-      line: I have no doubt you'll find your path, this was always your fate Faye,
-        to be Mycelia's great protector.
-    - character:
-        name: Elder Cap
-        icon: {fileID: 8238638941979423301, guid: 6ead8f8e694501b4eb48a851baedab56, type: 3}
-      line: Go on now, Best of luck in your adventures......
-    - character:
-        name: Elder Cap
-        icon: {fileID: 8238638941979423301, guid: 6ead8f8e694501b4eb48a851baedab56, type: 3}
-      line: .......You're gonna need it......
-    automaticAdvance: 0
-    autoAdvanceDelay: 1.5
-  ableToWalkDuringDialogue: 0
 --- !u!1 &835866860
 GameObject:
   m_ObjectHideFlags: 0
@@ -9386,9 +9461,13 @@ PrefabInstance:
         Agarics and free the King... You must
       objectReference: {fileID: 0}
     - target: {fileID: 331689016479420297, guid: 0e5cd0bbbc270704bb92471b6096a039, type: 3}
+      propertyPath: dialogue.dialogueLines.Array.data[0].character.icon
+      value: 
+      objectReference: {fileID: 946600201767056055, guid: 6ead8f8e694501b4eb48a851baedab56, type: 3}
+    - target: {fileID: 331689016479420297, guid: 0e5cd0bbbc270704bb92471b6096a039, type: 3}
       propertyPath: dialogue.dialogueLines.Array.data[1].character.icon
       value: 
-      objectReference: {fileID: 9147024313637940093, guid: 584eda88798e41249ae2c26083c876cf, type: 3}
+      objectReference: {fileID: 946600201767056055, guid: 6ead8f8e694501b4eb48a851baedab56, type: 3}
     - target: {fileID: 331689016479420297, guid: 0e5cd0bbbc270704bb92471b6096a039, type: 3}
       propertyPath: dialogue.dialogueLines.Array.data[1].character.name
       value: Kantarelder
@@ -9522,180 +9601,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a821f483f35bbe5428f86a7409d93201, type: 3}
---- !u!1 &931021073
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 931021074}
-  - component: {fileID: 931021076}
-  - component: {fileID: 931021075}
-  - component: {fileID: 931021078}
-  - component: {fileID: 931021077}
-  m_Layer: 0
-  m_Name: Watch Out!
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &931021074
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 931021073}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.27, y: -0.68, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1559475278}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &931021075
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 931021073}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 8.868732, y: -9.015114}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 1.2704163, y: 1.0224495}
-  m_EdgeRadius: 0
---- !u!61 &931021076
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 931021073}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.6563544}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 1, y: 2.3127089}
-  m_EdgeRadius: 0
---- !u!114 &931021077
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 931021073}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 603e0ecaef9ab424694376a76bbf60fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogueTrigger: {fileID: 931021078}
-  bcs:
-  - {fileID: 931021075}
-  - {fileID: 931021076}
---- !u!114 &931021078
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 931021073}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57603701dd0147e43b5295c375e99a88, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogue:
-    dialogueLines:
-    - character:
-        name: Elder Cap
-        icon: {fileID: 8238638941979423301, guid: 6ead8f8e694501b4eb48a851baedab56, type: 3}
-      line: Faye! Faye! Wait a minute watch out!
-    - character:
-        name: Elder Cap
-        icon: {fileID: 8238638941979423301, guid: 6ead8f8e694501b4eb48a851baedab56, type: 3}
-      line: You can't go into the water. Those damn Agarics poisoned all our water
-        supply with their foul odor.
-    - character:
-        name: Elder Cap
-        icon: {fileID: 8238638941979423301, guid: 6ead8f8e694501b4eb48a851baedab56, type: 3}
-      line: One touch is all that is needed to perish so tread carefully and make
-        sure not to fall in.
-    automaticAdvance: 0
-    autoAdvanceDelay: 1.5
-  ableToWalkDuringDialogue: 1
 --- !u!1 &931533791
 GameObject:
   m_ObjectHideFlags: 0
@@ -10515,6 +10420,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2029221795}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1090307298 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8535380080419287109, guid: 66a3d85f7826c774882883da574fd3b3, type: 3}
+  m_PrefabInstance: {fileID: 1901425140}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1090307303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1090307298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f85e4a35c43607142baf1b70bdc5f550, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 412509460}
+  ClickClip: {fileID: 8300000, guid: 0b5bd01c6371eb4419bee82833fe6968, type: 3}
+  HoverClip: {fileID: 8300000, guid: 4774e463689351c4b96baf0415904d88, type: 3}
+  highlight: {fileID: 1967642551}
+  duration: 0.3
 --- !u!4 &1103514924 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8693368556987882979, guid: a04ad5f75f3dded44acd74ada883cfcb, type: 3}
@@ -11946,6 +11873,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7541790992093834774, guid: de88ecf85e5e89540b994562db4132f1, type: 3}
   m_PrefabInstance: {fileID: 1790883130}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1318396859 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 810446766665220548, guid: 66a3d85f7826c774882883da574fd3b3, type: 3}
+  m_PrefabInstance: {fileID: 1901425140}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1335614539
 GameObject:
   m_ObjectHideFlags: 0
@@ -13226,125 +13164,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 689044190042167562, guid: a821f483f35bbe5428f86a7409d93201, type: 3}
   m_PrefabInstance: {fileID: 1451310167}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1460482495
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1460482496}
-  - component: {fileID: 1460482499}
-  - component: {fileID: 1460482498}
-  - component: {fileID: 1460482497}
-  m_Layer: 0
-  m_Name: HowToWalk
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1460482496
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1460482495}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.79, y: -3.72, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1559475278}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1460482497
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1460482495}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 603e0ecaef9ab424694376a76bbf60fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogueTrigger: {fileID: 1460482498}
-  bcs:
-  - {fileID: 1460482499}
---- !u!114 &1460482498
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1460482495}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57603701dd0147e43b5295c375e99a88, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogue:
-    dialogueLines:
-    - character:
-        name: Elder Cap
-        icon: {fileID: 8238638941979423301, guid: 6ead8f8e694501b4eb48a851baedab56, type: 3}
-      line: 'Dear Faye, please Save my bretheren from the Agarics!
-
-        The keys
-        should unlock their cages'
-    automaticAdvance: 0
-    autoAdvanceDelay: 1.5
-  ableToWalkDuringDialogue: 1
---- !u!61 &1460482499
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1460482495}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 1.8428118, y: -0.4693272}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 4.6856227, y: 0.061345577}
-  m_EdgeRadius: 0
 --- !u!1 &1475670865
 GameObject:
   m_ObjectHideFlags: 0
@@ -14164,44 +13983,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5137322567125554385, guid: 2aa94373abc796c4fa7a8dcefc8f80e2, type: 3}
   m_PrefabInstance: {fileID: 1553187993}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1559475277
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1559475278}
-  m_Layer: 0
-  m_Name: TutorialDialogueTriggers
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1559475278
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1559475277}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.239811, y: 0.18883777, z: -4.337945}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1460482496}
-  - {fileID: 1641624673}
-  - {fileID: 1995364976}
-  - {fileID: 931021074}
-  - {fileID: 1727660832}
-  - {fileID: 671875320}
-  - {fileID: 824496275}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1591018647
 GameObject:
   m_ObjectHideFlags: 0
@@ -14592,256 +14373,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!1 &1641624672
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1641624673}
-  - component: {fileID: 1641624676}
-  - component: {fileID: 1641624675}
-  - component: {fileID: 1641624674}
-  - component: {fileID: 1641624677}
-  - component: {fileID: 1641624678}
-  m_Layer: 0
-  m_Name: HowToFight
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1641624673
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1641624672}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.25, y: -8.69, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1559475278}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &1641624674
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1641624672}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 41.571983, y: 20.2535}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 0.78408813, y: 3.4666786}
-  m_EdgeRadius: 0
---- !u!61 &1641624675
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1641624672}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 42.034065, y: -4.3839297}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 0.960907, y: 0.24054623}
-  m_EdgeRadius: 0
---- !u!61 &1641624676
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1641624672}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
---- !u!114 &1641624677
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1641624672}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57603701dd0147e43b5295c375e99a88, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogue:
-    dialogueLines:
-    - character:
-        name: Elder Cap
-        icon: {fileID: 8238638941979423301, guid: 6ead8f8e694501b4eb48a851baedab56, type: 3}
-      line: There they are!
-    - character:
-        name: Elder Cap
-        icon: {fileID: 8238638941979423301, guid: 6ead8f8e694501b4eb48a851baedab56, type: 3}
-      line: Those pesky Agarics, careful of them they bite.
-    - character:
-        name: Elder Cap
-        icon: {fileID: 8238638941979423301, guid: 6ead8f8e694501b4eb48a851baedab56, type: 3}
-      line: However luckily for you, so can you.
-    - character:
-        name: Elder Cap
-        icon: {fileID: 8238638941979423301, guid: 6ead8f8e694501b4eb48a851baedab56, type: 3}
-      line: They cannot withstand the good ol' harddrop on the noggin'.
-    - character:
-        name: Elder Cap
-        icon: {fileID: 8238638941979423301, guid: 6ead8f8e694501b4eb48a851baedab56, type: 3}
-      line: This was a technique developed by the ancient Goldcaps where they would
-        gather up vertical momentum and then....
-    - character:
-        name: Elder Cap
-        icon: {fileID: 8238638941979423301, guid: 6ead8f8e694501b4eb48a851baedab56, type: 3}
-      line: STOMP ON THE HEADS OF THE AGARICS AS HARD AS POSSIBLE AN--
-    - character:
-        name: Elder Cap
-        icon: {fileID: 8238638941979423301, guid: 6ead8f8e694501b4eb48a851baedab56, type: 3}
-      line: '*clears throat* sorry got a little carried away there. The general gist
-        of the technique is to'
-    - character:
-        name: Elder Cap
-        icon: {fileID: 8238638941979423301, guid: 6ead8f8e694501b4eb48a851baedab56, type: 3}
-      line: fly far in the air and then hold S to hard drop on the agarics head.
-    - character:
-        name: Elder Cap
-        icon: {fileID: 8238638941979423301, guid: 6ead8f8e694501b4eb48a851baedab56, type: 3}
-      line: The key is timing.
-    - character:
-        name: Elder Cap
-        icon: {fileID: 8238638941979423301, guid: 6ead8f8e694501b4eb48a851baedab56, type: 3}
-      line: Go on give it a try and get rid of they're putrid odor.
-    automaticAdvance: 0
-    autoAdvanceDelay: 1.5
-  ableToWalkDuringDialogue: 1
---- !u!114 &1641624678
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1641624672}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 603e0ecaef9ab424694376a76bbf60fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogueTrigger: {fileID: 1641624677}
-  bcs:
-  - {fileID: 1641624674}
-  - {fileID: 1641624675}
-  - {fileID: 1641624676}
 --- !u!1 &1645281582
 GameObject:
   m_ObjectHideFlags: 0
@@ -15113,6 +14644,28 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1245848424485923619, guid: 214e3980732bb2446af493c9defe9a0c, type: 3}
   m_PrefabInstance: {fileID: 3504955214428063287}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1706810321 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5821787242290879096, guid: 54beca3aa97dcb94dbcf044de1a8fba6, type: 3}
+  m_PrefabInstance: {fileID: 1734191236}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1706810326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1706810321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f85e4a35c43607142baf1b70bdc5f550, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 412509460}
+  ClickClip: {fileID: 8300000, guid: 0b5bd01c6371eb4419bee82833fe6968, type: 3}
+  HoverClip: {fileID: 8300000, guid: 4774e463689351c4b96baf0415904d88, type: 3}
+  highlight: {fileID: 0}
+  duration: 0
 --- !u!1 &1725628345
 GameObject:
   m_ObjectHideFlags: 0
@@ -15200,140 +14753,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1727660831
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1727660832}
-  - component: {fileID: 1727660833}
-  - component: {fileID: 1727660835}
-  - component: {fileID: 1727660834}
-  m_Layer: 0
-  m_Name: Timing
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1727660832
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1727660831}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 28.22, y: -3.68, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1559475278}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &1727660833
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1727660831}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
---- !u!114 &1727660834
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1727660831}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 603e0ecaef9ab424694376a76bbf60fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogueTrigger: {fileID: 1727660835}
-  bcs:
-  - {fileID: 1727660833}
---- !u!114 &1727660835
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1727660831}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57603701dd0147e43b5295c375e99a88, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogue:
-    dialogueLines:
-    - character:
-        name: Elder Cap
-        icon: {fileID: 8238638941979423301, guid: 6ead8f8e694501b4eb48a851baedab56, type: 3}
-      line: "Woah Faye hold on wait!\t"
-    - character:
-        name: Elder Cap
-        icon: {fileID: 8238638941979423301, guid: 6ead8f8e694501b4eb48a851baedab56, type: 3}
-      line: Those darn Agarics set up a trap
-    - character:
-        name: Elder Cap
-        icon: {fileID: 8238638941979423301, guid: 6ead8f8e694501b4eb48a851baedab56, type: 3}
-      line: You have to move carefully and time your jump when the platform is long
-        enough
-    - character:
-        name: Elder Cap
-        icon: {fileID: 8238638941979423301, guid: 6ead8f8e694501b4eb48a851baedab56, type: 3}
-      line: Be careful not to fall in!
-    - character:
-        name: Elder Cap
-        icon: {fileID: 8238638941979423301, guid: 6ead8f8e694501b4eb48a851baedab56, type: 3}
-      line: Oh and before i forget, these dang Agarics probably put more traps out
-        in Mycelia so keep an eye out for them.
-    automaticAdvance: 0
-    autoAdvanceDelay: 1.5
-  ableToWalkDuringDialogue: 1
 --- !u!1001 &1734191236
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15350,6 +14769,10 @@ PrefabInstance:
       propertyPath: pageList
       value: 
       objectReference: {fileID: 1246206235}
+    - target: {fileID: 197813904316879407, guid: 54beca3aa97dcb94dbcf044de1a8fba6, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 764631483}
     - target: {fileID: 438944842096444328, guid: 54beca3aa97dcb94dbcf044de1a8fba6, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -15443,6 +14866,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 94855309}
     - target: {fileID: 2281725638240476643, guid: 54beca3aa97dcb94dbcf044de1a8fba6, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.a
+      value: 0.5019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 2281725638240476643, guid: 54beca3aa97dcb94dbcf044de1a8fba6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 5
       objectReference: {fileID: 0}
@@ -15498,6 +14925,12 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5010831391178407370, guid: 54beca3aa97dcb94dbcf044de1a8fba6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 116001985}
+    - targetCorrespondingSourceObject: {fileID: 5821787242290879096, guid: 54beca3aa97dcb94dbcf044de1a8fba6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1706810326}
     - targetCorrespondingSourceObject: {fileID: 5462004991769643904, guid: 54beca3aa97dcb94dbcf044de1a8fba6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 610060335}
@@ -25680,7 +25113,7 @@ Tilemap:
       - {fileID: -7373168968592995429, guid: 05511a7569bd63b46b454c1926a5832c, type: 3}
       - {fileID: -7031007450491264660, guid: 05511a7569bd63b46b454c1926a5832c, type: 3}
       - {fileID: 648905387608988143, guid: 05511a7569bd63b46b454c1926a5832c, type: 3}
-      m_AnimationSpeed: 5.0000005
+      m_AnimationSpeed: 5
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 22, y: -2, z: 0}
@@ -25834,7 +25267,7 @@ Tilemap:
       - {fileID: -7373168968592995429, guid: 05511a7569bd63b46b454c1926a5832c, type: 3}
       - {fileID: -7031007450491264660, guid: 05511a7569bd63b46b454c1926a5832c, type: 3}
       - {fileID: 648905387608988143, guid: 05511a7569bd63b46b454c1926a5832c, type: 3}
-      m_AnimationSpeed: 5.0000005
+      m_AnimationSpeed: 5
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 100, y: -2, z: 0}
@@ -26343,6 +25776,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17811a97cc049d443a51c15008ce5ec4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1899780055 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6563291983697607463, guid: 66a3d85f7826c774882883da574fd3b3, type: 3}
+  m_PrefabInstance: {fileID: 1901425140}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1899780060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1899780055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f85e4a35c43607142baf1b70bdc5f550, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 412509460}
+  ClickClip: {fileID: 8300000, guid: 0b5bd01c6371eb4419bee82833fe6968, type: 3}
+  HoverClip: {fileID: 8300000, guid: 4774e463689351c4b96baf0415904d88, type: 3}
+  highlight: {fileID: 1318396859}
+  duration: 0.3
 --- !u!1001 &1901425140
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26357,7 +25812,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 293287204341196047, guid: 66a3d85f7826c774882883da574fd3b3, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1585862344712279321, guid: 66a3d85f7826c774882883da574fd3b3, type: 3}
       propertyPath: m_Pivot.x
@@ -26441,15 +25896,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1821054265218477483, guid: 66a3d85f7826c774882883da574fd3b3, type: 3}
       propertyPath: m_fontColor32.rgba
-      value: 16777215
+      value: 33554431
       objectReference: {fileID: 0}
     - target: {fileID: 2055923859276090196, guid: 66a3d85f7826c774882883da574fd3b3, type: 3}
       propertyPath: m_fontColor32.rgba
-      value: 16777215
+      value: 33554431
       objectReference: {fileID: 0}
     - target: {fileID: 2252176151663510832, guid: 66a3d85f7826c774882883da574fd3b3, type: 3}
       propertyPath: m_fontColor32.rgba
-      value: 16777215
+      value: 33554431
       objectReference: {fileID: 0}
     - target: {fileID: 2781062072462276696, guid: 66a3d85f7826c774882883da574fd3b3, type: 3}
       propertyPath: player
@@ -26465,7 +25920,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3864625457728094800, guid: 66a3d85f7826c774882883da574fd3b3, type: 3}
       propertyPath: m_fontColor32.rgba
-      value: 16777215
+      value: 33554431
       objectReference: {fileID: 0}
     - target: {fileID: 5392330388312175711, guid: 66a3d85f7826c774882883da574fd3b3, type: 3}
       propertyPath: player
@@ -26482,7 +25937,16 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8535380080419287109, guid: 66a3d85f7826c774882883da574fd3b3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1090307303}
+    - targetCorrespondingSourceObject: {fileID: 6563291983697607463, guid: 66a3d85f7826c774882883da574fd3b3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1899780060}
+    - targetCorrespondingSourceObject: {fileID: 5797972967962286374, guid: 66a3d85f7826c774882883da574fd3b3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 691591913}
   m_SourcePrefab: {fileID: 100100000, guid: 66a3d85f7826c774882883da574fd3b3, type: 3}
 --- !u!4 &1908259304 stripped
 Transform:
@@ -26610,6 +26074,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98bb661bdca982644a8ecfd7e4b94231, type: 3}
+--- !u!114 &1967642551 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1055489766921214837, guid: 66a3d85f7826c774882883da574fd3b3, type: 3}
+  m_PrefabInstance: {fileID: 1901425140}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1977859057
 GameObject:
   m_ObjectHideFlags: 0
@@ -26784,183 +26259,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1995364975
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1995364976}
-  - component: {fileID: 1995364978}
-  - component: {fileID: 1995364977}
-  - component: {fileID: 1995364980}
-  - component: {fileID: 1995364979}
-  m_Layer: 0
-  m_Name: HowToJump
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1995364976
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1995364975}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 40.29, y: -3.68, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1559475278}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &1995364977
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1995364975}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 8.002598, y: 2.2789276}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 0.89966583, y: 1.5663514}
-  m_EdgeRadius: 0
---- !u!61 &1995364978
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1995364975}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
---- !u!114 &1995364979
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1995364975}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 603e0ecaef9ab424694376a76bbf60fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogueTrigger: {fileID: 1995364980}
-  bcs:
-  - {fileID: 1995364978}
-  - {fileID: 1995364977}
---- !u!114 &1995364980
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1995364975}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57603701dd0147e43b5295c375e99a88, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogue:
-    dialogueLines:
-    - character:
-        name: Elder Cap
-        icon: {fileID: 8238638941979423301, guid: 6ead8f8e694501b4eb48a851baedab56, type: 3}
-      line: Dear Faye look! one of Mycelias magical mushrooms.
-    - character:
-        name: Elder Cap
-        icon: {fileID: 8238638941979423301, guid: 6ead8f8e694501b4eb48a851baedab56, type: 3}
-      line: This one is called a meadowshroom, its known for its bouncyness.
-    - character:
-        name: Elder Cap
-        icon: {fileID: 8238638941979423301, guid: 6ead8f8e694501b4eb48a851baedab56, type: 3}
-      line: However even if they are bouncy they are still to stiff to jump on normally,
-    - character:
-        name: Elder Cap
-        icon: {fileID: 8238638941979423301, guid: 6ead8f8e694501b4eb48a851baedab56, type: 3}
-      line: so you'll need to apply a little extra force to get a good bounce, try
-        harddropping on them like you did the Agarics!
-    automaticAdvance: 0
-    autoAdvanceDelay: 1.5
-  ableToWalkDuringDialogue: 1
 --- !u!1 &2010956015
 GameObject:
   m_ObjectHideFlags: 0
@@ -27917,10 +27215,6 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: -1
       objectReference: {fileID: 0}
-    - target: {fileID: 3844481059827045817, guid: 01e787c4daa366541bd8df992bbb655b, type: 3}
-      propertyPath: OutputAudioMixerGroup
-      value: 
-      objectReference: {fileID: 7584519081890529295, guid: 1b147bdefafce3c4babd8c229f1afa51, type: 2}
     - target: {fileID: 4653586621824406032, guid: 01e787c4daa366541bd8df992bbb655b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 38.771687
@@ -28489,9 +27783,9 @@ SceneRoots:
   - {fileID: 4377839608952774833}
   - {fileID: 126771858}
   - {fileID: 1272779639}
-  - {fileID: 1559475278}
   - {fileID: 291617995}
   - {fileID: 486216349}
   - {fileID: 863898445}
   - {fileID: 1380190914}
   - {fileID: 2029221795}
+  - {fileID: 528681104}

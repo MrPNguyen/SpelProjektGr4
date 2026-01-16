@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -27,6 +26,10 @@ public class JournalSystem : MonoBehaviour
     [SerializeField] private GameObject buttonPrevious;
     [SerializeField] private GameObject NextHighlight;
     [SerializeField] private GameObject PreviousHighlight;
+    
+    [Header("Sounds")]
+    [SerializeField] private List<AudioClip> pageFlipSounds;
+    [SerializeField] private AudioSource audioSource;
 
     void Start()
     {
@@ -80,6 +83,10 @@ public class JournalSystem : MonoBehaviour
         
         yield return new WaitForSecondsRealtime(duration);
 
+        if (pageFlipSounds != null && pageFlipSounds.Count > 0)
+        {
+            PlayOneShot(pageFlipSounds[Random.Range(0, pageFlipSounds.Count)]);
+        }
         pageFlipper.SetFloat("speed", flipSpeed);
         pageFlipper.SetTrigger("FlipRight");
         
@@ -105,7 +112,10 @@ public class JournalSystem : MonoBehaviour
         StartCoroutine(HighlightFadeOutcoroutine(duration, pageRight));
         
         yield return new WaitForSecondsRealtime(duration);
-
+        if (pageFlipSounds != null && pageFlipSounds.Count > 0)
+        {
+            PlayOneShot(pageFlipSounds[Random.Range(0, pageFlipSounds.Count)]);
+        }
         pageFlipper.SetFloat("speed", flipSpeed);
         pageFlipper.SetTrigger("FlipLeft");
         
@@ -213,5 +223,10 @@ public class JournalSystem : MonoBehaviour
         {
             page.ReturnBack();
         }
+    }
+    
+    private void PlayOneShot(AudioClip clip)
+    {
+        audioSource.PlayOneShot(clip);
     }
 }

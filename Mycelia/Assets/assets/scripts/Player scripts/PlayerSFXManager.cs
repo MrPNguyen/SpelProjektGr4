@@ -70,7 +70,6 @@ public class PlayerSFXManager : MonoBehaviour
     private void PlayOneShot(AudioClip clip)
     {
         OneShotSource.PlayOneShot(clip);
-       
     }
 
     private void PlaySounds()
