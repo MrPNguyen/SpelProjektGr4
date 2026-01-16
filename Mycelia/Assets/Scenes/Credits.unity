@@ -559,7 +559,7 @@ MonoBehaviour:
   - Main Menu Font ~~ Pixel Warden in 1001Font.com
   - Dialogue Font ~~ PressStart2P in GoogleFonts.com
   - ~:0:~
-  - "Ljud Assets fr\xE5n OpenGameArt.com"
+  - "Ljud Assets fr\xE5n OpenGameArt.org"
   - ~:0:~
   - SvampolinHopp ~~ rudy85 - Jumpsoundsx
   - Bouncy Enemy ~~ rudy85  - Jumpsoundsx
@@ -568,6 +568,7 @@ MonoBehaviour:
   - Pixie Grunts ~~ Cicifyre - Female RPG Voice Starter Pack
   - "F\xE5glar och vind f\xF6r ambians \u2013 Spring Spring \u2013 \"Birds And Wind
     \u2013 Ambient, Birds, Wind and Synth\""
+  - Page Flip ~~ Voltiment555 - "Book Flip Sounds"
   - ~:0:~
   - "Ljud Assets fr\xE5n Pixabay"
   - ~:0:~
@@ -575,7 +576,7 @@ MonoBehaviour:
   - "Button click sound 1 ~~ Scratchonix \u2013 \u201CChime\u201D "
   - "Button click sound 2 ~~ JazzyBay \u2013 \u201CChimes"
   - ~:0:~
-  - "Dash ~~ Kenney.nl \u2013  \u201CCasino Audio\u201Dind Blowing "
+  - "Dash ~~ Kenney.nl \u2013  \u201CCasino Audio\u201D"
   EndButton: 
   timeBtwnChars: 0.1
   timeBtwnWords: 1.3
