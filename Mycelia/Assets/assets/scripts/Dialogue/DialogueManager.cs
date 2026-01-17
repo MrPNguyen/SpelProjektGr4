@@ -15,7 +15,7 @@ public class DialogueManager : MonoBehaviour
     public Image characterIcon;
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI dialogueText;
-    public AudioSource voiceLine;
+    public AudioSource voiceAudio;
 
     private Queue<DialogueLine> lines;
 
@@ -118,8 +118,12 @@ public class DialogueManager : MonoBehaviour
 
         characterIcon.sprite = currentLine.character.icon;
         nameText.text = currentLine.character.name;
-        voiceLine.clip = currentLine.voiceLine;
-        voiceLine.Play();
+
+        if (currentLine.voiceLine != null && !dialogue.GeneralDialogSound)
+        {
+            voiceAudio.clip = currentLine.voiceLine;
+            voiceAudio.Play();
+        }
         
         StartCoroutine(TypeSentence(currentLine, dialogue));
     }
