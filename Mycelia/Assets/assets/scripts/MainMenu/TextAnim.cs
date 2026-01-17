@@ -7,8 +7,10 @@ using UnityEngine.SceneManagement;
 public class TextAnim : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI _textMeshPro;
+    [SerializeField] AudioSource _audioSource;
 
     public string[] stringArray;
+    public AudioClip[] audioArray;
     [SerializeField] private string EndButton;
 
     [SerializeField] private float timeBtwnChars;
@@ -62,6 +64,8 @@ public class TextAnim : MonoBehaviour
         {
             StopAllCoroutines();
             _textMeshPro.text = stringArray[i];
+            _audioSource.clip = audioArray[i];
+            _audioSource.Play();
             _textMeshPro.maxVisibleCharacters = 0;
             typingCoroutine = StartCoroutine(TextVisible());
         }

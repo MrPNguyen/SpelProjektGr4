@@ -7912,6 +7912,11 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 8882234881620032967, guid: 66a3d85f7826c774882883da574fd3b3, type: 3}
   m_PrefabInstance: {fileID: 1901425140}
   m_PrefabAsset: {fileID: 0}
+--- !u!82 &723622580 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 7059747208586884509, guid: 320c08b9dc878b44486a50213fc5c34d, type: 3}
+  m_PrefabInstance: {fileID: 4377839608952774833}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &731206221
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8181,81 +8186,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &746705005
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 746705006}
-  - component: {fileID: 746705008}
-  - component: {fileID: 746705007}
-  m_Layer: 5
-  m_Name: Image
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &746705006
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 746705005}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.8557, y: 1.8557, z: 1.8557}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 868857739}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -11, y: 2}
-  m_SizeDelta: {x: 478.125, y: 146.875}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &746705007
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 746705005}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: -5261992394389525642, guid: f24e8f97c86e29f4683827350a3e77f1, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &746705008
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 746705005}
-  m_CullTransparentMesh: 1
 --- !u!114 &750830321 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2257644712137185346, guid: 54beca3aa97dcb94dbcf044de1a8fba6, type: 3}
@@ -9169,12 +9099,15 @@ MonoBehaviour:
     - character:
         name: kantarelder
         icon: {fileID: 8238638941979423301, guid: 6ead8f8e694501b4eb48a851baedab56, type: 3}
+      voiceLine: {fileID: 8300000, guid: ece3b79622c6f0847959af4aeeca7065, type: 3}
       line: Oh, dear Faye, please find the key to free me from the agarics!
     - character:
         name: kantarelder
         icon: {fileID: 8238638941979423301, guid: 6ead8f8e694501b4eb48a851baedab56, type: 3}
+      voiceLine: {fileID: 8300000, guid: ce1ad68879e02934e8386028c23cae67, type: 3}
       line: They're sure to keep the key around here somewhere!
     automaticAdvance: 1
+    GeneralDialogSound: 0
     autoAdvanceDelay: 0.5
   ableToWalkDuringDialogue: 1
 --- !u!1 &863898443
@@ -9230,11 +9163,6 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 7541790992093834774, guid: de88ecf85e5e89540b994562db4132f1, type: 3}
   m_PrefabInstance: {fileID: 2105820581}
-  m_PrefabAsset: {fileID: 0}
---- !u!224 &868857739 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 3226357958670624420, guid: 320c08b9dc878b44486a50213fc5c34d, type: 3}
-  m_PrefabInstance: {fileID: 4377839608952774833}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &875477020
 GameObject:
@@ -27163,6 +27091,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 465667518}
     - target: {fileID: 3285595607242445459, guid: a31383256895e86488e812f338bb01bd, type: 3}
+      propertyPath: voiceLine
+      value: 
+      objectReference: {fileID: 723622580}
+    - target: {fileID: 3285595607242445459, guid: a31383256895e86488e812f338bb01bd, type: 3}
       propertyPath: dialogueText
       value: 
       objectReference: {fileID: 221587771}
@@ -27386,6 +27318,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: DialogueBoxCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 3001393167997128236, guid: 320c08b9dc878b44486a50213fc5c34d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5325884826426355259, guid: 320c08b9dc878b44486a50213fc5c34d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5383936383806714386, guid: 320c08b9dc878b44486a50213fc5c34d, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -27496,10 +27436,7 @@ PrefabInstance:
     - {fileID: 63261769111504903, guid: 320c08b9dc878b44486a50213fc5c34d, type: 3}
     - {fileID: 3674279117249892565, guid: 320c08b9dc878b44486a50213fc5c34d, type: 3}
     - {fileID: 7224514671035540810, guid: 320c08b9dc878b44486a50213fc5c34d, type: 3}
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 3226357958670624420, guid: 320c08b9dc878b44486a50213fc5c34d, type: 3}
-      insertIndex: 0
-      addedObject: {fileID: 746705006}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 320c08b9dc878b44486a50213fc5c34d, type: 3}
 --- !u!1001 &6518265231353836607

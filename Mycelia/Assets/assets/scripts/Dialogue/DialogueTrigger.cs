@@ -12,6 +12,7 @@ public class DialogueCharacter
 public class DialogueLine
 {
     public DialogueCharacter character;
+    public AudioClip voiceLine;
     [TextArea(3, 10)]
     public string line;
 }
@@ -23,6 +24,7 @@ public class Dialogue
     
     [Header("Automatically Display Next DialogueLine")]
     public bool automaticAdvance;
+    public bool GeneralDialogSound;
     public float autoAdvanceDelay = 1.5f;
 }
 public class DialogueTrigger : MonoBehaviour

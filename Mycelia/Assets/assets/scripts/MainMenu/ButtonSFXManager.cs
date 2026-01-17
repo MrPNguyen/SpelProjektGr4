@@ -55,8 +55,11 @@ public class ButtonSFXManager : MonoBehaviour,
     }
 
     public void OnPointerClick(PointerEventData eventData)
-    { 
-        UIAudio.Instance.Play(ClickClip);
+    {
+        if (ClickClip != null)
+        {
+            UIAudio.Instance.Play(ClickClip);
+        }
     }
     
     private void OnEnable()

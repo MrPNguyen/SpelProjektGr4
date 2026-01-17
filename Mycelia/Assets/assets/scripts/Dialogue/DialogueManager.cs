@@ -15,6 +15,7 @@ public class DialogueManager : MonoBehaviour
     public Image characterIcon;
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI dialogueText;
+    public AudioSource voiceLine;
 
     private Queue<DialogueLine> lines;
 
@@ -91,10 +92,10 @@ public class DialogueManager : MonoBehaviour
             playerMovement.rb.linearVelocity = Vector2.zero;
         }
 
-        DisplayNextDialogueLine();
+        DisplayNextDialogueLine(dialogue);
     }
 
-    public void DisplayNextDialogueLine()
+    public void DisplayNextDialogueLine(Dialogue dialogue)
     {
         if (isTyping)
         {
@@ -117,19 +118,21 @@ public class DialogueManager : MonoBehaviour
 
         characterIcon.sprite = currentLine.character.icon;
         nameText.text = currentLine.character.name;
-
-        StartCoroutine(TypeSentence(currentLine));
+        voiceLine.clip = currentLine.voiceLine;
+        voiceLine.Play();
+        
+        StartCoroutine(TypeSentence(currentLine, dialogue));
     }
 
-    public void OnAdvanceDialogue(InputAction.CallbackContext context)
+    public void OnAdvanceDialogue(InputAction.CallbackContext context, Dialogue dialogue)
     {
         if (context.performed && !DialogueEnd)
         {
-            DisplayNextDialogueLine();
+            DisplayNextDialogueLine(dialogue);
         }
     }
 
-    IEnumerator TypeSentence(DialogueLine dialogueLine)
+    IEnumerator TypeSentence(DialogueLine dialogueLine, Dialogue dialogue)
     {
         isTyping = true;
         dialogueText.text = "";
@@ -139,7 +142,10 @@ public class DialogueManager : MonoBehaviour
             if (isTyping == false)
                 break;
 
-            PlayDialogueSound(charCount);
+            if (dialogue.GeneralDialogSound)
+            {
+                PlayDialogueSound(charCount);
+            }
             dialogueText.text += letter;
             charCount++;
             yield return new WaitForSeconds(typingSpeed);
@@ -152,7 +158,7 @@ public class DialogueManager : MonoBehaviour
         if (currentAutoAdvance)
         {
             yield return new WaitForSeconds(currentAutoAdvanceDelay);
-            DisplayNextDialogueLine();
+            DisplayNextDialogueLine(dialogue);
         }
     }
     private void PlayDialogueSound(int currentDisplayedCharacterCount)
